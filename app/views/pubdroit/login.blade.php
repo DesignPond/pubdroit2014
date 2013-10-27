@@ -3,7 +3,7 @@
 @section('content')
 	
     <div class="welcome">
-	{{ Form::open(array('url' => 'login' , 'class' => 'pure-form  pure-form-stacked')) }}
+	{{ Form::open(array('url' => 'login' , 'class' => 'pure-form pure-form-aligned')) }}
 		<h3>Login</h3>
 	
 		<!-- if there are login errors, show them here -->
@@ -17,14 +17,14 @@
 			{{ $errors->first('password') }}
 		</p>
 	
-		<p>
+		<div class="pure-control-group">
 			{{ Form::label('email', 'Email Address') }}
 			{{ Form::text('email', Input::old('email'), array('placeholder' => 'awesome@awesome.com')) }}
-		</p>
-		<p>
+		</div>
+		<div class="pure-control-group">
 			{{ Form:: label('password', 'Password') }}
 			{{ Form::password('password') }}
-		</p>
+		</div>
 		
 		</fieldset>
 	

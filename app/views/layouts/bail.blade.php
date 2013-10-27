@@ -9,19 +9,29 @@
 	<meta name="author" content="Cindy Leschaud">
 	<meta name="viewport" content="width=device-width">
 
+	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/bail.css');?>">
+	
     <script src="<?php echo asset('js/main.js');?>"></script>
 
 	</head>
 	<body>
-        <div class="container">
+        <div id="main" class="container">
         
-	        <header>
-				<nav>
-				  <ul class="nav navbar-nav">
-				    <li><a href="<?php //echo action('AppController@getIndex');?>">Accueil</a></li>
-				  </ul>
-				</nav>
+	        <header class="row">
+	        	<a class="large-2 columns" href="">{{HTML::image('/images/bail/logo.png')}}</a>
+	        	<div class="large-6 columns">
+					<nav id="menu-principal">
+					   <a href="<?php //echo action('AppController@getIndex');?>">Home</a>
+					   <a href="<?php //echo action('AppController@getIndex');?>">Lois</a>
+					   <a href="<?php //echo action('AppController@getIndex');?>">Autorités</a>
+					   <a href="<?php //echo action('AppController@getIndex');?>">Liens utiles</a>
+					   <a class="noborder" href="<?php //echo action('AppController@getIndex');?>">FAQ</a>
+					</nav>
+				</div>
+				<div class="large-4 columns">fghj</div>
 		    </header>  
 		      	
 	            @yield('content')

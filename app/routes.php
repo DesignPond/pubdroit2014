@@ -18,20 +18,26 @@ Route::get('/', function()
 
 Route::get('login', function()
 {
-    return View::make('pubdroit.login');
+	if(Auth::check()){
+		return Redirect::to('pubdroit/profil');
+	}
+	else{
+		return View::make('pubdroit.login');
+	}
+    
 });
 
 Route::post('login', function()
 {
     // Validation later - for now let’s just get the creds
-    Auth::attempt(
-        array(
-           'email'    => Input::get('email'),
-           'password' => Input::get('password')
-        )
-    );
- 
-    return Redirect::to('bail');
+   if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
+   {
+	   return Redirect::to('pubdroit/profil');
+   }
+   else{
+	   return Redirect::to('login');
+   }
+     
 });
  
 

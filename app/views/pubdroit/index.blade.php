@@ -4,9 +4,14 @@
 	
     <div class="welcome">
       Pubdroit index
-      
-            {{ $email = Auth::user()->email }}
-            
+         
+       <?php 
+			if (Auth::check())
+			{
+				echo "Vous êtes loggués";
+			}
+		?>	 
+           		 
     </div>
 	
 @stop

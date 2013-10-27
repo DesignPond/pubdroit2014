@@ -9,9 +9,10 @@
 	<meta name="author" content="Cindy Leschaud">
 	<meta name="viewport" content="width=device-width">
 	
-	<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
+	
     <script src="<?php echo asset('js/main.js');?>"></script>
 
 	</head>
