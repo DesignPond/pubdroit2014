@@ -1,0 +1,53 @@
+/* ===== Primary Styles =====================================================
+   Bail
+   ========================================================================== */
+
+$primary-red: #b80e1d;
+
+#menu-principal{
+	margin-left: 15px;
+} 
+ 
+#menu-principal > a{
+	display: inline-block;
+	padding: 0 5px;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #000;
+} 
+
+#menu-principal > a:after{
+	content: "|";
+	padding: 0 0 0 15px;
+} 
+
+#menu-principal a.noborder:after{
+	border: none;
+	content: "";
+	padding: 0;
+}
+
+header{
+	padding:  0;
+	line-height: 70px;
+}
+   
+.sidebar{
+	background: $primary-red;
+}
+
+.content{
+	background: #f0b4b4;
+}
+
+
+.bar{
+  background: $primary-red;
+  line-height: 30px;
+}
+
+
+.bar input, .bar p{
+  margin-bottom: 0;
+  height: 30px;
+}

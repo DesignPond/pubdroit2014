@@ -31,8 +31,19 @@
 					   <a class="noborder" href="<?php //echo action('AppController@getIndex');?>">FAQ</a>
 					</nav>
 				</div>
-				<div class="large-4 columns">fghj</div>
+				<div class="large-4 columns text-right">{{HTML::image('/images/bail/unine.png')}}</div>
 		    </header>  
+		    
+		    <!-- Breadcrumbs and search box -->
+	         <div class="row">
+		        <div class="large-8 columns bar">
+		            <p>Bail index</p>
+		        </div>
+		
+		        <div class="large-4 columns bar">
+		            <input type="text" placeholder="large-4.columns">
+		        </div>
+		    </div>
 		      	
 	            @yield('content')
 	            

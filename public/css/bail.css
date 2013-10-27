@@ -1,40 +1,57 @@
-
 /* ===== Primary Styles =====================================================
    Bail
    ========================================================================== */
-
-#menu-principal{
-	margin-left: 15px;
-} 
- 
-#menu-principal > a{
-	display: inline-block;
-	padding: 0 5px;
-	margin-top: 10px;
-	font-size: 14px;
-	color: #000;
-} 
-
-#menu-principal > a:after{
-	content: "|";
-	padding: 0 0 0 15px;
-} 
-
-#menu-principal a.noborder:after{
-	border: none;
-	content: "";
-	padding: 0;
+/* line 7, bail.scss */
+#menu-principal {
+  margin-left: 15px;
 }
 
-header{
-	padding:  0;
-	line-height: 70px;
-}
-   
-.sidebar{
-	background: #a49d9d;
+/* line 11, bail.scss */
+#menu-principal > a {
+  display: inline-block;
+  padding: 0 5px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #000;
 }
 
-.content{
-	background: #f0b4b4;
+/* line 19, bail.scss */
+#menu-principal > a:after {
+  content: "|";
+  padding: 0 0 0 15px;
+}
+
+/* line 24, bail.scss */
+#menu-principal a.noborder:after {
+  border: none;
+  content: "";
+  padding: 0;
+}
+
+/* line 30, bail.scss */
+header {
+  padding: 0;
+  line-height: 70px;
+}
+
+/* line 35, bail.scss */
+.sidebar {
+  background: #b80e1d;
+}
+
+/* line 39, bail.scss */
+.content {
+  background: #f0b4b4;
+}
+
+/* line 44, bail.scss */
+.bar {
+  background: #b80e1d;
+  line-height: 30px;
+}
+
+/* line 50, bail.scss */
+.bar input, .bar p {
+  margin-bottom: 0;
+  height: 30px;
 }
