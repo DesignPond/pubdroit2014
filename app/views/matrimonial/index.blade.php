@@ -1,8 +1,8 @@
-@extends('layouts.bail')
+@extends('layouts.matrimonial')
 
 @section('content')
 	
-    <div class="welcome">
+    <div id="content" class="inner">
       Matrimonial index
     </div>
 	

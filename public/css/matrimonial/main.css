@@ -1,0 +1,51 @@
+body{
+	background: #999999;
+}
+
+#main{
+	background: #cccccc;	
+}
+
+.clearall{
+	content: ".";
+	clear: both;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+#content{
+	background: #fff;
+}
+
+#header{
+	background: #333333;
+}
+
+#header h1{
+	font-size: 20px;
+	line-height: 0.6em;
+}
+
+#menu-principal{
+	line-height: 3em;
+}
+
+#maincontent{
+	width: 78%;
+	float: left;
+	background: #fff;
+}
+
+#sidebar{
+	width: 22%;
+	float: right;
+	background: #cccccc;
+}
+
+.inner{
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+	padding: 20px;
+}

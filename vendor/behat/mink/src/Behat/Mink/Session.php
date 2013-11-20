@@ -240,6 +240,26 @@ class Session
     }
 
     /**
+     * Return the names of all open windows
+     *
+     * @return array    Array of all open window's names.
+     */
+    public function getWindowNames()
+    {
+        return $this->driver->getWindowNames();
+    }
+
+    /**
+     * Return the name of the currently active window
+     *
+     * @return string    The name of the current window.
+     */
+    public function getWindowName()
+    {
+        return $this->driver->getWindowName();
+    }
+
+    /**
      * Reloads current session page.
      */
     public function reload()
@@ -310,10 +330,12 @@ class Session
      *
      * @param integer $time      time in milliseconds
      * @param string  $condition JS condition
+     *
+     * @return boolean
      */
     public function wait($time, $condition = 'false')
     {
-        $this->driver->wait($time, $condition);
+        return $this->driver->wait($time, $condition);
     }
 
     /**

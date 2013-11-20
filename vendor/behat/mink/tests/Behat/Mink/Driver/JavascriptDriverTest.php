@@ -2,6 +2,8 @@
 
 namespace Tests\Behat\Mink\Driver;
 
+use Behat\Mink\Exception\UnsupportedDriverActionException;
+
 require_once 'GeneralDriverTest.php';
 
 abstract class JavascriptDriverTest extends GeneralDriverTest
@@ -57,6 +59,38 @@ abstract class JavascriptDriverTest extends GeneralDriverTest
         $this->assertSame('Main window div text', $el->getText());
     }
 
+    public function testGetWindowNames()
+    {
+        $this->getSession()->visit($this->pathTo('/window.php'));
+        $session = $this->getSession();
+        $page    = $session->getPage();
+
+        try {
+            $windowName = $this->getSession()->getWindowName();
+        }
+        catch (UnsupportedDriverActionException $e) {
+            $this->markTestSkipped('The current driver does not support getWindowName function.');
+            return;
+        }
+        
+        $this->assertNotNull($windowName);
+
+        $page->clickLink('Popup #1');
+        $page->clickLink('Popup #2');
+
+        try {
+            $windowNames = $this->getSession()->getWindowNames();
+        }
+        catch (UnsupportedDriverActionException $e) {
+            $this->markTestSkipped('The current driver does not support getWindowNames function.');
+            return;
+        }
+
+        $this->assertNotNull($windowNames[0]);
+        $this->assertNotNull($windowNames[1]);
+        $this->assertNotNull($windowNames[2]);
+    }
+
     public function testAriaRoles()
     {
         $this->getSession()->visit($this->pathTo('/aria_roles.php'));
@@ -67,6 +101,17 @@ abstract class JavascriptDriverTest extends GeneralDriverTest
 
         $this->getSession()->getPage()->clickLink('Go to Index');
         $this->assertEquals($this->pathTo('/index.php'), $this->getSession()->getCurrentUrl());
+    }
+
+    /**
+     * Tests, that `wait` method returns check result after exit.
+     */
+    public function testWaitReturnValue()
+    {
+        $this->getSession()->visit($this->pathTo('/js_test.php'));
+
+        $found = $this->getSession()->wait(5000, '$("#draggable:visible").length == 1');
+        $this->assertTrue($found);
     }
 
     public function testMouseEvents()
@@ -192,5 +237,25 @@ abstract class JavascriptDriverTest extends GeneralDriverTest
 
         $session->wait(2000, '$("#output_foo_select").text() != ""');
         $this->assertEquals('onChangeSelect', $session->getPage()->find('css', '#output_foo_select')->getText());
+    }
+
+    public function testWindowMaximize()
+    {
+        $this->getSession()->visit($this->pathTo('/index.php'));
+        $session = $this->getSession();
+        $driver = $session->getDriver();
+
+        try {
+            $driver->maximizeWindow();
+            $driver->wait(1000, false);
+
+            $script = "
+            return Math.abs(screen.availHeight - window.outerHeight) <= 100;
+            ";
+
+            $this->assertTrue($session->evaluateScript($script));
+        } catch (UnsupportedDriverActionException $e) {
+            $this->markTestSkipped('Maximize not yet implemented on this driver');
+        }
     }
 }

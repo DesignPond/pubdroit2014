@@ -154,6 +154,20 @@ interface DriverInterface
     public function getScreenshot();
 
     /**
+     * Return the names of all open windows.
+     *
+     * @return array    array of all open windows
+     */
+    public function getWindowNames();
+
+    /**
+     * Return the name of the currently active window.
+     *
+     * @return string    the name of the current window
+     */
+    public function getWindowName();
+
+    /**
      * Finds elements with specified XPath query.
      *
      * @param string $xpath
@@ -372,6 +386,8 @@ interface DriverInterface
      *
      * @param integer $time      time in milliseconds
      * @param string  $condition JS condition
+     *
+     * @return boolean
      */
     public function wait($time, $condition);
 
@@ -385,9 +401,17 @@ interface DriverInterface
     public function resizeWindow($width, $height, $name = null);
 
     /**
+     * Maximize the window if it is not maximized already
+     *
+     * @param string $name window name (null for the main window)
+     */
+    public function maximizeWindow($name = null);
+
+     /**
      * Submits the form.
      *
      * @param string $xpath Xpath.
      */
     public function submitForm($xpath);
+
 }

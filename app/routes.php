@@ -41,16 +41,6 @@ Route::post('login', function()
 });
  
 
-Route::group(array('prefix' => 'bail'), function()
-{
-
-    Route::get('/', function()
-    {
-        return View::make('bail.index');
-    });
-
-});
-
 Route::group(array('prefix' => 'pubdroit'), function()
 {
 
@@ -72,6 +62,16 @@ Route::group(array('prefix' => 'matrimonial'), function()
     Route::get('/', function()
     {
         return View::make('matrimonial.index');
+    });
+
+});
+
+Route::group(array('prefix' => 'bail'), function()
+{
+
+    Route::get('/', function()
+    {
+        return View::make('bail.index');
     });
 
 });

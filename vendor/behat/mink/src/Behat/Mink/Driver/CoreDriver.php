@@ -149,6 +149,26 @@ abstract class CoreDriver implements DriverInterface
     }
 
     /**
+     * Return the names of all open windows.
+     *
+     * @return array    array of all open windows
+     */
+    public function getWindowNames()
+    {
+        throw new UnsupportedDriverActionException('Listing all window names is not supported by %s', $this);
+    }
+
+    /**
+     * Return the name of the currently active window.
+     *
+     * @return string    the name of the current window
+     */
+    public function getWindowName()
+    {
+        throw new UnsupportedDriverActionException('Listing this window name is not supported by %s', $this);
+    }
+
+    /**
      * Double-clicks button or link located by it's XPath query.
      *
      * @param string $xpath
@@ -297,6 +317,7 @@ abstract class CoreDriver implements DriverInterface
      * @param integer $time      time in milliseconds
      * @param string  $condition JS condition
      *
+     * @return boolean
      * @throws UnsupportedDriverActionException
      */
     public function wait($time, $condition)
@@ -314,6 +335,16 @@ abstract class CoreDriver implements DriverInterface
     public function resizeWindow($width, $height, $name = null)
     {
         throw new UnsupportedDriverActionException('Window resizing is not supported by %s', $this);
+    }
+
+    /**
+     * Maximize the window if it is not maximized already
+     *
+     * @param string  $name   window name (null for the main window)
+     */
+    public function maximizeWindow($name = null)
+    {
+        throw new UnsupportedDriverActionException('Window maximize is not supported by %s', $this);
     }
 
     /**

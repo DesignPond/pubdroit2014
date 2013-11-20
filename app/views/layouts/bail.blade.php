@@ -5,16 +5,16 @@
     <meta charset="utf-8" />
 	<title>Bail</title>
 	
-	<meta name="description" content="Publications droit">
+	<meta name="description" content="Bail">
 	<meta name="author" content="Cindy Leschaud">
 	<meta name="viewport" content="width=device-width">
 
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
-	<link rel="stylesheet" href="<?php echo asset('css/bail.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/bail/main.css');?>">
 	
-    <script src="<?php echo asset('js/main.js');?>"></script>
+    <script src="<?php echo asset('bail/js/main.js');?>"></script>
 
 	</head>
 	<body>

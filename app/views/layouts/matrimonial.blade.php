@@ -11,23 +11,35 @@
 
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/main.css');?>">
 	
     <script src="<?php echo asset('js/main.js');?>"></script>
 
 	</head>
 	<body>
-        <div class="container">
+        <div id="main" class="container">
         
-	        <header>
-				<nav>
-				  <ul class="nav navbar-nav">
-				    <li><a href="<?php //echo action('AppController@getIndex');?>">Accueil</a></li>
-				  </ul>
-				</nav>
-		    </header>  
+    		<div id="maincontent">
+    		
+		        <header id="header" class="inner"> 
+		        	<div class="row">
+		        		<h1 class="large-4 columns"><a class="" href="">{{HTML::image('/images/matrimonial/logo.png')}}</a></h1>
+						<nav class="large-8 columns" id="menu-principal">
+						   <a href="<?php //echo action('AppController@getIndex');?>">Home</a>
+						   <a href="<?php //echo action('AppController@getIndex');?>">Newsletter</a>
+						   <a href="<?php //echo action('AppController@getIndex');?>">Jurisprudence</a>
+						</nav>
+		        	</div>
+			    </header>  
 		      	
 	            @yield('content')
 	            
+            </div>  
+            <div id="sidebar" class="inner">	
+            	{{HTML::image('/images/matrimonial/unine.png')}}
+            </div>  
+			<div class="clearall"></div>
 	    </div>
         
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

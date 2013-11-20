@@ -441,6 +441,26 @@ class Selenium2Driver extends CoreDriver
     }
 
     /**
+     * Return the names of all open windows
+     *
+     * @return array    Array of all open window's names.
+     */
+    public function getWindowNames()
+    {
+        return $this->wdSession->window_handles();
+    }
+
+    /**
+     * Return the name of the currently active window
+     *
+     * @return string    The name of the current window.
+     */
+    public function getWindowName()
+    {
+        return $this->wdSession->window_handle();
+    }
+
+    /**
      * Finds elements with specified XPath query.
      *
      * @param   string  $xpath
@@ -508,10 +528,9 @@ class Selenium2Driver extends CoreDriver
      */
     public function getAttribute($xpath, $name)
     {
-        $attribute = $this->wdSession->element('xpath', $xpath)->attribute($name);
-        if ('' !== $attribute) {
-            return $attribute;
-        }
+        $script = 'return {{ELEMENT}}.getAttribute(' . json_encode((string)$name) . ')';
+
+        return $this->executeJsOnXpath($xpath, $script);
     }
 
     /**
@@ -698,9 +717,9 @@ var triggerEvent = function (element, eventName) {
     } else {
         element.fireEvent("on" + event.eventType, event);
     }
-}
+};
 
-var node = {{ELEMENT}}
+var node = {{ELEMENT}};
 if (node.tagName == 'SELECT') {
     var i, l = node.length;
     for (i = 0; i < l; i++) {
