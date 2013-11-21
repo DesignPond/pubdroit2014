@@ -13,8 +13,12 @@
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/main.css');?>">
-	
-    <script src="<?php echo asset('js/main.js');?>"></script>
+	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/smoothness/jquery-ui-1.10.3.custom.css'); ?>" />	
+        
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="<?php echo asset('js/matrimonial/jquery-ui.js');?>"></script>
+    <script src="<?php echo asset('js/matrimonial/main.js');?>"></script>
 
 	</head>
 	<body>
@@ -68,12 +72,21 @@
 				    {{ Form::close() }}
 				     
             	</div>
+            	
+             	<div class="pinkBlock">
+             	
+	            	<div id="accordion">
+	            		 <h3>Newsletter</h3>
+	            		 	<div>vewegv</div>
+						 <h3>Jurisprudence</h3>
+	            		 	<div>vewegv</div>
+	            	</div>
+	            	
+            	</div>
+            	
             </div>  
 			<div class="clearall"></div>
 	    </div>
-        
-    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     	
 	</body>
 </html>

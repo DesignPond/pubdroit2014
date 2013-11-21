@@ -179,6 +179,7 @@ footer{
 /*======================================
 	Misc
 =======================================*/
+
 .noPadding{
 	padding-left: 0;
 }
@@ -197,9 +198,22 @@ footer{
 	padding: 0;
 }
 
+/*======================================
+	Accordion
+=======================================*/
 
+#accordion .ui-state-default, #accordion .ui-widget-content .ui-state-default, #accordion .ui-widget-header .ui-state-default {
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    padding-left: 0;
+}
 
+#accordion .ui-accordion-header-icon {
+    right: 0.5em;
+}
 
-
-
-
+#accordion .ui-accordion-content {
+    padding: 5px;
+    background: #cccccc;
+}
