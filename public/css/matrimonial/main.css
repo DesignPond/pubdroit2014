@@ -1,17 +1,71 @@
+/*======================================
+	Main
+=======================================*/
+
 body{
 	background: #999999;
 }
 
-#main{
-	background: #cccccc;	
+a{
+	color: #ED3C95;
+    text-decoration: none;
 }
 
-.clearall{
-	content: ".";
-	clear: both;
-	visibility: hidden;
+h1,h2,h3,h4,h5{
+	margin: 0 0 10px 0;
+}
+
+h1{
+	color: #ED3C95;
+}
+
+h3{
+	font-size: 1.1em;
+}
+
+h4{
+	font-size: 0.8em;
+}
+
+h5{
+	font-size: 0.75em;
+}
+
+p{
+	font-size: 12px;
+	line-height: 18px;
+}
+
+form{
 	margin: 0;
-	padding: 0;
+}
+
+form input[type="submit"]{
+	margin-bottom: 0;
+	background: #333333;
+	border-color: #2e2e2e;
+}
+
+form input[type="submit"]:hover{
+	background: #2e2e2e;
+}
+
+
+/*======================================
+	Main Blocks
+=======================================*/
+
+#main{
+	background: #b2b2b2; /* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI2OCUiIHN0b3AtY29sb3I9IiNiMmIyYjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI4NyUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+	background: -moz-linear-gradient(left,  #b2b2b2 68%, #cccccc 87%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, right top, color-stop(68%,#b2b2b2), color-stop(87%,#cccccc)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* IE10+ */
+	background: linear-gradient(to right,  #b2b2b2 68%,#cccccc 87%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2b2b2', endColorstr='#cccccc',GradientType=1 ); /* IE6-8 */	
 }
 
 #content{
@@ -22,15 +76,11 @@ body{
 	background: #333333;
 }
 
-#header h1{
-	font-size: 20px;
-	line-height: 0.6em;
-}
-
-#menu-principal{
-	line-height: 3em;
-}
-
+	#header h1{
+		font-size: 20px;
+		margin-bottom: 0;
+	}
+	
 #maincontent{
 	width: 78%;
 	float: left;
@@ -40,12 +90,116 @@ body{
 #sidebar{
 	width: 22%;
 	float: right;
+}
+
+#photo{
+	height: 170px;
+}
+
+footer{
+	text-align: center;
+	font-size: 12px;
+	line-height: 20px;
+	margin-top: 20px;
+}
+
+
+/*======================================
+	Navigation
+=======================================*/
+
+#menu-principal{
+	line-height: 2.1em;
+}
+
+	#menu-principal a{
+		margin-right: 30px;
+	}
+
+#breadcrumbs{
+	font-size: 11px;
+}
+
+/*======================================
+	Search
+=======================================*/
+
+.searchform
+{
+	position: relative;
+}
+
+.searchform input[type="text"]{
+	position: relative;
+	z-index: 1;
+	text-indent: 25px;
+}
+
+.searchform input[type="submit"]{
+	position: absolute;
+	border: none;
+	background: url("../../images/matrimonial/btn-go.png") 1px 3px no-repeat;
+	text-indent: -999px;
+	left: 1px;
+	top: 1px;
+	z-index: 10;
+	height: 30px;
+	width: 28px;
+}
+
+.searchform input[type="submit"]:hover{
+	background: url("../../images/matrimonial/btn-go.png") 1px 3px no-repeat;
+}
+
+/*======================================
+	Content
+=======================================*/
+
+.greySection{
 	background: #cccccc;
 }
+
+.pinkBlock{
+	background: #FF99CC;
+}
+
+	.pinkBlock h5{
+		margin: 0;
+		color: #fff;
+	}
 
 .inner{
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	box-sizing: border-box;         /* Opera/IE 8+ */
 	padding: 20px;
+	margin-bottom: 0;
 }
+
+/*======================================
+	Misc
+=======================================*/
+.noPadding{
+	padding-left: 0;
+}
+
+.line{
+	line-height: 30px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+}
+
+.clearall{
+	content: ".";
+	clear: both;
+	visibility: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+
+
+
