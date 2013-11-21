@@ -13,7 +13,9 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	$pdf = App::make('dompdf');
+	$pdf->loadHTML('<h1>Test</h1>');
+	return $pdf->stream();
 });
 
 Route::get('login', function()
@@ -24,7 +26,6 @@ Route::get('login', function()
 	else{
 		return View::make('pubdroit.login');
 	}
-    
 });
 
 Route::post('login', function()
@@ -34,10 +35,10 @@ Route::post('login', function()
    {
 	   return Redirect::to('pubdroit/profil');
    }
-   else{
+   else
+   {
 	   return Redirect::to('login');
    }
-     
 });
  
 
@@ -48,12 +49,16 @@ Route::group(array('prefix' => 'bail'), function()
     {
         return View::make('bail.index');
     });
-
+    
+    Route::get('lois', function()
+    {
+        return View::make('bail.index');
+    });
+    
 });
 
 Route::group(array('prefix' => 'pubdroit'), function()
 {
-
     Route::get('/', function()
     {
         return View::make('pubdroit.index');
@@ -63,15 +68,12 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	{
 	    return View::make('pubdroit.profil');
 	}));
-	
 });
 
 Route::group(array('prefix' => 'matrimonial'), function()
 {
-
     Route::get('/', function()
     {
         return View::make('matrimonial.index');
     });
-
 });

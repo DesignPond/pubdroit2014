@@ -2,56 +2,159 @@
    Bail
    ========================================================================== */
 /* line 7, bail.scss */
+body {
+  background: #cccccc;
+  font-family: Arial, Helvetica, sans serif;
+}
+
+/* line 12, bail.scss */
+#main {
+  background: #fff;
+  max-width: 1000px;
+}
+
+/* line 17, bail.scss */
 #menu-principal {
   margin-left: 15px;
 }
 
-/* line 11, bail.scss */
+/* line 21, bail.scss */
 #menu-principal > a {
   display: inline-block;
   padding: 0 5px;
-  margin-top: 10px;
   font-size: 14px;
   color: #000;
 }
 
-/* line 19, bail.scss */
+/* line 28, bail.scss */
 #menu-principal > a:after {
   content: "|";
   padding: 0 0 0 15px;
 }
 
-/* line 24, bail.scss */
+/* line 33, bail.scss */
 #menu-principal a.noborder:after {
   border: none;
   content: "";
   padding: 0;
 }
 
-/* line 30, bail.scss */
+/* line 39, bail.scss */
 header {
   padding: 0;
-  line-height: 70px;
-}
-
-/* line 35, bail.scss */
-.sidebar {
-  background: #b80e1d;
-}
-
-/* line 39, bail.scss */
-.content {
-  background: #f0b4b4;
+  line-height: 80px;
 }
 
 /* line 44, bail.scss */
-.bar {
-  background: #b80e1d;
-  line-height: 30px;
+footer {
+  text-align: center;
 }
 
-/* line 50, bail.scss */
-.bar input, .bar p {
+/* line 48, bail.scss */
+footer .bar p {
+  font-size: 11px;
+  line-height: 16px;
+}
+
+/* line 53, bail.scss */
+.sidebar {
+  background: #cb2629;
+}
+
+/* line 57, bail.scss */
+#accordion {
+  padding: 15px;
+}
+
+/* line 61, bail.scss */
+#accordion ul {
+  list-style: none;
+  font-size: 12px;
+}
+
+/* line 66, bail.scss */
+#accordion h3 {
+  font-size: 13px;
+}
+
+/* line 70, bail.scss */
+.content {
+  border-right: 1px solid #e4e4e4;
+}
+
+/* line 74, bail.scss */
+.main {
+  padding: 0 35px;
+}
+
+/* line 78, bail.scss */
+p {
+  font-size: 12px;
+  line-height: 20px;
+}
+
+/* line 83, bail.scss */
+.bar {
+  background: #cb2629;
+}
+
+/* line 87, bail.scss */
+.bar p, .bar form, .bar input {
   margin-bottom: 0;
-  height: 30px;
+  height: auto;
+  width: 100%;
+}
+
+/* line 93, bail.scss */
+.bar p {
+  padding: 10px 5px;
+  color: #fff;
+  font-size: 12px;
+}
+
+/* line 99, bail.scss */
+.bar p a {
+  color: #fff;
+}
+
+/* line 103, bail.scss */
+.bar p a:hover {
+  text-decoration: underline;
+}
+
+/* line 107, bail.scss */
+.bar input {
+  border-radius: 4px;
+  height: auto;
+  margin: 7px 0;
+  padding: 3px 5px 4px 5px;
+}
+
+/* line 114, bail.scss */
+.search-input {
+  float: right;
+}
+
+/* line 118, bail.scss */
+.shadow-red {
+  border-left: 1px solid #9a1d1f;
+}
+
+/* line 122, bail.scss */
+.inner {
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+/* line 127, bail.scss */
+.inner p {
+  font-size: 12px;
+  text-align: justify;
+}
+
+/* line 132, bail.scss */
+.inner h2 {
+  font-size: 13px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #cb2629;
 }

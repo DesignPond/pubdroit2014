@@ -2,7 +2,17 @@
    Bail
    ========================================================================== */
 
-$primary-red: #b80e1d;
+$primary-red: #cb2629;
+
+body{
+	background: #cccccc;
+	font-family: Arial, Helvetica, sans serif;	
+}
+
+#main{
+	background: #fff;
+	max-width: 1000px;
+}
 
 #menu-principal{
 	margin-left: 15px;
@@ -11,7 +21,6 @@ $primary-red: #b80e1d;
 #menu-principal > a{
 	display: inline-block;
 	padding: 0 5px;
-	margin-top: 10px;
 	font-size: 14px;
 	color: #000;
 } 
@@ -29,25 +38,99 @@ $primary-red: #b80e1d;
 
 header{
 	padding:  0;
-	line-height: 70px;
+	line-height: 80px;
+}
+
+footer{
+	text-align: center;
+}
+
+footer .bar p{
+    font-size: 11px;
+    line-height: 16px;
 }
    
 .sidebar{
 	background: $primary-red;
 }
 
-.content{
-	background: #f0b4b4;
+#accordion{
+	padding: 15px;
 }
 
+#accordion ul{ 
+	list-style: none;
+	font-size: 12px;
+}
+
+#accordion h3{
+	font-size: 13px;
+}
+
+.content{
+	border-right: 1px solid #e4e4e4;
+}
+
+.main{
+	padding: 0 35px;
+}
+
+p{
+	font-size: 12px;
+	line-height: 20px;
+}
 
 .bar{
   background: $primary-red;
-  line-height: 30px;
 }
 
+.bar p, .bar form, .bar input{
+	margin-bottom: 0;
+	height: auto;
+	width: 100%;
+}
 
-.bar input, .bar p{
-  margin-bottom: 0;
-  height: 30px;
+.bar p{
+	padding: 10px 5px;
+	color: #fff;
+	font-size: 12px;
+}
+
+.bar p a{
+	color: #fff;
+}
+
+.bar p a:hover{
+	text-decoration: underline;
+}
+
+.bar input{
+    border-radius: 4px;
+    height: auto;
+    margin: 7px 0;
+    padding: 3px 5px 4px 5px;
+}
+
+.search-input{
+	float: right;
+}
+
+.shadow-red{
+	border-left: 1px solid #9a1d1f;
+}
+
+.inner{
+	margin: 20px 0;
+	padding: 0 20px;
+}
+
+.inner p{
+	font-size: 12px;
+	text-align: justify;
+}
+
+.inner h2{
+	font-size: 13px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid  $primary-red;
 }

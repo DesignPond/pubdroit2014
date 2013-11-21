@@ -13,8 +13,6 @@
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/bail.css');?>">
-	
-    <script src="<?php echo asset('js/main.js');?>"></script>
 
 	</head>
 	<body>
@@ -36,21 +34,36 @@
 		    
 		    <!-- Breadcrumbs and search box -->
 	         <div class="row">
-		        <div class="large-8 columns bar">
-		            <p>Bail index</p>
+		        <div class="large-9 columns bar">
+		            <p><a href="<?php //echo action('AppController@getIndex');?>">Bail index</a></p>
 		        </div>
 		
-		        <div class="large-4 columns bar">
-		            <input type="text" placeholder="large-4.columns">
-		        </div>
+		        <div class="large-3 columns bar shadow-red">
+				      <form class="search-input"><input type="text" placeholder="Value"></form>
+      		     </div>
 		    </div>
 		      	
 	            @yield('content')
 	            
+	         <footer class="row">
+		        <div class="large-9 columns bar">
+		            <p>
+					    © 2009 - 2013 Bail.ch<br>
+					    Séminaire sur le droit du bail, Université de Neuchâtel, avenue du 1er-Mars 26, 2000 Neuchâtel, tél. 032 718 12 60, fax 032 718 12 61 
+					    <a href="mailto:seminaire.bail(at)unine(dot)ch">seminaire.bail(at)unine(dot)ch </a>
+					</p>
+		        </div>
+		
+		        <div class="large-3 columns">
+      		     </div>
+		     </footer>
+	            
 	    </div>
         
     	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
-    	
+    	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>	
+		<script src="<?php echo asset('js/main.js');?>"></script>
+		
 	</body>
 </html>

@@ -50,4 +50,5 @@ return array(
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
     'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-selenium2-driver/src', $vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src'),
     'Behat\\Mink' => array($vendorDir . '/behat/mink/src'),
+    'Barryvdh\\DomPDF' => array($vendorDir . '/barryvdh/laravel-dompdf/src'),
 );

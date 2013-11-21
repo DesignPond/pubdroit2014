@@ -2,10 +2,12 @@
 namespace Codeception\Subscriber;
 
 use Codeception\Exception\ConditionalAssertionFailed;
+use Codeception\SuiteManager;
 use Codeception\TestCase\ScenarioDriven;
 use Codeception\TestCase;
 use Codeception\Util\Console\Message;
 use Codeception\Util\Console\Output;
+use Codeception\Util\Debug;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -23,9 +25,12 @@ class Console implements EventSubscriberInterface
 
     public function __construct($options)
     {
-        $this->debug = $options['debug'] || $options['verbosity'] === OutputInterface::VERBOSITY_VERY_VERBOSE;
+        $this->debug = $options['debug'] || $options['verbosity'] >= OutputInterface::VERBOSITY_VERY_VERBOSE;
         $this->steps = $this->debug || $options['steps'];
         $this->output = new Output($options);
+        if ($this->debug) {
+            Debug::setOutput($this->output);
+        }
     }
 
     // triggered for scenario based tests: cept, cest
@@ -36,9 +41,19 @@ class Console implements EventSubscriberInterface
         $this->message("%s Tests (%d) ")
             ->with(ucfirst($e->getSuite()->getName()), count($e->getSuite()->tests()))
             ->style('bold')
-            ->prepend("\n")
             ->width(array_sum($this->columns), '-')
+            ->prepend("\n")
             ->writeln();
+
+        $message = $this->message(implode(', ',array_map(function ($module) {
+            return $module->getName();
+        }, SuiteManager::$modules)));
+        $message->style('info')
+            ->prepend('Modules: ')
+            ->writeln(OutputInterface::VERBOSITY_VERBOSE);
+        
+        $this->message('')->width(array_sum($this->columns), '-')->writeln(OutputInterface::VERBOSITY_VERBOSE);
+
     }
 
     // triggered for all tests
@@ -153,16 +168,22 @@ class Console implements EventSubscriberInterface
             return;
         }
         $this->output->writeln("* " . $e->getStep());
+//        if ($this->debug) {
+//            $this->message('<debug>');
+//        }
+        
     }
 
     public function afterStep(\Codeception\Event\Step $e)
     {
-        if (!$this->debug) {
-            return;
-        }
-        if ($output = $e->getStep()->pullDebugOutput()) {
-            $this->output->debug($output);
-        }
+//        if ($this->debug) {
+//            $this->message("</debug>\n");
+//        }
+//        $this->output->writeln(json_encode($e->getStep()->pullDebugOutput()));
+//        if ($output = $e->getStep()->pullDebugOutput()) {
+//            $this->output->write(implode(', ',$output));
+//            $this->output->debug($output);
+//        }
     }
 
     public function afterSuite(\Codeception\Event\Suite $e)
@@ -222,7 +243,7 @@ class Console implements EventSubscriberInterface
     {
         static $limit = 10;
         static $bottomCut = -9;
-        $this->message("[%s]")->with(get_class($e))->block('error')->writeln(
+        $this->message("[%s] %s")->with(get_class($e), $e->getMessage())->block('error')->writeln(
             $e instanceof \PHPUnit_Framework_AssertionFailedError
                 ? OutputInterface::VERBOSITY_DEBUG
                 : OutputInterface::VERBOSITY_NORMAL
