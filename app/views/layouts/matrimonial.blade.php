@@ -74,14 +74,41 @@
             	</div>
             	
              	<div class="pinkBlock">
-             	
-	            	<div id="accordion">
-	            		 <h3>Newsletter</h3>
-	            		 	<div>vewegv</div>
-						 <h3>Jurisprudence</h3>
-	            		 	<div>vewegv</div>
-	            	</div>
-	            	
+	            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
+	            		<div class="toggleNewsletter greySection" style="display:none;">
+		            		<ul>
+			            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=347" >Newsletter été 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=340" >Newsletter juin 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=334" >Newsletter mai 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=321" >Newsletter mars 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=314" >Newsletter février 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=307" >Newsletter janvier 2013</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=305" >Newsletter décembre 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=292" >Newsletter novembre 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=304" >Newsletter octobre 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=303" >Newsletter septembre 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=302" >Newsletter été 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=268" >Newsletter juin 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=264" >Newsletter mai 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=259" >Newsletter avril 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=252" >Newsletter mars 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=239" >Newsletter février 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=230" >Newsletter janvier 2012</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=209" >Newsletter décembre 2011</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=193" >Newsletter novembre 2011</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=183" >Newsletter octobre 2011</a></li>
+			            		<li><a href="index.php?id=206&amp;uid=177" >Newsletter septembre 2011</a></li>
+		            		</ul>
+	            		</div>
+					<h3 class="link"><a class="newsletterLink" href="#" >Jurisprudence</a></h3>	          	
+            	</div>
+            	
+            	<div class="pinkBlock upMarge inner">
+            		<h5>Avec le soutien de</h5>
+            		{{HTML::image('/images/matrimonial/logo_helbing.png')}}
             	</div>
             	
             </div>  

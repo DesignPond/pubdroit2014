@@ -6,7 +6,7 @@ body{
 	background: #999999;
 }
 
-a{
+a, a:hover, a:active, a:visited{
 	color: #ED3C95;
     text-decoration: none;
 }
@@ -25,10 +25,12 @@ h3{
 
 h4{
 	font-size: 0.8em;
+	font-weight: bold;
 }
 
 h5{
 	font-size: 0.75em;
+	font-weight: bold;
 }
 
 p{
@@ -56,16 +58,7 @@ form input[type="submit"]:hover{
 =======================================*/
 
 #main{
-	background: #b2b2b2; /* Old browsers */
-	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
-	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIxMDAlIiB5Mj0iMCUiPgogICAgPHN0b3Agb2Zmc2V0PSI2OCUiIHN0b3AtY29sb3I9IiNiMmIyYjIiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSI4NyUiIHN0b3AtY29sb3I9IiNjY2NjY2MiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
-	background: -moz-linear-gradient(left,  #b2b2b2 68%, #cccccc 87%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, right top, color-stop(68%,#b2b2b2), color-stop(87%,#cccccc)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* Opera 11.10+ */
-	background: -ms-linear-gradient(left,  #b2b2b2 68%,#cccccc 87%); /* IE10+ */
-	background: linear-gradient(to right,  #b2b2b2 68%,#cccccc 87%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2b2b2', endColorstr='#cccccc',GradientType=1 ); /* IE6-8 */	
+	background: #b2b2b2 url("../../images/matrimonial/bg-wrapper.png") repeat-y; /* Old browsers */
 }
 
 #content{
@@ -133,6 +126,7 @@ footer{
 	position: relative;
 	z-index: 1;
 	text-indent: 25px;
+	margin-bottom: 0;
 }
 
 .searchform input[type="submit"]{
@@ -159,15 +153,6 @@ footer{
 	background: #cccccc;
 }
 
-.pinkBlock{
-	background: #FF99CC;
-}
-
-	.pinkBlock h5{
-		margin: 0;
-		color: #fff;
-	}
-
 .inner{
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
@@ -179,6 +164,10 @@ footer{
 /*======================================
 	Misc
 =======================================*/
+
+.upMarge{
+	margin-top: 20px;
+}
 
 .noPadding{
 	padding-left: 0;
@@ -199,21 +188,60 @@ footer{
 }
 
 /*======================================
-	Accordion
+	Sidebar
 =======================================*/
 
-#accordion .ui-state-default, #accordion .ui-widget-content .ui-state-default, #accordion .ui-widget-header .ui-state-default {
+
+.pinkBlock{
+	background: #FF99CC;
+}
+
+	.pinkBlock h5{
+		margin: 0 0 5px 0;
+		color: #fff;
+	}
+
+h3.link{
+	margin-bottom: 0;
+}
+
+a.newsletterLink:hover, a.newsletterLink:active, a.newsletterLink:visited{
+	color: #ffffff;
+}
+
+.newsletterLink{
     color: #fff;
     font-size: 13px;
     font-weight: bold;
-    padding-left: 0;
+    padding: 5px 20px;
+    margin-right: 5px;
+    display: block;
+    background: url("../../images/matrimonial/close.png") center right no-repeat;
 }
 
-#accordion .ui-accordion-header-icon {
-    right: 0.5em;
+.toggleActive{
+    background: url("../../images/matrimonial/open.png") center right no-repeat;
 }
 
-#accordion .ui-accordion-content {
-    padding: 5px;
-    background: #cccccc;
+.toggleNewsletter{
+	background: #cccccc;
+	padding: 5px 20px;
 }
+
+.toggleNewsletter ul{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.toggleNewsletter ul li a{
+	color: #000;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+
+.toggleNewsletter ul li a:hover{
+	text-decoration: underline;
+}
+
