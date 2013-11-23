@@ -39,7 +39,7 @@
 			     
 			    <section id="photo">{{HTML::image('/images/matrimonial/photo.jpg')}}</section>
 			    
-		      	<section id="breadcrumbs" class="greySection inner">Home <a href=""> &gt; Newsletter</a></section>
+		      	<section id="breadcrumbs" class="greySection">Home <a href=""> &gt; Newsletter</a></section>
 		      	
 	            @yield('content')
 	            
@@ -108,7 +108,7 @@
             	
             	<div class="pinkBlock upMarge inner">
             		<h5>Avec le soutien de</h5>
-            		{{HTML::image('/images/matrimonial/logo_helbing.png')}}
+            		<a href="http://www.helbing.ch/" target="_blank">{{HTML::image('/images/matrimonial/logo_helbing.png')}}</a>
             	</div>
             	
             </div>  
