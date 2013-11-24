@@ -40,7 +40,7 @@ class NewsletterController extends BaseController {
 	public function add()
 	{
 		// which newsletter and email of user
-		
+		dd(Input::all() );
 		// Test if already a user
 		// Link both usr account and newsletter subscription
 		

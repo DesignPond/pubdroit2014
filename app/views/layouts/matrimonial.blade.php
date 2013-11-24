@@ -77,7 +77,7 @@
 	            	<h5>Inscription à la newsletter</h5>
 					<p>Entrez votre adresse e-mail</p>
 					
-					{{ Form::open(array( 'url' => 'newsletter', 'class' => '')) }}						
+					{{ Form::open(array( 'action' => 'NewsletterController@add', 'class' => '')) }}						
 						{{ Form::text('email', '' , array('class' => '')) }}
 						{{ Form::hidden('list_id', '2') }}
 						{{ Form::submit('Valider', array('class' => 'button tiny')) }}
