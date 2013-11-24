@@ -15,7 +15,6 @@ class CreateNewsletterUsersTable extends Migration {
 		Schema::create('newsletter_users', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('list_id');
-			$table->integer('user_id');
 			$table->string('email');
 		});
 	}

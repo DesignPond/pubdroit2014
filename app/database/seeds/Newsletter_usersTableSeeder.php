@@ -10,7 +10,6 @@ class Newsletter_usersTableSeeder extends Seeder {
 		$newsletter_users = array(
 	        array(
 	           'list_id'  => '2',
-	           'user_id'  => '1',
 	           'email'    => 'cindy.leschaud@gmail.com'
 	        )
 		);

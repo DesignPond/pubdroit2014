@@ -79,6 +79,7 @@
 					
 					{{ Form::open(array( 'url' => 'newsletter', 'class' => '')) }}						
 						{{ Form::text('email', '' , array('class' => '')) }}
+						{{ Form::hidden('list_id', '2') }}
 						{{ Form::submit('Valider', array('class' => 'button tiny')) }}
 					{{ Form::close() }}					
             	</div>
@@ -86,8 +87,8 @@
             	<!-- Bloc recherche --> 
             	
             	<div class="inner">            	
-            		{{ Form::open(array( 'url' => 'search', 'class' => 'searchform')) }}						
-				        {{ Form::text('email', '' , array('class' => '')) }}
+            		{{ Form::open(array( 'url' => 'matrimonial/search', 'class' => 'searchform')) }}						
+				        {{ Form::text('search', '' ) }}
 						{{ Form::submit('ok', array('class' => '')) }}
 				    {{ Form::close() }}				     
             	</div>
