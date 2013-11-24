@@ -9,12 +9,16 @@
 	<meta name="author" content="Cindy Leschaud">
 	<meta name="viewport" content="width=device-width">
 
+    <!-- CSS Files
+    ================================================== -->
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/main.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/smoothness/jquery-ui-1.10.3.custom.css'); ?>" />	
-        
+	
+    <!-- Javascript Files
+    ================================================== -->        
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="<?php echo asset('js/matrimonial/jquery-ui.js');?>"></script>
@@ -24,8 +28,9 @@
 	<body>
         <div id="main" class="container">
         
+        	<!-- Contenu principal -->
     		<div id="maincontent">
-    		
+    			<!-- Entête et menu -->
 		        <header id="header" class="inner"> 
 		        	<div class="row">
 		        		<h1 class="large-4 columns noPadding"><a class="" href="">{{HTML::image('/images/matrimonial/logo.png')}}</a></h1>
@@ -37,11 +42,18 @@
 		        	</div>
 			    </header> 
 			     
+			    <!-- Illustration -->
 			    <section id="photo">{{HTML::image('/images/matrimonial/photo.jpg')}}</section>
 			    
+			    <!-- Fil d'ariane -->
 		      	<section id="breadcrumbs" class="greySection">Home <a href=""> &gt; Newsletter</a></section>
 		      	
+		      	<!-- Contenu -->
+		      	
 	            @yield('content')
+	            
+	            <!-- Fin contenu -->
+	            <!-- Pied de page et adresse -->
 	            
 	            <footer class="greySection inner">
 		            © 2013 - droitmatrimonial.ch<br/>
@@ -49,29 +61,38 @@
 					<a href="mailto:droit.matrimonial@unine,ch">droit.matrimonial(at)unine(dot)ch</a>
 	            </footer>
 	            
-            </div>  
+            </div> 
+            <!-- Fin contenu principal -->
+            
+            <!-- Sidebar --> 
             <div id="sidebar">	
-            	<p class="inner">{{HTML::image('/images/matrimonial/unine.png')}}</p>
+            
+            	<!--Logo unine --> 
             	
-            	<div class="pinkBlock inner">
+            	<p class="inner">{{HTML::image('/images/matrimonial/unine.png')}}</p>
+
+            	<!-- Bloc inscription newsletter --> 
+            	            	
+            	<div class="pinkBlock inner">            	
 	            	<h5>Inscription à la newsletter</h5>
 					<p>Entrez votre adresse e-mail</p>
 					
 					{{ Form::open(array( 'url' => 'newsletter', 'class' => '')) }}						
 						{{ Form::text('email', '' , array('class' => '')) }}
 						{{ Form::submit('Valider', array('class' => 'button tiny')) }}
-					{{ Form::close() }}
-					
+					{{ Form::close() }}					
             	</div>
             	
-            	<div class="inner">
+            	<!-- Bloc recherche --> 
             	
+            	<div class="inner">            	
             		{{ Form::open(array( 'url' => 'search', 'class' => 'searchform')) }}						
 				        {{ Form::text('email', '' , array('class' => '')) }}
 						{{ Form::submit('ok', array('class' => '')) }}
-				    {{ Form::close() }}
-				     
+				    {{ Form::close() }}				     
             	</div>
+            	
+            	<!-- Bloc archives newsletter --> 
             	
              	<div class="pinkBlock">
 	            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
@@ -105,13 +126,18 @@
 	            		</div>
 					<h3 class="link"><a class="newsletterLink" href="#" >Jurisprudence</a></h3>	          	
             	</div>
-            	
+				
+				<!-- Bloc Soutiens --> 
+				 
             	<div class="pinkBlock upMarge inner">
             		<h5>Avec le soutien de</h5>
             		<a href="http://www.helbing.ch/" target="_blank">{{HTML::image('/images/matrimonial/logo_helbing.png')}}</a>
             	</div>
             	
             </div>  
+            
+            <!-- End sidebar --> 
+             
 			<div class="clearall"></div>
 	    </div>
     	

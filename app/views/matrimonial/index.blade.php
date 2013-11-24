@@ -22,13 +22,14 @@
 				<p><a href="">En savoir plus</a></p>
 			</div>
 			<div class="large-4 columns">
-				<h4>TF 5A_352/2013 - commenté par François Bohnet</h4>
-				<p>L'auteur se penche sur la problématique des frais judiciaires et dépens en matière de divorce et vous propose une analyse de l’arrêt du Tribunal fédéral 5A_352/2013 du 22 août 2013. </p>
+				<h4>TF 5A_689/2012 - commenté par François Bohnet</h4>
+				<p>Protection procédurale du créancier d’entretien ou d’aliments majeur. L'auteur vous propose une analyse de l’arrêt du Tribunal fédéral 5A_689/2012 du 3 juillet 2013.  </p>
 				<p><a href="">En savoir plus</a></p>	
 			</div>
 			<div class="large-4 columns">
-				<h4>TF 5A_352/2013 - commenté par François Bohnet</h4>
-				<p>L'auteur se penche sur la problématique des frais judiciaires et dépens en matière de divorce et vous propose une analyse de l’arrêt du Tribunal fédéral 5A_352/2013 du 22 août 2013. </p>
+				<h4>TF 5A_90/2013 - commenté par Bastien Durel</h4>
+				<p>L'auteur propose une analyse de l'arrêt du Tribunal fédéral 5A_90/2013 du 3 avril 2013 et se penche sur les problématiques de la reconnaissance d'un droit de visite étranger, 
+				du régime de l'article 85 LDIP et de l'intérêt de l'enfant. </p>
 				<p><a href="">En savoir plus</a></p>
 			</div>
 		</div>

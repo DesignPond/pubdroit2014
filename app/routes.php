@@ -11,35 +11,56 @@
 |
 */
 
+/* ==================================
+	Routes tests
+==================================== */
+
 Route::get('/', function()
 {
 	return View::make('hello');
 });
 
-Route::get('login', function()
-{
-	if(Auth::check()){
-		return Redirect::to('pubdroit/profil');
-	}
-	else{
-		return View::make('pubdroit.login');
-	}
-    
-});
-
-Route::post('login', function()
-{
-    // Validation later - for now let’s just get the creds
-   if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
-   {
-	   return Redirect::to('pubdroit/profil');
-   }
-   else{
-	   return Redirect::to('login');
-   }
-     
-});
+/* ==================================
+	Routes Common
+==================================== */
+		
+	/* LOGIN */
+	
+	Route::get('login', function()
+	{
+	
+		if(Auth::check())
+		{
+			return Redirect::to('pubdroit/profil');
+		}
+		else
+		{
+			return View::make('pubdroit.login');
+		}
+	  
+	});
+	
+	Route::post('login', function()
+	{
+	
+		if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
+		{
+			return Redirect::to('pubdroit/profil');
+		}
+		else
+		{
+			return Redirect::to('login');
+		}
+	     
+	});
+	
+	/* Newsletter */
+	
+	Route::post('newsletter', array( 'uses' => 'NewsletterController@add') );
  
+/* ==================================
+	Routes publications-droit
+==================================== */ 
 
 Route::group(array('prefix' => 'pubdroit'), function()
 {
@@ -56,6 +77,11 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	
 });
 
+
+/* ==================================
+	Routes droitmatrimonial
+==================================== */
+
 Route::group(array('prefix' => 'matrimonial'), function()
 {
 
@@ -65,6 +91,11 @@ Route::group(array('prefix' => 'matrimonial'), function()
     });
 
 });
+
+
+/* ==================================
+	Routes bail
+==================================== */
 
 Route::group(array('prefix' => 'bail'), function()
 {

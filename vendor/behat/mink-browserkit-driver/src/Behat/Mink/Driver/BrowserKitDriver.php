@@ -380,9 +380,13 @@ class BrowserKitDriver extends CoreDriver
      */
     public function getAttribute($xpath, $name)
     {
-        $value = $this->getCrawler()->filterXPath($xpath)->eq(0)->attr($name);
+        $node = $this->getCrawler()->filterXPath($xpath)->eq(0);
 
-        return '' !== $value ? $value : null;
+        if ($this->getCrawlerNode($node)->hasAttribute($name)) {
+            return $node->attr($name);
+        }
+
+        return null;
     }
 
     /**
@@ -465,6 +469,28 @@ class BrowserKitDriver extends CoreDriver
     }
 
     /**
+     * Checks whether select option, located by it's XPath query, is selected.
+     *
+     * @param string $xpath
+     *
+     * @return Boolean
+     */
+    public function isSelected($xpath)
+    {
+        if (!count($crawler = $this->getCrawler()->filterXPath($xpath))) {
+            throw new ElementNotFoundException(
+                $this->session, 'option', 'xpath', $xpath
+            );
+        }
+
+        $optionValue = $this->getCrawlerNode($crawler->eq(0))->getAttribute('value');
+        $selectField = $this->getFormField('(' . $xpath . ')/ancestor-or-self::*[local-name()="select"]');
+        $selectValue = $selectField->getValue();
+
+        return is_array($selectValue) ? in_array($optionValue, $selectValue) : $optionValue == $selectValue;
+    }
+
+    /**
      * Clicks button or link located by it's XPath query.
      *
      * @param string $xpath
@@ -484,29 +510,13 @@ class BrowserKitDriver extends CoreDriver
 
         if ('a' === $type) {
             $this->client->click($node->link());
-        } elseif('input' === $type || 'button' === $type) {
-            $form   = $node->form();
-            $formId = $this->getFormNodeId($form->getFormNode());
-
-            if (isset($this->forms[$formId])) {
-                $this->mergeForms($form, $this->forms[$formId]);
-            }
-
-            // remove empty file fields from request
-            foreach ($form->getFiles() as $name => $field) {
-                if (empty($field['name']) && empty($field['tmp_name'])) {
-                    $form->remove($name);
-                }
-            }
-
-            $this->client->submit($form);
+        } elseif ('input' === $type || 'button' === $type) {
+            $this->submit($node->form());
         } else {
             throw new DriverException(sprintf(
                 'BrowserKit driver supports clicking on inputs and links only. But "%s" provided', $type
             ));
         }
-
-        $this->forms = array();
     }
 
     /**
@@ -530,6 +540,23 @@ class BrowserKitDriver extends CoreDriver
     public function attachFile($xpath, $path)
     {
         $this->getFormField($xpath)->upload($path);
+    }
+
+    /**
+     * Submits the form.
+     *
+     * @param string $xpath Xpath.
+     * @throws ElementNotFoundException
+     */
+    public function submitForm($xpath)
+    {
+        if (!count($nodes = $this->getCrawler()->filterXPath($xpath))) {
+            throw new ElementNotFoundException(
+                $this->session, 'form', 'xpath', $xpath
+            );
+        }
+
+        $this->submit($nodes->eq(0)->form());
     }
 
     protected function getResponse()
@@ -648,6 +675,26 @@ class BrowserKitDriver extends CoreDriver
         }
 
         return $this->forms[$formId][$fieldName];
+    }
+
+    private function submit(Form $form)
+    {
+        $formId = $this->getFormNodeId($form->getFormNode());
+
+        if (isset($this->forms[$formId])) {
+            $this->mergeForms($form, $this->forms[$formId]);
+        }
+
+        // remove empty file fields from request
+        foreach ($form->getFiles() as $name => $field) {
+            if (empty($field['name']) && empty($field['tmp_name'])) {
+                $form->remove($name);
+            }
+        }
+
+        $this->client->submit($form);
+
+        $this->forms = array();
     }
 
     /**

@@ -125,16 +125,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.3.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449"
+                "reference": "ff36d4216fef8242c3d8ee97fceee977e3c9b9a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/e16d7adf45664a50fa86f515b6d5e7f670130449",
-                "reference": "e16d7adf45664a50fa86f515b6d5e7f670130449",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/ff36d4216fef8242c3d8ee97fceee977e3c9b9a6",
+                "reference": "ff36d4216fef8242c3d8ee97fceee977e3c9b9a6",
                 "shasum": ""
             },
             "require": {
@@ -150,7 +150,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -183,7 +183,7 @@
                     "email": "kontakt@beberlei.de"
                 },
                 {
-                    "name": "Johannes Schmitt",
+                    "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
                     "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
@@ -195,7 +195,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2013-10-25 19:04:14"
+            "time": "2013-11-23 16:10:06"
         },
         {
             "name": "doctrine/collections",
@@ -674,12 +674,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4fd85b295e3825a2fcdf4ab25a0d9a3b79a99870"
+                "reference": "31fb3d8e18a02fd10877cfc16045f673d9e7cfc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4fd85b295e3825a2fcdf4ab25a0d9a3b79a99870",
-                "reference": "4fd85b295e3825a2fcdf4ab25a0d9a3b79a99870",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/31fb3d8e18a02fd10877cfc16045f673d9e7cfc3",
+                "reference": "31fb3d8e18a02fd10877cfc16045f673d9e7cfc3",
                 "shasum": ""
             },
             "require": {
@@ -779,7 +779,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-11-15 04:57:21"
+            "time": "2013-11-21 02:34:54"
         },
         {
             "name": "monolog/monolog",
@@ -787,12 +787,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "11cb918bbc471da036c6148b995d42f79806428d"
+                "reference": "afaafc91995aff60604db79fcd30b489d2e6e7c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/11cb918bbc471da036c6148b995d42f79806428d",
-                "reference": "11cb918bbc471da036c6148b995d42f79806428d",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/afaafc91995aff60604db79fcd30b489d2e6e7c3",
+                "reference": "afaafc91995aff60604db79fcd30b489d2e6e7c3",
                 "shasum": ""
             },
             "require": {
@@ -846,7 +846,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-11-20 12:44:25"
+            "time": "2013-11-23 21:58:36"
         },
         {
             "name": "mustache/mustache",
@@ -895,20 +895,23 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.4.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "06f0b8a99a90c5392ceccb09b75b74ff6c08ec07"
+                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/06f0b8a99a90c5392ceccb09b75b74ff6c08ec07",
-                "reference": "06f0b8a99a90c5392ceccb09b75b74ff6c08ec07",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/b0450b539d1567b2acee6467b6b323a8547b5559",
+                "reference": "b0450b539d1567b2acee6467b6b323a8547b5559",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
             },
             "type": "library",
             "autoload": {
@@ -934,7 +937,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2013-09-09 02:39:19"
+            "time": "2013-11-23 15:22:05"
         },
         {
             "name": "nikic/php-parser",
@@ -983,16 +986,16 @@
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.14",
+            "version": "v1.1.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "af1d74b154bc62fab79b428877a9b5ab15f9418a"
+                "reference": "2b13126f572501ce9806846349344f1c6b20b545"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/af1d74b154bc62fab79b428877a9b5ab15f9418a",
-                "reference": "af1d74b154bc62fab79b428877a9b5ab15f9418a",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/2b13126f572501ce9806846349344f1c6b20b545",
+                "reference": "2b13126f572501ce9806846349344f1c6b20b545",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +1033,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2013-11-04 16:58:59"
+            "time": "2013-11-23 12:47:40"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -1414,12 +1417,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "b1a51b2ef900c28f389cc7ba498f3698b9749ce6"
+                "reference": "4e664c6c90824bc5161aea1981235adf315a6949"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/b1a51b2ef900c28f389cc7ba498f3698b9749ce6",
-                "reference": "b1a51b2ef900c28f389cc7ba498f3698b9749ce6",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/4e664c6c90824bc5161aea1981235adf315a6949",
+                "reference": "4e664c6c90824bc5161aea1981235adf315a6949",
                 "shasum": ""
             },
             "require": {
@@ -1453,7 +1456,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-11-09 19:00:33"
+            "time": "2013-11-22 14:17:50"
         },
         {
             "name": "psr/log",
@@ -1554,12 +1557,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/BrowserKit.git",
-                "reference": "7fc66ea3b9438080d79246cd8e5d88950c7fe4a4"
+                "reference": "7149642bc4ca2a13bc759b62506ab1c67ba39901"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/7fc66ea3b9438080d79246cd8e5d88950c7fe4a4",
-                "reference": "7fc66ea3b9438080d79246cd8e5d88950c7fe4a4",
+                "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/7149642bc4ca2a13bc759b62506ab1c67ba39901",
+                "reference": "7149642bc4ca2a13bc759b62506ab1c67ba39901",
                 "shasum": ""
             },
             "require": {
@@ -1600,7 +1603,7 @@
             ],
             "description": "Symfony BrowserKit Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-26 12:37:59"
+            "time": "2013-11-23 21:11:41"
         },
         {
             "name": "symfony/console",
@@ -1876,12 +1879,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Filesystem.git",
-                "reference": "e558fd5d593ebe083dca199f52aed5374ab7b57a"
+                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/e558fd5d593ebe083dca199f52aed5374ab7b57a",
-                "reference": "e558fd5d593ebe083dca199f52aed5374ab7b57a",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/79acd777762e81d0f3414ca25a602deeeb48240d",
+                "reference": "79acd777762e81d0f3414ca25a602deeeb48240d",
                 "shasum": ""
             },
             "require": {
@@ -1914,7 +1917,7 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "http://symfony.com",
-            "time": "2013-09-27 14:57:51"
+            "time": "2013-11-16 15:13:54"
         },
         {
             "name": "symfony/finder",
@@ -2020,12 +2023,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "9d45e71824fae3d02d0725c7eaeaebe019c54827"
+                "reference": "ebf60dd77b26b80008cd51aba523ddacb282ffe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/9d45e71824fae3d02d0725c7eaeaebe019c54827",
-                "reference": "9d45e71824fae3d02d0725c7eaeaebe019c54827",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/ebf60dd77b26b80008cd51aba523ddacb282ffe8",
+                "reference": "ebf60dd77b26b80008cd51aba523ddacb282ffe8",
                 "shasum": ""
             },
             "require": {
@@ -2082,7 +2085,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2013-11-14 09:43:43"
+            "time": "2013-11-23 21:11:41"
         },
         {
             "name": "symfony/process",
@@ -2091,12 +2094,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Process.git",
-                "reference": "82898108f79040314a7b3ba430a72c32c7f61d14"
+                "reference": "96e7ab8d6f645c2e95e0c8d0f05d1c80fff1b85b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Process/zipball/82898108f79040314a7b3ba430a72c32c7f61d14",
-                "reference": "82898108f79040314a7b3ba430a72c32c7f61d14",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/96e7ab8d6f645c2e95e0c8d0f05d1c80fff1b85b",
+                "reference": "96e7ab8d6f645c2e95e0c8d0f05d1c80fff1b85b",
                 "shasum": ""
             },
             "require": {
@@ -2129,7 +2132,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "http://symfony.com",
-            "time": "2013-10-30 08:30:20"
+            "time": "2013-11-23 21:11:41"
         },
         {
             "name": "symfony/routing",
@@ -2394,12 +2397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Mink.git",
-                "reference": "988e3e14dfe6db598ab55c429a627ca58eff7012"
+                "reference": "e8ba6bc5b82a08c3efc45fbf569688cac5c9b4df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Mink/zipball/988e3e14dfe6db598ab55c429a627ca58eff7012",
-                "reference": "988e3e14dfe6db598ab55c429a627ca58eff7012",
+                "url": "https://api.github.com/repos/Behat/Mink/zipball/e8ba6bc5b82a08c3efc45fbf569688cac5c9b4df",
+                "reference": "e8ba6bc5b82a08c3efc45fbf569688cac5c9b4df",
                 "shasum": ""
             },
             "require": {
@@ -2441,7 +2444,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2013-11-20 08:32:10"
+            "time": "2013-11-24 12:03:34"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -2449,12 +2452,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkBrowserKitDriver.git",
-                "reference": "970b510dcf5d147227066d962d61dbea53d6bec8"
+                "reference": "4d06113478534782c8c85bec2b411613cb28f512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/970b510dcf5d147227066d962d61dbea53d6bec8",
-                "reference": "970b510dcf5d147227066d962d61dbea53d6bec8",
+                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/4d06113478534782c8c85bec2b411613cb28f512",
+                "reference": "4d06113478534782c8c85bec2b411613cb28f512",
                 "shasum": ""
             },
             "require": {
@@ -2496,7 +2499,7 @@
                 "browser",
                 "testing"
             ],
-            "time": "2013-11-20 08:05:28"
+            "time": "2013-11-22 09:03:53"
         },
         {
             "name": "behat/mink-goutte-driver",
@@ -2555,12 +2558,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkSelenium2Driver.git",
-                "reference": "3203a0d8326c1f3f0189a27f7b874ae8a8926d75"
+                "reference": "c2a63b96628a0dae46eee37cac286f79bd45ad48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/3203a0d8326c1f3f0189a27f7b874ae8a8926d75",
-                "reference": "3203a0d8326c1f3f0189a27f7b874ae8a8926d75",
+                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/c2a63b96628a0dae46eee37cac286f79bd45ad48",
+                "reference": "c2a63b96628a0dae46eee37cac286f79bd45ad48",
                 "shasum": ""
             },
             "require": {
@@ -2605,7 +2608,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2013-11-18 20:13:24"
+            "time": "2013-11-21 08:21:24"
         },
         {
             "name": "codeception/codeception",
@@ -2613,12 +2616,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "bac92379a97935c6ebc8b2f2f0ade7312b75f80c"
+                "reference": "46f4d3ed0522ed2f18b7ba2966a59bb2207d7641"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/bac92379a97935c6ebc8b2f2f0ade7312b75f80c",
-                "reference": "bac92379a97935c6ebc8b2f2f0ade7312b75f80c",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/46f4d3ed0522ed2f18b7ba2966a59bb2207d7641",
+                "reference": "46f4d3ed0522ed2f18b7ba2966a59bb2207d7641",
                 "shasum": ""
             },
             "require": {
@@ -2672,7 +2675,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2013-11-15 02:57:56"
+            "time": "2013-11-24 00:44:34"
         },
         {
             "name": "fabpot/goutte",
@@ -2680,12 +2683,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabpot/Goutte.git",
-                "reference": "cff6881c93791edbfef88928ca6b1dfcf60d3273"
+                "reference": "7c3221bbbeecbec9aa5c04cd7cc10e9684de0eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Goutte/zipball/cff6881c93791edbfef88928ca6b1dfcf60d3273",
-                "reference": "cff6881c93791edbfef88928ca6b1dfcf60d3273",
+                "url": "https://api.github.com/repos/fabpot/Goutte/zipball/7c3221bbbeecbec9aa5c04cd7cc10e9684de0eb4",
+                "reference": "7c3221bbbeecbec9aa5c04cd7cc10e9684de0eb4",
                 "shasum": ""
             },
             "require": {
@@ -2728,7 +2731,7 @@
             "keywords": [
                 "scraper"
             ],
-            "time": "2013-11-11 19:09:12"
+            "time": "2013-11-21 05:56:19"
         },
         {
             "name": "facebook/webdriver",
@@ -2961,16 +2964,16 @@
         },
         {
             "name": "instaclick/php-webdriver",
-            "version": "1.1",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/instaclick/php-webdriver.git",
-                "reference": "786ba0dc9c594fb0b9b8171db852b2224b23811e"
+                "reference": "3c219c223043916f51ad4c20ccf810240eb3720d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/786ba0dc9c594fb0b9b8171db852b2224b23811e",
-                "reference": "786ba0dc9c594fb0b9b8171db852b2224b23811e",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/3c219c223043916f51ad4c20ccf810240eb3720d",
+                "reference": "3c219c223043916f51ad4c20ccf810240eb3720d",
                 "shasum": ""
             },
             "require": {
@@ -3015,7 +3018,7 @@
                 "webdriver",
                 "webtest"
             ],
-            "time": "2013-10-15 14:53:05"
+            "time": "2013-11-21 17:15:13"
         }
     ],
     "aliases": [
