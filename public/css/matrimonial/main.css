@@ -73,17 +73,6 @@ form input[type="submit"]:hover{
 		font-size: 20px;
 		margin-bottom: 0;
 	}
-	
-#maincontent{
-	width: 78%;
-	float: left;
-	background: #fff;
-}
-
-#sidebar{
-	width: 22%;
-	float: right;
-}
 
 #photo{
 	height: 170px;
@@ -150,16 +139,8 @@ footer{
 	Content
 =======================================*/
 
-.greySection{
+.colorSection{
 	background: #cccccc;
-}
-
-.inner{
-	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
-	box-sizing: border-box;         /* Opera/IE 8+ */
-	padding: 20px;
-	margin-bottom: 0;
 }
 
 /*======================================
@@ -180,24 +161,17 @@ footer{
 	border-bottom: 1px solid #ccc;
 }
 
-.clearall{
-	content: ".";
-	clear: both;
-	visibility: hidden;
-	margin: 0;
-	padding: 0;
-}
 
 /*======================================
 	Sidebar
 =======================================*/
 
 
-.pinkBlock{
+.colorBlock{
 	background: #FF99CC;
 }
 
-	.pinkBlock h5{
+	.colorBlock h5{
 		margin: 0 0 5px 0;
 		color: #fff;
 	}

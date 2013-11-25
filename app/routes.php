@@ -100,9 +100,7 @@ Route::group(array('prefix' => 'matrimonial'), function()
 Route::group(array('prefix' => 'bail'), function()
 {
 
-    Route::get('/', function()
-    {
-        return View::make('bail.index');
-    });
+    Route::get('/', array('uses' => 'BailController@index'));
+    Route::get('lois', array('uses' => 'BailController@lois'));
 
 });

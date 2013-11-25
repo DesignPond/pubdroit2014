@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
 	<title>Matrimonial</title>
 	
-	<meta name="description" content="Publications droit">
+	<meta name="description" content="Droit matrimonial">
 	<meta name="author" content="Cindy Leschaud">
 	<meta name="viewport" content="width=device-width">
 
@@ -29,7 +29,7 @@
         <div id="main" class="container">
         
         	<!-- Contenu principal -->
-    		<div id="maincontent">
+    		<div class="maincontent">
     			<!-- Entête et menu -->
 		        <header id="header" class="inner"> 
 		        	<div class="row">
@@ -46,7 +46,7 @@
 			    <section id="photo">{{HTML::image('/images/matrimonial/photo.jpg')}}</section>
 			    
 			    <!-- Fil d'ariane -->
-		      	<section id="breadcrumbs" class="greySection">Home <a href=""> &gt; Newsletter</a></section>
+		      	<section id="breadcrumbs" class="colorSection">Home <a href=""> &gt; Newsletter</a></section>
 		      	
 		      	<!-- Contenu -->
 		      	
@@ -55,7 +55,7 @@
 	            <!-- Fin contenu -->
 	            <!-- Pied de page et adresse -->
 	            
-	            <footer class="greySection inner">
+	            <footer class="colorSection inner">
 		            © 2013 - droitmatrimonial.ch<br/>
 					Université de Neuchâtel, Faculté de droit, Av. du 1er mars 26, 2000 Neuchâtel<br/>
 					<a href="mailto:droit.matrimonial@unine,ch">droit.matrimonial(at)unine(dot)ch</a>
@@ -65,7 +65,7 @@
             <!-- Fin contenu principal -->
             
             <!-- Sidebar --> 
-            <div id="sidebar">	
+            <div class="sidebar">	
             
             	<!--Logo unine --> 
             	
@@ -73,7 +73,7 @@
 
             	<!-- Bloc inscription newsletter --> 
             	            	
-            	<div class="pinkBlock inner">            	
+            	<div class="colorBlock inner">            	
 	            	<h5>Inscription à la newsletter</h5>
 					<p>Entrez votre adresse e-mail</p>
 					
@@ -95,9 +95,9 @@
             	
             	<!-- Bloc archives newsletter --> 
             	
-             	<div class="pinkBlock">
+             	<div class="colorBlock">
 	            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
-	            		<div class="toggleNewsletter greySection" style="display:none;">
+	            		<div class="toggleNewsletter colorSection" style="display:none;">
 		            		<ul>
 			            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
 			            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
@@ -130,7 +130,7 @@
 				
 				<!-- Bloc Soutiens --> 
 				 
-            	<div class="pinkBlock upMarge inner">
+            	<div class="colorBlock upMarge inner">
             		<h5>Avec le soutien de</h5>
             		<a href="http://www.helbing.ch/" target="_blank">{{HTML::image('/images/matrimonial/logo_helbing.png')}}</a>
             	</div>

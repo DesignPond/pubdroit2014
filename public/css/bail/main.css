@@ -1,12 +1,181 @@
 /* ===== Primary Styles =====================================================
    Bail
    ========================================================================== */
-/* line 7, bail.scss */
-#menu-principal {
-  margin-left: 15px;
+/* line 7, main.scss */
+body {
+  background: #999999;
 }
 
-/* line 11, bail.scss */
+/* line 11, main.scss */
+h1, h2, h3, h4, h5 {
+  margin: 0 0 10px 0;
+}
+
+/* line 15, main.scss */
+h3 {
+  font-size: 1.1em;
+}
+
+/* line 19, main.scss */
+h4 {
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/* line 24, main.scss */
+h5 {
+  font-size: 0.75em;
+  font-weight: bold;
+}
+
+/* line 29, main.scss */
+p {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* line 34, main.scss */
+button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
+  background-color: #c02326;
+}
+
+/*======================================
+	Main Blocks
+=======================================*/
+/* line 42, main.scss */
+#main {
+  background: #b2b2b2 url("../../images/bail/head_bg.png") repeat-y;
+  /* Old browsers */
+}
+
+/* line 47, main.scss */
+#header {
+  background: #fff;
+  height: 86px;
+}
+
+/* line 52, main.scss */
+#breadcrumbs, #breadcrumbs a {
+  color: #fff;
+  font-size: 12px;
+}
+
+/* line 57, main.scss */
+#header h1 {
+  font-size: 20px;
+  margin-top: 15px;
+}
+
+/* line 62, main.scss */
+.content {
+  background: #f0b4b4;
+}
+
+/* line 67, main.scss */
+footer {
+  text-align: center;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 20px;
+  color: #fff;
+}
+
+/* line 74, main.scss */
+footer a {
+  color: #fff;
+}
+
+/* line 78, main.scss */
+.header {
+  height: 86px;
+}
+
+/* line 82, main.scss */
+.colorSection {
+  height: 35px;
+  line-height: 24px;
+}
+
+/* line 88, main.scss */
+.min-inner {
+  margin: 0;
+  padding: 5px 15px;
+}
+
+/* line 93, main.scss */
+.homepageBlock p {
+  text-align: justify;
+}
+
+/* line 98, main.scss */
+.colorBlock {
+  background: #cb2629;
+}
+
+/* line 102, main.scss */
+.colorBlock h4 {
+  margin-top: 5px;
+}
+
+/* line 106, main.scss */
+.colorBlock h4, .colorBlock a, .colorBlock p {
+  color: #fff;
+  text-align: left;
+}
+
+/* line 111, main.scss */
+.colorBlock p {
+  color: #f5c8c8;
+}
+
+/*======================================
+	Search
+=======================================*/
+/* line 120, main.scss */
+.searchform {
+  position: relative;
+  margin-bottom: 0;
+}
+
+/* line 125, main.scss */
+.searchform input[type="text"] {
+  border-radius: 5px;
+  height: 25px;
+  margin-bottom: 0;
+  padding: 0;
+  position: relative;
+  text-indent: 5px;
+  z-index: 1;
+  color: #999999;
+}
+
+/* line 136, main.scss */
+.searchform input[type="submit"] {
+  position: absolute;
+  border: none;
+  background: url("../../images/bail/search_btn.png") 1px 3px no-repeat;
+  text-indent: -999px;
+  right: 1px;
+  top: 1px;
+  z-index: 10;
+  height: 25px;
+  width: 28px;
+}
+
+/* line 148, main.scss */
+.searchform input[type="submit"]:hover {
+  background: url("../../images/bail/search_btn.png") 1px 3px no-repeat;
+}
+
+/*======================================
+	Navigation
+=======================================*/
+/* line 156, main.scss */
+#menu-principal {
+  line-height: 70px;
+}
+
+/* line 160, main.scss */
 #menu-principal > a {
   display: inline-block;
   padding: 0 5px;
@@ -15,43 +184,130 @@
   color: #000;
 }
 
-/* line 19, bail.scss */
+/* line 168, main.scss */
+#menu-principal > a:hover, #menu-principal > a.active {
+  color: #cb2629;
+}
+
+/* line 172, main.scss */
 #menu-principal > a:after {
   content: "|";
   padding: 0 0 0 15px;
 }
 
-/* line 24, bail.scss */
+/* line 177, main.scss */
 #menu-principal a.noborder:after {
   border: none;
   content: "";
   padding: 0;
 }
 
-/* line 30, bail.scss */
-header {
-  padding: 0;
-  line-height: 70px;
-}
-
-/* line 35, bail.scss */
-.sidebar {
-  background: #b80e1d;
-}
-
-/* line 39, bail.scss */
-.content {
-  background: #f0b4b4;
-}
-
-/* line 44, bail.scss */
-.bar {
-  background: #b80e1d;
-  line-height: 30px;
-}
-
-/* line 50, bail.scss */
-.bar input, .bar p {
+/*======================================
+	Sidebar
+=======================================*/
+/* line 187, main.scss */
+h3.link {
   margin-bottom: 0;
-  height: 30px;
+}
+
+/* line 191, main.scss */
+.searchBg {
+  background: #cb2629 url("../../images/bail/search_bg.png") repeat-y;
+}
+
+/* line 195, main.scss */
+.blockTitle {
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: #cb2629 url("../../images/bail/search_bg.png") repeat-y;
+}
+
+/* line 205, main.scss */
+a.newsletterLink:hover {
+  color: #cb2629;
+}
+
+/* line 209, main.scss */
+.newsletterLink {
+  color: #000;
+  border-bottom: 1px solid #cb2629;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: italic;
+  padding: 5px 0;
+  margin-right: 5px;
+  display: block;
+  background: url("../../images/bail/right_close.png") center right no-repeat;
+}
+
+/* line 221, main.scss */
+.toggleActive {
+  background: url("../../images/bail/right_open.png") center right no-repeat;
+  font-weight: bold;
+  color: #000;
+}
+
+/* line 227, main.scss */
+.toggleNewsletter {
+  padding: 5px 10px;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+/* line 233, main.scss */
+.toggleNewsletter ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 239, main.scss */
+.toggleNewsletter ul li {
+  line-height: 18px;
+}
+
+/* line 243, main.scss */
+.toggleNewsletter ul li a {
+  color: #000;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+/* line 250, main.scss */
+.toggleNewsletter ul li a:hover {
+  color: #cb2629;
+}
+
+/* line 254, main.scss */
+.calculator, .calculator p, .calculator label {
+  font-size: 11px;
+}
+
+/* line 258, main.scss */
+.calculator label {
+  margin-top: 15px;
+}
+
+/* line 262, main.scss */
+.calculator form, .calculator form .tiny {
+  margin-bottom: 0;
+}
+
+/*======================================
+	Misc
+=======================================*/
+/* line 270, main.scss */
+.upMarge {
+  margin-top: 15px;
+}
+
+/* line 274, main.scss */
+.line {
+  line-height: 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #cb2629;
 }
