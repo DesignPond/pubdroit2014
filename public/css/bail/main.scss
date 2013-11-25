@@ -26,6 +26,11 @@ h5{
 	font-weight: bold;
 }
 
+a, a:hover, a:active, a:visited{
+	color: $primary-red;
+    text-decoration: none;
+}
+
 p{
 	font-size: 12px;
 	line-height: 18px;
@@ -70,6 +75,9 @@ footer{
 	line-height: 16px;
 	margin-top: 20px;
 	color: #fff;
+	position: absolute;
+	bottom: 0;
+	width: 78%;
 }
 	footer a{
 		color: #fff;
@@ -261,6 +269,10 @@ a.newsletterLink:hover{
 
 .calculator form, .calculator form .tiny{
 	margin-bottom: 0;
+}
+
+.autorite-canton{
+	text-align: center;
 }
 
 /*======================================

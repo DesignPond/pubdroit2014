@@ -14,8 +14,12 @@ class BailController extends BaseController {
 	
 	public function lois(){
 	
-		return View::make('bail.lois');
-		
+		return View::make('bail.lois');	
+	}
+	
+	public function autorites(){
+	
+		return View::make('bail.autorites');	
 	}
 
 	/**

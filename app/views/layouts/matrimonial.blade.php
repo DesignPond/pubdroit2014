@@ -53,14 +53,6 @@
 	            @yield('content')
 	            
 	            <!-- Fin contenu -->
-	            <!-- Pied de page et adresse -->
-	            
-	            <footer class="colorSection inner">
-		            © 2013 - droitmatrimonial.ch<br/>
-					Université de Neuchâtel, Faculté de droit, Av. du 1er mars 26, 2000 Neuchâtel<br/>
-					<a href="mailto:droit.matrimonial@unine,ch">droit.matrimonial(at)unine(dot)ch</a>
-	            </footer>
-	            
             </div> 
             <!-- Fin contenu principal -->
             
@@ -140,6 +132,15 @@
             <!-- End sidebar --> 
              
 			<div class="clearall"></div>
+			
+			<!-- Pied de page et adresse -->
+            
+            <footer class="colorSection inner">
+	            © 2013 - droitmatrimonial.ch<br/>
+				Université de Neuchâtel, Faculté de droit, Av. du 1er mars 26, 2000 Neuchâtel<br/>
+				<a href="mailto:droit.matrimonial@unine,ch">droit.matrimonial(at)unine(dot)ch</a>
+            </footer>
+	            
 	    </div>
     	
 	</body>

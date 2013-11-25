@@ -35,7 +35,7 @@
 						<nav class="large-9 columns" id="menu-principal">
 						    <a class="active" href="<?php //echo action('AppController@getIndex');?>">Home</a>
 						    {{ link_to('bail/lois', 'Lois') }}
-						    <a href="<?php //echo action('AppController@getIndex');?>">Autorités</a>
+						    {{ link_to('bail/autorites', 'Autorités') }}
 						    <a href="<?php //echo action('AppController@getIndex');?>">Liens utiles</a>
 						    <a class="noborder" href="<?php //echo action('AppController@getIndex');?>">FAQ</a>
 					    </nav>
@@ -59,7 +59,7 @@
             
             	<!--Logo unine --> 
             	
-            	<p class="min-inner header text-right">{{HTML::image('/images/bail/unine.png')}}</p>
+            	<p class="min-inner header text-right"> <a href="http://www.unine.ch" target="_blank">{{HTML::image('/images/bail/unine.png')}}</a></p>
             	
             	<!-- Bloc recherche --> 
             	
@@ -130,18 +130,13 @@
             	            	
             </div>  
             
-            <!-- End sidebar --> 
-			
-			<div class="maincontent">
-				<!-- Pied de page et adresse -->
-	            
-	            <footer class="colorBlock inner">
-		            © 2013 - bail.ch<br/>
-					Université de Neuchâtel, Faculté de droit, Av. du 1er mars 26, 2000 Neuchâtel<br/>
-					<a href="mailto:seminaire.bail@unine.ch">seminaire.bail@unine.ch</a>
-	            </footer>
-			</div>
-			<div class="sidebar"></div>			
+            <!-- End sidebar --> 		
+
+            <footer class="colorBlock inner">
+	            © 2013 - bail.ch<br/>
+				Université de Neuchâtel, Faculté de droit, Av. du 1er mars 26, 2000 Neuchâtel<br/>
+				<a href="mailto:seminaire.bail@unine.ch">seminaire.bail@unine.ch</a>
+            </footer>	
 			             
 			<div class="clearall"></div>
 			
