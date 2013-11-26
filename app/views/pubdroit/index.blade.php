@@ -1,16 +1,14 @@
 @extends('layouts.pubdroit')
 
 @section('content')
-	
-    <div class="welcome">
-      Pubdroit index
-         
-       <?php 
-			if (Auth::check())
-			{
-				echo "Vous êtes loggués";
-			}
-		?>	 
+
+    <div id="content">
+    
+	 	 <div class="row">
+	 	 	<div class="large-12 columns">
+		 	 	<h5 class="line">Droit en vigueur</h5>
+	 	 	</div>
+	 	 </div>
            		 
     </div>
 	

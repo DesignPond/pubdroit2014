@@ -1,0 +1,207 @@
+$primary-red: #cb2629;
+$secondary-red: #8d0a00;
+
+$primary-grey: #6a6b6e;
+$secondary-grey: #929495;
+
+/* ===== Primary Styles ===============
+   Bail
+======================================= */
+
+body {
+  background: #b2b2b2 url("../../images/pubdroit/fond.jpg") repeat;
+  font-family: Arial,Verdana,Helvetica,sans-serif;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+
+a, a:hover, a:active, a:visited{
+	font-size: 13px;
+}
+
+p{
+	font-size: 13px;
+}
+
+/*======================================
+	Main Blocks
+=======================================*/
+
+#mainpubdroit{
+	width: 1140px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.colorBlock{
+    background: $primary-red;
+}
+
+header{
+	
+}
+
+#entete{
+	height: 143px;
+	background: url("../../images/pubdroit/headerBg.png") no-repeat; 
+}
+
+	#entete div a{
+		color: #fff;
+		font-size: 13px;
+	}
+
+	#entete .illustration{
+		width: 490px;
+		float: left;
+	}
+
+	#entete .logo , #entete .master{
+		width: 220px;
+		float: left;
+		height: 143px;
+		padding: 20px 15px;
+	}
+	
+	#entete .master{
+		padding: 20px 10px;
+	}
+		
+		#entete .master a{
+			background: url("../../images/pubdroit/mastersBtn.png") right center no-repeat;
+			padding-right: 28px;
+			display: block;
+		}
+	
+	#entete .profileBlock{
+		width: 210px;
+		float: left;
+		height: 143px;
+		padding: 20px 30px;
+	}
+	
+		#entete .profileBlock a{
+			line-height: 25px;
+			height: 25px;
+			display: block;
+			padding-right: 30px;
+		}
+
+		#entete .profileBlock a.loginBtn{
+			background: url("../../images/pubdroit/loginBtn.png") right center  no-repeat;
+		}
+
+		#entete .profileBlock a.newsletterBtn{
+			background: url("../../images/pubdroit/newsletterBtn.png") right center  no-repeat;
+		}
+
+/*======================================
+	Search
+=======================================*/
+
+.searchform
+{
+	position: relative;
+	margin-bottom: 0;
+	float: right;
+}
+
+.searchform input[type="text"]{
+    border: 0 none;
+    border-radius: 20px;
+    -webkit-border-radius: 20px;
+    color: #6A6F75;
+    margin: 8px 0;
+    padding: 4px 30px 4px 20px;
+    position: relative;
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    width: 180px;
+    height: 24px;
+}
+
+.searchform input[type="submit"]{
+    background: url("../../images/pubdroit/search.png") no-repeat scroll 2px 5px rgba(0, 0, 0, 0);
+    border: medium none;
+    height: 25px;
+    left: 3px;
+    position: absolute;
+    text-indent: -999px;
+    top: 9px;
+    width: 28px;
+    z-index: 10;
+}
+
+.searchform input[type="submit"]:hover{
+	background: url("../../images/pubdroit/search.png") 2px 5px no-repeat;
+}
+	
+/*======================================
+	Filter
+=======================================*/
+
+	#filter{
+		margin: 0;
+		padding: 5px 20px;
+	}
+	
+	#filter li{
+		display: inline-block;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+		#filter li a{
+			padding: 5px 15px;
+			color: #fff;
+			margin-right: 15px;
+			font-size: 13px;
+			background: $primary-grey;
+		    border-radius: 4px;
+		    -webkit-border-radius: 4px;
+		}
+	
+/*======================================
+	Navigation
+=======================================*/
+
+#menu{
+	height: 40px;
+	line-height: 40px;
+	background: $primary-grey;
+}
+
+#menu-principal{
+
+} 
+ 
+	#menu-principal > a{
+		display: inline-block;
+		font-size: 14px;
+		color: #FFF;
+		padding:0 25px;
+		line-height: 20px;
+	} 
+	
+	#menu-principal > a:hover,#menu-principal > a.active{
+		
+	} 
+	
+	#menu-principal > a:after{
+	
+	} 
+
+	#menu-principal a.noborder:after{
+		border: none;
+		content: "";
+		padding: 0;
+	}
+	
+#menu-secondary{
+	height: 40px;
+	clear: both;
+	line-height: 40px;
+	background: $secondary-grey;
+} 
