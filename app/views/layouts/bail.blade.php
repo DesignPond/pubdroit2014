@@ -33,11 +33,11 @@
 		        	<div class="row">
 		        		<h1 class="large-3 columns"><a class="" href="">{{HTML::image('/images/bail/logo.png')}}</a></h1>
 						<nav class="large-9 columns" id="menu-principal">
-						    <a class="active" href="<?php //echo action('AppController@getIndex');?>">Home</a>
-						    {{ link_to('bail/lois', 'Lois') }}
-						    {{ link_to('bail/autorites', 'Autorités') }}
-						    <a href="<?php //echo action('AppController@getIndex');?>">Liens utiles</a>
-						    <a class="noborder" href="<?php //echo action('AppController@getIndex');?>">FAQ</a>
+						    {{ link_to('bail', 'Home' , array('class' => Request::is( 'bail') ? 'active' : '') ) }}
+						    {{ link_to('bail/lois', 'Lois' , array('class' => Request::is( 'bail/lois') ? 'active' : '') ) }}
+						    {{ link_to('bail/autorites', 'Autorités', array('class' => Request::is( 'bail/autorites') ? 'active' : '')) }}
+						    {{ link_to('bail/liens', 'Liens utiles', array('class' => Request::is( 'bail/liens') ? 'active' : '')) }}
+						    {{ link_to('bail/faq', 'FAQ', array('class' => Request::is( 'bail/faq') ? 'noborder active' : 'noborder')) }}
 					    </nav>
 					</div>
 			    </header> 
@@ -105,7 +105,7 @@
             		         	
 					{{ Form::open(array( 'action' => 'NewsletterController@add', 'class' => '')) }}						
 						{{ Form::label('Votre canton', '' ) }}
-						{{ Form::select('canton', array( 'Berne', 'Jura' )) }}
+						{{ Form::select('canton', array( 'Berne','Fribourg','Genève','Jura','Neuchâtel','Valais','Vaud' )) }}
 						
 						{{ Form::label('Votre loyer actuel (sans les charges)', '' ) }}
 						{{ Form::text('loyer', '') }}
