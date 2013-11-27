@@ -15,13 +15,18 @@
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/pubdroit/main.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('js/pubdroit/select/select2.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('js/pubdroit/perfect-scrollbar.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/smoothness/jquery-ui-1.10.3.custom.css'); ?>" />	
 	
     <!-- Javascript Files
     ================================================== -->        
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<!--     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> -->
     <script src="<?php echo asset('js/jquery-ui.js');?>"></script>
+    <script src="<?php echo asset('js/pubdroit/jquery.isotope.min.js');?>"></script>
+    <script src="<?php echo asset('js/pubdroit/select/select2.min.js');?>"></script>
+    <script src="<?php echo asset('js/pubdroit/perfect-scrollbar.js');?>"></script>
     <script src="<?php echo asset('js/pubdroit/main.js');?>"></script>
 
 	</head>
@@ -52,9 +57,9 @@
 			        	<!-- Menu -->
 						<nav id="menu-principal" class="large-9 columns">
 							{{ link_to('bail', 'Publications' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Offre spéciale' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Divers' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Evénements' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
+							{{ link_to('bail', 'Offre spéciale' , array('class' => Request::is( 'pubdroit/offres') ? 'active' : '') ) }}
+							{{ link_to('bail', 'Divers' , array('class' => Request::is( 'pubdroit/divers') ? 'active' : '') ) }}
+							{{ link_to('bail', 'Evénements' , array('class' => Request::is( 'pubdroit/evenement') ? 'active' : '') ) }}
 						</nav>
 						<div class="large-3 columns">
 							{{ Form::open(array( 'url' => 'pubdroit/search', 'id' => 'search' , 'class' => 'searchform')) }}						
@@ -66,11 +71,46 @@
 		        </div>
 				
 				<nav id="menu-secondary">
-					<ul id="filter">
-						<li><a href="#">Réinitialiser</a></li>
-						<li><a href="#">Collections</a></li>
-						<li><a href="#">Auteurs</a></li>
-						<li><a href="#">Thèmes</a></li>
+					<ul id="filters">
+						<li><a class="reinit" href="#">Réinitialiser</a></li>
+						<li> 
+							<select class="selection" id="Collections">
+								<option value="Collections">Collections</option>
+								<option value="AL">Alabama</option>
+								<option value="WY">Wyoming</option>
+								<option value="A5L">Ala6bama</option>
+								<option value="WhY">Wyzoming</option>
+								<option value="AgL">Alhzabama</option>
+								<option value="WtY">Wyhoming</option>
+								<option value="WY">Wyoming</option>
+								<option value="A5L">Ala6bama</option>
+								<option value="WhY">Wyzoming</option>
+								<option value="AgL">Alhzabama</option>
+								<option value="WtY">Wyhoming</option>
+							</select>
+						</li>
+						<li> 
+							<select class="selection" id="Auteurs">
+								<option value="Auteurs">Auteurs</option>
+								<option value="AL">Alabama</option>
+								<option value="WY">Wyoming</option>
+								<option value="A5L">Ala6bama</option>
+								<option value="WhY">Wyzoming</option>
+								<option value="AgL">Alhzabama</option>
+								<option value="WtY">Wyhoming</option>
+							</select>
+						</li>
+						<li> 
+							<select class="selection" id="Themes">
+								<option value="Themes">Thèmes</option>
+								<option value="AL">Alabama</option>
+								<option value="WY">Wyoming</option>
+								<option value="A5L">Ala6bama</option>
+								<option value="WhY">Wyzoming</option>
+								<option value="AgL">Alhzabama</option>
+								<option value="WtY">Wyhoming</option>
+							</select>
+						</li>
 					</ul>
 				</nav>
 				
@@ -83,9 +123,6 @@
             <!-- Fin contenu -->
 	            
 	    </div>
-        
-    	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     	
 	</body>
 </html>

@@ -63,13 +63,13 @@ p {
 
 /* line 68, main.scss */
 #entete .master {
-  padding: 20px 10px;
+  padding: 20px 9px;
 }
 
 /* line 72, main.scss */
 #entete .master a {
   background: url("../../images/pubdroit/mastersBtn.png") right center no-repeat;
-  padding-right: 28px;
+  padding-right: 27px;
   display: block;
 }
 
@@ -145,60 +145,231 @@ p {
 	Filter
 =======================================*/
 /* line 144, main.scss */
-#filter {
+#filters {
   margin: 0;
   padding: 5px 20px;
 }
 
 /* line 149, main.scss */
-#filter li {
+#filters li {
   display: inline-block;
   list-style: none;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 /* line 156, main.scss */
-#filter li a {
-  padding: 5px 15px;
+#filters li select {
+  width: 160px;
+}
+
+/* line 160, main.scss */
+#filters li a {
   color: #fff;
-  margin-right: 15px;
   font-size: 13px;
-  background: #6a6b6e;
   border-radius: 4px;
   -webkit-border-radius: 4px;
+}
+
+/* line 167, main.scss */
+#filters li a.reinit {
+  display: block;
+  height: 26px;
+  padding: 0 10px;
+  position: relative;
+  white-space: nowrap;
+  line-height: 26px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  background: #6a6b6e;
+  margin: 0 15px;
 }
 
 /*======================================
 	Navigation
 =======================================*/
-/* line 170, main.scss */
+/* line 185, main.scss */
 #menu {
   height: 40px;
   line-height: 40px;
   background: #6a6b6e;
 }
 
-/* line 180, main.scss */
-#menu-principal > a {
-  display: inline-block;
-  font-size: 14px;
-  color: #FFF;
-  padding: 0 25px;
-  line-height: 20px;
+/* line 191, main.scss */
+#menu-principal {
+  height: 40px;
+  overflow: hidden;
 }
 
 /* line 196, main.scss */
+#menu-principal > a {
+  color: #FFFFFF;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 40px;
+  margin-right: 40px;
+  padding: 0 15px;
+  background: #6a6b6e;
+}
+
+/* line 206, main.scss */
+#menu-principal a:hover, #menu-principal a.active {
+  background: #929495;
+}
+
+/* line 214, main.scss */
 #menu-principal a.noborder:after {
   border: none;
   content: "";
   padding: 0;
 }
 
-/* line 202, main.scss */
+/* line 220, main.scss */
 #menu-secondary {
   height: 40px;
   clear: both;
   line-height: 40px;
   background: #929495;
+}
+
+/*======================================
+	Content shop
+=======================================*/
+/* line 232, main.scss */
+#content-shop {
+  display: block;
+  min-width: 100%;
+  overflow: visible !important;
+  padding: 0 8px 0 14px;
+}
+
+/* line 239, main.scss */
+div.block {
+  height: 239px;
+  margin-top: 15px;
+  width: 172px;
+  background: #929495;
+}
+
+/* line 245, main.scss */
+.holder {
+  position: relative;
+  width: 172px;
+  height: 239px;
+  /* Shadow */
+  -webkit-box-shadow: 0px 2px 10px #000000;
+  -moz-box-shadow: 0px 2px 10px #000000;
+  box-shadow: 0px 2px 10px #000000;
+}
+
+/* line 255, main.scss */
+.holder a {
+  position: relative;
+  display: block;
+}
+
+/* line 260, main.scss */
+.shadow {
+  /* Shadow */
+  -webkit-box-shadow: 0px 2px 10px #000000;
+  -moz-box-shadow: 0px 2px 10px #000000;
+  box-shadow: 0px 2px 10px #000000;
+  display: block;
+}
+
+/* line 268, main.scss */
+div.block .cover {
+  position: absolute;
+}
+
+/* line 272, main.scss */
+div.block .cover img {
+  width: auto;
+}
+
+/* line 276, main.scss */
+div.block .cover img.big {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* line 282, main.scss */
+div.opened .cover.pageflip-ready {
+  cursor: url("../images/magnify.cur"), pointer;
+}
+
+/* line 286, main.scss */
+div.block .title-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  background: #fff;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+  filter: alpha(opacity=80);
+  opacity: 0.8;
+}
+
+/* line 299, main.scss */
+div.block .title-holder {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  height: 50%;
+}
+
+/* line 307, main.scss */
+div.block .title {
+  position: relative;
+  color: #000;
+  text-align: center;
+  display: block;
+  padding: 10px;
+  z-index: 900;
+}
+
+/* line 316, main.scss */
+div.block .teaser {
+  color: #4bc2f1;
+}
+
+/* line 320, main.scss */
+div.block .sold-out {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0;
+  text-align: center;
+  background: #B8151A;
+  padding: 3px;
+  color: #fff;
+  z-index: 500;
+}
+
+/* line 332, main.scss */
+div.block .new {
+  position: absolute;
+  left: 5px;
+  top: 5px;
+  display: block;
+  width: 103px;
+  height: 69px;
+  background: url("../images/button_new.png");
+  z-index: 450;
+}
+
+/* line 343, main.scss */
+div.block .close {
+  position: absolute;
+  top: -7px;
+  right: -20px;
+  display: block;
+  width: 39px;
+  height: 37px;
+  background: url("../images/close.png");
 }
