@@ -284,23 +284,18 @@ div.block .cover {
 }
 
 /* line 272, main.scss */
-div.block .cover img {
-  width: auto;
-}
-
-/* line 276, main.scss */
 div.block .cover img.big {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-/* line 282, main.scss */
+/* line 278, main.scss */
 div.opened .cover.pageflip-ready {
   cursor: url("../images/magnify.cur"), pointer;
 }
 
-/* line 286, main.scss */
+/* line 282, main.scss */
 div.block .title-bg {
   position: absolute;
   top: 0;
@@ -314,7 +309,7 @@ div.block .title-bg {
   opacity: 0.8;
 }
 
-/* line 299, main.scss */
+/* line 295, main.scss */
 div.block .title-holder {
   position: absolute;
   left: 0px;
@@ -323,7 +318,7 @@ div.block .title-holder {
   height: 50%;
 }
 
-/* line 307, main.scss */
+/* line 303, main.scss */
 div.block .title {
   position: relative;
   color: #000;
@@ -333,12 +328,12 @@ div.block .title {
   z-index: 900;
 }
 
-/* line 316, main.scss */
+/* line 312, main.scss */
 div.block .teaser {
   color: #4bc2f1;
 }
 
-/* line 320, main.scss */
+/* line 316, main.scss */
 div.block .sold-out {
   position: absolute;
   left: 0px;
@@ -351,7 +346,7 @@ div.block .sold-out {
   z-index: 500;
 }
 
-/* line 332, main.scss */
+/* line 328, main.scss */
 div.block .new {
   position: absolute;
   left: 5px;
@@ -359,11 +354,11 @@ div.block .new {
   display: block;
   width: 103px;
   height: 69px;
-  background: url("../images/button_new.png");
+  background: url("../../images/pubdroit/button_new.png");
   z-index: 450;
 }
 
-/* line 343, main.scss */
+/* line 339, main.scss */
 div.block .close {
   position: absolute;
   top: -7px;
@@ -371,5 +366,169 @@ div.block .close {
   display: block;
   width: 39px;
   height: 37px;
-  background: url("../images/close.png");
+  background: url("../../images/pubdroit/close.png");
+}
+
+/* line 349, main.scss */
+.product-left, .product-right, .product-bottom {
+  color: #fff;
+}
+
+/* line 353, main.scss */
+.product-left {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 270px;
+  height: 463px;
+}
+
+/* line 362, main.scss */
+.product-left .viewport {
+  height: 463px;
+  overflow: hidden;
+  position: relative;
+  width: 241px;
+}
+
+/* line 369, main.scss */
+.product-left .overview {
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+}
+
+/* line 377, main.scss */
+.product-left .scrollbar {
+  background: url("../../images/pubdroit/bg-scrollbar-track-y.png") no-repeat 0 0;
+  float: right;
+  position: relative;
+  width: 15px;
+}
+
+/* line 384, main.scss */
+.product-left .track {
+  background: url("../../images/pubdroit/bg-scrollbar-trackend-y.png") no-repeat 0 100%;
+  height: 100%;
+  padding: 0 1px;
+  position: relative;
+  width: 13px;
+}
+
+/* line 392, main.scss */
+.product-left .thumb {
+  background: url("../../images/pubdroit/bg-scrollbar-thumb-y.png") no-repeat 50% 100%;
+  cursor: pointer;
+  height: 20px;
+  left: -5px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 25px;
+}
+
+/* line 403, main.scss */
+.product-left .thumb .end {
+  background: url("../../images/pubdroit/bg-scrollbar-thumb-y.png") no-repeat 50% 0;
+  height: 5px;
+  overflow: hidden;
+  width: 25px;
+}
+
+/* line 410, main.scss */
+.product-left .disable {
+  display: none;
+}
+
+/* line 414, main.scss */
+.product-title {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+/* line 418, main.scss */
+.product-author {
+  font-family: "Helvetica light", Helvetica, sans-serif;
+  font-size: 14px;
+  color: #dbdbdb;
+  margin-top: 10px;
+  /*margin-bottom: 10px;*/
+}
+
+/* line 425, main.scss */
+.product-longdesc {
+  font-size: 12px;
+  text-align: justify;
+}
+
+/* line 430, main.scss */
+.product-longdesc h3 {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 4px 0;
+  color: #fff;
+}
+
+/* line 437, main.scss */
+.product-right {
+  position: absolute;
+  top: 360px;
+  right: 15px;
+  width: 240px;
+}
+
+/* line 443, main.scss */
+.product-price {
+  font-size: 14px;
+}
+
+/* line 446, main.scss */
+.product-cart {
+  display: block;
+  float: right;
+  padding-top: 69px;
+  min-width: 103px;
+  background: url("../../images/pubdroit/button_addcart.png") no-repeat top right;
+  font-weight: normal;
+  margin-left: 15px;
+  color: #c1c1c5;
+}
+
+/* line 457, main.scss */
+.product-cart:link, .product-cart:visited, .product-cart:hover, .product-cart:active {
+  color: #c1c1c5;
+}
+
+/* line 461, main.scss */
+span.product-cart {
+  background: url("../../images/pubdroit/button_addcart_empty.png") no-repeat top right;
+}
+
+/* line 464, main.scss */
+.product-bottom {
+  position: absolute;
+  left: 15px;
+  right: 15px;
+  bottom: 20px;
+}
+
+/* line 470, main.scss */
+.product-bottom .related {
+  text-align: center;
+}
+
+/* line 473, main.scss */
+.product-bottom .product-other-buy {
+  display: block;
+  padding-top: 10px;
+  border-top: 1px solid #fff;
+  font-size: 12px;
+}
+
+/* line 479, main.scss */
+.product-other-buy img {
+  display: inline;
+  margin: 10px 3px;
 }

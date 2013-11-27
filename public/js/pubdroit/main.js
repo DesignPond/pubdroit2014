@@ -4,7 +4,9 @@ $(function() {
 	
 	$('.selection').select2();	
 
-	
+	// Add scrollbar
+	$('.product-left').tinyscrollbar();
+				
 	function InitIsotope( container, column_width, gutter_width ) 
 	{
 		$.Isotope.prototype._getMasonryGutterColumns = function() {

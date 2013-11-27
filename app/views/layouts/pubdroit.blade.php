@@ -26,7 +26,7 @@
     <script src="<?php echo asset('js/jquery-ui.js');?>"></script>
     <script src="<?php echo asset('js/pubdroit/jquery.isotope.min.js');?>"></script>
     <script src="<?php echo asset('js/pubdroit/select/select2.min.js');?>"></script>
-    <script src="<?php echo asset('js/pubdroit/perfect-scrollbar.js');?>"></script>
+    <script src="<?php echo asset('js/pubdroit/jquery.tinyscrollbar.min.js');?>"></script>
     <script src="<?php echo asset('js/pubdroit/main.js');?>"></script>
 
 	</head>
