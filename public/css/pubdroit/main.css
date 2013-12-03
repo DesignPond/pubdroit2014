@@ -10,12 +10,12 @@ body {
   padding: 0;
 }
 
-/* line 20, main.scss */
+/* line 19, main.scss */
 a, a:hover, a:active, a:visited {
   font-size: 13px;
 }
 
-/* line 24, main.scss */
+/* line 23, main.scss */
 p {
   font-size: 13px;
 }
@@ -23,37 +23,39 @@ p {
 /*======================================
 	Main Blocks
 =======================================*/
-/* line 32, main.scss */
-#mainpubdroit {
-  width: 1140px;
+/* line 31, main.scss */
+#container {
+  height: auto !important;
   margin: 0 auto;
+  min-height: 100%;
   position: relative;
+  width: 1140px;
 }
 
-/* line 38, main.scss */
+/* line 39, main.scss */
 .colorBlock {
   background: #cb2629;
 }
 
-/* line 46, main.scss */
+/* line 43, main.scss */
 #entete {
   height: 143px;
   background: url("../../images/pubdroit/headerBg.png") no-repeat;
 }
 
-/* line 51, main.scss */
+/* line 48, main.scss */
 #entete div a {
   color: #fff;
   font-size: 13px;
 }
 
-/* line 56, main.scss */
+/* line 53, main.scss */
 #entete .illustration {
   width: 490px;
   float: left;
 }
 
-/* line 61, main.scss */
+/* line 58, main.scss */
 #entete .logo, #entete .master {
   width: 220px;
   float: left;
@@ -61,19 +63,19 @@ p {
   padding: 20px 15px;
 }
 
-/* line 68, main.scss */
+/* line 65, main.scss */
 #entete .master {
   padding: 20px 9px;
 }
 
-/* line 72, main.scss */
+/* line 69, main.scss */
 #entete .master a {
   background: url("../../images/pubdroit/mastersBtn.png") right center no-repeat;
   padding-right: 27px;
   display: block;
 }
 
-/* line 78, main.scss */
+/* line 75, main.scss */
 #entete .profileBlock {
   width: 210px;
   float: left;
@@ -81,7 +83,7 @@ p {
   padding: 20px 30px;
 }
 
-/* line 85, main.scss */
+/* line 82, main.scss */
 #entete .profileBlock a {
   line-height: 25px;
   height: 25px;
@@ -89,12 +91,12 @@ p {
   padding-right: 30px;
 }
 
-/* line 92, main.scss */
+/* line 89, main.scss */
 #entete .profileBlock a.loginBtn {
   background: url("../../images/pubdroit/loginBtn.png") right center no-repeat;
 }
 
-/* line 96, main.scss */
+/* line 93, main.scss */
 #entete .profileBlock a.newsletterBtn {
   background: url("../../images/pubdroit/newsletterBtn.png") right center no-repeat;
 }
@@ -102,14 +104,15 @@ p {
 /*======================================
 	Search
 =======================================*/
-/* line 105, main.scss */
+/* line 102, main.scss */
 .searchform {
   position: relative;
   margin-bottom: 0;
   float: right;
+  text-align: right;
 }
 
-/* line 111, main.scss */
+/* line 109, main.scss */
 .searchform input[type="text"] {
   border: 0 none;
   border-radius: 20px;
@@ -123,7 +126,7 @@ p {
   height: 24px;
 }
 
-/* line 124, main.scss */
+/* line 122, main.scss */
 .searchform input[type="submit"] {
   background: url("../../images/pubdroit/search.png") no-repeat scroll 2px 5px rgba(0, 0, 0, 0);
   border: medium none;
@@ -136,7 +139,7 @@ p {
   z-index: 10;
 }
 
-/* line 136, main.scss */
+/* line 134, main.scss */
 .searchform input[type="submit"]:hover {
   background: url("../../images/pubdroit/search.png") 2px 5px no-repeat;
 }
@@ -144,26 +147,27 @@ p {
 /*======================================
 	Filter
 =======================================*/
-/* line 144, main.scss */
+/* line 142, main.scss */
 #filters {
   margin: 0;
   padding: 5px 20px;
 }
 
-/* line 149, main.scss */
+/* line 147, main.scss */
 #filters li {
   display: inline-block;
   list-style: none;
   padding: 0;
   margin: 0;
+  margin-right: 10px;
 }
 
-/* line 156, main.scss */
+/* line 155, main.scss */
 #filters li select {
   width: 160px;
 }
 
-/* line 160, main.scss */
+/* line 159, main.scss */
 #filters li a {
   color: #fff;
   font-size: 13px;
@@ -171,7 +175,7 @@ p {
   -webkit-border-radius: 4px;
 }
 
-/* line 167, main.scss */
+/* line 166, main.scss */
 #filters li a.reinit {
   display: block;
   height: 26px;
@@ -189,20 +193,20 @@ p {
 /*======================================
 	Navigation
 =======================================*/
-/* line 185, main.scss */
+/* line 184, main.scss */
 #menu {
   height: 40px;
   line-height: 40px;
   background: #6a6b6e;
 }
 
-/* line 191, main.scss */
+/* line 190, main.scss */
 #menu-principal {
   height: 40px;
   overflow: hidden;
 }
 
-/* line 196, main.scss */
+/* line 195, main.scss */
 #menu-principal > a {
   color: #FFFFFF;
   display: inline-block;
@@ -213,38 +217,54 @@ p {
   background: #6a6b6e;
 }
 
-/* line 206, main.scss */
-#menu-principal a:hover, #menu-principal a.active {
+/* line 205, main.scss */
+#menu-principal a:hover, #menu a.active {
   background: #929495;
 }
 
-/* line 214, main.scss */
+/* line 213, main.scss */
 #menu-principal a.noborder:after {
   border: none;
   content: "";
   padding: 0;
 }
 
-/* line 220, main.scss */
-#menu-secondary {
+/* line 219, main.scss */
+#subMenu {
   height: 40px;
   clear: both;
   line-height: 40px;
   background: #929495;
 }
 
+/* line 226, main.scss */
+#subMenu a.reset {
+  padding: 0;
+  text-align: center;
+  width: 101px;
+}
+
+/* line 232, main.scss */
+#subMenu a.search-remove {
+  color: #FFFFFF;
+  display: inline-block;
+  margin-right: 20px;
+  margin-top: 8px;
+  text-decoration: none;
+}
+
 /*======================================
 	Content shop
 =======================================*/
-/* line 232, main.scss */
-#content-shop {
+/* line 244, main.scss */
+#content-isotope {
   display: block;
   min-width: 100%;
   overflow: visible !important;
   padding: 0 8px 0 14px;
 }
 
-/* line 239, main.scss */
+/* line 251, main.scss */
 div.block {
   height: 239px;
   margin-top: 15px;
@@ -252,7 +272,7 @@ div.block {
   background: #929495;
 }
 
-/* line 245, main.scss */
+/* line 257, main.scss */
 .holder {
   position: relative;
   width: 172px;
@@ -263,13 +283,13 @@ div.block {
   box-shadow: 0px 2px 10px #000000;
 }
 
-/* line 255, main.scss */
+/* line 267, main.scss */
 .holder a {
   position: relative;
   display: block;
 }
 
-/* line 260, main.scss */
+/* line 272, main.scss */
 .shadow {
   /* Shadow */
   -webkit-box-shadow: 0px 2px 10px #000000;
@@ -278,24 +298,24 @@ div.block {
   display: block;
 }
 
-/* line 268, main.scss */
+/* line 280, main.scss */
 div.block .cover {
   position: absolute;
 }
 
-/* line 272, main.scss */
+/* line 284, main.scss */
 div.block .cover img.big {
   position: absolute;
   top: 0;
   left: 0;
 }
 
-/* line 278, main.scss */
+/* line 290, main.scss */
 div.opened .cover.pageflip-ready {
   cursor: url("../images/magnify.cur"), pointer;
 }
 
-/* line 282, main.scss */
+/* line 294, main.scss */
 div.block .title-bg {
   position: absolute;
   top: 0;
@@ -309,7 +329,7 @@ div.block .title-bg {
   opacity: 0.8;
 }
 
-/* line 295, main.scss */
+/* line 307, main.scss */
 div.block .title-holder {
   position: absolute;
   left: 0px;
@@ -318,7 +338,7 @@ div.block .title-holder {
   height: 50%;
 }
 
-/* line 303, main.scss */
+/* line 315, main.scss */
 div.block .title {
   position: relative;
   color: #000;
@@ -328,12 +348,12 @@ div.block .title {
   z-index: 900;
 }
 
-/* line 312, main.scss */
+/* line 324, main.scss */
 div.block .teaser {
   color: #4bc2f1;
 }
 
-/* line 316, main.scss */
+/* line 328, main.scss */
 div.block .sold-out {
   position: absolute;
   left: 0px;
@@ -346,7 +366,7 @@ div.block .sold-out {
   z-index: 500;
 }
 
-/* line 328, main.scss */
+/* line 340, main.scss */
 div.block .new {
   position: absolute;
   left: 5px;
@@ -358,7 +378,7 @@ div.block .new {
   z-index: 450;
 }
 
-/* line 339, main.scss */
+/* line 351, main.scss */
 div.block .close {
   position: absolute;
   top: -7px;
@@ -369,12 +389,12 @@ div.block .close {
   background: url("../../images/pubdroit/close.png");
 }
 
-/* line 349, main.scss */
+/* line 361, main.scss */
 .product-left, .product-right, .product-bottom {
   color: #fff;
 }
 
-/* line 353, main.scss */
+/* line 365, main.scss */
 .product-left {
   position: absolute;
   top: 15px;
@@ -383,7 +403,7 @@ div.block .close {
   height: 463px;
 }
 
-/* line 362, main.scss */
+/* line 374, main.scss */
 .product-left .viewport {
   height: 463px;
   overflow: hidden;
@@ -391,7 +411,7 @@ div.block .close {
   width: 241px;
 }
 
-/* line 369, main.scss */
+/* line 381, main.scss */
 .product-left .overview {
   left: 0;
   margin: 0;
@@ -400,7 +420,7 @@ div.block .close {
   top: 0;
 }
 
-/* line 377, main.scss */
+/* line 389, main.scss */
 .product-left .scrollbar {
   background: url("../../images/pubdroit/bg-scrollbar-track-y.png") no-repeat 0 0;
   float: right;
@@ -408,7 +428,7 @@ div.block .close {
   width: 15px;
 }
 
-/* line 384, main.scss */
+/* line 396, main.scss */
 .product-left .track {
   background: url("../../images/pubdroit/bg-scrollbar-trackend-y.png") no-repeat 0 100%;
   height: 100%;
@@ -417,7 +437,7 @@ div.block .close {
   width: 13px;
 }
 
-/* line 392, main.scss */
+/* line 404, main.scss */
 .product-left .thumb {
   background: url("../../images/pubdroit/bg-scrollbar-thumb-y.png") no-repeat 50% 100%;
   cursor: pointer;
@@ -429,7 +449,7 @@ div.block .close {
   width: 25px;
 }
 
-/* line 403, main.scss */
+/* line 415, main.scss */
 .product-left .thumb .end {
   background: url("../../images/pubdroit/bg-scrollbar-thumb-y.png") no-repeat 50% 0;
   height: 5px;
@@ -437,18 +457,18 @@ div.block .close {
   width: 25px;
 }
 
-/* line 410, main.scss */
+/* line 422, main.scss */
 .product-left .disable {
   display: none;
 }
 
-/* line 414, main.scss */
+/* line 426, main.scss */
 .product-title {
   font-weight: bold;
   font-size: 14px;
 }
 
-/* line 418, main.scss */
+/* line 430, main.scss */
 .product-author {
   font-family: "Helvetica light", Helvetica, sans-serif;
   font-size: 14px;
@@ -457,13 +477,13 @@ div.block .close {
   /*margin-bottom: 10px;*/
 }
 
-/* line 425, main.scss */
+/* line 437, main.scss */
 .product-longdesc {
   font-size: 12px;
   text-align: justify;
 }
 
-/* line 430, main.scss */
+/* line 442, main.scss */
 .product-longdesc h3 {
   font-size: 14px;
   font-weight: normal;
@@ -471,7 +491,7 @@ div.block .close {
   color: #fff;
 }
 
-/* line 437, main.scss */
+/* line 449, main.scss */
 .product-right {
   position: absolute;
   top: 360px;
@@ -479,12 +499,12 @@ div.block .close {
   width: 240px;
 }
 
-/* line 443, main.scss */
+/* line 455, main.scss */
 .product-price {
   font-size: 14px;
 }
 
-/* line 446, main.scss */
+/* line 458, main.scss */
 .product-cart {
   display: block;
   float: right;
@@ -496,17 +516,17 @@ div.block .close {
   color: #c1c1c5;
 }
 
-/* line 457, main.scss */
+/* line 469, main.scss */
 .product-cart:link, .product-cart:visited, .product-cart:hover, .product-cart:active {
   color: #c1c1c5;
 }
 
-/* line 461, main.scss */
+/* line 473, main.scss */
 span.product-cart {
   background: url("../../images/pubdroit/button_addcart_empty.png") no-repeat top right;
 }
 
-/* line 464, main.scss */
+/* line 476, main.scss */
 .product-bottom {
   position: absolute;
   left: 15px;
@@ -514,12 +534,12 @@ span.product-cart {
   bottom: 20px;
 }
 
-/* line 470, main.scss */
+/* line 482, main.scss */
 .product-bottom .related {
   text-align: center;
 }
 
-/* line 473, main.scss */
+/* line 485, main.scss */
 .product-bottom .product-other-buy {
   display: block;
   padding-top: 10px;
@@ -527,7 +547,7 @@ span.product-cart {
   font-size: 12px;
 }
 
-/* line 479, main.scss */
+/* line 491, main.scss */
 .product-other-buy img {
   display: inline;
   margin: 10px 3px;

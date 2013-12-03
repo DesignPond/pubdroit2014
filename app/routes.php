@@ -20,6 +20,8 @@ Route::get('/', function()
 	return View::make('hello');
 });
 
+
+
 /* ==================================
 	Routes Common
 ==================================== */
@@ -74,6 +76,10 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	{
 	    return View::make('pubdroit.profil');
 	}));
+	
+	// Search and info API
+	
+	Route::post('api', array('uses' => 'SearchController@index'));
 	
 });
 

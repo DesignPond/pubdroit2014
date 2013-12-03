@@ -16,7 +16,6 @@ body {
   padding: 0;
 }
 
-
 a, a:hover, a:active, a:visited{
 	font-size: 13px;
 }
@@ -29,18 +28,16 @@ p{
 	Main Blocks
 =======================================*/
 
-#mainpubdroit{
-	width: 1140px;
-	margin: 0 auto;
-	position: relative;
+#container{
+    height: auto !important;
+    margin: 0 auto;
+    min-height: 100%;
+    position: relative;
+    width: 1140px;
 }
 
 .colorBlock{
     background: $primary-red;
-}
-
-header{
-	
 }
 
 #entete{
@@ -106,6 +103,7 @@ header{
 	position: relative;
 	margin-bottom: 0;
 	float: right;
+	text-align: right;
 }
 
 .searchform input[type="text"]{
@@ -151,6 +149,7 @@ header{
 	list-style: none;
 	padding: 0;
 	margin: 0;
+	margin-right: 10px;
 }
 
 	#filters li select{
@@ -203,11 +202,11 @@ header{
 	    background: $primary-grey;
 	} 
 	
-	#menu-principal a:hover, #menu-principal a.active{
+	#menu-principal a:hover, #menu a.active{
 		background: $secondary-grey;
 	} 
 	
-	#menu-principal > a:after{
+	#menu > a:after{
 	
 	} 
 
@@ -217,19 +216,32 @@ header{
 		padding: 0;
 	}
 	
-#menu-secondary{
+#subMenu{
 	height: 40px;
 	clear: both;
 	line-height: 40px;
 	background: $secondary-grey;
 } 
 
+#subMenu a.reset {
+    padding: 0;
+    text-align: center;
+    width: 101px;
+}
+
+#subMenu a.search-remove {
+    color: #FFFFFF;
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 8px;
+    text-decoration: none;
+}
 	
 /*======================================
 	Content shop
 =======================================*/
 
-#content-shop{
+#content-isotope{
     display: block;
     min-width: 100%;
     overflow: visible !important;

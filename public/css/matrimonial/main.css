@@ -33,6 +33,10 @@ h5{
 	font-weight: bold;
 }
 
+img{
+	max-width: 100%;
+}
+
 p{
 	font-size: 12px;
 	line-height: 18px;
