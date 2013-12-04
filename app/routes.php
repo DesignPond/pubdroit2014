@@ -103,5 +103,8 @@ Route::group(array('prefix' => 'bail'), function()
     Route::get('/', array('uses' => 'BailController@index'));
     Route::get('lois', array('uses' => 'BailController@lois'));
     Route::get('autorites', array('uses' => 'BailController@autorites'));
+    Route::get('jurisprudence', array('uses' => 'BailController@jurisprudence'));
+    
+    Route::post('search', array('uses' => 'BailController@search'));
 
 });
