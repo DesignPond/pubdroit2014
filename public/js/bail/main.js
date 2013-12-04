@@ -17,6 +17,8 @@ $(function() {
 		
 		return false;
 	});
+	
+	$(".chosen-select").chosen();
 
 
 });

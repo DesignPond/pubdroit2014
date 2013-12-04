@@ -18,6 +18,7 @@ Route::get('/', function()
 	return $pdf->stream();
 });
 
+<<<<<<< HEAD
 Route::get('login', function()
 {
 	if(Auth::check()){
@@ -40,6 +41,47 @@ Route::post('login', function()
 	   return Redirect::to('login');
    }
 });
+=======
+
+
+/* ==================================
+	Routes Common
+==================================== */
+		
+	/* LOGIN */
+	
+	Route::get('login', function()
+	{
+	
+		if(Auth::check())
+		{
+			return Redirect::to('pubdroit/profil');
+		}
+		else
+		{
+			return View::make('pubdroit.login');
+		}
+	  
+	});
+	
+	Route::post('login', function()
+	{
+	
+		if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
+		{
+			return Redirect::to('pubdroit/profil');
+		}
+		else
+		{
+			return Redirect::to('login');
+		}
+	     
+	});
+	
+	/* Newsletter */
+	
+	Route::post('newsletter', array( 'uses' => 'NewsletterController@add') );
+>>>>>>> c1660e302832afa0228ccdfeca1f9aa94252ee4d
  
 
 Route::group(array('prefix' => 'bail'), function()
@@ -68,6 +110,14 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	{
 	    return View::make('pubdroit.profil');
 	}));
+<<<<<<< HEAD
+=======
+	
+	// Search and info API
+	
+	Route::post('api', array('uses' => 'SearchController@index'));
+	
+>>>>>>> c1660e302832afa0228ccdfeca1f9aa94252ee4d
 });
 
 Route::group(array('prefix' => 'matrimonial'), function()

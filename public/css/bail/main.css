@@ -18,34 +18,35 @@ h1, h2, h3, h4, h5 {
 
 /* line 19, main.scss */
 h3 {
-  font-size: 1.1em;
+  font-size: 0.9em;
+  font-weight: bold;
 }
 
-/* line 23, main.scss */
+/* line 24, main.scss */
 h4 {
   font-size: 0.8em;
   font-weight: bold;
 }
 
-/* line 28, main.scss */
+/* line 29, main.scss */
 h5 {
   font-size: 0.75em;
   font-weight: bold;
 }
 
-/* line 33, main.scss */
+/* line 34, main.scss */
 a, a:hover, a:active, a:visited {
   color: #cb2629;
   text-decoration: none;
 }
 
-/* line 38, main.scss */
+/* line 39, main.scss */
 p {
   font-size: 12px;
   line-height: 18px;
 }
 
-/* line 43, main.scss */
+/* line 44, main.scss */
 button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus {
   background-color: #c02326;
 }
@@ -53,36 +54,36 @@ button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus
 /*======================================
 	Main Blocks
 =======================================*/
-/* line 51, main.scss */
+/* line 52, main.scss */
 #main {
   background: #b2b2b2 url("../../images/bail/head_bg.png") repeat-y;
   /* Old browsers */
 }
 
-/* line 56, main.scss */
+/* line 57, main.scss */
 #header {
   background: #fff;
   height: 86px;
 }
 
-/* line 61, main.scss */
+/* line 62, main.scss */
 #breadcrumbs, #breadcrumbs a {
   color: #fff;
   font-size: 12px;
 }
 
-/* line 66, main.scss */
+/* line 67, main.scss */
 #header h1 {
   font-size: 20px;
   margin-top: 15px;
 }
 
-/* line 71, main.scss */
+/* line 72, main.scss */
 .content {
   background: #f0b4b4;
 }
 
-/* line 76, main.scss */
+/* line 77, main.scss */
 footer {
   text-align: center;
   font-size: 12px;
@@ -94,50 +95,50 @@ footer {
   width: 78%;
 }
 
-/* line 86, main.scss */
+/* line 87, main.scss */
 footer a {
   color: #fff;
 }
 
-/* line 90, main.scss */
+/* line 91, main.scss */
 .header {
   height: 86px;
 }
 
-/* line 94, main.scss */
+/* line 95, main.scss */
 .colorSection {
   height: 35px;
   line-height: 24px;
 }
 
-/* line 100, main.scss */
+/* line 101, main.scss */
 .min-inner {
   margin: 0;
   padding: 5px 15px;
 }
 
-/* line 105, main.scss */
+/* line 106, main.scss */
 .homepageBlock p {
   text-align: justify;
 }
 
-/* line 110, main.scss */
+/* line 111, main.scss */
 .colorBlock {
   background: #cb2629;
 }
 
-/* line 114, main.scss */
+/* line 115, main.scss */
 .colorBlock h4 {
   margin-top: 5px;
 }
 
-/* line 118, main.scss */
+/* line 119, main.scss */
 .colorBlock h4, .colorBlock a, .colorBlock p {
   color: #fff;
   text-align: left;
 }
 
-/* line 123, main.scss */
+/* line 124, main.scss */
 .colorBlock p {
   color: #f5c8c8;
 }
@@ -145,13 +146,13 @@ footer a {
 /*======================================
 	Search
 =======================================*/
-/* line 132, main.scss */
+/* line 133, main.scss */
 .searchform {
   position: relative;
   margin-bottom: 0;
 }
 
-/* line 137, main.scss */
+/* line 138, main.scss */
 .searchform input[type="text"] {
   border-radius: 5px;
   height: 25px;
@@ -163,7 +164,7 @@ footer a {
   color: #999999;
 }
 
-/* line 148, main.scss */
+/* line 149, main.scss */
 .searchform input[type="submit"] {
   position: absolute;
   border: none;
@@ -176,7 +177,7 @@ footer a {
   width: 28px;
 }
 
-/* line 160, main.scss */
+/* line 161, main.scss */
 .searchform input[type="submit"]:hover {
   background: url("../../images/bail/search_btn.png") 1px 3px no-repeat;
 }
@@ -184,12 +185,12 @@ footer a {
 /*======================================
 	Navigation
 =======================================*/
-/* line 168, main.scss */
+/* line 169, main.scss */
 #menu-principal {
   line-height: 70px;
 }
 
-/* line 172, main.scss */
+/* line 173, main.scss */
 #menu-principal > a {
   display: inline-block;
   padding: 0 5px;
@@ -198,18 +199,18 @@ footer a {
   color: #000;
 }
 
-/* line 180, main.scss */
+/* line 181, main.scss */
 #menu-principal > a:hover, #menu-principal > a.active {
   color: #cb2629;
 }
 
-/* line 184, main.scss */
+/* line 185, main.scss */
 #menu-principal > a:after {
   content: "|";
   padding: 0 0 0 15px;
 }
 
-/* line 189, main.scss */
+/* line 190, main.scss */
 #menu-principal a.noborder:after {
   border: none;
   content: "";
@@ -219,17 +220,17 @@ footer a {
 /*======================================
 	Sidebar
 =======================================*/
-/* line 199, main.scss */
+/* line 200, main.scss */
 h3.link {
   margin-bottom: 0;
 }
 
-/* line 203, main.scss */
+/* line 204, main.scss */
 .searchBg {
   background: #cb2629 url("../../images/bail/search_bg.png") repeat-y;
 }
 
-/* line 207, main.scss */
+/* line 208, main.scss */
 .blockTitle {
   color: #fff;
   font-size: 12px;
@@ -240,12 +241,12 @@ h3.link {
   background: #cb2629 url("../../images/bail/search_bg.png") repeat-y;
 }
 
-/* line 217, main.scss */
+/* line 218, main.scss */
 a.newsletterLink:hover {
   color: #cb2629;
 }
 
-/* line 221, main.scss */
+/* line 222, main.scss */
 .newsletterLink {
   color: #000;
   border-bottom: 1px solid #cb2629;
@@ -258,73 +259,91 @@ a.newsletterLink:hover {
   background: url("../../images/bail/right_close.png") center right no-repeat;
 }
 
-/* line 233, main.scss */
+/* line 234, main.scss */
 .toggleActive {
   background: url("../../images/bail/right_open.png") center right no-repeat;
   font-weight: bold;
   color: #000;
 }
 
-/* line 239, main.scss */
+/* line 240, main.scss */
 .toggleNewsletter {
   padding: 5px 10px;
   font-size: 11px;
   line-height: 13px;
 }
 
-/* line 245, main.scss */
+/* line 246, main.scss */
 .toggleNewsletter ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-/* line 251, main.scss */
+/* line 252, main.scss */
 .toggleNewsletter ul li {
   line-height: 18px;
 }
 
-/* line 255, main.scss */
+/* line 256, main.scss */
 .toggleNewsletter ul li a {
   color: #000;
   font-size: 12px;
   line-height: 18px;
 }
 
-/* line 262, main.scss */
+/* line 263, main.scss */
 .toggleNewsletter ul li a:hover {
   color: #cb2629;
 }
 
-/* line 266, main.scss */
+/* line 267, main.scss */
 .calculator, .calculator p, .calculator label {
   font-size: 11px;
 }
 
-/* line 270, main.scss */
+/* line 271, main.scss */
 .calculator label {
   margin-top: 15px;
 }
 
-/* line 274, main.scss */
+/* line 275, main.scss */
 .calculator form, .calculator form .tiny {
   margin-bottom: 0;
 }
 
-/* line 278, main.scss */
+/* line 279, main.scss */
 .autorite-canton {
   text-align: center;
 }
 
 /*======================================
+	Arrets
+=======================================*/
+/* line 287, main.scss */
+.arret {
+  margin-bottom: 25px;
+}
+
+/* line 291, main.scss */
+.arret p, .arret ul {
+  margin-bottom: 10px;
+}
+
+/* line 295, main.scss */
+.arret ul li {
+  font-size: 13px;
+}
+
+/*======================================
 	Misc
 =======================================*/
-/* line 286, main.scss */
+/* line 303, main.scss */
 .upMarge {
   margin-top: 15px;
 }
 
-/* line 290, main.scss */
+/* line 307, main.scss */
 .line {
   line-height: 30px;
   margin-bottom: 20px;

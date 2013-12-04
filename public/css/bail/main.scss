@@ -17,7 +17,8 @@ h1,h2,h3,h4,h5{
 }
 
 h3{
-	font-size: 1.1em;
+	font-size: 0.9em;
+	font-weight: bold;
 }
 
 h4{
@@ -277,6 +278,22 @@ a.newsletterLink:hover{
 
 .autorite-canton{
 	text-align: center;
+}
+
+/*======================================
+	Arrets
+=======================================*/
+
+.arret{
+	margin-bottom: 25px;
+}
+
+.arret p,.arret ul{
+	margin-bottom: 10px;
+}
+
+.arret ul li{
+	font-size: 13px;
 }
 
 /*======================================

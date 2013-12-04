@@ -21,6 +21,20 @@ class BailController extends BaseController {
 	
 		return View::make('bail.autorites');	
 	}
+	
+	public function jurisprudence(){
+    
+    	return View::make('bail.jurisprudence');	
+	}
+	
+	public function search(){
+    	
+    	$query = Request::get('q');
+    	
+    	$resultats = array();
+    	
+    	return View::make('bail.search')->with( array( 'resultats' => $query ));	
+	}
 
 	/**
 	 * Show the form for creating a new resource.

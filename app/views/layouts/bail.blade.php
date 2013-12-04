@@ -14,12 +14,14 @@
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/chosen.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/bail/main.css');?>">
 	
     <!-- Javascript Files
     ================================================== -->        
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="<?php echo asset('js/chosen.jquery.js');?>"></script>
     <script src="<?php echo asset('js/bail/main.js');?>"></script>
 
 	</head>
@@ -64,8 +66,8 @@
             	<!-- Bloc recherche --> 
             	
             	<div class="colorBlock min-inner colorSection searchBg">            	
-            		{{ Form::open(array( 'url' => 'bail/search', 'class' => 'searchform')) }}						
-				        {{ Form::text('search', 'Recherche...' ) }}
+            		{{ Form::open(array( 'methode' => 'POST' , 'url' => 'bail/search', 'class' => 'searchform')) }}						
+				        {{ Form::text('q', null , array( 'placeholder' => 'Recherche...') ) }}
 						{{ Form::submit('ok', array('class' => '')) }}
 				    {{ Form::close() }}				     
             	</div>
@@ -84,7 +86,27 @@
 			            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
 		            		</ul>
 	            		</div>
-					<h3 class="link"><a class="newsletterLink" href="#" >Jurisprudence</a></h3>
+					<h3 class="link">
+						{{ link_to('bail/jurisprudence', 'Jurisprudence' , array('class' => 'newsletterLink') ) }}
+					</h3>
+						<div>
+							<select class="chosen-select" multiple data-placeholder="Filtrer" name="filter">
+								<option value="Défaut">Défaut</option>
+								<option value="Bail à ferme">Bail à ferme</option>
+								<option value="Bail à ferme agricole">Bail à ferme agricole</option>
+								<option value="Changement de propriétaire">Changement de propriétaire</option>
+								<option value="Destiné à la publication">Destiné à la publication</option>
+								<option value="Diligence">Diligence</option>
+								<option value="Expulsion">Expulsion</option>
+								<option value="Faillite">Faillite</option>
+								<option value="Général">Général</option>
+								<option value="Logement de famille">Logement de famille</option>
+								<option value="Prolongation">Prolongation</option>
+								<option value="Résiliation">Résiliation</option>
+								<option value="Sous-location">Sous-location</option>
+								<option value="Vente">Vente</option>
+							</select>
+						</div>
 					<h3 class="link"><a class="newsletterLink" href="#" >Articles de doctrine</a></h3>
 					<h3 class="link"><a class="newsletterLink" href="#" >Revues</a></h3>
 					<h3 class="link"><a class="newsletterLink" href="#" >Bibliographie</a></h3>
