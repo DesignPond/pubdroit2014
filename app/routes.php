@@ -11,60 +11,54 @@
 |
 */
 
-/* ==================================
-	Routes tests
-==================================== */
-
 Route::get('/', function()
 {
-	return View::make('hello');
+	$pdf = App::make('dompdf');
+	$pdf->loadHTML('<h1>Test</h1>');
+	return $pdf->stream();
 });
 
-/* ==================================
-	Routes Common
-==================================== */
-		
-	/* LOGIN */
-	
-	Route::get('login', function()
-	{
-	
-		if(Auth::check())
-		{
-			return Redirect::to('pubdroit/profil');
-		}
-		else
-		{
-			return View::make('pubdroit.login');
-		}
-	  
-	});
-	
-	Route::post('login', function()
-	{
-	
-		if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
-		{
-			return Redirect::to('pubdroit/profil');
-		}
-		else
-		{
-			return Redirect::to('login');
-		}
-	     
-	});
-	
-	/* Newsletter */
-	
-	Route::post('newsletter', array( 'uses' => 'NewsletterController@add') );
+Route::get('login', function()
+{
+	if(Auth::check()){
+		return Redirect::to('pubdroit/profil');
+	}
+	else{
+		return View::make('pubdroit.login');
+	}
+});
+
+Route::post('login', function()
+{
+    // Validation later - for now let’s just get the creds
+   if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
+   {
+	   return Redirect::to('pubdroit/profil');
+   }
+   else
+   {
+	   return Redirect::to('login');
+   }
+});
  
-/* ==================================
-	Routes publications-droit
-==================================== */ 
+
+Route::group(array('prefix' => 'bail'), function()
+{
+
+    Route::get('/', function()
+    {
+        return View::make('bail.index');
+    });
+    
+    Route::get('lois', function()
+    {
+        return View::make('bail.index');
+    });
+    
+});
 
 Route::group(array('prefix' => 'pubdroit'), function()
 {
-
     Route::get('/', function()
     {
         return View::make('pubdroit.index');
@@ -74,37 +68,12 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	{
 	    return View::make('pubdroit.profil');
 	}));
-	
 });
-
-
-/* ==================================
-	Routes droitmatrimonial
-==================================== */
 
 Route::group(array('prefix' => 'matrimonial'), function()
 {
-
     Route::get('/', function()
     {
         return View::make('matrimonial.index');
     });
-
-});
-
-
-/* ==================================
-	Routes bail
-==================================== */
-
-Route::group(array('prefix' => 'bail'), function()
-{
-
-    Route::get('/', array('uses' => 'BailController@index'));
-    Route::get('lois', array('uses' => 'BailController@lois'));
-    Route::get('autorites', array('uses' => 'BailController@autorites'));
-    Route::get('jurisprudence', array('uses' => 'BailController@jurisprudence'));
-    
-    Route::post('search', array('uses' => 'BailController@search'));
-
 });
