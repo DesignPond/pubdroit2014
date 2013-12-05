@@ -29,14 +29,14 @@ class SearchController extends BaseController {
 		        $item = array('id' => '1');
 		        break;
 		    case "infos":
-		        $item = array('id' => '2');
+		        $item = $produit;
 		        break;
 		    default:
 		        $item = array('id' => '2');
 		}
 		
 		if($item){
-			return Response::json( $produit, 200 );
+			return Response::json( $item, 200 );
 		}
 		else{
 			return Response::json( $item, 204 );
