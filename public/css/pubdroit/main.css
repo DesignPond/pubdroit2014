@@ -552,3 +552,12 @@ span.product-cart {
   display: inline;
   margin: 10px 3px;
 }
+
+/*======================================
+	Content event
+=======================================*/
+/* line 500, main.scss */
+#events {
+  width: 100%;
+  background: #d0d0d0;
+}

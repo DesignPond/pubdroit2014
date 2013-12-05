@@ -111,7 +111,8 @@ Route::group(array('prefix' => 'pubdroit'), function()
 	    return View::make('pubdroit.profil');
 	}));
 
-	
+	Route::get('event', array('uses' => 'EventController@index'));
+		
 	// Search and info API
 	
 	Route::post('api', array('uses' => 'SearchController@index'));

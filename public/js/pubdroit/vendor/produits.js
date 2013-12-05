@@ -178,6 +178,7 @@ function loadIFrame( uid ) {
 }
 
 $(function(){
+
 	var current_category = '';
 	var column_width     = 172;
 	var column_height    = 239;
@@ -986,4 +987,5 @@ $(function(){
     // Lance sammy avec comme route de base #/
     app.run(getSammyUrl() + '#/');
     app.debug = true;
+    
 });

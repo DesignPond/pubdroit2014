@@ -64,10 +64,10 @@
 		        	<div class="row">
 			        	<!-- Menu -->
 						<nav id="menu-principal" class="large-9 columns">
-							{{ link_to('bail', 'Publications' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Offre spéciale' , array('class' => Request::is( 'pubdroit/offres') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Divers' , array('class' => Request::is( 'pubdroit/divers') ? 'active' : '') ) }}
-							{{ link_to('bail', 'Evénements' , array('class' => Request::is( 'pubdroit/evenement') ? 'active' : '') ) }}
+							{{ link_to('pubdroit', 'Publications' , array('class' => Request::is( 'pubdroit') ? 'active' : '') ) }}
+							{{ link_to('pubdroit', 'Offre spéciale' , array('class' => Request::is( 'pubdroit/offres') ? 'active' : '') ) }}
+							{{ link_to('pubdroit', 'Divers' , array('class' => Request::is( 'pubdroit/divers') ? 'active' : '') ) }}
+							{{ link_to('pubdroit/event', 'Evénements' , array('class' => Request::is( 'pubdroit/event') ? 'active' : '') ) }}
 						</nav>
 						<div class="large-3 columns">						
 						    <div class="searchform" id="search">

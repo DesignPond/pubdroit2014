@@ -16,10 +16,21 @@ class CreateEventsTable extends Migration {
 		
 			$table->increments('id');
 			
+			$table->string('organisateur');
 			$table->string('titre');
+			$table->string('soustitre');
+			$table->string('sujet');
 			$table->text('description');
-			$table->integer('user_id');
-			$table->enum('type', array('app', 'pdf'));
+			$table->string('endroit');
+			$table->date('dateDebut');
+			$table->date('dateFin');
+			$table->date('dateDelai'); // changed
+			$table->text('remarques');
+			$table->enum('typeColloque', array('0','1','2'))->default(1);
+			$table->integer('facture_id');	// changed	
+			$table->enum('visible', array('0','1'))->default(0);
+			$table->integer('nbrInscription');
+			$table->string('centreLogos');	// changed
 			
 			$table->timestamps();
 		});

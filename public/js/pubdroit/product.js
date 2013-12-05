@@ -87,8 +87,7 @@ $(function() {
 	var gutter_width  = 15;
 	var $container    = $('#content-shop');
 	
-	InitIsotope( $container, column_width, gutter_width );
-	
+	InitIsotope( $container, column_width, gutter_width );	
 	
 	// Zoom when over
 	var base_width  = 172;

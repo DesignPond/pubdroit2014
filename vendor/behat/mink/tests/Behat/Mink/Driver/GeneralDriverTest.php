@@ -591,6 +591,7 @@ OUT
         $sex         = $page->findField('sex');
         $maillist    = $page->findField('mail_list');
         $agreement   = $page->findField('agreement');
+        $notes       = $page->findField('notes');
         $about       = $page->findField('about');
 
         $this->assertNotNull($firstname);
@@ -600,12 +601,14 @@ OUT
         $this->assertNotNull($sex);
         $this->assertNotNull($maillist);
         $this->assertNotNull($agreement);
+        $this->assertNotNull($notes);
 
         $this->assertEquals('Firstname', $firstname->getValue());
         $this->assertEquals('Lastname', $lastname->getValue());
         $this->assertEquals('your@email.com', $email->getValue());
         $this->assertEquals('20', $select->getValue());
         $this->assertEquals('w', $sex->getValue());
+        $this->assertEquals('original notes', $notes->getValue());
 
         $this->assertTrue($maillist->getValue());
         $this->assertFalse($agreement->getValue());
@@ -624,6 +627,9 @@ OUT
 
         $sex->selectOption('m');
         $this->assertEquals('m', $sex->getValue());
+
+        $notes->setValue('new notes');
+        $this->assertEquals('new notes', $notes->getValue());
 
         $about->attachFile($this->mapRemoteFilePath(__DIR__ . '/web-fixtures/some_file.txt'));
 
@@ -646,6 +652,7 @@ array (
   'email' = 'ever.zet@gmail.com',
   'first_name' = 'Foo "item"',
   'last_name' = 'Bar',
+  'notes' = 'new notes',
   'select_number' = '30',
   'sex' = 'm',
   'submit' = 'Register',
@@ -693,6 +700,32 @@ OUT
         foreach ($toSearch as $searchString) {
             $this->assertContains($searchString, $pageContent);
         }
+    }
+
+    /**
+     * @dataProvider setBasicAuthDataProvider
+     */
+    public function testSetBasicAuth($user, $pass, $pageText)
+    {
+        $session = $this->getSession();
+
+        try {
+            $session->setBasicAuth($user, $pass);
+        } catch (UnsupportedDriverActionException $e) {
+            $this->markTestSkipped('This driver doesn\'t support basic authentication');
+        }
+
+        $session->visit($this->pathTo('/basic_auth.php'));
+
+        $this->assertContains($pageText, $session->getPage()->getContent());
+    }
+
+    public function setBasicAuthDataProvider()
+    {
+        return array(
+            array('mink-user', 'mink-password', 'is authenticated'),
+            array('', '', 'is not authenticated'),
+        );
     }
 
     protected function pathTo($path)

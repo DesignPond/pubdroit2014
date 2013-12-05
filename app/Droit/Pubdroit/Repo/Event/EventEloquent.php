@@ -16,7 +16,7 @@ class EventEloquent implements EventInterface {
 	
 	public function getLast($nbr){
 	
-		//return $this->projet->with( array('user','theme') )->orderBy('id', 'DESC')->take($nbr)->skip(0)->get()->toArray();	
+		return $this->event->orderBy('id', 'DESC')->take($nbr)->skip(0)->get()->toArray();	
 	}
 	
 	/*
@@ -25,19 +25,19 @@ class EventEloquent implements EventInterface {
 		
 	public function getAll(){
 		
-		//return $this->projet->with( array('theme','subtheme','user') )->get();		
+		return $this->event->with( array('prices','eventsoptions') )->get();		
 	}
 		
 	public function find($id){
 		
-		//return $this->projet->with( array('user','theme') )->findOrFail($id)->toArray();			
+		return $this->event->with( array('prices','eventsoptions') )->findOrFail($id)->toArray();			
 	}
 	
 	public function create(array $data){
 		
 /*
 		// Create the article
-		$projet = $this->projet->create(array(
+		$event = $this->event->create(array(
 			'titre'       => $data['titre'],
 			'description' => $data['description'],
 			'user_id'     => $data['user_id'],
@@ -46,7 +46,7 @@ class EventEloquent implements EventInterface {
 			'subtheme_id' => $data['subtheme_id']
 		));
 		
-		if( ! $projet )
+		if( ! $event )
 		{
 			return false;
 		}
@@ -58,20 +58,20 @@ class EventEloquent implements EventInterface {
 	public function update(array $data){
 		
 /*
-		$projet = $this->projet->find($data['id']);
+		$event = $this->event->find($data['id']);
 		
-		if( ! $projet )
+		if( ! $event )
 		{
 			return false;
 		}
 
-		$projet->titre        = $data['titre'];
-		$projet->description  = $data['description'];
-		$projet->user_id      = $data['user_id'];
-		$projet->categorie_id = $data['categorie_id'];
-		$projet->theme_id     = $data['theme_id'];
-		$projet->subtheme_id  = $data['subtheme_id'];
-		$projet->save();	
+		$event->titre        = $data['titre'];
+		$event->description  = $data['description'];
+		$event->user_id      = $data['user_id'];
+		$event->categorie_id = $data['categorie_id'];
+		$event->theme_id     = $data['theme_id'];
+		$event->subtheme_id  = $data['subtheme_id'];
+		$event->save();	
 		
 		return true;
 */
