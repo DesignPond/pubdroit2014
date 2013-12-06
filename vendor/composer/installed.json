@@ -951,19 +951,19 @@
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/common.git",
-            "reference": "5126e268446c7e7df961b89128d71878e0652432"
+            "reference": "eb4e34cac1b18583f0ee74bf6a9dda96bd771a1e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/common/zipball/5126e268446c7e7df961b89128d71878e0652432",
-            "reference": "5126e268446c7e7df961b89128d71878e0652432",
+            "url": "https://api.github.com/repos/guzzle/common/zipball/eb4e34cac1b18583f0ee74bf6a9dda96bd771a1e",
+            "reference": "eb4e34cac1b18583f0ee74bf6a9dda96bd771a1e",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2",
             "symfony/event-dispatcher": ">=2.1"
         },
-        "time": "2013-10-02 20:47:00",
+        "time": "2013-12-05 23:39:20",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1052,18 +1052,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/parser.git",
-            "reference": "a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2"
+            "reference": "77cae6425bc3466e1e47bdf6d2eebc15a092dbcc"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/parser/zipball/a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2",
-            "reference": "a25c2ddda1c52fb69a4ee56eb530b13ddd9573c2",
+            "url": "https://api.github.com/repos/guzzle/parser/zipball/77cae6425bc3466e1e47bdf6d2eebc15a092dbcc",
+            "reference": "77cae6425bc3466e1e47bdf6d2eebc15a092dbcc",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.2"
         },
-        "time": "2013-07-11 22:46:03",
+        "time": "2013-10-24 00:04:09",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1098,12 +1098,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/guzzle/http.git",
-            "reference": "3420035adcf312d62a2e64f3e6b3e3e590121786"
+            "reference": "b497e6b6a5a85751ae0c6858d677f7c4857dd171"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/guzzle/http/zipball/3420035adcf312d62a2e64f3e6b3e3e590121786",
-            "reference": "3420035adcf312d62a2e64f3e6b3e3e590121786",
+            "url": "https://api.github.com/repos/guzzle/http/zipball/b497e6b6a5a85751ae0c6858d677f7c4857dd171",
+            "reference": "b497e6b6a5a85751ae0c6858d677f7c4857dd171",
             "shasum": ""
         },
         "require": {
@@ -1115,7 +1115,7 @@
         "suggest": {
             "ext-curl": "*"
         },
-        "time": "2013-09-20 22:05:53",
+        "time": "2013-12-04 22:21:25",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -1576,15 +1576,15 @@
         "source": {
             "type": "git",
             "url": "https://github.com/php-fig/log.git",
-            "reference": "134145e8d08ddcb9bb8f49a2feb9aa1f2393650c"
+            "reference": "5144da9525d24346bf009ff28f10cbaa1f0f166e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/134145e8d08ddcb9bb8f49a2feb9aa1f2393650c",
-            "reference": "134145e8d08ddcb9bb8f49a2feb9aa1f2393650c",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/5144da9525d24346bf009ff28f10cbaa1f0f166e",
+            "reference": "5144da9525d24346bf009ff28f10cbaa1f0f166e",
             "shasum": ""
         },
-        "time": "2013-11-19 10:21:35",
+        "time": "2013-12-05 15:25:07",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -3009,18 +3009,74 @@
         "homepage": "http://symfony.com"
     },
     {
+        "name": "mockery/mockery",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/padraic/mockery.git",
+            "reference": "fd9f745e335f8a0e68ef34f44f0560a54e44ef84"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/padraic/mockery/zipball/fd9f745e335f8a0e68ef34f44f0560a54e44ef84",
+            "reference": "fd9f745e335f8a0e68ef34f44f0560a54e44ef84",
+            "shasum": ""
+        },
+        "require": {
+            "lib-pcre": ">=7.0",
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "hamcrest/hamcrest": "1.1.0"
+        },
+        "time": "2013-11-26 20:36:44",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Mockery": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Pádraic Brady",
+                "email": "padraic.brady@gmail.com",
+                "homepage": "http://blog.astrumfutura.com"
+            }
+        ],
+        "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
+        "homepage": "http://github.com/padraic/mockery",
+        "keywords": [
+            "BDD",
+            "TDD",
+            "library",
+            "mock",
+            "mock objects",
+            "mockery",
+            "stub",
+            "test",
+            "test double",
+            "testing"
+        ]
+    },
+    {
         "name": "laravel/framework",
         "version": "4.0.x-dev",
         "version_normalized": "4.0.9999999.9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "1973197d53c9daaf65c54c4c872669e787a408d3"
+            "reference": "426c9e0e39915eedd2861b147ba6701443136e3d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/1973197d53c9daaf65c54c4c872669e787a408d3",
-            "reference": "1973197d53c9daaf65c54c4c872669e787a408d3",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/426c9e0e39915eedd2861b147ba6701443136e3d",
+            "reference": "426c9e0e39915eedd2861b147ba6701443136e3d",
             "shasum": ""
         },
         "require": {
@@ -3084,7 +3140,7 @@
             "pda/pheanstalk": "2.1.*",
             "phpunit/phpunit": "3.7.*"
         },
-        "time": "2013-12-03 02:09:00",
+        "time": "2013-12-06 01:42:26",
         "type": "library",
         "extra": {
             "branch-alias": {

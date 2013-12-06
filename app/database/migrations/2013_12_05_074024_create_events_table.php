@@ -27,7 +27,7 @@ class CreateEventsTable extends Migration {
 			$table->date('dateDelai'); // changed
 			$table->text('remarques');
 			$table->enum('typeColloque', array('0','1','2'))->default(1);
-			$table->integer('facture_id');	// changed	
+			$table->integer('compte_id');	// changed	
 			$table->enum('visible', array('0','1'))->default(0);
 			$table->integer('nbrInscription');
 			$table->string('centreLogos');	// changed

@@ -9,7 +9,8 @@
 		"way/generators": "dev-master"
 	},
 	"require-dev": {
-		"codeception/codeception": "dev-master"
+		"codeception/codeception": "dev-master",
+		"mockery/mockery": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
