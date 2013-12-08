@@ -149,7 +149,7 @@ class Handler {
 		// type of exceptions to handled by a Closure giving great flexibility.
 		if ( ! is_null($response))
 		{
-			return $this->prepareResponse($response);
+			$response = $this->prepareResponse($response);
 		}
 
 		// If no response was sent by this custom exception handler, we will call the
@@ -157,8 +157,23 @@ class Handler {
 		// it show the exception to the user / developer based on the situation.
 		else
 		{
-			return $this->displayException($exception);
+			$response = $this->displayException($exception);
 		}
+
+		return $this->sendResponse($response);
+	}
+
+	/**
+	 * Send the repsonse back to the client.
+	 *
+	 * @param  \Symfony\Component\HttpFoundation\Response  $response
+	 * @return mixed
+	 */
+	protected function sendResponse($response)
+	{
+		return $this->responsePreparer->readyForResponses() && ! $this->runningInConsole()
+								? $response
+								: $response->send();
 	}
 
 	/**
@@ -350,6 +365,16 @@ class Handler {
 	protected function prepareResponse($response)
 	{
 		return $this->responsePreparer->prepareResponse($response);
+	}
+
+	/**
+	 * Determine if we are running in the console.
+	 *
+	 * @return bool
+	 */
+	public function runningInConsole()
+	{
+		return php_sapi_name() == 'cli';
 	}
 
 	/**

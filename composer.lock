@@ -230,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4368784d7054a55c66a4cb653d166a80ac4d6ec9"
+                "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4368784d7054a55c66a4cb653d166a80ac4d6ec9",
-                "reference": "4368784d7054a55c66a4cb653d166a80ac4d6ec9",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/a55cbe9d962a16be1fe9490492657807fc82afe5",
+                "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5",
                 "shasum": ""
             },
             "require": {
@@ -338,7 +338,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-12-07 04:31:00"
+            "time": "2013-12-08 04:33:56"
         },
         {
             "name": "monolog/monolog",
@@ -545,16 +545,16 @@
         },
         {
             "name": "patchwork/utf8",
-            "version": "v1.1.15",
+            "version": "v1.1.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolas-grekas/Patchwork-UTF8.git",
-                "reference": "2b13126f572501ce9806846349344f1c6b20b545"
+                "reference": "bc719e850b57791c1024d06f9fe7d474348e7ba6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/2b13126f572501ce9806846349344f1c6b20b545",
-                "reference": "2b13126f572501ce9806846349344f1c6b20b545",
+                "url": "https://api.github.com/repos/nicolas-grekas/Patchwork-UTF8/zipball/bc719e850b57791c1024d06f9fe7d474348e7ba6",
+                "reference": "bc719e850b57791c1024d06f9fe7d474348e7ba6",
                 "shasum": ""
             },
             "require": {
@@ -592,7 +592,7 @@
                 "utf-8",
                 "utf8"
             ],
-            "time": "2013-11-23 12:47:40"
+            "time": "2013-12-07 12:20:20"
         },
         {
             "name": "phpseclib/phpseclib",
@@ -938,12 +938,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "236f65cc97d6beaa8fcb8a27b19bd278f3912677"
+                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/236f65cc97d6beaa8fcb8a27b19bd278f3912677",
-                "reference": "236f65cc97d6beaa8fcb8a27b19bd278f3912677",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6b77c60ed70c4af6cd17a87b054c86d69a67d740",
+                "reference": "6b77c60ed70c4af6cd17a87b054c86d69a67d740",
                 "shasum": ""
             },
             "require": {
@@ -1004,7 +1004,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2013-11-06 01:58:51"
+            "time": "2013-12-08 12:01:47"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1070,12 +1070,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "381023ad8f019eb4859550538e4affdb5bb9a68b"
+                "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/381023ad8f019eb4859550538e4affdb5bb9a68b",
-                "reference": "381023ad8f019eb4859550538e4affdb5bb9a68b",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/73780da52dc36ac8c24b720e2bfa334d266b80a6",
+                "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-02 10:44:40"
+            "time": "2013-12-08 14:57:15"
         },
         {
             "name": "psr/log",
@@ -2041,12 +2041,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Mink.git",
-                "reference": "bf0b6761f4da95f735131cfb800f76f62b418c0c"
+                "reference": "7e31f096958b74ac3a50096804f2760800f634ae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Mink/zipball/bf0b6761f4da95f735131cfb800f76f62b418c0c",
-                "reference": "bf0b6761f4da95f735131cfb800f76f62b418c0c",
+                "url": "https://api.github.com/repos/Behat/Mink/zipball/7e31f096958b74ac3a50096804f2760800f634ae",
+                "reference": "7e31f096958b74ac3a50096804f2760800f634ae",
                 "shasum": ""
             },
             "require": {
@@ -2088,7 +2088,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2013-12-04 21:09:29"
+            "time": "2013-12-07 20:02:42"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -2096,12 +2096,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkBrowserKitDriver.git",
-                "reference": "dab4a996724146a9f6cebfea4882d096fad85da8"
+                "reference": "8fa555312d754e64bdb14c62e0e52d44c63e484b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/dab4a996724146a9f6cebfea4882d096fad85da8",
-                "reference": "dab4a996724146a9f6cebfea4882d096fad85da8",
+                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/8fa555312d754e64bdb14c62e0e52d44c63e484b",
+                "reference": "8fa555312d754e64bdb14c62e0e52d44c63e484b",
                 "shasum": ""
             },
             "require": {
@@ -2143,7 +2143,7 @@
                 "browser",
                 "testing"
             ],
-            "time": "2013-12-02 12:53:57"
+            "time": "2013-12-07 19:30:08"
         },
         {
             "name": "behat/mink-goutte-driver",
@@ -2261,12 +2261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "eef681ca934fcb859231d961711c74d02d362e8a"
+                "reference": "eb9d4142774db6cb55a22bd7d4dc1f9396d92237"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/eef681ca934fcb859231d961711c74d02d362e8a",
-                "reference": "eef681ca934fcb859231d961711c74d02d362e8a",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/eb9d4142774db6cb55a22bd7d4dc1f9396d92237",
+                "reference": "eb9d4142774db6cb55a22bd7d4dc1f9396d92237",
                 "shasum": ""
             },
             "require": {
@@ -2320,7 +2320,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2013-12-07 03:04:30"
+            "time": "2013-12-08 03:50:45"
         },
         {
             "name": "fabpot/goutte",

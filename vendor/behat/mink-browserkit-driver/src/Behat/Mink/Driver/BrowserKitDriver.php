@@ -145,7 +145,16 @@ class BrowserKitDriver extends CoreDriver
      */
     public function getCurrentUrl()
     {
-        return $this->client->getRequest()->getUri();
+        $request = $this->client->getRequest();
+
+        if ($request == null) {
+            // If no request exists, return the current
+            // URL as null instead of running into a
+            // "method on non-object" error.
+            return null;
+        }
+
+        return $request->getUri();
     }
 
     /**
@@ -630,15 +639,16 @@ class BrowserKitDriver extends CoreDriver
         $fieldName = str_replace('[]', '', $fieldNode->getAttribute('name'));
         $formNode  = $fieldNode;
 
-        // we will access our element by name next, but that's not unique, so we need to know wich is ou element
+        // we will access our element by name next, but that's not unique, so we need to know which is our element
         $elements = $this->getCrawler()->filterXPath('//*[@name=\''.$fieldNode->getAttribute('name').'\']');
         $position = 0;
         if(count($elements) > 1) {
             // more than one element contains this name !
             // so we need to find the position of $fieldNode
             foreach($elements as $key => $element) {
-                if($element->getAttribute('id') == $fieldNode->getAttribute('id')) {
+                if($element->getNodePath() === $fieldNode->getNodePath()) {
                     $position = $key;
+                    break;
                 }
             }
         }
