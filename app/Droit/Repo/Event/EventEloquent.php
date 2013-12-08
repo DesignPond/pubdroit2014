@@ -1,6 +1,5 @@
 <?php namespace Droit\Repo\Event;
 
-use Illuminate\Database\Eloquent\Model;
 use Droit\Repo\Event\EventInterface;
 use Illuminate\Database\Eloquent\Model as M;
 
@@ -16,7 +15,7 @@ class EventEloquent implements EventInterface {
 	
 	public function getLast($nbr){
 	
-		return $this->event->orderBy('id', 'DESC')->take($nbr)->skip(0)->get()->toArray();	
+		return $this->event->orderBy('id', 'DESC')->take($nbr)->skip(0)->get();	
 	}
 	
 	/*
@@ -25,12 +24,12 @@ class EventEloquent implements EventInterface {
 		
 	public function getAll(){
 		
-		return $this->event->with( array('prices','eventsoptions') )->get();		
+		return $this->event->get();		
 	}
 		
 	public function find($id){
 		
-		return $this->event->with( array('prices','eventsoptions') )->findOrFail($id)->toArray();			
+		return $this->event->with( array('prices','eventsoptions') )->findOrFail($id);			
 	}
 	
 	public function create(array $data){

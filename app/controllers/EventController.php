@@ -1,6 +1,19 @@
 <?php
 
+use Droit\Repo\Event\EventInterface;
+use Droit\Services\Form\Event\EventForm;
+
 class EventController extends BaseController {
+
+	protected $event;
+	
+	public function __construct(EventInterface $event, EventForm $validator ){
+		
+		$this->event = $event;
+		
+		$this->validator = $validator;
+
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +22,9 @@ class EventController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('pubdroit.event');
+		$events  = $this->event->find(1);	
+
+        return View::make('pubdroit.event')->with( array('events' => $events ));
 	}
 
 	/**

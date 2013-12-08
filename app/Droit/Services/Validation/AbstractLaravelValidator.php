@@ -1,4 +1,4 @@
-<?php namespace Schema\Service\Validation;
+<?php namespace Droit\Services\Validation;
 
 
 abstract class AbstractLaravelValidator implements ValidableInterface {

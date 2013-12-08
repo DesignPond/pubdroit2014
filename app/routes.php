@@ -13,9 +13,7 @@
 
 Route::get('/', function()
 {
-	$pdf = App::make('dompdf');
-	$pdf->loadHTML('<h1>Test</h1>');
-	return $pdf->stream();
+	//return Events::all();
 });
 
 
@@ -41,8 +39,7 @@ Route::post('login', function()
 	   return Redirect::to('login');
    }
 });
-
-
+        
 
 /* ==================================
 	Routes Common
