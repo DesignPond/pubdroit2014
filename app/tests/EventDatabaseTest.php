@@ -7,8 +7,6 @@ class EventDatabaseTest extends TestCase {
 	public function setUp()
 	{
 		parent::setUp();
- 
-		//$this->mock('Droit\Repo\Event\EventEloquent');	
 	}
 	
 	public function tearDown() {
@@ -19,11 +17,10 @@ class EventDatabaseTest extends TestCase {
 	
 	/**
 	 * Event databes testing
-	 */
+	*/
 	 
 	public function testRetriveAllEvents()
-	{
-		
+	{		
 		$event = m::mock('Droit\Repo\Event\EventInterface');
         $event->shouldReceive('getAll')->once()->andReturn('mocked');
         

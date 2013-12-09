@@ -34,7 +34,7 @@ class EventController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('events.create');
+        return View::make('admin.create');
 	}
 
 	/**

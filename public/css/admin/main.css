@@ -1,0 +1,38 @@
+.panel-heading .options .btn {
+    line-height: 1em !important;
+    opacity: 1;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.panel-gray .panel-heading .options a.btn {
+    color: #fff !important;
+}
+
+.badge.blank {
+	background: #fff;
+	color: #000;
+	margin-left: 5px;
+    font-size: 10px;
+    padding: 3px 4px 3px;
+}
+
+.mini-footer .btn-group .btn
+{
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.panel[class*="panel-"] .mini-footer {
+    padding: 10px;
+}
+
+.event-thumb{
+    margin-right: 15px;
+    max-width: 50px;
+    float: left;
+}
+
+.panel .event-info{
+	min-height: 112px;
+}

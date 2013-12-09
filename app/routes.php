@@ -11,9 +11,11 @@
 |
 */
 
+use Carbon\Carbon;
+
 Route::get('/', function()
 {
-	//return Events::all();
+	echo Carbon::now();
 });
 
 
@@ -122,4 +124,49 @@ Route::group(array('prefix' => 'matrimonial'), function()
     {
         return View::make('matrimonial.index');
     });
+});
+
+
+Route::group(array('prefix' => 'admin'), function()
+{
+
+    Route::get('/', function()
+    {
+        return View::make('admin.index');
+    });
+    
+    Route::get('create', function()
+    {
+        return View::make('admin.create');
+    });
+    
+    Route::group(array('prefix' => 'pubdroit'), function()
+	{
+	    Route::get('/', function()
+	    {
+	        return View::make('admin.index');
+	    });
+	    
+	    Route::get('event', array('uses' => 'AdminController@index'));
+	    
+	});
+	
+    Route::group(array('prefix' => 'bail'), function()
+	{
+	    Route::get('/', function()
+	    {
+	        return View::make('admin.index');
+	    });
+	    
+	});
+	
+	Route::group(array('prefix' => 'matrimonial'), function()
+	{
+	    Route::get('/', function()
+	    {
+	        return View::make('admin.index');
+	    });
+	    
+	});
+        
 });
