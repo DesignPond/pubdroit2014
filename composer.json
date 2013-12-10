@@ -6,6 +6,7 @@
 	"require": {
 		"laravel/framework": "4.1.*",
 		"phpunit/phpunit": "3.7.*",
+		"cartalyst/sentry": "2.0.*",
 		"way/generators": "dev-master"
 	},
 	"require-dev": {

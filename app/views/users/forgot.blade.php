@@ -1,0 +1,21 @@
+@extends('layouts.default')
+
+@section('content')
+	
+		<div class="row">
+		    <div class="col-md-10 col-md-offset-2">
+		        {{ Form::open(array('action' => 'UserController@forgot', 'method' => 'post')) }}
+		            
+		            <h2>Forgot your Password?</h2>
+		            
+		            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
+		                {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'E-mail', 'autofocus')) }}
+		                {{ ($errors->has('email') ? $errors->first('email') : '') }}
+		            </div>
+		
+		            {{ Form::submit('Send Instructions', array('class' => 'btn btn-primary'))}}
+		
+		  		{{ Form::close() }}
+		  	</div>
+		</div>
+@stop

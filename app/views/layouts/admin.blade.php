@@ -53,7 +53,7 @@
 	        					<li><a href="#">Account <i class="pull-right fa fa-cog"></i></a></li>
 	        					<li><a href="#">Help <i class="pull-right fa fa-question-circle"></i></a></li>
 	        					<li class="divider"></li>
-	        					<li><a href="#" class="text-right">Sign Out</a></li>
+	        					<li>{{ link_to('logout', 'Logout') }}</li>
 	        				</ul>
 	        			</li>
 	        		</ul>
@@ -143,7 +143,7 @@
 				    <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><span>Dashboard</span></a></li>
 				    <li><a href="javascript:;"><span>Publications-droit</span></a>
 					    <ul class="acc-menu">
-						    <li>{{ link_to('admin/pubdroit/event', 'Colloques' , array('class' => Request::is( 'admin/pubdroit/event') ? 'active' : '') ) }}</li>
+						    <li>{{ link_to('admin/pubdroit/lists', 'Colloques' , array('class' => Request::is( 'admin/pubdroit/lists') ? 'active' : '') ) }}</li>
 						    <li>{{ link_to('admin/pubdroit/archives', 'Archives' , array('class' => Request::is( 'admin/pubdroit/archives') ? 'active' : '') ) }}</li>
 					    </ul>
 				    </li>

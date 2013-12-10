@@ -40,3 +40,15 @@
 .tab-container .tab-content {
     padding: 30px 15px 10px;
 }
+
+.focusedform .verticalcenter {
+    left: 50%;
+    margin-left: -320px;
+    margin-top: -186px;
+    position: absolute;
+    top: 42%;
+}
+
+.inner{
+	padding: 20px 0;
+}

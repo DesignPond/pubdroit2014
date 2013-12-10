@@ -78,3 +78,22 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+/*
+|--------------------------------------------------------------------------
+| Admin editor Filter
+|--------------------------------------------------------------------------
+|
+| The CSRF filter is responsible for protecting your application against
+| cross-site request forgery attacks. If this special token in a user
+| session does not match the one given in this request, we'll bail.
+|
+*/
+
+Route::filter('sentryAuth', function () {
+
+    if (!Sentry::check()) {
+        Session::put('loginRedirect', Request::url());
+        return Redirect::route('login');
+    } 
+});

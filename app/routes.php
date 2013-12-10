@@ -15,159 +15,157 @@ use Carbon\Carbon;
 
 Route::get('/', function()
 {
-	echo Carbon::now();
-});
-
-
-Route::get('login', function()
-{
-	if(Auth::check()){
-		return Redirect::to('pubdroit/profil');
+	$user = Sentry::findUserById(1);
+	
+	if ( $user->hasAnyAccess(['admin']) )
+	{
+	    echo 'is admin';
 	}
-	else{
-		return View::make('pubdroit.login');
-	}
+	echo '<pre>';
+	//print_r($group);
+	echo '</pre>';
 });
 
-Route::post('login', function()
+
+
+Route::filter('age', function($route, $request, $value)
 {
-    // Validation later - for now let’s just get the creds
-   if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
-   {
-	   return Redirect::to('pubdroit/profil');
-   }
-   else
-   {
-	   return Redirect::to('login');
-   }
+    //
 });
+
         
-
 /* ==================================
 	Routes Common
 ==================================== */
 		
 	/* LOGIN */
-	
-	Route::get('login', function()
-	{
-	
-		if(Auth::check())
-		{
-			return Redirect::to('pubdroit/profil');
-		}
-		else
-		{
-			return View::make('pubdroit.login');
-		}
-	  
-	});
-	
-	Route::post('login', function()
-	{
-	
-		if( Auth::attempt(array('email' => Input::get('email'), 'password' => Input::get('password') )) )
-		{
-			return Redirect::to('pubdroit/profil');
-		}
-		else
-		{
-			return Redirect::to('login');
-		}
-	     
-	});
+
 	
 	/* Newsletter */
 	
 	Route::post('newsletter', array( 'uses' => 'NewsletterController@add') );
 
- 
+        
+/* ==================================
+	BAIL Routes  
+==================================== */ 
 
 Route::group(array('prefix' => 'bail'), function()
 {
 
-    Route::get('/', function()
-    {
-        return View::make('bail.index');
-    });
-    
-    Route::get('lois', function()
-    {
-        return View::make('bail.index');
-    });
+    Route::get('/', array('uses' => 'BailController@index'));	 
+  
+    Route::get('lois', array('uses' => 'BailController@index'));	 
     
 });
 
+
+/* ========================================
+	Publications-droit Routes  
+=========================================== */ 
+
 Route::group(array('prefix' => 'pubdroit'), function()
 {
-    Route::get('/', function()
-    {
-        return View::make('pubdroit.index');
-    });
-    
-    Route::get('profil', array('before' => 'auth', function()
-	{
-	    return View::make('pubdroit.profil');
-	}));
 
-	Route::get('event', array('uses' => 'EventController@index'));
+    Route::get('/', array('uses' => 'PublicationController@index'));
+    
+    Route::get('profil', array('before' => 'auth' , 'uses' => 'PublicationController@profil'));
+
+	Route::get('event', array('uses' => 'PublicationController@event'));
 		
-	// Search and info API
-	
+	// Search and info API	
 	Route::post('api', array('uses' => 'SearchController@index'));
 
 });
 
+
+
+/* ========================================
+	Droit-matrimonial Routes  
+=========================================== */ 
+
+
 Route::group(array('prefix' => 'matrimonial'), function()
 {
-    Route::get('/', function()
-    {
-        return View::make('matrimonial.index');
-    });
+    Route::get('/', array('uses' => 'MatrimonialController@index'));
+    
 });
 
 
-Route::group(array('prefix' => 'admin'), function()
-{
+/* ========================================
+	 Login for admin
+=========================================== */ 
 
-    Route::get('/', function()
-    {
-        return View::make('admin.index');
-    });
-    
-    Route::get('create', function()
-    {
-        return View::make('admin.create');
-    });
+// Session Routes
+Route::get('login',  array('as' => 'login', 'uses' => 'SessionController@create'));
+Route::get('logout', array('as' => 'logout', 'uses' => 'SessionController@destroy'));
+Route::resource('sessions', 'SessionController', array('only' => array('create', 'store', 'destroy')));
+
+// User Routes
+Route::get('register', 'UserController@create');
+Route::get('users/{id}/activate/{code}', 'UserController@activate')->where('id', '[0-9]+');
+Route::get('resend', array('as' => 'resendActivationForm', function()
+{
+	return View::make('users.resend');
+}));
+
+Route::post('resend', 'UserController@resend');
+Route::get('forgot', array('as' => 'forgotPasswordForm', function()
+{
+	return View::make('users.forgot');
+}));
+
+Route::post('forgot', 'UserController@forgot');
+Route::post('users/{id}/change', 'UserController@change');
+Route::get('users/{id}/reset/{code}', 'UserController@reset')->where('id', '[0-9]+');
+Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
+{
+	return View::make('users.suspend')->with('id', $id);
+}));
+
+Route::post('users/{id}/suspend', 'UserController@suspend')->where('id', '[0-9]+');
+Route::get('users/{id}/unsuspend', 'UserController@unsuspend')->where('id', '[0-9]+');
+Route::get('users/{id}/ban', 'UserController@ban')->where('id', '[0-9]+');
+Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
+Route::resource('users', 'UserController');
+
+// Group Routes
+Route::resource('groups', 'GroupController');
+
+
+/* ========================================
+	Administration Routes  
+=========================================== */ 
+	
+
+Route::group(array('prefix' => 'admin' , 'before' => 'sentryAuth'), function()
+{
+	
+	/* ========================================
+		Routes   
+	=========================================== */ 
+	
+    Route::get('/', array('uses' => 'AdminController@index'));
     
     Route::group(array('prefix' => 'pubdroit'), function()
 	{
-	    Route::get('/', function()
-	    {
-	        return View::make('admin.index');
-	    });
-	    
-	    Route::get('event', array('uses' => 'EventController@lists'));
+	
+	    Route::get('/', array('uses' => 'EventController@index'));	    
+	    Route::get('lists', array('uses' => 'EventController@lists'));
 	    Route::get('archives', array('uses' => 'EventController@archives'));
+	    Route::get('event', array('uses' => 'EventController@index'));
+	    Route::resource('event', 'EventController');
 	    
 	});
 	
     Route::group(array('prefix' => 'bail'), function()
 	{
-	    Route::get('/', function()
-	    {
-	        return View::make('admin.index');
-	    });
-	    
+	    //Route::get('/', array('uses' => 'BailController@index'));	    
 	});
 	
 	Route::group(array('prefix' => 'matrimonial'), function()
 	{
-	    Route::get('/', function()
-	    {
-	        return View::make('admin.index');
-	    });
-	    
+
 	});
         
 });

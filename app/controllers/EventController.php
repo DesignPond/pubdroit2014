@@ -1,7 +1,7 @@
 <?php
 
 use Droit\Repo\Event\EventInterface;
-use Droit\Services\Form\Event\EventForm;
+use Droit\Service\Form\Event\EventForm;
 
 class EventController extends BaseController {
 
@@ -57,7 +57,7 @@ class EventController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('admin.create');
+        return View::make('admin.event.create');
 	}
 
 	/**

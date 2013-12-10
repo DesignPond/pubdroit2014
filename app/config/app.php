@@ -115,8 +115,10 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Droit\PubdroitServiceProvider'
-
+		'Droit\PubdroitServiceProvider',
+		'Cartalyst\Sentry\SentryServiceProvider',
+		'Droit\Repo\RepoServiceProvider',
+		'Droit\Service\Form\FormServiceProvider'
 	),
 
 	/*
@@ -176,6 +178,7 @@ return array(
 		'Route'           => 'Illuminate\Support\Facades\Route',
 		'Schema'          => 'Illuminate\Support\Facades\Schema',
 		'Seeder'          => 'Illuminate\Database\Seeder',
+		'Sentry'		  => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 		'Session'         => 'Illuminate\Support\Facades\Session',
 		'SSH'             => 'Illuminate\Support\Facades\SSH',
 		'Str'             => 'Illuminate\Support\Str',

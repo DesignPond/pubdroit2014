@@ -48,6 +48,7 @@ return array(
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),
+    'Cartalyst\\Sentry' => array($vendorDir . '/cartalyst/sentry/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
     'Boris' => array($vendorDir . '/d11wtq/boris/lib'),
     'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-selenium2-driver/src', $vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src'),

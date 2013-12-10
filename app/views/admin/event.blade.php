@@ -11,7 +11,11 @@
 					<li class="active"><a href="index.htm">Colloques</a></li>
 				</ol>
 				<h1>Colloques - {{ $title }}</h1>
-				
+				<div class="options">
+		            <div class="btn-toolbar">
+		                <a href="{{ url('admin/pubdroit/event/create') }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Créer</a>
+		            </div>
+				</div>
 			</div>
 			
 			<div class="container">
@@ -52,8 +56,8 @@
 	            </div> 
 	            <!-- end row -->
 
-	        
-			</div>
+			</div><!-- end container -->
+			
 		</div>
 	</div>
 	
