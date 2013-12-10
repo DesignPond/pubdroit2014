@@ -42,6 +42,8 @@ return array(
     'Guzzle\\Common' => array($vendorDir . '/guzzle/common'),
     'Goutte' => array($vendorDir . '/fabpot/goutte'),
     'File' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
+    'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Droit' => array($baseDir . '/app'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),

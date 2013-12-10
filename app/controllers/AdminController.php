@@ -17,9 +17,7 @@ class AdminController extends BaseController {
 	 */
 	public function index()
 	{
-		$events = $this->event->getAll('active');	
 
-        return View::make('admin.event')->with( array('events' => $events ));
 	}
 
 	/**

@@ -7,10 +7,14 @@ class EventEloquent implements EventInterface {
 
 	protected $event;
 	
+	protected $today;
+	
 	// Class expects an Eloquent model
 	public function __construct(M $event)
 	{
 		$this->event = $event;	
+		
+		$this->today = date("Y-m-d");	
 	}
 	
 	public function getLast($nbr){
@@ -22,9 +26,15 @@ class EventEloquent implements EventInterface {
 	 * CRUD functions
 	*/
 		
-	public function getAll(){
+	public function getActifs(){
 		
-		return $this->event->get();		
+		return $this->event->where('dateDebut','>=',$this->today)->get();		
+	}
+	
+		
+	public function getArchives(){
+		
+		return $this->event->where('dateDebut','<',$this->today)->get();		
 	}
 		
 	public function find($id){

@@ -10,7 +10,8 @@
 					<li><a href="index.htm">Dashboard</a></li>
 					<li class="active"><a href="index.htm">Colloques</a></li>
 				</ol>
-				<h1>Colloques</h1>
+				<h1>Colloques - {{ $title }}</h1>
+				
 			</div>
 			
 			<div class="container">
@@ -48,17 +49,9 @@
 					@endforeach
 				@endif 
 	            
-	            </div> 	 
-	            
-	            <?php
-/*
-					echo '<pre>';
-					print_r($events);
-					echo '</pre>';
-*/
-				?>
-	                   
-		        <!-- end row -->
+	            </div> 
+	            <!-- end row -->
+
 	        
 			</div>
 		</div>

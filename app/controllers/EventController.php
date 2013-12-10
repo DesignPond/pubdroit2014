@@ -22,9 +22,32 @@ class EventController extends BaseController {
 	 */
 	public function index()
 	{
-		$events  = $this->event->find(1);	
+        return View::make('admin.index');
+	}
+	
+	/**
+	 * Display a listing of the events actifs
+	 *
+	 * @return Response
+	 */
+	public function lists()
+	{
+		$events = $this->event->getActifs();
 
-        return View::make('pubdroit.event')->with( array('events' => $events ));
+        return View::make('admin.event')->with( array('events' => $events , 'title' => 'En cours'));
+	}
+	
+	
+	/**
+	 * Display a listing of the events archived
+	 *
+	 * @return Response
+	 */
+	public function archives()
+	{
+		$events = $this->event->getArchives();	
+
+        return View::make('admin.event')->with( array('events' => $events , 'title' => 'Archives'));
 	}
 
 	/**

@@ -396,12 +396,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/Behat/MinkSelenium2Driver.git",
-            "reference": "594038718c08a458e81137494642bc1a872db1a9"
+            "reference": "c9f5872ad547f04d414d8e500b57737224537159"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/594038718c08a458e81137494642bc1a872db1a9",
-            "reference": "594038718c08a458e81137494642bc1a872db1a9",
+            "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/c9f5872ad547f04d414d8e500b57737224537159",
+            "reference": "c9f5872ad547f04d414d8e500b57737224537159",
             "shasum": ""
         },
         "require": {
@@ -409,7 +409,7 @@
             "instaclick/php-webdriver": "~1.1",
             "php": ">=5.3.1"
         },
-        "time": "2013-12-02 21:28:03",
+        "time": "2013-12-10 00:18:02",
         "type": "mink-driver",
         "extra": {
             "branch-alias": {
@@ -2422,12 +2422,12 @@
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5"
+            "reference": "e3be0deb504cf219544e99f881d2b39a0664e9e1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/a55cbe9d962a16be1fe9490492657807fc82afe5",
-            "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/e3be0deb504cf219544e99f881d2b39a0664e9e1",
+            "reference": "e3be0deb504cf219544e99f881d2b39a0664e9e1",
             "shasum": ""
         },
         "require": {
@@ -2494,7 +2494,7 @@
         "suggest": {
             "doctrine/dbal": "Allow renaming columns and dropping SQLite columns."
         },
-        "time": "2013-12-08 04:33:56",
+        "time": "2013-12-10 03:31:04",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -2703,55 +2703,6 @@
         ]
     },
     {
-        "name": "predis/predis",
-        "version": "0.8.x-dev",
-        "version_normalized": "0.8.9999999.9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/nrk/predis.git",
-            "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/nrk/predis/zipball/73780da52dc36ac8c24b720e2bfa334d266b80a6",
-            "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.2"
-        },
-        "suggest": {
-            "ext-curl": "Allows access to Webdis when paired with phpiredis",
-            "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
-        },
-        "time": "2013-12-08 14:57:15",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Predis": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Daniele Alessandri",
-                "email": "suppakilla@gmail.com",
-                "homepage": "http://clorophilla.net"
-            }
-        ],
-        "description": "Flexible and feature-complete PHP client library for Redis",
-        "homepage": "http://github.com/nrk/predis",
-        "keywords": [
-            "nosql",
-            "predis",
-            "redis"
-        ]
-    },
-    {
         "name": "codeception/codeception",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
@@ -2818,6 +2769,103 @@
             "acceptance testing",
             "functional testing",
             "unit testing"
+        ]
+    },
+    {
+        "name": "fzaninotto/faker",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/fzaninotto/Faker.git",
+            "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/ca91fd3cce983578a7acceb8dec7131c3ba63a67",
+            "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "time": "2013-12-06 12:38:25",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.3.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Faker": "src/",
+                "Faker\\PHPUnit": "test/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "François Zaninotto"
+            }
+        ],
+        "description": "Faker is a PHP library that generates fake data for you.",
+        "keywords": [
+            "data",
+            "faker",
+            "fixtures"
+        ]
+    },
+    {
+        "name": "predis/predis",
+        "version": "0.8.x-dev",
+        "version_normalized": "0.8.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/nrk/predis.git",
+            "reference": "ecf1cc07e517c9cd8509be65ec47ecef05f0974d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/nrk/predis/zipball/ecf1cc07e517c9cd8509be65ec47ecef05f0974d",
+            "reference": "ecf1cc07e517c9cd8509be65ec47ecef05f0974d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "suggest": {
+            "ext-curl": "Allows access to Webdis when paired with phpiredis",
+            "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+        },
+        "time": "2013-12-09 11:22:42",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Predis": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Daniele Alessandri",
+                "email": "suppakilla@gmail.com",
+                "homepage": "http://clorophilla.net"
+            }
+        ],
+        "description": "Flexible and feature-complete PHP client library for Redis",
+        "homepage": "http://github.com/nrk/predis",
+        "keywords": [
+            "nosql",
+            "predis",
+            "redis"
         ]
     }
 ]

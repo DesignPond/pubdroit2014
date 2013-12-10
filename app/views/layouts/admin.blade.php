@@ -144,6 +144,7 @@
 				    <li><a href="javascript:;"><span>Publications-droit</span></a>
 					    <ul class="acc-menu">
 						    <li>{{ link_to('admin/pubdroit/event', 'Colloques' , array('class' => Request::is( 'admin/pubdroit/event') ? 'active' : '') ) }}</li>
+						    <li>{{ link_to('admin/pubdroit/archives', 'Archives' , array('class' => Request::is( 'admin/pubdroit/archives') ? 'active' : '') ) }}</li>
 					    </ul>
 				    </li>
 				    <li><a href="javascript:;"><span>Bail</span></a>

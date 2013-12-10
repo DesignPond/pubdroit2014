@@ -147,7 +147,8 @@ Route::group(array('prefix' => 'admin'), function()
 	        return View::make('admin.index');
 	    });
 	    
-	    Route::get('event', array('uses' => 'AdminController@index'));
+	    Route::get('event', array('uses' => 'EventController@lists'));
+	    Route::get('archives', array('uses' => 'EventController@archives'));
 	    
 	});
 	

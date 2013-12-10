@@ -2,7 +2,8 @@
 
 interface EventInterface {
 	
-	public function getAll();
+	public function getActifs();
+	public function getArchives();
 	public function find($id);
 	public function getLast($nbr);	
 	public function create(array $data);

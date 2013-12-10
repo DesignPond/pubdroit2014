@@ -36,3 +36,7 @@
 .panel .event-info{
 	min-height: 112px;
 }
+
+.tab-container .tab-content {
+    padding: 30px 15px 10px;
+}

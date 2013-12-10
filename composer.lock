@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "8ead05639cb9137a31df99b60edf389c",
+    "hash": "bc141e9341d9573c96a29fd2c2e2d1e4",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -230,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5"
+                "reference": "e3be0deb504cf219544e99f881d2b39a0664e9e1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a55cbe9d962a16be1fe9490492657807fc82afe5",
-                "reference": "a55cbe9d962a16be1fe9490492657807fc82afe5",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/e3be0deb504cf219544e99f881d2b39a0664e9e1",
+                "reference": "e3be0deb504cf219544e99f881d2b39a0664e9e1",
                 "shasum": ""
             },
             "require": {
@@ -338,7 +338,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2013-12-08 04:33:56"
+            "time": "2013-12-10 03:31:04"
         },
         {
             "name": "monolog/monolog",
@@ -1070,12 +1070,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6"
+                "reference": "ecf1cc07e517c9cd8509be65ec47ecef05f0974d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/73780da52dc36ac8c24b720e2bfa334d266b80a6",
-                "reference": "73780da52dc36ac8c24b720e2bfa334d266b80a6",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/ecf1cc07e517c9cd8509be65ec47ecef05f0974d",
+                "reference": "ecf1cc07e517c9cd8509be65ec47ecef05f0974d",
                 "shasum": ""
             },
             "require": {
@@ -1109,7 +1109,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-08 14:57:15"
+            "time": "2013-12-09 11:22:42"
         },
         {
             "name": "psr/log",
@@ -2203,12 +2203,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkSelenium2Driver.git",
-                "reference": "594038718c08a458e81137494642bc1a872db1a9"
+                "reference": "c9f5872ad547f04d414d8e500b57737224537159"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/594038718c08a458e81137494642bc1a872db1a9",
-                "reference": "594038718c08a458e81137494642bc1a872db1a9",
+                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/c9f5872ad547f04d414d8e500b57737224537159",
+                "reference": "c9f5872ad547f04d414d8e500b57737224537159",
                 "shasum": ""
             },
             "require": {
@@ -2253,7 +2253,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2013-12-02 21:28:03"
+            "time": "2013-12-10 00:18:02"
         },
         {
             "name": "codeception/codeception",
@@ -2415,6 +2415,52 @@
                 "webdriver"
             ],
             "time": "2013-11-26 23:16:02"
+        },
+        {
+            "name": "fzaninotto/faker",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fzaninotto/Faker.git",
+                "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/ca91fd3cce983578a7acceb8dec7131c3ba63a67",
+                "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Faker": "src/",
+                    "Faker\\PHPUnit": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "François Zaninotto"
+                }
+            ],
+            "description": "Faker is a PHP library that generates fake data for you.",
+            "keywords": [
+                "data",
+                "faker",
+                "fixtures"
+            ],
+            "time": "2013-12-06 12:38:25"
         },
         {
             "name": "guzzle/common",
@@ -2734,7 +2780,8 @@
     "stability-flags": {
         "way/generators": 20,
         "codeception/codeception": 20,
-        "mockery/mockery": 20
+        "mockery/mockery": 20,
+        "fzaninotto/faker": 20
     },
     "platform": [
 
