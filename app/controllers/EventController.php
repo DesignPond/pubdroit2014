@@ -9,7 +9,7 @@ class EventController extends BaseController {
 	
 	public function __construct(EventInterface $event, EventForm $validator ){
 		
-		$this->event = $event;
+		$this->event     = $event;
 		
 		$this->validator = $validator;
 
@@ -34,7 +34,7 @@ class EventController extends BaseController {
 	{
 		$events = $this->event->getActifs();
 
-        return View::make('admin.event')->with( array('events' => $events , 'title' => 'En cours'));
+        return View::make('admin.event.event')->with( array('events' => $events , 'title' => 'En cours'));
 	}
 	
 	
@@ -47,7 +47,7 @@ class EventController extends BaseController {
 	{
 		$events = $this->event->getArchives();	
 
-        return View::make('admin.event')->with( array('events' => $events , 'title' => 'Archives'));
+        return View::make('admin.event.event')->with( array('events' => $events , 'title' => 'Archives'));
 	}
 
 	/**
@@ -67,7 +67,18 @@ class EventController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		if( $this->validator->save( Input::all() ) )
+		{	
+			// Get last inserted
+			$event  = $this->event->getLast(1);
+			$id     = $event->first()->id;
+			
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit');
+		}
+		else
+		{	
+			return Redirect::to('admin/pubdroit/event/create')->withErrors($this->validator->errors())->withInput( Input::all() ); 
+		}
 	}
 
 	/**
@@ -78,7 +89,9 @@ class EventController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('events.show');
+		$event = $this->event->find($id);	
+		
+        return View::make('event.show')->with( array('event' => $event ));
 	}
 
 	/**
@@ -89,7 +102,9 @@ class EventController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('events.edit');
+		$event = $this->event->find($id);
+		
+        return View::make('admin.event.edit')->with( array('event' => $event ));
 	}
 
 	/**

@@ -9,40 +9,61 @@
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
 				<li>Colloque</li>
-				<li class="active">Créer</li>
+				<li class="active">&Eacute;dier</li>
 			</ol>
-			<h1>Créer un colloque</h1>
+			<h1>&Eacute;dier un colloque</h1>
 		</div>
 		
 		<div class="container">
 		    <div class="row">
 				<div class="col-sm-12">	
 				
-				   @if($errors->has())
-
-						We encountered the following errors:
-						
-						<ul>
-						    @foreach($errors->all() as $message)
-						
-						    <li>{{ $message }}</li>
-						
-						    @endforeach
-						</ul>
-						
-					@endif
-
 					<!-- panel start -->
 					<div class="panel panel-primary">
-					  <!-- form start --> 
-					  {{ Form::open(array( 'url' => 'admin/pubdroit/event', 'class' => 'form-horizontal')) }}
+				       <div class="panel-heading"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
+					    <div class="panel-body"><!-- start panel content -->
+					    	<div class="row">
+								<div class="col-sm-3">
+								    <div class="panel panel-info">
+								    	<div class="panel-body admin-icon-panel">								    		
+									    	<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
+									    	<p><strong>Document</strong></p>
+									    	<div class="btn-group admin-icon-options">
+										    	<a href="#" class="btn btn-sm btn-info">changer</a>
+										    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
+									    	</div>
+								    	</div>
+								    </div>
+								</div>
+								<div class="col-sm-3">
+									<div class="panel panel-info">
+								    	<div class="panel-body">Body</div>
+								    </div>
+								</div>
+								<div class="col-sm-3">
+								    <div class="panel panel-info">
+								    	<div class="panel-body">Body</div>
+								    </div>
+								</div>
+								<div class="col-sm-3">
+								    <div class="panel panel-info">
+								    	<div class="panel-body">Body</div>
+								    </div>
+								</div>
+					    	</div>
+					    </div><!-- end panel content -->
+					</div><!-- end panel -->
+				
+					<!-- panel start -->
+					<div class="panel panel-primary">
 				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> &nbsp;Général</h4></div>
 					    <div class="panel-body"><!-- start panel content -->
-							
-							  <div class="form-group">
+						    <!-- form start --> 
+							{{ Form::model($event, array('method' => 'PATCH' ,'class' => 'form-horizontal','route' => array('admin.pubdroit.event.update', $event->id)) ) }}
+							<div class="form-group">
 								  <label for="organisateur" class="col-sm-3 control-label">Organisateur</label>
 								  <div class="col-sm-6">
-								      {{ Form::text('organisateur', '' , array('class' => 'form-control required' )) }}
+								      {{ Form::text('organisateur', null , array('class' => 'form-control required' )) }}
 								  </div>
 								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
 							  </div>
@@ -50,7 +71,7 @@
 							  <div class="form-group">
 								  <label for="titre" class="col-sm-3 control-label">Titre</label>
 								  <div class="col-sm-6">
-								      {{ Form::text('titre', '' , array('class' => 'form-control required' )) }}
+								      {{ Form::text('titre', null , array('class' => 'form-control required' )) }}
 								  </div>
 								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
 							  </div>
@@ -58,7 +79,7 @@
 							  <div class="form-group">
 								  <label for="soustitre" class="col-sm-3 control-label">Sous-titre</label>
 								  <div class="col-sm-6">
-								      {{ Form::text('soustitre', '' , array('class' => 'form-control' )) }}
+								      {{ Form::text('soustitre', null , array('class' => 'form-control' )) }}
 								  </div>
 								  <div class="col-sm-3"><p class="help-block"></p></div>
 							  </div>
@@ -66,7 +87,7 @@
 							  <div class="form-group">
 								  <label for="sujet" class="col-sm-3 control-label">Sujet</label>
 								  <div class="col-sm-6">
-								      {{ Form::text('sujet', '' , array('class' => 'form-control required' )) }}
+								      {{ Form::text('sujet', null , array('class' => 'form-control required' )) }}
 								  </div>
 								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
 							  </div>							  							  							
@@ -74,45 +95,46 @@
 							  <div class="form-group">
 							  	  <label for="description" class="col-sm-3 control-label">Description</label>
 							  	  <div class="col-sm-6">
-							  	  	 <textarea name="description" id="description" cols="50" rows="4" class="redactor form-control"></textarea>
+							  	  	 {{ Form::textarea('description', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 							  	  </div>
 							  </div>
 							  
 							  <div class="form-group">
 							  	  <label for="endroit" class="col-sm-3 control-label">Endroit</label>
 							  	  <div class="col-sm-6">
-							  	  	 {{ Form::text('endroit', '' , array('class' => 'form-control required' )) }}
+							  	  	 {{ Form::text('endroit', null , array('class' => 'form-control required' )) }}
 							  	  </div>
 							  </div>
 							  
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Date de début</label>
 					               <div class="col-sm-6">
-					                   <input type="text" name="dateDebut" class="form-control datepicker" id="dateDebut">
+					                   {{ Form::text('dateDebut',Custom::formatDate(Form::getValueAttribute("dateDebut")),array('class' => 'form-control datepicker required', 'id' => 'dateDebut' )) }}
 					               </div>
-					          </div>		
+					          </div>	
 					          
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Date de fin</label>
 					               <div class="col-sm-6">
-					                   <input type="text" name="dateFin" class="form-control datepicker" id="dateFin">
+					                   {{ Form::text('dateDebut', null , array('class' => 'form-control datepicker required', 'id' => 'dateFin' )) }}
 					               </div>
 					          </div>							          					  							  
 							  
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Délai d'inscription</label>
 					               <div class="col-sm-6">
-					                   <input type="text" name="dateDelai" class="form-control datepicker" id="dateDelai">
+					                   {{ Form::text('dateDebut', null , array('class' => 'form-control datepicker required', 'id' => 'dateDelai' )) }}
 					               </div>
 					          </div>				          
 							  
 							  <div class="form-group">
 							  	  <label for="remarques" class="col-sm-3 control-label">Remarques</label>
 							  	  <div class="col-sm-6">
-							  	  	 <textarea name="remarques" id="remarques" cols="50" rows="4" class="redactor form-control"></textarea>
+							  	  	 {{ Form::textarea('remarques', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 							  	  </div>
-							  </div>					          									  							
-
+							  </div>
+							  					
+							{{ Form::close() }}
 							<!-- form end --> 
 					    </div><!-- end panel content -->
 					    <div class="panel-footer">
@@ -124,7 +146,7 @@
 					      		</div>
 					      	</div>
 					    </div>
-					    {{ Form::close() }}
+
 					</div><!-- end panel -->
 					
 				</div>

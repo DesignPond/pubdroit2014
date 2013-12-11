@@ -1,9 +1,8 @@
 @extends('layouts.default')
 
-{{-- Content --}}
 @section('content')
 <div class="row">
-    <div class="col-md-10 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-4">
         {{ Form::open(array('action' => 'UserController@store')) }}
 
             <h2>Register New Account</h2>

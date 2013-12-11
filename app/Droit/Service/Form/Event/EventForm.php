@@ -23,7 +23,7 @@ class EventForm {
 	public function __construct( EventFormValidator $validator , EventInterface $event )
 	{
 		$this->validator = $validator;
-		$this->event    = $event;
+		$this->event     = $event;
 	}
 	
 	/*

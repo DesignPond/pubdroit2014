@@ -43,16 +43,18 @@ class EventEloquent implements EventInterface {
 	}
 	
 	public function create(array $data){
-		
-/*
-		// Create the article
+
 		$event = $this->event->create(array(
-			'titre'       => $data['titre'],
-			'description' => $data['description'],
-			'user_id'     => $data['user_id'],
-			'categorie_id'=> $data['categorie_id'],
-			'theme_id'    => $data['theme_id'],
-			'subtheme_id' => $data['subtheme_id']
+			'organisateur' => $data['organisateur'],
+			'titre'        => $data['titre'],
+			'soustitre'    => $data['soustitre'],
+			'sujet'        => $data['sujet'],
+			'description'  => $data['description'],
+			'endroit'      => $data['endroit'],
+			'dateDebut'    => $data['dateDebut'],
+			'dateFin'      => $data['dateFin'],
+			'dateDelai'    => $data['dateDelai'],
+			'remarques'    => $data['remarques']
 		));
 		
 		if( ! $event )
@@ -61,12 +63,11 @@ class EventEloquent implements EventInterface {
 		}
 		
 		return true;
-*/
+
 	}
 	
 	public function update(array $data){
 		
-/*
 		$event = $this->event->find($data['id']);
 		
 		if( ! $event )
@@ -83,7 +84,6 @@ class EventEloquent implements EventInterface {
 		$event->save();	
 		
 		return true;
-*/
 	}
 	
 }

@@ -1,22 +1,26 @@
 @extends('layouts.default')
 
-{{-- Content --}}
 @section('content')
-<div class="row">
-    <div class="col-md-10 col-md-offset-2">
-        {{ Form::open(array('action' => 'UserController@resend', 'method' => 'post')) }}
-        	
-            <h2>Resend Activation Email</h2>
-    		
-            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
-                {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'E-mail', 'autofocus')) }}
-                {{ ($errors->has('email') ? $errors->first('email') : '') }}
-            </div>
 
-            {{ Form::submit('Resend', array('class' => 'btn btn-primary')) }}
+<div class="verticalcenter">
 
-        {{ Form::close() }}
-    </div>
+	<div class="row">
+	    <div class="col-md-12">
+	        {{ Form::open(array('action' => 'UserController@resend', 'method' => 'post')) }}
+	        	
+	            <h2>Resend Activation Email</h2>
+	    		
+	            <div class="form-group {{ ($errors->has('email')) ? 'has-error' : '' }}">
+	                {{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'E-mail', 'autofocus')) }}
+	                {{ ($errors->has('email') ? $errors->first('email') : '') }}
+	            </div>
+	
+	            {{ Form::submit('Resend', array('class' => 'btn btn-primary')) }}
+	
+	        {{ Form::close() }}
+	    </div>
+	</div>
+		
 </div>
 
 @stop

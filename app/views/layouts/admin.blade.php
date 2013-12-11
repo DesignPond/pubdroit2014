@@ -13,9 +13,12 @@
     ================================================== -->
 	<link rel="stylesheet" href="<?php echo asset('css/admin/styles.css?=120');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/admin/main.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('js/admin/redactor/redactor.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href="<?php echo asset('fonts/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">
     <link href="<?php echo asset('plugins/datatables/dataTables.css');?>" rel="stylesheet">
+    <link href="<?php echo asset('plugins/jqueryui-timepicker/jquery.ui.timepicker.css');?>" rel="stylesheet">
+    <link href="<?php echo asset('js/admin/jqueryui.css');?>" rel="stylesheet">
     
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
 	<!--[if lt IE 9]>
@@ -140,14 +143,18 @@
                     </form>
                 </li>
                 <li class="divider"></li>
-				    <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><span>Dashboard</span></a></li>
-				    <li><a href="javascript:;"><span>Publications-droit</span></a>
+				    <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><i class="fa fa-cog"></i> <span>Dashboard</span></a></li>
+				    <li><a href="javascript:;"><i class="fa fa-book"></i> <span>Publications-droit</span></a>
 					    <ul class="acc-menu">
-						    <li>{{ link_to('admin/pubdroit/lists', 'Colloques' , array('class' => Request::is( 'admin/pubdroit/lists') ? 'active' : '') ) }}</li>
-						    <li>{{ link_to('admin/pubdroit/archives', 'Archives' , array('class' => Request::is( 'admin/pubdroit/archives') ? 'active' : '') ) }}</li>
+					    	<li><a class="{{ Request::is( 'admin/pubdroit/lists') ? 'active' : '' }}" href="{{ url('admin/pubdroit/lists') }}">
+					    		<i class="fa fa-clock-o"></i> <span>Colloques</span></a>
+					    	</li>
+					    	<li><a class="{{ Request::is( 'admin/pubdroit/archives') ? 'active' : '' }}" href="{{ url('admin/pubdroit/archives') }}">
+					    		<i class="fa fa-archive"></i> <span>Archives</span></a>
+					    	</li>
 					    </ul>
 				    </li>
-				    <li><a href="javascript:;"><span>Bail</span></a>
+				    <li><a href="javascript:;"><i class="fa fa-home"></i> <span>Bail</span></a>
 					    <ul class="acc-menu">
 						    <li>{{ link_to('admin/bail/arrets', 'Arrêts' , array('class' => Request::is( 'admin/bail/arrets') ? 'active' : '') ) }}</li>
 					    </ul>
@@ -174,25 +181,20 @@
 		<script type="text/javascript" src="<?php echo asset('js/admin/jqueryui-1.10.3.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/bootstrap.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/enquire.js');?>"></script> 
+		<script type="text/javascript" src="<?php echo asset('js/admin/redactor/redactor.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.cookie.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.nicescroll.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/codeprettifier/prettify.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/easypiechart/jquery.easypiechart.min.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/sparklines/jquery.sparklines.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-toggle/toggle.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/fullcalendar/fullcalendar.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/daterangepicker.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/moment.min.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/charts-flot/jquery.flot.min.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/charts-flot/jquery.flot.resize.min.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/charts-flot/jquery.flot.orderBars.min.js');?>"></script> 
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/jquery.dataTables.min.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/dataTables.bootstrap.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('js/admin/demo-datatables.js');?>"></script>
-		<script type="text/javascript" src="<?php echo asset('plugins/pulsate/jQuery.pulsate.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/placeholdr.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/application.js');?>"></script> 	
-	    <script type="text/javascript" src="<?php echo asset('js/admin/demo.js');?>"></script>
+	    <script type="text/javascript" src="<?php echo asset('js/admin/main.js');?>"></script>
     	
 	</body>
 </html>

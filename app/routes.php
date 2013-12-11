@@ -15,22 +15,12 @@ use Carbon\Carbon;
 
 Route::get('/', function()
 {
-	$user = Sentry::findUserById(1);
+	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
+	$formatDate = $instance->toDateString();
 	
-	if ( $user->hasAnyAccess(['admin']) )
-	{
-	    echo 'is admin';
-	}
 	echo '<pre>';
-	//print_r($group);
+	echo $formatDate;
 	echo '</pre>';
-});
-
-
-
-Route::filter('age', function($route, $request, $value)
-{
-    //
 });
 
         
@@ -137,8 +127,8 @@ Route::resource('groups', 'GroupController');
 	Administration Routes  
 =========================================== */ 
 	
-
-Route::group(array('prefix' => 'admin' , 'before' => 'sentryAuth'), function()
+// Route::group(array('prefix' => 'admin' , 'before' => 'sentryAuth'), function()
+Route::group(array('prefix' => 'admin'), function()
 {
 	
 	/* ========================================

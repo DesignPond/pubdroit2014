@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-{{-- Content --}}
+
 @section('content')
 	<h4>Account Profile</h4>
 	

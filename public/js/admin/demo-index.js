@@ -1,11 +1,66 @@
+// -------------------------------
+// Demos
+// -------------------------------
+$(document).ready(
+  function() {
+    $('.popovers').popover({container: 'body', trigger: 'hover', placement: 'top'}); //bootstrap's popover
+    $('.tooltips').tooltip(); //bootstrap's tooltip
+
+    try {
+        //Set nicescroll on notifications
+        $(".scrollthis").niceScroll({horizrailenabled:false});
+        $('.dropdown').on('shown.bs.dropdown', function () {
+            $(".scrollthis").getNiceScroll().resize();
+            $(".scrollthis").getNiceScroll().show();
+        });
+        $('.dropdown').on('hide.bs.dropdown', function ()  {
+            $(".scrollthis").getNiceScroll().hide();
+        });
+
+        $(window).scroll(function(){
+            $(".scrollthis").getNiceScroll().resize();
+        });
+    } catch(e) {}
+
+    prettyPrint(); //Apply Code Prettifier
+
+    $('.toggle').toggles({on:true});
+    
+    
+
+});
+
+
+// -------------------------------
+// Theme Settings
+// -------------------------------
+
+// Fixed Header
+
+if($.cookie('fixed-header') === 'navbar-static-top') {
+    $('#fixedheader').toggles();
+} else {
+    $('#fixedheader').toggles({on:true});
+}
+
+$('.dropdown-menu').on('click', function(e){
+    if($(this).hasClass('dropdown-menu-form')){
+        e.stopPropagation();
+    }
+});
+
+$('#fixedheader').on('toggle', function (e, active) {
+    $('header').toggleClass('navbar-fixed-top navbar-static-top');
+    $('body').toggleClass('static-header');
+    rightbarTopPos();
+    if (active) {
+        $.removeCookie('fixed-header');
+    } else {
+        $.cookie('fixed-header', 'navbar-static-top');
+    }
+});
+
 jQuery(document).ready(function() {
-
-    $(".demodrop").pulsate({
-        color: "#2bbce0",
-        repeat: 10
-    });
-
-    $("#threads,#comments,#users").niceScroll({horizrailenabled:false,railoffset: {left:0}});
 
     //Date Range Picker
     $('#daterangepicker2').daterangepicker(

@@ -26,14 +26,10 @@
 </head>
 
 <body class="focusedform">
-
-	<div class="verticalcenter">
 	
-			<!-- Contenu -->		      	
-	            @yield('content')	            
-	        <!-- Fin contenu -->
-		
-	</div>
+	<!-- Contenu -->		      	
+        @yield('content')	            
+    <!-- Fin contenu -->
     
 </body>
 </html>

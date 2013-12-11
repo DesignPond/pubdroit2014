@@ -12,8 +12,8 @@ class EventFormValidator extends AbstractLaravelValidator {
 		'titre'          => 'required',
 		'sujet'          => 'required',
 		'endroit'        => 'required',
-		'dateDebut'      => 'required|date_format:y/m/d',
-		'dateDelai'      => 'required|date_format:y/m/d'
+		'dateDebut'      => 'required|date_format:Y-m-d',
+		'dateDelai'      => 'required|date_format:Y-m-d'
 	);
 	
 	/*

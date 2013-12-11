@@ -42,7 +42,7 @@
 						    </div>
 						    <div class="panel-footer mini-footer ">
 						    	<div class="btn-group">
-									<a class="btn btn-sm btn-info" href="#">&Eacute;diter <span class="badge blank">42</span></a>
+									<a class="btn btn-sm btn-info" href="{{ url('admin/pubdroit/event/'.$event->id.'/edit') }}">&Eacute;diter <span class="badge blank">42</span></a>
 									<a class="btn btn-sm btn-success" href="#">Inscriptions <span class="badge blank">42</span></a>
 									<a class="btn btn-sm btn-primary" href="#">Factures <span class="badge blank">42</span></a>
 								</div>

@@ -1,7 +1,7 @@
 <?php
 
-use Authority\Repo\Group\GroupInterface;
-use Authority\Service\Form\Group\GroupForm;
+use Droit\Repo\Group\GroupInterface;
+use Droit\Service\Form\Group\GroupForm;
 
 class GroupController extends BaseController {
 
