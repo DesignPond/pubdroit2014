@@ -4,10 +4,11 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.1.*",
+		"laravel/framework": "4.1.*@dev",
 		"phpunit/phpunit": "3.7.*",
 		"cartalyst/sentry": "2.0.*",
-		"way/generators": "dev-master"
+		"way/generators": "dev-master",
+		"iron-io/iron_mq": "1.4.8"
 	},
 	"require-dev": {
 		"codeception/codeception": "dev-master",

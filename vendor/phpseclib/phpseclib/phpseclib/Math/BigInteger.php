@@ -64,12 +64,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Math
- * @package    Math_BigInteger
- * @author     Jim Wigginton <terrafrost@php.net>
- * @copyright  MMVI Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @link       http://pear.php.net/package/Math_BigInteger
+ * @category  Math
+ * @package   Math_BigInteger
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @copyright MMVI Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link      http://pear.php.net/package/Math_BigInteger
  */
 
 /**#@+
@@ -173,10 +173,10 @@ define('MATH_BIGINTEGER_KARATSUBA_CUTOFF', 25);
  * Pure-PHP arbitrary precision integer arithmetic library. Supports base-2, base-10, base-16, and base-256
  * numbers.
  *
+ * @package Math_BigInteger
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 1.0.0RC4
  * @access  public
- * @package Math_BigInteger
  */
 class Math_BigInteger
 {

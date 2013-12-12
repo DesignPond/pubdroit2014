@@ -25,21 +25,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Net
- * @package    Net_SFTP_Stream
- * @author     Jim Wigginton <terrafrost@php.net>
- * @copyright  MMXIII Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @link       http://phpseclib.sourceforge.net
+ * @category  Net
+ * @package   Net_SFTP_Stream
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @copyright MMXIII Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**
  * SFTP Stream Wrapper
  *
+ * @package Net_SFTP_Stream
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 0.3.2
  * @access  public
- * @package Net_SFTP_Stream
  */
 class Net_SFTP_Stream
 {

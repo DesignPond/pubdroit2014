@@ -43,14 +43,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Crypt
- * @package    Crypt_Base
- * @author     Jim Wigginton <terrafrost@php.net>
- * @author     Hans-Juergen Petrich <petrich@tronic-media.com>
- * @copyright  MMVII Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    1.0.1
- * @link       http://phpseclib.sourceforge.net
+ * @category  Crypt
+ * @package   Crypt_Base
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @author    Hans-Juergen Petrich <petrich@tronic-media.com>
+ * @copyright MMVII Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version   1.0.1
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**#@+
@@ -114,11 +114,11 @@ define('CRYPT_MODE_MCRYPT', 2);
 /**
  * Base Class for all Crypt_* cipher classes
  *
+ * @package Crypt_Base
  * @author  Jim Wigginton <terrafrost@php.net>
  * @author  Hans-Juergen Petrich <petrich@tronic-media.com>
  * @version 1.0.0
  * @access  public
- * @package Crypt_Base
  */
 class Crypt_Base
 {

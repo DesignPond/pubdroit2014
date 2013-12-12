@@ -44,14 +44,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Crypt
- * @package    Crypt_Twofish
- * @author     Jim Wigginton <terrafrost@php.net>
- * @author     Hans-Juergen Petrich <petrich@tronic-media.com>
- * @copyright  MMVII Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    1.0
- * @link       http://phpseclib.sourceforge.net
+ * @category  Crypt
+ * @package   Crypt_Twofish
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @author    Hans-Juergen Petrich <petrich@tronic-media.com>
+ * @copyright MMVII Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version   1.0
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**
@@ -119,11 +119,11 @@ define('CRYPT_TWOFISH_MODE_MCRYPT', CRYPT_MODE_MCRYPT);
 /**
  * Pure-PHP implementation of Twofish.
  *
+ * @package Crypt_Twofish
  * @author  Jim Wigginton <terrafrost@php.net>
  * @author  Hans-Juergen Petrich <petrich@tronic-media.com>
  * @version 1.0
  * @access  public
- * @package Crypt_Twofish
  */
 class Crypt_Twofish extends Crypt_Base
 {

@@ -34,12 +34,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   File
- * @package    File_X509
- * @author     Jim Wigginton <terrafrost@php.net>
- * @copyright  MMXII Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @link       http://phpseclib.sourceforge.net
+ * @category  File
+ * @package   File_X509
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @copyright MMXII Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**
@@ -123,10 +123,10 @@ define('FILE_X509_ATTR_REPLACE', -3); // Clear first, then add a value.
 /**
  * Pure-PHP X.509 Parser
  *
+ * @package File_X509
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 0.3.1
  * @access  public
- * @package File_X509
  */
 class File_X509
 {

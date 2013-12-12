@@ -58,12 +58,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Net
- * @package    Net_SSH2
- * @author     Jim Wigginton <terrafrost@php.net>
- * @copyright  MMVII Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @link       http://phpseclib.sourceforge.net
+ * @category  Net
+ * @package   Net_SSH2
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @copyright MMVII Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**#@+
@@ -143,10 +143,10 @@ define('NET_SSH2_LOG_MAX_SIZE', 1024 * 1024);
 /**
  * Pure-PHP implementation of SSHv2.
  *
+ * @package Net_SSH2
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 0.1.0
  * @access  public
- * @package Net_SSH2
  */
 class Net_SSH2
 {

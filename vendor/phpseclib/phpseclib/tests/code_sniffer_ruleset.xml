@@ -14,10 +14,8 @@
  <rule ref="PEAR.NamingConventions.ValidFunctionName.NotCamelCaps"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.ClassComment.InvalidVersion"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.ClassComment.MissingTag"><severity>0</severity></rule>
- <rule ref="PEAR.Commenting.ClassComment.WrongTagOrder"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.FileComment.EmptyCopyright"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.FileComment.InvalidVersion"><severity>0</severity></rule>
- <rule ref="PEAR.Commenting.FileComment.TagIndent"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.FunctionComment.ExtraParamComment"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.FunctionComment.MissingReturn"><severity>0</severity></rule>
  <rule ref="PEAR.Commenting.FunctionComment.MissingParamComment"><severity>0</severity></rule>

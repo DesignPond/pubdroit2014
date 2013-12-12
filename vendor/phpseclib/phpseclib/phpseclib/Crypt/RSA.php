@@ -59,12 +59,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @category   Crypt
- * @package    Crypt_RSA
- * @author     Jim Wigginton <terrafrost@php.net>
- * @copyright  MMIX Jim Wigginton
- * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @link       http://phpseclib.sourceforge.net
+ * @category  Crypt
+ * @package   Crypt_RSA
+ * @author    Jim Wigginton <terrafrost@php.net>
+ * @copyright MMIX Jim Wigginton
+ * @license   http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @link      http://phpseclib.sourceforge.net
  */
 
 /**
@@ -239,10 +239,10 @@ define('CRYPT_RSA_PUBLIC_FORMAT_PKCS1', 7);
 /**
  * Pure-PHP PKCS#1 compliant implementation of RSA.
  *
+ * @package Crypt_RSA
  * @author  Jim Wigginton <terrafrost@php.net>
  * @version 0.1.0
  * @access  public
- * @package Crypt_RSA
  */
 class Crypt_RSA
 {
