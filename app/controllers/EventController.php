@@ -3,15 +3,23 @@
 use Droit\Repo\Event\EventInterface;
 use Droit\Service\Form\Event\EventForm;
 
+use Droit\Repo\Compte\CompteInterface;
+
 class EventController extends BaseController {
 
 	protected $event;
 	
-	public function __construct(EventInterface $event, EventForm $validator ){
+	protected $validator;
+	
+	protected $compte;
+	
+	public function __construct(EventInterface $event, EventForm $validator , CompteInterface $compte){
 		
 		$this->event     = $event;
 		
 		$this->validator = $validator;
+		
+		$this->compte    = $compte;
 
 	}
 
@@ -102,9 +110,10 @@ class EventController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$event = $this->event->find($id);
+		$event   = $this->event->find($id);
+		$comptes = $this->compte->getAll()->lists('motifCompte', 'id');
 		
-        return View::make('admin.event.edit')->with( array('event' => $event ));
+        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes ));
 	}
 
 	/**
@@ -114,8 +123,18 @@ class EventController extends BaseController {
 	 * @return Response
 	 */
 	public function update($id)
-	{
-		//
+	{	
+					
+		if( $this->validator->update( Input::all() ) )
+		{	
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with('status', 'success');
+		}
+		else
+		{				
+			//return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->withInput( Input::all() )->withErrors( $this->validator->errors() );
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->withInput( Input::all() )->withErrors( $this->validator->errors() );
+		}
+		
 	}
 
 	/**

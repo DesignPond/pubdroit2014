@@ -186,7 +186,8 @@
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.nicescroll.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/codeprettifier/prettify.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-toggle/toggle.min.js');?>"></script> 
-		<script type="text/javascript" src="<?php echo asset('plugins/fullcalendar/fullcalendar.min.js');?>"></script> 
+		<script type="text/javascript" src="<?php echo asset('plugins/form-parsley/messages.fr.js');?>"></script> 
+		<script type="text/javascript" src="<?php echo asset('plugins/form-parsley/parsley.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/daterangepicker.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/moment.min.js');?>"></script> 
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/jquery.dataTables.min.js');?>"></script>

@@ -1,7 +1,7 @@
 <?php namespace Droit\Repo\Event;
 
 use Droit\Repo\Event\EventInterface;
-use Illuminate\Database\Eloquent\Model as M;
+use Events as M;
 
 class EventEloquent implements EventInterface {
 
@@ -68,19 +68,45 @@ class EventEloquent implements EventInterface {
 	
 	public function update(array $data){
 		
-		$event = $this->event->find($data['id']);
+		$event = $this->event->findOrFail($data['id']);	
 		
 		if( ! $event )
 		{
+			dd($data);
+			
 			return false;
 		}
-
+		
+		// Général
+		
+		$event->organisateur = $data['organisateur'];
 		$event->titre        = $data['titre'];
+		$event->soustitre    = $data['soustitre'];
+		$event->sujet        = $data['sujet'];
 		$event->description  = $data['description'];
-		$event->user_id      = $data['user_id'];
-		$event->categorie_id = $data['categorie_id'];
-		$event->theme_id     = $data['theme_id'];
-		$event->subtheme_id  = $data['subtheme_id'];
+		$event->endroit      = $data['endroit'];
+		$event->dateDebut    = $data['dateDebut'];
+		$event->dateFin      = $data['dateFin'];
+		$event->dateDelai    = $data['dateDelai'];
+		$event->remarques    = $data['remarques'];
+		
+		// Centres, Compte ,Type, Documents (bons, factures, bv) , config 
+		
+		// Liste les centres
+		/*
+		$centres = $data['centreLogos'];
+				
+		if(!empty($centres))
+		{
+			 $centreLogos        = implode(',' , $centres);
+			 $event->centreLogos = $centreLogos;
+		}
+		*/
+		
+		$event->typeColloque = $data['typeColloque'];
+		$event->compte_id    = $data['compte_id'];
+		$event->visible      = $data['visible'];		
+		
 		$event->save();	
 		
 		return true;

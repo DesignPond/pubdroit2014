@@ -19,8 +19,14 @@ Route::get('/', function()
 	$formatDate = $instance->toDateString();
 	
 	echo '<pre>';
-	echo $formatDate;
+	//echo $formatDate;
 	echo '</pre>';
+	
+	$event = Events::with( array('prices','eventsoptions') )->findOrFail(3);
+	
+	echo '<pre>';
+	print_r($event);
+	echo '</pre>';	
 });
 
         

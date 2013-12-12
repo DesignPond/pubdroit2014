@@ -2,6 +2,7 @@
 
 use Illuminate\Support\ServiceProvider;
 use Events as E;
+use Comptes as C;
 
 class PubdroitServiceProvider extends ServiceProvider {
 
@@ -9,7 +10,8 @@ class PubdroitServiceProvider extends ServiceProvider {
     {     
        	
     	$this->registerEventService();	
-    	$this->registerInscriptionService();	
+    	$this->registerInscriptionService();
+    	$this->registerCompteService();	
     			
     }
     
@@ -27,6 +29,15 @@ class PubdroitServiceProvider extends ServiceProvider {
 	    $this->app->bind('Droit\Repo\Inscription\InscriptionInterface', function()
         {
             return new \Droit\Repo\Inscription\InscriptionEloquent( new E );
+        });
+        
+    }
+    
+    protected function registerCompteService(){
+    
+	    $this->app->bind('Droit\Repo\Compte\CompteInterface', function()
+        {
+            return new \Droit\Repo\Compte\CompteEloquent( new C );
         });
         
     }

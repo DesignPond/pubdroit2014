@@ -9,14 +9,23 @@
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
 				<li>Colloque</li>
-				<li class="active">&Eacute;dier</li>
+				<li class="active">&Eacute;diter</li>
 			</ol>
-			<h1>&Eacute;dier un colloque</h1>
+			<h1>&Eacute;diter un colloque</h1>
 		</div>
 		
 		<div class="container">
 		    <div class="row">
 				<div class="col-sm-12">	
+									
+				   @if($errors->has())
+						We encountered the following errors:						
+						<ul>
+						    @foreach($errors->all() as $message)						
+						    <li>{{ $message }}</li>						
+						    @endforeach
+						</ul>						
+					@endif
 				
 					<!-- panel start -->
 					<div class="panel panel-primary">
@@ -56,11 +65,15 @@
 				
 					<!-- panel start -->
 					<div class="panel panel-primary">
-				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> &nbsp;Général</h4></div>
+					
+					   <!-- form start --> 
+					   {{ Form::model($event,array('method' => 'PATCH','id' => 'validate-form','data-validate' => 'parsley','class' => 'form-horizontal','route' => array('admin.pubdroit.event.update', $event->id))) }} 
+					   
+				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> &nbsp;&Eacute;diter</h4></div>
 					    <div class="panel-body"><!-- start panel content -->
-						    <!-- form start --> 
-							{{ Form::model($event, array('method' => 'PATCH' ,'class' => 'form-horizontal','route' => array('admin.pubdroit.event.update', $event->id)) ) }}
-							<div class="form-group">
+					    
+							<h3>Général</h3>
+							  <div class="form-group">
 								  <label for="organisateur" class="col-sm-3 control-label">Organisateur</label>
 								  <div class="col-sm-6">
 								      {{ Form::text('organisateur', null , array('class' => 'form-control required' )) }}
@@ -109,21 +122,21 @@
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Date de début</label>
 					               <div class="col-sm-6">
-					                   {{ Form::text('dateDebut',Custom::formatDate(Form::getValueAttribute("dateDebut")),array('class' => 'form-control datepicker required', 'id' => 'dateDebut' )) }}
+					                   {{ Form::text('dateDebut', null ,array('class' => 'form-control datepicker required', 'id' => 'dateDebut' )) }}
 					               </div>
 					          </div>	
 					          
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Date de fin</label>
 					               <div class="col-sm-6">
-					                   {{ Form::text('dateDebut', null , array('class' => 'form-control datepicker required', 'id' => 'dateFin' )) }}
+					                   {{ Form::text('dateFin', null , array('class' => 'form-control datepicker required', 'id' => 'dateFin' )) }}
 					               </div>
 					          </div>							          					  							  
 							  
 					          <div class="form-group">
 					               <label class="col-sm-3 control-label">Délai d'inscription</label>
 					               <div class="col-sm-6">
-					                   {{ Form::text('dateDebut', null , array('class' => 'form-control datepicker required', 'id' => 'dateDelai' )) }}
+					                   {{ Form::text('dateDelai', null , array('class' => 'form-control datepicker required', 'id' => 'dateDelai' )) }}
 					               </div>
 					          </div>				          
 							  
@@ -133,20 +146,61 @@
 							  	  	 {{ Form::textarea('remarques', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 							  	  </div>
 							  </div>
-							  					
-							{{ Form::close() }}
+							  
+							  <h3>Documents</h3>
+
+							  <div class="form-group">
+							  	  <label for="selector1" class="col-sm-3 control-label">Compte pour BV</label>
+							  	  <div class="col-sm-6">
+							  	  	 {{ Form::select('compte_id', $comptes , null , array( 'class' => 'form-control required' ) ) }}
+							  	  </div>
+							  	  <div class="col-sm-3"><p class="help-block">Requis si génération du BV</p></div>
+							  </div>	
+							  
+							  <div class="form-group">
+							  	  <label for="selector1" class="col-sm-3 control-label">Choisir si génération factures et emails</label>
+							  	  <div class="col-sm-6">
+							  	  	 {{
+							  	  	    Form::select('typeColloque', array(
+							  	  	    		'0' => 'Sans Documents', 
+							  	  	    		'1' => 'Avec tous les documents / Que Bon',
+							  	  	    		'2' => 'Que facture et BV'
+							  	  	    	), null , array( 'class' => 'form-control' ) )
+							  	  	 }}												  	 
+								  	 <p><br/><strong>Avec tous les documents / Que Bon + info BV</strong> = Tous les documents<br/>
+								  	  <strong>Avec tous les documents / Que Bon + pas d'info BV</strong> = Que bon</p>								  	  
+							  	  </div>
+							  	  <div class="col-sm-3"><p class="help-block">Requis</p></div>
+							  </div>						
+							  
+							  <h3>Configuration</h3>
+							  
+							  <div class="form-group">
+							  	  <label for="selector1" class="col-sm-3 control-label">Visible</label>
+							  	  <div class="col-sm-6">
+							  	  	 {{
+							  	  	    Form::select('visible', array(
+							  	  	    		'0' => 'Non Visible', 
+							  	  	    		'1' => 'Visible'
+							  	  	    	), null , array( 'class' => 'form-control' ) )
+							  	  	 }}												  	 						  	  
+							  	  </div>
+							  </div>	
+							
 							<!-- form end --> 
 					    </div><!-- end panel content -->
 					    <div class="panel-footer">
 					      	<div class="row">
 					      		<div class="col-sm-6 col-sm-offset-3">
 					      			<div class="btn-toolbar">
+					      				{{ Form::hidden('id', null )}}
 						      			<button type="submit" class="btn-primary btn">Envoyer</button>
 					      			</div>
 					      		</div>
 					      	</div>
 					    </div>
-
+					    
+					{{ Form::close() }}
 					</div><!-- end panel -->
 					
 				</div>

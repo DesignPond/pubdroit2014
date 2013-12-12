@@ -19,17 +19,12 @@
 				<div class="col-sm-12">	
 				
 				   @if($errors->has())
-
-						We encountered the following errors:
-						
+						We encountered the following errors:						
 						<ul>
-						    @foreach($errors->all() as $message)
-						
-						    <li>{{ $message }}</li>
-						
+						    @foreach($errors->all() as $message)						
+						    <li>{{ $message }}</li>						
 						    @endforeach
-						</ul>
-						
+						</ul>						
 					@endif
 
 					<!-- panel start -->
