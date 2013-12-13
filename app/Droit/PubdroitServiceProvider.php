@@ -8,10 +8,11 @@ class PubdroitServiceProvider extends ServiceProvider {
 
     public function register()
     {     
-       	
+       	// Admin
     	$this->registerEventService();	
     	$this->registerInscriptionService();
     	$this->registerCompteService();	
+		$this->registerFileService();	
     			
     }
     
@@ -38,6 +39,15 @@ class PubdroitServiceProvider extends ServiceProvider {
 	    $this->app->bind('Droit\Repo\Compte\CompteInterface', function()
         {
             return new \Droit\Repo\Compte\CompteEloquent( new C );
+        });
+        
+    }
+    
+    protected function registerFileService(){
+    
+	    $this->app->bind('Droit\Service\File\FileInterface', function()
+        {
+            return new \Droit\Service\File\FileWorker();
         });
         
     }

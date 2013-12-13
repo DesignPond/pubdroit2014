@@ -1,4 +1,4 @@
-<?php namespace Authority\Mailers;
+<?php namespace Droit\Mailers;
 
 class UserMailer extends Mailer {
 
@@ -9,10 +9,10 @@ class UserMailer extends Mailer {
 	 */
 	public function subscribe($events)
 	{
-		$events->listen('user.signup', 		'Authority\Mailers\UserMailer@welcome');
-		$events->listen('user.resend', 		'Authority\Mailers\UserMailer@welcome');
-		$events->listen('user.forgot',      'Authority\Mailers\UserMailer@forgotPassword');
-		$events->listen('user.newpassword', 'Authority\Mailers\UserMailer@newPassword');
+		$events->listen('user.signup', 		'Droit\Mailers\UserMailer@welcome');
+		$events->listen('user.resend', 		'Droit\Mailers\UserMailer@welcome');
+		$events->listen('user.forgot',      'Droit\Mailers\UserMailer@forgotPassword');
+		$events->listen('user.newpassword', 'Droit\Mailers\UserMailer@newPassword');
 	}
 
 	/**

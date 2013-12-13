@@ -2951,18 +2951,70 @@
         ]
     },
     {
+        "name": "intervention/image",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Intervention/image.git",
+            "reference": "ff4ff9c1492428bc6fbc2129d830c30642d4849a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Intervention/image/zipball/ff4ff9c1492428bc6fbc2129d830c30642d4849a",
+            "reference": "ff4ff9c1492428bc6fbc2129d830c30642d4849a",
+            "shasum": ""
+        },
+        "require": {
+            "ext-gd": "*",
+            "illuminate/support": "4.*",
+            "php": ">=5.3.0"
+        },
+        "suggest": {
+            "intervention/imagecache": "Caching extension for the Intervention Image library"
+        },
+        "time": "2013-12-12 11:57:50",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Intervention\\Image": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Oliver Vogel",
+                "email": "oliver@olivervogel.net",
+                "homepage": "http://olivervogel.net/"
+            }
+        ],
+        "description": "Image handling and manipulation library with support for Laravel 4 integration",
+        "homepage": "http://intervention.olivervogel.net/image/",
+        "keywords": [
+            "gd",
+            "image",
+            "laravel",
+            "thumbnail",
+            "watermark"
+        ]
+    },
+    {
         "name": "laravel/framework",
         "version": "4.1.x-dev",
         "version_normalized": "4.1.9999999.9999999-dev",
         "source": {
             "type": "git",
             "url": "https://github.com/laravel/framework.git",
-            "reference": "5bb5cede49d17aaf4f5e45fbe24719c1a42a909a"
+            "reference": "f8a19f219ba4b70d0aaa95f029c4d2644bb47f54"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/laravel/framework/zipball/5bb5cede49d17aaf4f5e45fbe24719c1a42a909a",
-            "reference": "5bb5cede49d17aaf4f5e45fbe24719c1a42a909a",
+            "url": "https://api.github.com/repos/laravel/framework/zipball/f8a19f219ba4b70d0aaa95f029c4d2644bb47f54",
+            "reference": "f8a19f219ba4b70d0aaa95f029c4d2644bb47f54",
             "shasum": ""
         },
         "require": {
@@ -3029,7 +3081,7 @@
         "suggest": {
             "doctrine/dbal": "Allow renaming columns and dropping SQLite columns."
         },
-        "time": "2013-12-12 16:50:30",
+        "time": "2013-12-13 03:43:22",
         "type": "library",
         "extra": {
             "branch-alias": {

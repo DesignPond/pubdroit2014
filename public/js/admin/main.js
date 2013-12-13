@@ -43,6 +43,14 @@ $(function() {
             errorElem: '<li></li>'
         }
     });
+
+	$( "#uploadBtn" ).change(function() {
+		
+		console.log($(this).val());
+		var file = $(this).val();
+		$( "#uploadFile" ).val(file);
+	});
+    
 });
 
 

@@ -1,13 +1,20 @@
 <?php
 
 use Droit\Repo\Event\EventInterface;
-use Droit\Services\Form\Event\EventForm;
+use Droit\Service\Form\Event\EventForm;
+use Droit\Service\File\FileInterface;
 
 class AdminController extends BaseController {
+
+	protected $event;
 	
-	public function __construct(EventInterface $event){
+	protected $file;
+	
+	public function __construct(EventInterface $event,FileInterface $file){
 		
 		$this->event = $event;
+		
+		$this->file  = $file;
 	}
 	
 	/**
@@ -82,6 +89,19 @@ class AdminController extends BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+	
+	
+	public function upload(){
+    	
+    	return $this->file->upload( Input::file('file') , 'files' );   	
+    	
+	}
+	
+	public function files(){
+    
+    	return View::make('admin.upload');
+    
 	}
 	
 

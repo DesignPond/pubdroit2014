@@ -8,7 +8,8 @@
 		"phpunit/phpunit": "3.7.*",
 		"cartalyst/sentry": "2.0.*",
 		"way/generators": "dev-master",
-		"iron-io/iron_mq": "1.4.8"
+		"iron-io/iron_mq": "1.4.8",
+		"intervention/image": "dev-master"
 	},
 	"require-dev": {
 		"codeception/codeception": "dev-master",
