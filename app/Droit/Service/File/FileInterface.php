@@ -6,7 +6,7 @@ interface FileInterface{
 	 * upload selected file 
 	 * @return array
 	*/	
-	public function upload( $file , $desination );	
+	public function upload( $file , $destination );	
 	
 	/*
 	 * rename file 

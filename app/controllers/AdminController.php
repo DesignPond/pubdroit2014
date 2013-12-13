@@ -94,7 +94,9 @@ class AdminController extends BaseController {
 	
 	public function upload(){
     	
-    	return $this->file->upload( Input::file('file') , 'files' );   	
+    	$destination = Input::get('destination');
+    	
+    	return $this->file->upload( Input::file('file') , $destination );   	
     	
 	}
 	

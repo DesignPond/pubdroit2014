@@ -34,11 +34,8 @@
 						    </div>
 						    <div class="panel-body event-info">
 							    <p>{{ $event->organisateur }}</p>
-							    <?php
-							    setlocale(LC_TIME, 'fr_FR');                     
-								$debut =  $event->dateDebut->formatLocalized('%A %d %B %Y'); 
-							    ?>
-							    <p><strong>Date:</strong> {{ $debut }}</p>
+ 
+							    <p><strong>Date:</strong> {{ Custom::formatDate( $event->dateDebut ) }}</p>
 						    </div>
 						    <div class="panel-footer mini-footer ">
 						    	<div class="btn-group">

@@ -8,13 +8,13 @@ class FileWorker implements FileInterface {
 	 * upload selected file 
 	 * @return array
 	*/	
-	public function upload( $file , $desination ){
+	public function upload( $file , $destination ){
 		
 		$name = $file->getClientOriginalName();
 		$ext  = $file->getClientOriginalExtension();
 		$size = $file->getSize();
 		$mime = $file->getMimeType();
-		$new  = $file->move($desination,$name);
+		$new  = $file->move($destination,$name);
 		$path = $new->getRealPath();
 		
 		// test resize

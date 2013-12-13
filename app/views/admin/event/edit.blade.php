@@ -46,7 +46,21 @@
 								</div>
 								<div class="col-sm-3">
 									<div class="panel panel-info">
-								    	<div class="panel-body">Body</div>
+								    	<div class="panel-body">
+								    	
+								    		{{ Form::open(array( 'url' => 'admin/upload','files' => true )) }}
+									    	<input id="uploadFile" class="uploadFile" disabled="disabled" placeholder="">
+									    	<input type="hidden" name="destination" value="files/badge/" />				     	
+											<div class="btn-group admin-icon-options">
+												<div class="fileUpload btn btn-sm btn-primary">
+											    	<span>Choisir</span>
+											   		<input id="uploadBtn" type="file" name="file" class="upload" />
+												</div>
+												<button type="submit" class="btn btn-sm btn-success" type="button">Envoyer</button>
+											</div>
+											{{ Form::close() }}	
+											
+								    	</div>
 								    </div>
 								</div>
 								<div class="col-sm-3">
