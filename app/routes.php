@@ -15,6 +15,16 @@ use Carbon\Carbon;
 
 Route::get('/', function()
 {
+	
+
+	$data = array();
+	
+	Mail::send('emails.welcome', $data, function($message)
+	{
+	    $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud')->subject('Welcome to laravel!');
+	});
+	
+/*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
 	$formatDate = $instance->toDateString();
 	
@@ -27,6 +37,7 @@ Route::get('/', function()
 	echo '<pre>';
 	print_r($event);
 	echo '</pre>';	
+*/
 });
 
         

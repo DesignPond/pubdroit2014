@@ -44,7 +44,7 @@ class SessionController extends BaseController {
 				'userId' => $result['sessionData']['userId'],
 				'email'  => $result['sessionData']['email']
     		));
-			
+
 			// Find group of user
 			$user = Sentry::findUserById($result['sessionData']['userId']);
 	

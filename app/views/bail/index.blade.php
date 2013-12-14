@@ -5,6 +5,14 @@
 	 <!-- Illustration -->
 	 <section id="photo">{{HTML::image('/images/bail/home.png')}}</section>
 	 
+	 <?php
+	 	$data = Session::all();
+	 	
+		 echo '<pre>';
+		 print_r($data);
+		 echo '</pre>';
+	 ?>
+	 
 	 <div id="content" class="inner">
 	     <div class="row">
 	        <div class="large-4 columns homepageBlock">

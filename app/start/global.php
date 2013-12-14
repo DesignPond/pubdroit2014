@@ -82,3 +82,14 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+// Require the Observables file.
+require __DIR__.'/../observables.php';
+
+
+/*
+|--------------------------------------------------------------------------
+| Prep Sentry for dependency Injection
+|--------------------------------------------------------------------------
+*/
+$app['Cartalyst\Sentry\Sentry'] = $app['sentry'];

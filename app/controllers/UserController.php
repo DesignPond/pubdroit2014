@@ -94,7 +94,7 @@ class UserController extends BaseController {
 
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
 
         } else {
             Session::flash('error', $result['message']);
@@ -234,7 +234,7 @@ class UserController extends BaseController {
         {
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
 
         } else {
             Session::flash('error', $result['message']);
@@ -261,7 +261,7 @@ class UserController extends BaseController {
 
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
         } 
         else 
         {
@@ -284,14 +284,14 @@ class UserController extends BaseController {
         if( $result['success'] )
         {
             Event::fire('user.forgot', array(
-				'email' => $result['mailData']['email'],
-				'userId' => $result['mailData']['userId'],
+				'email'     => $result['mailData']['email'],
+				'userId'    => $result['mailData']['userId'],
 				'resetCode' => $result['mailData']['resetCode']
 			));
 
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
         } 
         else 
         {
@@ -328,7 +328,7 @@ class UserController extends BaseController {
 
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
 
         } else {
             Session::flash('error', $result['message']);
@@ -360,7 +360,7 @@ class UserController extends BaseController {
         {
             // Success!
             Session::flash('success', $result['message']);
-            return Redirect::route('home');
+            return Redirect::to('admin');
         } 
         else 
         {
