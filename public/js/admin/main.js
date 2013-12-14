@@ -86,7 +86,6 @@ $('#fixedheader').on('toggle', function (e, active) {
 jQuery(document).ready(function() {
 
 	$('.redactor').redactor({
-			focus: true,
 			minHeight: 100 
 	});
 	

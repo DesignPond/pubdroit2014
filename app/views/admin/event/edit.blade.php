@@ -26,12 +26,20 @@
 						    @endforeach
 						</ul>						
 					@endif
-				
+					
+					@if(Session::has('status'))
+					<div class="alert alert-dismissable alert-{{  Session::get('status') }}">
+						<strong>Well done!</strong>You successfully read this important alert message.
+						<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+					</div>
+					@endif
+					
 					<!-- panel start -->
 					<div class="panel panel-primary">
 				       <div class="panel-heading"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
 					    <div class="panel-body"><!-- start panel content -->
 					    	<div class="row">
+					    	
 								<div class="col-sm-3">
 								    <div class="panel panel-info">
 								    	<div class="panel-body admin-icon-panel">								    		
@@ -44,13 +52,16 @@
 								    	</div>
 								    </div>
 								</div>
+								
+								@foreach($docs as $doc)
 								<div class="col-sm-3">
 									<div class="panel panel-info">
-								    	<div class="panel-body">
-								    	
+								    	<div class="panel-body admin-icon-panel">
+								    		<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
+								    		<p><strong>{{ $doc }}</strong></p>
 								    		{{ Form::open(array( 'url' => 'admin/upload','files' => true )) }}
 									    	<input id="uploadFile" class="uploadFile" disabled="disabled" placeholder="">
-									    	<input type="hidden" name="destination" value="files/badge/" />				     	
+									    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />				     	
 											<div class="btn-group admin-icon-options">
 												<div class="fileUpload btn btn-sm btn-primary">
 											    	<span>Choisir</span>
@@ -63,22 +74,14 @@
 								    	</div>
 								    </div>
 								</div>
-								<div class="col-sm-3">
-								    <div class="panel panel-info">
-								    	<div class="panel-body">Body</div>
-								    </div>
-								</div>
-								<div class="col-sm-3">
-								    <div class="panel panel-info">
-								    	<div class="panel-body">Body</div>
-								    </div>
-								</div>
+								@endforeach
+
 					    	</div>
 					    </div><!-- end panel content -->
 					</div><!-- end panel -->
 				
 					<!-- panel start -->
-					<div class="panel panel-primary">
+					<div class="panel panel-green">
 					
 					   <!-- form start --> 
 					   {{ Form::model($event,array('method' => 'PATCH','id' => 'validate-form','data-validate' => 'parsley','class' => 'form-horizontal','route' => array('admin.pubdroit.event.update', $event->id))) }} 

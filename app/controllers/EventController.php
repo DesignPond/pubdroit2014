@@ -113,7 +113,7 @@ class EventController extends BaseController {
 		$event   = $this->event->find($id);
 		$comptes = $this->compte->getAll()->lists('motifCompte', 'id');
 		
-        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes ));
+        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'images' => array('carte','vignette','badge'), 'docs' => array('programme','pdf','document') ));
 	}
 
 	/**
@@ -127,12 +127,12 @@ class EventController extends BaseController {
 					
 		if( $this->validator->update( Input::all() ) )
 		{	
-			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with('status', 'success');
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success') );
 		}
 		else
 		{				
 			//return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->withInput( Input::all() )->withErrors( $this->validator->errors() );
-			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->withInput( Input::all() )->withErrors( $this->validator->errors() );
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') )->withInput( Input::all() )->withErrors( $this->validator->errors() );
 		}
 		
 	}
