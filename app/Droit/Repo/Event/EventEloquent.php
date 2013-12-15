@@ -39,7 +39,7 @@ class EventEloquent implements EventInterface {
 		
 	public function find($id){
 		
-		return $this->event->with( array('prices','eventsoptions') )->findOrFail($id);			
+		return $this->event->with( array('prices','eventsoptions','files') )->findOrFail($id);			
 	}
 	
 	public function create(array $data){
@@ -72,8 +72,6 @@ class EventEloquent implements EventInterface {
 		
 		if( ! $event )
 		{
-			dd($data);
-			
 			return false;
 		}
 		

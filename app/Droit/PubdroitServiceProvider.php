@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Events as E;
 use Comptes as C;
+use Files as F;
 
 class PubdroitServiceProvider extends ServiceProvider {
 
@@ -12,7 +13,8 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerEventService();	
     	$this->registerInscriptionService();
     	$this->registerCompteService();	
-		$this->registerFileService();	
+		$this->registerFileService();
+		$this->registerUploadService();	
     			
     }
     
@@ -44,12 +46,20 @@ class PubdroitServiceProvider extends ServiceProvider {
     }
     
     protected function registerFileService(){
-    
-	    $this->app->bind('Droit\Service\File\FileInterface', function()
+
+	    $this->app->bind('Droit\Repo\File\FileInterface', function()
         {
-            return new \Droit\Service\File\FileWorker();
+            return new \Droit\Repo\File\FileEloquent( new F );
         });
         
     }
-
+    
+    protected function registerUploadService(){
+    
+	    $this->app->bind('Droit\Service\Upload\UploadInterface', function()
+        {
+            return new \Droit\Service\Upload\UploadWorker();
+        });
+        
+    }
 }

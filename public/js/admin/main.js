@@ -44,11 +44,16 @@ $(function() {
         }
     });
 
-	$( "#uploadBtn" ).change(function() {
+	$( ".uploadBtn" ).change(function() {
 		
-		console.log($(this).val());
 		var file = $(this).val();
-		$( "#uploadFile" ).val(file);
+		
+		var parent = $(this).closest('form');
+		var input = parent.find(".uploadFile");
+		
+		input.val(file);
+		input.show();
+		
 	});
     
 });

@@ -1,6 +1,6 @@
-<?php namespace Droit\Service\File;
+<?php namespace Droit\Service\Upload;
 
-interface FileInterface{
+interface UploadInterface{
 
 	/*
 	 * upload selected file 

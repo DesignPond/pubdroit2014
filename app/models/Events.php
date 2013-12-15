@@ -20,5 +20,10 @@ class Events extends Eloquent {
     	
     	return $this->hasMany('Eventsoptions', 'event_id');
  	}
+ 	
+    public function files(){
+    	
+    	return $this->hasMany('Files', 'event_id');
+ 	}
 	
 }

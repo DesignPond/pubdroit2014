@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('SentryUserGroupSeeder');
 		
 		$this->call('ComptesTableSeeder');
+		$this->call('FilesTableSeeder');
 	}
 
 }

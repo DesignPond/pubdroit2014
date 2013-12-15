@@ -1,17 +1,8 @@
 <?php
 
-use Droit\Repo\Event\EventInterface;
-use Droit\Service\Form\Event\EventForm;
+use Droit\Service\File\FileInterface;
 
-class AdminController extends BaseController {
-
-	protected $event;
-	
-	public function __construct(EventInterface $event){
-		
-		$this->event = $event;
-
-	}
+class UploadController extends BaseController {
 	
 	/**
 	 * Display a listing of the resource.
@@ -20,7 +11,7 @@ class AdminController extends BaseController {
 	 */
 	public function index()
 	{
-		return View::make('admin.index');
+        return View::make('uploads.index');
 	}
 
 	/**
@@ -30,7 +21,7 @@ class AdminController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('admins.create');
+        return View::make('uploads.create');
 	}
 
 	/**
@@ -40,7 +31,9 @@ class AdminController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		$destination = Input::get('destination');
+    	
+    	return $this->file->upload( Input::file('file') , $destination );
 	}
 
 	/**
@@ -51,7 +44,7 @@ class AdminController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('admins.show');
+        return View::make('uploads.show');
 	}
 
 	/**
@@ -62,7 +55,7 @@ class AdminController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('admins.edit');
+        return View::make('uploads.edit');
 	}
 
 	/**
@@ -86,13 +79,5 @@ class AdminController extends BaseController {
 	{
 		//
 	}
-
-	
-	public function files(){
-    
-    	return View::make('admin.upload');
-    
-	}
-	
 
 }

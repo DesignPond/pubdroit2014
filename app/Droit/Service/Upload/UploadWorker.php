@@ -1,8 +1,8 @@
-<?php namespace Droit\Service\File;
+<?php namespace Droit\Service\Upload;
 
 use Intervention\Image\Facades\Image;
 
-class FileWorker implements FileInterface {
+class UploadWorker implements UploadInterface {
 
 	/*
 	 * upload selected file 
@@ -12,15 +12,14 @@ class FileWorker implements FileInterface {
 		
 		$name = $file->getClientOriginalName();
 		$ext  = $file->getClientOriginalExtension();
-		$size = $file->getSize();
-		$mime = $file->getMimeType();
 		$new  = $file->move($destination,$name);
+		$size = $new->getSize();
+		$mime = $new->getMimeType();
 		$path = $new->getRealPath();
 		
-		// test resize
-		
-		$this->resize( $path, $path , 200 , null , true );
-		$this->rename( $path, $name , 'files/test/' );
+		// test resize		
+		//$this->resize( $path, $path , 200 , null , true );
+		//$this->rename( $path, $name , 'files/test/' );
 		
 		$newfile = array( 'name' => $name ,'ext' => $ext ,'size' => $size ,'mime' => $mime ,'path' => $path  );
 		
@@ -29,8 +28,7 @@ class FileWorker implements FileInterface {
 			return $newfile;
 		}
 		
-		return FALSE;
-		
+		return FALSE;		
 	}	
 	
 	/*
@@ -42,7 +40,6 @@ class FileWorker implements FileInterface {
 		$newpath = $path.$name;
 		
 		return Image::make( $file )->save($newpath);
-
 	}
 	
 	/*
@@ -51,8 +48,7 @@ class FileWorker implements FileInterface {
 	*/	
 	public function resize( $path, $name , $width = null , $height = null, $ratio ){
 		
-		return Image::make( $path )->resize($width, $height , $ratio)->save($name);
-		
+		return Image::make( $path )->resize($width, $height , $ratio)->save($name);		
 	}
     
 }

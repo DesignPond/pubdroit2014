@@ -1,25 +1,38 @@
 <?php
 
 use Droit\Repo\Event\EventInterface;
-use Droit\Service\Form\Event\EventForm;
-
 use Droit\Repo\Compte\CompteInterface;
+use Droit\Repo\File\FileInterface;
+
+use Droit\Service\Form\Event\EventForm;
+use Droit\Service\Form\File\FileForm;
+use Droit\Service\Upload\UploadInterface;
 
 class EventController extends BaseController {
 
 	protected $event;
 	
+	protected $file;
+	
 	protected $validator;
 	
 	protected $compte;
 	
-	public function __construct(EventInterface $event, EventForm $validator , CompteInterface $compte){
+	protected $upload;
+	
+	public function __construct(EventInterface $event, EventForm $validator , CompteInterface $compte, UploadInterface $upload , FileForm $filevalidator, FileInterface $file){
 		
-		$this->event     = $event;
+		$this->event         = $event;
 		
-		$this->validator = $validator;
+		$this->file          = $file;
 		
-		$this->compte    = $compte;
+		$this->validator     = $validator;
+		
+		$this->filevalidator = $filevalidator;
+		
+		$this->compte        = $compte;
+		
+		$this->upload        = $upload;
 
 	}
 
@@ -113,7 +126,12 @@ class EventController extends BaseController {
 		$event   = $this->event->find($id);
 		$comptes = $this->compte->getAll()->lists('motifCompte', 'id');
 		
-        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'images' => array('carte','vignette','badge'), 'docs' => array('programme','pdf','document') ));
+		// Uploads 
+		$images = array('carte','vignette','badge');
+		$docs   = array('programme','pdf','document');
+		
+		
+        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'images' => $images , 'docs' => $docs ));
 	}
 
 	/**
@@ -125,7 +143,7 @@ class EventController extends BaseController {
 	public function update($id)
 	{	
 					
-		if( $this->validator->update( Input::all() ) )
+		if( $this->validator->update(Input::all()) )
 		{	
 			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success') );
 		}
@@ -147,5 +165,39 @@ class EventController extends BaseController {
 	{
 		//
 	}
+	
+	/**
+	 * Upload file for event
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	 public function upload()
+	 {
+		 $destination = Input::get('destination');
+		 $id = Input::get('event_id');
+		 	
+		 $data = $this->upload->upload( Input::file('file') , $destination );
+		 	
+	 	 if($data)
+	 	 {
+	 	 	$file = array(
+	 	 		'filename' => $data['name'],
+	 	 		'typeFile' => Input::get('typeFile'),
+	 	 		'event_id' => Input::get('event_id')
+	 	 	);
+	 	 	
+	 		if( $this->filevalidator->save( $file ) )
+			{				 	 	 	 
+				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success') );
+			} 
+			else
+			{
+				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') )->withErrors( $this->filevalidator->errors() );
+			} 
+		 }
+
+		 return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') ); 
+	 }
 
 }

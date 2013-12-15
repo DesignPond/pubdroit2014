@@ -155,7 +155,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('/', array('uses' => 'AdminController@index'));
     
     // test
-	Route::post('upload', array('uses' => 'AdminController@upload'));
+	Route::post('upload', array('uses' => 'UploadController@store'));
 	Route::get('files', array('uses' => 'AdminController@files'));
     
     Route::group(array('prefix' => 'pubdroit'), function()
@@ -165,6 +165,7 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::get('lists', array('uses' => 'EventController@lists'));
 	    Route::get('archives', array('uses' => 'EventController@archives'));
 	    Route::get('event', array('uses' => 'EventController@index'));
+	    Route::post('event/upload', array('uses' => 'EventController@upload'));
 	    
 	    Route::resource('event', 'EventController');
 	    

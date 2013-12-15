@@ -34,52 +34,110 @@
 					</div>
 					@endif
 					
+					<?php
+						echo '<pre>';
+						print_r($event->files);
+						echo '</pre>';
+					?>
+
+					
 					<!-- panel start -->
 					<div class="panel panel-primary">
 				       <div class="panel-heading"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
 					    <div class="panel-body"><!-- start panel content -->
+					    	
+					    	{{ $files = $event->files }}
+							
+							<!-- Documents -->
 					    	<div class="row">
 					    	
-								<div class="col-sm-3">
-								    <div class="panel panel-info">
-								    	<div class="panel-body admin-icon-panel">								    		
-									    	<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
-									    	<p><strong>Document</strong></p>
-									    	<div class="btn-group admin-icon-options">
-										    	<a href="#" class="btn btn-sm btn-info">changer</a>
-										    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
-									    	</div>
-								    	</div>
-								    </div>
-								</div>
-								
-								@foreach($docs as $doc)
-								<div class="col-sm-3">
-									<div class="panel panel-info">
-								    	<div class="panel-body admin-icon-panel">
-								    		<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
-								    		<p><strong>{{ $doc }}</strong></p>
-								    		{{ Form::open(array( 'url' => 'admin/upload','files' => true )) }}
-									    	<input id="uploadFile" class="uploadFile" disabled="disabled" placeholder="">
-									    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />				     	
-											<div class="btn-group admin-icon-options">
-												<div class="fileUpload btn btn-sm btn-primary">
-											    	<span>Choisir</span>
-											   		<input id="uploadBtn" type="file" name="file" class="upload" />
-												</div>
-												<button type="submit" class="btn btn-sm btn-success" type="button">Envoyer</button>
-											</div>
-											{{ Form::close() }}	
-											
-								    	</div>
-								    </div>
-								</div>
-								@endforeach
+								@if(!empty($files))
+									@foreach($files as $file)
+									
+										@if( in_array( $files->typeFile , $docs ) )
+										<div class="col-sm-3">
+											<div class="panel panel-info">
+										    	<div class="panel-body admin-icon-panel">
+										    		<p><strong>{{ ucfirst($doc) }}</strong></p>
+										    		
+										    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
+											    	<input class="uploadFile" disabled="disabled" placeholder="">
+											    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
+											    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
+											    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
+													<div class="btn-group admin-icon-options">
+														<div class="fileUpload btn btn-sm btn-primary">
+													    	<span>&nbsp;Choisir&nbsp;</span>
+													   		<input class="uploadBtn upload" type="file" name="file" />
+														</div>
+														<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
+													</div>
+													{{ Form::close() }}	
+													
+										    	</div>
+										    </div>
+										</div>
+										@endif
+									
+									@endforeach
+								@endif
 
-					    	</div>
+					    	</div><!-- end row -->
+					    	
+							<!-- Images -->
+					    	<div class="row">
+					    	
+								@if(!empty($files))
+									@foreach($files as $file)
+									
+										@if( in_array( $file->typeFile , $images ) )
+										<div class="col-sm-3">
+											<div class="panel panel-info">
+										    	<div class="panel-body admin-icon-panel">
+										    		<p><strong>{{ ucfirst($doc) }}</strong></p>
+										    		
+										    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
+											    	<input class="uploadFile" disabled="disabled" placeholder="">
+											    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
+											    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
+											    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
+													<div class="btn-group admin-icon-options">
+														<div class="fileUpload btn btn-sm btn-primary">
+													    	<span>&nbsp;Choisir&nbsp;</span>
+													   		<input class="uploadBtn upload" type="file" name="file" />
+														</div>
+														<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
+													</div>
+													{{ Form::close() }}	
+													
+										    	</div>
+										    </div>
+										</div>										
+										@else										
+										<div class="col-sm-3">
+										    <div class="panel panel-info">
+										    	<div class="panel-body admin-icon-panel">								    		
+											    	<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
+											    	<p><strong>Document</strong></p>
+											    	<input class="uploadFile" disabled="disabled" placeholder="afile.png">
+											    	<div class="btn-group admin-icon-options">
+												    	<a href="#" class="btn btn-sm btn-info">changer</a>
+												    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
+											    	</div>
+										    	</div>
+										    </div>
+										</div>										
+										@endif
+										
+									
+									@endforeach
+								@endif
+
+					    	</div><!-- end row -->
+					    	
 					    </div><!-- end panel content -->
 					</div><!-- end panel -->
-				
+
 					<!-- panel start -->
 					<div class="panel panel-green">
 					
