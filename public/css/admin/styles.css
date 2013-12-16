@@ -10727,7 +10727,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #4f8edc;
   border-color: #4f8edc;
 }
-.panel-primary .panel-body {
+.panel-primary .panel-body ,.panel-body .panel-primary .panel-body{
   border-top: 2px solid #4f8edc;
 }
 .panel-success {
@@ -10738,7 +10738,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #85c744;
   border-color: #85c744;
 }
-.panel-success .panel-body {
+.panel-success .panel-body ,.panel-body .panel-success .panel-body{
   border-top: 2px solid #85c744;
 }
 .panel-warning {
@@ -10749,7 +10749,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #f1c40f;
   border-color: #f1c40f;
 }
-.panel-warning .panel-body {
+.panel-warning .panel-body ,.panel-body .panel-warning .panel-body{
   border-top: 2px solid #f1c40f;
 }
 .panel-danger {
@@ -10760,7 +10760,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #e73c3c;
   border-color: #e73c3c;
 }
-.panel-danger .panel-body {
+.panel-danger .panel-body ,.panel-body .panel-danger .panel-body{
   border-top: 2px solid #e73c3c;
 }
 .panel-info {
@@ -10771,7 +10771,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #2bbce0;
   border-color: #2bbce0;
 }
-.panel-info .panel-body {
+.panel-info .panel-body,.panel-body .panel-info .panel-body {
   border-top: 2px solid #2bbce0;
 }
 .panel-inverse {
@@ -10782,7 +10782,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #4f5259;
   border-color: #4f5259;
 }
-.panel-inverse .panel-body {
+.panel-inverse .panel-body ,.panel-body .panel-inverse .panel-body{
   border-top: 2px solid #4f5259;
 }
 .panel-brown {

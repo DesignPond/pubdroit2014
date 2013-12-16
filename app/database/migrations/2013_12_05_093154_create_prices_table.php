@@ -20,6 +20,7 @@ class CreatePricesTable extends Migration {
 			$table->string('remarquePrix');
 			$table->float('prix'); // changed	
 			$table->integer('rangPrix'); // changed	
+			$table->enum('typePrix', array('1','2'));
 			
 		});
 	}

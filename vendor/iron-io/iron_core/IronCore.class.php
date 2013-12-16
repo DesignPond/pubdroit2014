@@ -10,7 +10,8 @@
  * @copyright BSD 2-Clause License. See LICENSE file.
  */
 
-class IronCore {
+class IronCore
+{
     protected $core_version = '0.1.7';
 
     // should be overridden by child class
@@ -28,8 +29,8 @@ class IronCore {
     const GET    = 'GET';
     const DELETE = 'DELETE';
 
-    const header_accept = "application/json";
-    const header_accept_encoding = "gzip, deflate";
+    const HEADER_ACCEPT = "application/json";
+    const HEADER_ACCEPT_ENCODING = "gzip, deflate";
 
     protected $url;
     protected $token;
@@ -43,21 +44,23 @@ class IronCore {
     protected $encryption_key;
     protected $curl = null;
 
-    public  $max_retries = 5;
-    public  $debug_enabled = false;
-    public  $ssl_verifypeer = true;
-    public  $connection_timeout = 60;
-    public  $proxy = null;
-    public  $proxy_userpwd = null;
+    public $max_retries = 5;
+    public $debug_enabled = false;
+    public $ssl_verifypeer = true;
+    public $connection_timeout = 60;
+    public $proxy = null;
+    public $proxy_userpwd = null;
 
-    public function __destruct() {
-        if ($this->curl != null){
+    public function __destruct()
+    {
+        if ($this->curl != null) {
             curl_close($this->curl);
             $this->curl = null;
         }
     }
 
-    protected static function dateRfc3339($timestamp = 0) {
+    protected static function dateRfc3339($timestamp = 0)
+    {
         if ($timestamp instanceof DateTime) {
             $timestamp = $timestamp->getTimestamp();
         }
@@ -67,56 +70,60 @@ class IronCore {
         return gmdate('c', $timestamp);
     }
 
-    protected static function json_decode($response){
+    protected static function json_decode($response)
+    {
         $data = json_decode($response);
-        if (function_exists('json_last_error')){
+        if (function_exists('json_last_error')) {
             $json_error = json_last_error();
-            if($json_error != JSON_ERROR_NONE) {
+            if ($json_error != JSON_ERROR_NONE) {
                 throw new JSON_Exception($json_error);
             }
-        }elseif($data === null){
+        } elseif ($data === null) {
             throw new JSON_Exception("Common JSON error");
         }
         return $data;
     }
 
-
-    protected static function homeDir(){
-        if ($home_dir = getenv('HOME')){
+    protected static function homeDir()
+    {
+        if ($home_dir = getenv('HOME')) {
             // *NIX
             return $home_dir.DIRECTORY_SEPARATOR;
-        }else{
+        } else {
             // Windows
             return getenv('HOMEDRIVE').getenv('HOMEPATH').DIRECTORY_SEPARATOR;
         }
     }
 
-    protected function debug($var_name, $variable){
-        if ($this->debug_enabled){
-            echo "{$var_name}: ".var_export($variable,true)."\n";
+    protected function debug($var_name, $variable)
+    {
+        if ($this->debug_enabled) {
+            echo "{$var_name}: ".var_export($variable, true)."\n";
         }
     }
 
-    protected function userAgent(){
+    protected function userAgent()
+    {
         return "{$this->client_name}-{$this->client_version} (iron_core-{$this->core_version})";
     }
 
     /**
      * Load configuration
      *
-     * @param array|string|null $config_file_or_options
+     * @param array|string|null $config
      * array of options or name of config file
      * @return array
      * @throws InvalidArgumentException
      */
-    protected function getConfigData($config_file_or_options){
-        if(is_string($config_file_or_options)){
-            if (!file_exists($config_file_or_options)){
-                throw new InvalidArgumentException("Config file $config_file_or_options not found");
+    protected function getConfigData($config)
+    {
+        if (is_string($config)) {
+            if (!file_exists($config)) {
+                throw new InvalidArgumentException("Config file $config not found");
             }
-            $this->loadConfigFile($config_file_or_options);
-        }elseif(is_array($config_file_or_options)){
-            $this->loadFromHash($config_file_or_options);
+            $this->loadConfigFile($config);
+        } elseif (is_array($config)) {
+            $this->loadFromHash($config);
         }
 
         $this->loadConfigFile('iron.ini');
@@ -125,75 +132,91 @@ class IronCore {
         $this->loadFromEnv(strtoupper($this->product_name));
         $this->loadFromEnv('IRON');
 
-        if (!ini_get('open_basedir')){
+        if (!ini_get('open_basedir')) {
             $this->loadConfigFile(self::homeDir() . '.iron.ini');
             $this->loadConfigFile(self::homeDir() . '.iron.json');
         }
 
         $this->loadFromHash($this->default_values);
 
-        if (empty($this->token) || empty($this->project_id)){
+        if (empty($this->token) || empty($this->project_id)) {
             throw new InvalidArgumentException("token or project_id not found in any of the available sources");
         }
     }
 
 
-    protected function loadFromHash($options){
-        if (empty($options)) return;
-        $this->setVarIfValue('token',          $options);
-        $this->setVarIfValue('project_id',     $options);
-        $this->setVarIfValue('protocol',       $options);
-        $this->setVarIfValue('host',           $options);
-        $this->setVarIfValue('port',           $options);
-        $this->setVarIfValue('api_version',    $options);
+    protected function loadFromHash($options)
+    {
+        if (empty($options)) {
+            return;
+        }
+        $this->setVarIfValue('token', $options);
+        $this->setVarIfValue('project_id', $options);
+        $this->setVarIfValue('protocol', $options);
+        $this->setVarIfValue('host', $options);
+        $this->setVarIfValue('port', $options);
+        $this->setVarIfValue('api_version', $options);
         $this->setVarIfValue('encryption_key', $options);
     }
 
-    protected function loadFromEnv($prefix){
-        $this->setVarIfValue('token',          getenv($prefix. "_TOKEN"));
-        $this->setVarIfValue('project_id',     getenv($prefix. "_PROJECT_ID"));
-        $this->setVarIfValue('protocol',       getenv($prefix. "_SCHEME"));
-        $this->setVarIfValue('host',           getenv($prefix. "_HOST"));
-        $this->setVarIfValue('port',           getenv($prefix. "_PORT"));
-        $this->setVarIfValue('api_version',    getenv($prefix. "_API_VERSION"));
+    protected function loadFromEnv($prefix)
+    {
+        $this->setVarIfValue('token', getenv($prefix. "_TOKEN"));
+        $this->setVarIfValue('project_id', getenv($prefix. "_PROJECT_ID"));
+        $this->setVarIfValue('protocol', getenv($prefix. "_SCHEME"));
+        $this->setVarIfValue('host', getenv($prefix. "_HOST"));
+        $this->setVarIfValue('port', getenv($prefix. "_PORT"));
+        $this->setVarIfValue('api_version', getenv($prefix. "_API_VERSION"));
         $this->setVarIfValue('encryption_key', getenv($prefix. "_ENCRYPTION_KEY"));
     }
 
-    protected function setVarIfValue($key, $options_or_value){
-        if (!empty($this->$key)) return;
-        if (is_array($options_or_value)){
-            if (!empty($options_or_value[$key])){
+    protected function setVarIfValue($key, $options_or_value)
+    {
+        if (!empty($this->$key)) {
+            return;
+        }
+        if (is_array($options_or_value)) {
+            if (!empty($options_or_value[$key])) {
                 $this->$key = $options_or_value[$key];
             }
-        }else{
-            if (!empty($options_or_value)){
+        } else {
+            if (!empty($options_or_value)) {
                 $this->$key = $options_or_value;
             }
         }
     }
 
-    protected function loadConfigFile($file){
-        if (!file_exists($file)) return;
+    protected function loadConfigFile($file)
+    {
+        if (!file_exists($file)) {
+            return;
+        }
         $data = @parse_ini_file($file, true);
-        if ($data === false){
+        if ($data === false) {
             $data = json_decode(file_get_contents($file), true);
         }
-        if (!is_array($data)){
+        if (!is_array($data)) {
             throw new InvalidArgumentException("Config file $file not parsed");
         };
 
-        if (!empty($data[$this->product_name])) $this->loadFromHash($data[$this->product_name]);
-        if (!empty($data['iron'])) $this->loadFromHash($data['iron']);
+        if (!empty($data[$this->product_name])) {
+            $this->loadFromHash($data[$this->product_name]);
+        }
+        if (!empty($data['iron'])) {
+            $this->loadFromHash($data['iron']);
+        }
         $this->loadFromHash($data);
     }
 
-    protected function apiCall($type, $url, $params = array(), $raw_post_data = null){
+    protected function apiCall($type, $url, $params = array(), $data = null)
+    {
         $url = "{$this->url}$url";
 
-        if ($this->curl == null) $this->curl = curl_init();
-
-        if (! isset($params['oauth'])) {
-          $params['oauth'] = $this->token;
+        if ($this->curl == null) {
+            $this->curl = curl_init();
+        }
+        if (!isset($params['oauth'])) {
+            $params['oauth'] = $this->token;
         }
         switch ($type) {
             case self::DELETE:
@@ -207,12 +230,12 @@ class IronCore {
                 curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($params));
                 break;
             case self::POST:
-                curl_setopt($this->curl, CURLOPT_URL,  $url);
+                curl_setopt($this->curl, CURLOPT_URL, $url);
                 curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, self::POST);
                 curl_setopt($this->curl, CURLOPT_POST, true);
-                if ($raw_post_data){
-                    curl_setopt($this->curl, CURLOPT_POSTFIELDS, $raw_post_data);
-                }else{
+                if ($data) {
+                    curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
+                } else {
                     curl_setopt($this->curl, CURLOPT_POSTFIELDS, json_encode($params));
                 }
                 break;
@@ -225,9 +248,9 @@ class IronCore {
                 break;
         }
         $this->debug("API $type", $url);
-        if(!is_null($this->proxy )){
+        if (!is_null($this->proxy)) {
             curl_setopt($this->curl, CURLOPT_PROXY, $this->proxy);
-            if(!is_null($this->proxy_userpwd)){
+            if (!is_null($this->proxy_userpwd)) {
                 curl_setopt($this->curl, CURLOPT_PROXYUSERPWD, $this->proxy_userpwd);
             }
         }
@@ -238,10 +261,11 @@ class IronCore {
         return $this->callWithRetries();
     }
 
-    protected function callWithRetries(){
-        for ($retry = 0; $retry < $this->max_retries; $retry++){
+    protected function callWithRetries()
+    {
+        for ($retry = 0; $retry < $this->max_retries; $retry++) {
             $_out = curl_exec($this->curl);
-            if($_out === false) {
+            if ($_out === false) {
                 $this->reportHttpError(0, curl_error($this->curl));
             }
             $status = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
@@ -251,9 +275,9 @@ class IronCore {
                 case self::HTTP_ACCEPTED:
                     return $_out;
                 case Http_Exception::INTERNAL_ERROR:
-                    if (strpos($_out, "EOF") !== false){
+                    if (strpos($_out, "EOF") !== false) {
                         self::waitRandomInterval($retry);
-                    }else{
+                    } else {
                         $this->reportHttpError($status, $_out);
                     }
                     break;
@@ -268,7 +292,8 @@ class IronCore {
         return null;
     }
 
-    protected function reportHttpError($status, $text){
+    protected function reportHttpError($status, $text)
+    {
         throw new Http_Exception("http error: {$status} | {$text}", $status);
     }
 
@@ -278,42 +303,45 @@ class IronCore {
      * @static
      * @param int $retry currentRetry number
      */
-    protected static function waitRandomInterval($retry){
+    protected static function waitRandomInterval($retry)
+    {
         $max_delay = pow(4, $retry)*100*1000;
         usleep(rand(0, $max_delay));
     }
 
-    protected function compiledHeaders(){
+    protected function compiledHeaders()
+    {
         # Set default headers if no headers set.
-        if ($this->headers == null){
+        if ($this->headers == null) {
             $this->setCommonHeaders();
         }
 
         $headers = array();
-        foreach ($this->headers as $k => $v){
+        foreach ($this->headers as $k => $v) {
             $headers[] = "$k: $v";
         }
         return $headers;
     }
 
-    protected function setCommonHeaders(){
+    protected function setCommonHeaders()
+    {
         $this->headers = array(
             'Authorization'   => "OAuth {$this->token}",
             'User-Agent'      => $this->userAgent(),
             'Content-Type'    => 'application/json',
-            'Accept'          => self::header_accept,
-            'Accept-Encoding' => self::header_accept_encoding,
+            'Accept'          => self::HEADER_ACCEPT,
+            'Accept-Encoding' => self::HEADER_ACCEPT_ENCODING,
             'Connection'      => 'Keep-Alive',
             'Keep-Alive'      => '300'
         );
     }
-
 }
 
 /**
  * The Http_Exception class represents an HTTP response status that is not 200 OK.
  */
-class Http_Exception extends Exception {
+class Http_Exception extends Exception
+{
     const NOT_MODIFIED = 304;
     const BAD_REQUEST = 400;
     const NOT_FOUND = 404;
@@ -327,11 +355,13 @@ class Http_Exception extends Exception {
 /**
  * The JSON_Exception class represents an failures of decoding json strings.
  */
-class JSON_Exception extends Exception {
+class JSON_Exception extends Exception
+{
     public $error = null;
     public $error_code = JSON_ERROR_NONE;
 
-    function __construct($error_code) {
+    public function __construct($error_code)
+    {
         $this->error_code = $error_code;
         switch($error_code) {
             case JSON_ERROR_DEPTH:
@@ -351,8 +381,8 @@ class JSON_Exception extends Exception {
         parent::__construct();
     }
 
-    function __toString() {
+    public function __toString()
+    {
         return $this->error;
     }
 }
-

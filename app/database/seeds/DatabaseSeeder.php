@@ -18,13 +18,14 @@ class DatabaseSeeder extends Seeder {
 		$this->call('EventsTableSeeder');
 		$this->call('OptionsTableSeeder');
 		$this->call('PricesTableSeeder');
-		$this->call('EventsoptionsTableSeeder');	
 		$this->call('UsersTableSeeder');		
 		$this->call('SentryGroupSeeder');
-		$this->call('SentryUserGroupSeeder');
-		
+		$this->call('SentryUserGroupSeeder');		
 		$this->call('ComptesTableSeeder');
 		$this->call('FilesTableSeeder');
+		$this->call('SpecialisationsTableSeeder');
+		$this->call('Event_specialisationTableSeeder');
+		$this->call('Event_optionTableSeeder');
 	}
 
 }

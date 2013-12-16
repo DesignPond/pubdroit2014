@@ -46,15 +46,16 @@ $(function() {
 
 	$( ".uploadBtn" ).change(function() {
 		
-		var file = $(this).val();
-		
+		var file = $(this).val();		
 		var parent = $(this).closest('form');
 		var input = parent.find(".uploadFile");
 		
 		input.val(file);
-		input.show();
-		
+		input.show();		
 	});
+	
+	 $( ".sortable" ).sortable();
+	 $( ".sortable" ).disableSelection();
     
 });
 

@@ -222,6 +222,14 @@
 					    </div>
 					</div><!-- end panel -->
 					
+					<?php
+/*
+						echo '<pre>';
+						print_r($event->prices);
+						echo '</pre>';
+*/
+					?>
+					
 					<!-- panel start -->
 					<div class="panel panel-green">	
 				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Prix et Options</h4></div>
@@ -230,39 +238,94 @@
 							  <h3>Prix</h3>
 							  <div class="row">
 							  	  <div class="col-sm-5 col-md-offset-3">
+							  	  
+							  	  	  @if ( ! $event->prices->isEmpty() )
+							  	  	  
 							  	  	  <h4>PRIX COLLOQUES</h4>
+							  	  	  
 								  	  <div class="panel panel-midnightblue">
 										  <div class="panel-body">
-											  <div class="list-group">
-												  <a class="list-group-item" href="#"><span class="label label-primary">201</span> &nbsp;Inbox</a>
-												  <a class="list-group-item" href="#"><span class="label label-primary">5021</span> &nbsp;Profile visits</a>
-											  </div>
+											  <ul class="list-group sortable">
+											  	@foreach($event->prices as $price)
+											  		@if($price->typePrix == 1)
+											  			<li class="list-group-item">
+											  				<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+											  				<a href="#" class="btn btn-xs btn-danger">X</a>
+											  			</li>
+												  	@endif
+												@endforeach
+											  </ul>
 										  </div>
 								  	  </div>
 								  	  					
 								  	  <h4>PRIX SPÉCIAUX ( pour administration )</h4>
+								  	  
 								  	  <div class="panel panel-orange">
 										  <div class="panel-body">
-											  <div class="list-group">
-												  <a class="list-group-item" href="#"><span class="label label-primary">201</span> &nbsp;Inbox</a>
-												  <a class="list-group-item" href="#"><span class="label label-primary">5021</span> &nbsp;Profile visits</a>
-											  </div>
+											  <ul class="list-group sortable">
+											  	@foreach($event->prices as $price)
+											  		@if($price->typePrix == 2)
+											  			<li class="list-group-item">
+											  				<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+											  				<a href="#" class="btn btn-xs btn-danger">X</a>
+											  			</li>
+												  	@endif
+												@endforeach
+											  </ul>
 										  </div>
 								  	  </div>
 								  	  
+								  	  @endif
+								  	  
 							  	  </div>				
 							  </div>
-							  <h3>Options</h3>
-							  		
-							  		@if ( ! $event->eventsoptions->isEmpty() )
-							  		
-							  			{{ $event->eventsoptions }}
-							  		
-							  		@endif
-							  		
 							  
+							  <h3>Options</h3>
+							  <div class="row">
+					  	 		 <div class="col-sm-5 col-md-offset-3">
+									  <ul class="list-group">
+									  @if ( ! $event->event_options->isEmpty() )
+									  	@foreach($event->event_options as $option)
+									  		<li class="list-group-item">
+									  			<div class="row">
+									  				<div class="col-sm-10">
+											  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;<?php echo  $option->titreOption; ?>
+											  		</div>
+										  			<div class="btn-group col-sm-2">
+														<button class="btn btn-xs btn-warning" type="button">éditer</button>
+														<button class="btn btn-xs btn-danger" type="button">X</button>															
+													</div>
+												</div>
+									  		</li>
+									  	@endforeach
+									  @endif
+									  </ul>
+								  </div>
+							  </div>						  		
+							  									  
 							  <h3>Spécialisations</h3> 
-	
+						  	  <div class="row">						  	  
+					  	  		 <div class="col-sm-5 col-md-offset-3">
+									  <ul class="list-group">
+								  		@if ( ! $event->event_specialisations->isEmpty() )
+										  	@foreach($event->event_specialisations as $specialisation)
+										  		<li class="list-group-item">
+										  			<div class="row">
+										  				<div class="col-sm-10">
+												  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;<?php echo  $specialisation->titreSpecialisation; ?>
+												  		</div>
+											  			<div class="btn-group col-sm-2">
+															<button class="btn btn-xs btn-warning" type="button">éditer</button>
+															<button class="btn btn-xs btn-danger" type="button">X</button>															
+														</div>
+													</div>
+										  		</li>
+										  	@endforeach							  		
+								  		@endif
+									  </ul>
+								  </div>
+							  </div>
+							  	
 					    </div><!-- end panel content -->
 
 					</div><!-- end panel -->

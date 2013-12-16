@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateEventsoptionsTable extends Migration {
+class PivotEventOptionTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,13 @@ class CreateEventsoptionsTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('eventsoptions', function(Blueprint $table) {
-		
+		Schema::create('event_options', function(Blueprint $table) {
 			$table->increments('id');
-			
-			$table->integer('event_id'); // changed	
-			$table->string('option_id'); // changed
-			
+			$table->integer('event_id')->unsigned()->index();
+			$table->integer('option_id')->unsigned()->index();
 		});
 	}
+
 
 
 	/**
@@ -30,7 +28,7 @@ class CreateEventsoptionsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('eventsoptions');
+		Schema::drop('event_options');
 	}
 
 }

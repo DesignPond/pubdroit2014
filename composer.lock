@@ -424,12 +424,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/iron-io/iron_core_php.git",
-                "reference": "0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3"
+                "reference": "cf5d63ce4c418bc9d6349bf4c753dfb2154137a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/iron-io/iron_core_php/zipball/0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3",
-                "reference": "0d0f3cbef78ff3515ee2ae381181c5d04d38a3e3",
+                "url": "https://api.github.com/repos/iron-io/iron_core_php/zipball/cf5d63ce4c418bc9d6349bf4c753dfb2154137a7",
+                "reference": "cf5d63ce4c418bc9d6349bf4c753dfb2154137a7",
                 "shasum": ""
             },
             "require": {
@@ -465,7 +465,7 @@
                 "iron",
                 "iron_core"
             ],
-            "time": "2013-10-04 22:21:54"
+            "time": "2013-12-15 20:41:37"
         },
         {
             "name": "iron-io/iron_mq",
@@ -766,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "5ad421d6a1d5d7066a45b617e5164d309c4e2852"
+                "reference": "c9db00f8821b2cc7238732529f8d4007296a630c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/5ad421d6a1d5d7066a45b617e5164d309c4e2852",
-                "reference": "5ad421d6a1d5d7066a45b617e5164d309c4e2852",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c9db00f8821b2cc7238732529f8d4007296a630c",
+                "reference": "c9db00f8821b2cc7238732529f8d4007296a630c",
                 "shasum": ""
             },
             "require": {
@@ -825,7 +825,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-12-02 09:38:32"
+            "time": "2013-12-14 13:52:08"
         },
         {
             "name": "mustache/mustache",
@@ -1490,12 +1490,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "09cb6677e241feecb165f417e1b3ea9709e1b173"
+                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/09cb6677e241feecb165f417e1b3ea9709e1b173",
-                "reference": "09cb6677e241feecb165f417e1b3ea9709e1b173",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
+                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1529,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-11 12:10:05"
+            "time": "2013-12-16 10:45:50"
         },
         {
             "name": "psr/log",
@@ -2868,12 +2868,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67"
+                "reference": "3fb1622f940b99c8161c2659756753469c7fb054"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/ca91fd3cce983578a7acceb8dec7131c3ba63a67",
-                "reference": "ca91fd3cce983578a7acceb8dec7131c3ba63a67",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/3fb1622f940b99c8161c2659756753469c7fb054",
+                "reference": "3fb1622f940b99c8161c2659756753469c7fb054",
                 "shasum": ""
             },
             "require": {
@@ -2906,7 +2906,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2013-12-06 12:38:25"
+            "time": "2013-12-14 23:13:30"
         },
         {
             "name": "instaclick/php-webdriver",
