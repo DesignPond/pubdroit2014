@@ -34,118 +34,116 @@
 					</div>
 					@endif
 					
-					<?php
-						echo '<pre>';
-						print_r($event->files);
-						echo '</pre>';
-					?>
-
-					
 					<!-- panel start -->
 					<div class="panel panel-primary">
 				       <div class="panel-heading"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
 					    <div class="panel-body"><!-- start panel content -->
 					    	
-					    	{{ $files = $event->files }}
+							@foreach($documents as $type => $document)
 							
-							<!-- Documents -->
-					    	<div class="row">
-					    	
-								@if(!empty($files))
-									@foreach($files as $file)
-									
-										@if( in_array( $files->typeFile , $docs ) )
-										<div class="col-sm-3">
-											<div class="panel panel-info">
-										    	<div class="panel-body admin-icon-panel">
-										    		<p><strong>{{ ucfirst($doc) }}</strong></p>
-										    		
-										    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
-											    	<input class="uploadFile" disabled="disabled" placeholder="">
-											    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
-											    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
-											    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
-													<div class="btn-group admin-icon-options">
-														<div class="fileUpload btn btn-sm btn-primary">
-													    	<span>&nbsp;Choisir&nbsp;</span>
-													   		<input class="uploadBtn upload" type="file" name="file" />
-														</div>
-														<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
-													</div>
-													{{ Form::close() }}	
-													
-										    	</div>
-										    </div>
-										</div>
-										@endif
-									
-									@endforeach
-								@endif
-
-					    	</div><!-- end row -->
-					    	
-							<!-- Images -->
-					    	<div class="row">
-					    	
-								@if(!empty($files))
-									@foreach($files as $file)
-									
-										@if( in_array( $file->typeFile , $images ) )
-										<div class="col-sm-3">
-											<div class="panel panel-info">
-										    	<div class="panel-body admin-icon-panel">
-										    		<p><strong>{{ ucfirst($doc) }}</strong></p>
-										    		
-										    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
-											    	<input class="uploadFile" disabled="disabled" placeholder="">
-											    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
-											    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
-											    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
-													<div class="btn-group admin-icon-options">
-														<div class="fileUpload btn btn-sm btn-primary">
-													    	<span>&nbsp;Choisir&nbsp;</span>
-													   		<input class="uploadBtn upload" type="file" name="file" />
-														</div>
-														<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
-													</div>
-													{{ Form::close() }}	
-													
-										    	</div>
-										    </div>
-										</div>										
-										@else										
-										<div class="col-sm-3">
-										    <div class="panel panel-info">
-										    	<div class="panel-body admin-icon-panel">								    		
-											    	<img src="{{ asset('images/admin/icons/file.png'); }}" class="admin-icon" alt="icon" />
-											    	<p><strong>Document</strong></p>
-											    	<input class="uploadFile" disabled="disabled" placeholder="afile.png">
-											    	<div class="btn-group admin-icon-options">
-												    	<a href="#" class="btn btn-sm btn-info">changer</a>
-												    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
+								<!-- Documents -->
+						    	<div class="row">
+								@if( !empty($allfiles[$type]) )
+						    		@foreach($document as $doc)						    			
+						    			
+						    			@if( isset($allfiles[$type][$doc]) )
+											<div class="col-sm-3">
+											    <div class="panel panel-info">
+											    	<div class="panel-body admin-icon-panel">								    		
+												    	<span class="admin-panel-{{ $type }}">
+												    		@if($type == 'images')
+												    		<img src="{{ asset('files/'.$doc.'/'.$allfiles[$type][$doc]->filename); }}" class="admin-icon" alt="icon" />
+												    		@else
+												    		<img src="{{ asset('images/admin/icons/file.png') }}" alt="icon" />
+												    		@endif
+												    	</span>
+												    	<p><strong>{{ ucfirst($doc) }}</strong></p>
+												    	<input class="uploadFile" disabled="disabled" placeholder="{{ $allfiles[$type][$doc]->filename }}">
+												    	<div class="btn-group admin-icon-options">
+													    	<a href="#" class="btn btn-sm btn-info">changer</a>
+													    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
+												    	</div>
 											    	</div>
+											    </div>
+											</div>	
+						    			@else
+											<div class="col-sm-3">
+												<div class="panel panel-info">
+											    	<div class="panel-body admin-icon-panel">
+											    		<p><strong>{{ ucfirst($doc) }}</strong></p>
+											    		
+											    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
+												    	<input class="uploadFile" disabled="disabled" placeholder="">
+												    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
+												    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
+												    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
+														<div class="btn-group admin-icon-options">
+															<div class="fileUpload btn btn-sm btn-primary">
+														    	<span>&nbsp;Choisir&nbsp;</span>
+														   		<input class="uploadBtn upload" type="file" name="file" />
+															</div>
+															<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
+														</div>
+														{{ Form::close() }}	
+														
+											    	</div>
+											    </div>
+											</div>	
+						    			@endif
+						    																							
+									@endforeach
+									
+								@else
+								
+									@foreach($document as $doc)						    			
+					    				<div class="col-sm-3">
+											<div class="panel panel-info">
+										    	<div class="panel-body admin-icon-panel">
+										    		<p><strong>{{ ucfirst($doc) }}</strong></p>
+										    		
+										    		{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
+											    	<input class="uploadFile" disabled="disabled" placeholder="">
+											    	<input type="hidden" name="destination" value="files/{{ $doc }}/" />
+											    	<input type="hidden" name="typeFile" value="{{ $doc }}" />	
+											    	<input type="hidden" name="event_id" value="{{ $event->id }}" />				     	
+													<div class="btn-group admin-icon-options">
+														<div class="fileUpload btn btn-sm btn-primary">
+													    	<span>&nbsp;Choisir&nbsp;</span>
+													   		<input class="uploadBtn upload" type="file" name="file" />
+														</div>
+														<button type="submit" class="btn btn-sm btn-success" type="button">&nbsp;Envoyer&nbsp;</button>
+													</div>
+													{{ Form::close() }}	
+													
 										    	</div>
 										    </div>
-										</div>										
-										@endif
-										
-									
-									@endforeach
-								@endif
-
-					    	</div><!-- end row -->
+										</div>												
+									@endforeach	
+																	
+								@endif	
+								
+						    	</div><!-- end row -->
+						    	
+							
+							@endforeach
 					    	
 					    </div><!-- end panel content -->
 					</div><!-- end panel -->
 
+					<!-- form start --> 
+					{{ Form::model($event,array(
+						'method' => 'PATCH',
+						'id' => 'validate-form',
+						'data-validate' => 'parsley',
+						'class' => 'form-horizontal',
+						'route' => array('admin.pubdroit.event.update',$event->id))) 
+					}} 
+
 					<!-- panel start -->
 					<div class="panel panel-green">
-					
-					   <!-- form start --> 
-					   {{ Form::model($event,array('method' => 'PATCH','id' => 'validate-form','data-validate' => 'parsley','class' => 'form-horizontal','route' => array('admin.pubdroit.event.update', $event->id))) }} 
-					   
-				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> &nbsp;&Eacute;diter</h4></div>
-					    <div class="panel-body"><!-- start panel content -->
+	
+				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Informations</h4></div>
+					   <div class="panel-body"><!-- start panel content -->
 					    
 							<h3>Général</h3>
 							  <div class="form-group">
@@ -221,7 +219,59 @@
 							  	  	 {{ Form::textarea('remarques', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 							  	  </div>
 							  </div>
+					    </div>
+					</div><!-- end panel -->
+					
+					<!-- panel start -->
+					<div class="panel panel-green">	
+				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Prix et Options</h4></div>
+					   <div class="panel-body"><!-- start panel content -->
+					   					     
+							  <h3>Prix</h3>
+							  <div class="row">
+							  	  <div class="col-sm-5 col-md-offset-3">
+							  	  	  <h4>PRIX COLLOQUES</h4>
+								  	  <div class="panel panel-midnightblue">
+										  <div class="panel-body">
+											  <div class="list-group">
+												  <a class="list-group-item" href="#"><span class="label label-primary">201</span> &nbsp;Inbox</a>
+												  <a class="list-group-item" href="#"><span class="label label-primary">5021</span> &nbsp;Profile visits</a>
+											  </div>
+										  </div>
+								  	  </div>
+								  	  					
+								  	  <h4>PRIX SPÉCIAUX ( pour administration )</h4>
+								  	  <div class="panel panel-orange">
+										  <div class="panel-body">
+											  <div class="list-group">
+												  <a class="list-group-item" href="#"><span class="label label-primary">201</span> &nbsp;Inbox</a>
+												  <a class="list-group-item" href="#"><span class="label label-primary">5021</span> &nbsp;Profile visits</a>
+											  </div>
+										  </div>
+								  	  </div>
+								  	  
+							  	  </div>				
+							  </div>
+							  <h3>Options</h3>
+							  		
+							  		@if ( ! $event->eventsoptions->isEmpty() )
+							  		
+							  			{{ $event->eventsoptions }}
+							  		
+							  		@endif
+							  		
 							  
+							  <h3>Spécialisations</h3> 
+	
+					    </div><!-- end panel content -->
+
+					</div><!-- end panel -->
+
+					<!-- panel start -->
+					<div class="panel panel-green">	
+				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Configuration</h4></div>
+					   <div class="panel-body"><!-- start panel content -->
+					   					     
 							  <h3>Documents</h3>
 
 							  <div class="form-group">
@@ -248,7 +298,7 @@
 							  	  <div class="col-sm-3"><p class="help-block">Requis</p></div>
 							  </div>						
 							  
-							  <h3>Configuration</h3>
+							  <h3>Visibilité</h3>
 							  
 							  <div class="form-group">
 							  	  <label for="selector1" class="col-sm-3 control-label">Visible</label>
@@ -274,9 +324,10 @@
 					      		</div>
 					      	</div>
 					    </div>
-					    
-					{{ Form::close() }}
+
 					</div><!-- end panel -->
+										
+					{{ Form::close() }}
 					
 				</div>
 			</div>

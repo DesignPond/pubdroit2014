@@ -16,10 +16,10 @@ class Events extends Eloquent {
     	return $this->hasMany('Prices', 'event_id');
  	}
  	
-    public function eventsoptions(){
-    	
-    	return $this->hasMany('Eventsoptions', 'event_id');
- 	}
+    public function eventsoptions()
+    {
+        return $this->hasMany('Eventsoptions', 'event_id');
+    }
  	
     public function files(){
     	

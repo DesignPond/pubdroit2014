@@ -10,11 +10,19 @@ class EventsoptionsTableSeeder extends Seeder {
 		$eventsoptions = array(
 			array( 
 				'event_id'     => 1, // changed
-				'specialisation_id' => 1 // changed
+				'option_id' => 1 // changed
 			),
 			array( 
 				'event_id'     => 1, // changed
-				'specialisation_id' => 2 // changed
+				'option_id' => 2 // changed
+			),
+			array( 
+				'event_id'     => 2, // changed
+				'option_id' => 1 // changed
+			),
+			array( 
+				'event_id'     => 2, // changed
+				'option_id' => 2 // changed
 			)
 		);
 

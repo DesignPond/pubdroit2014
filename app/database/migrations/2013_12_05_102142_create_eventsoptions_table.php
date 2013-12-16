@@ -17,7 +17,7 @@ class CreateEventsoptionsTable extends Migration {
 			$table->increments('id');
 			
 			$table->integer('event_id'); // changed	
-			$table->string('specialisation_id'); // changed
+			$table->string('option_id'); // changed
 			
 		});
 	}

@@ -127,11 +127,14 @@ class EventController extends BaseController {
 		$comptes = $this->compte->getAll()->lists('motifCompte', 'id');
 		
 		// Uploads 
-		$images = array('carte','vignette','badge');
-		$docs   = array('programme','pdf','document');
+		$documents = array(
+			'images' => array('carte','vignette','badge'),
+			'docs'   => array('programme','pdf','document')
+		);
 		
+		$allfiles = $this->event->setFiles($event,$documents);
 		
-        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'images' => $images , 'docs' => $docs ));
+        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'documents' => $documents , 'allfiles' => $allfiles ));
 	}
 
 	/**

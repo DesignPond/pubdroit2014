@@ -10793,7 +10793,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #c0392b;
   border-color: #c0392b;
 }
-.panel-brown .panel-body {
+.panel-brown .panel-body ,.panel-body .panel-brown .panel-body{
   border-top: 2px solid #c0392b;
 }
 .panel-indigo {
@@ -10804,7 +10804,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #9358ac;
   border-color: #9358ac;
 }
-.panel-indigo .panel-body {
+.panel-indigo .panel-body ,.panel-body .panel-indigo .panel-body {
   border-top: 2px solid #9358ac;
 }
 .panel-orange {
@@ -10815,7 +10815,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #efa131;
   border-color: #efa131;
 }
-.panel-orange .panel-body {
+.panel-orange .panel-body ,.panel-body .panel-orange .panel-body{
   border-top: 2px solid #efa131;
 }
 .panel-sky {
@@ -10826,7 +10826,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #76c4ed;
   border-color: #76c4ed;
 }
-.panel-sky .panel-body {
+.panel-sky .panel-body ,.panel-body .panel-sky .panel-body{
   border-top: 2px solid #76c4ed;
 }
 .panel-midnightblue {
@@ -10837,7 +10837,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #34495e;
   border-color: #34495e;
 }
-.panel-midnightblue .panel-body {
+.panel-midnightblue .panel-body,.panel-body .panel-midnightblue .panel-body {
   border-top: 2px solid #34495e;
 }
 .panel-magenta {
@@ -10848,7 +10848,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #e73c68;
   border-color: #e73c68;
 }
-.panel-magenta .panel-body {
+.panel-magenta .panel-body  ,.panel-body .panel-magenta .panel-body{
   border-top: 2px solid #e73c68;
 }
 .panel-green {
@@ -10859,7 +10859,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #16a085;
   border-color: #16a085;
 }
-.panel-green .panel-body {
+.panel-green .panel-body ,.panel-body .panel-green .panel-body{
   border-top: 2px solid #16a085;
 }
 .panel-purple {
@@ -10870,7 +10870,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #e044ab;
   border-color: #e044ab;
 }
-.panel-purple .panel-body {
+.panel-purple .panel-body ,.panel-body .panel-purple .panel-body{
   border-top: 2px solid #e044ab;
 }
 .panel-grape {
@@ -10881,7 +10881,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #7a869c;
   border-color: #7a869c;
 }
-.panel-grape .panel-body {
+.panel-grape .panel-body ,.panel-body .panel-grape .panel-body{
   border-top: 2px solid #7a869c;
 }
 .panel.gray {
@@ -10892,7 +10892,7 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   background-color: #edeef0;
   border-color: #000000;
 }
-.panel.gray .panel-body {
+.panel.gray .panel-body ,.panel-body .panel-gray .panel-body{
   border-top: 2px solid #000000;
 }
 .panel.gray .panel-heading {
