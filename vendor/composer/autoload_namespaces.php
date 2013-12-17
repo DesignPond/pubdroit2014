@@ -48,6 +48,7 @@ return array(
     'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Droit' => array($baseDir . '/app'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
+    'Crhayes\\Validation\\' => array($vendorDir . '/crhayes/validation/src'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),
     'ClassPreloader' => array($vendorDir . '/classpreloader/classpreloader/src'),
     'Cartalyst\\Sentry' => array($vendorDir . '/cartalyst/sentry/src'),

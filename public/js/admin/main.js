@@ -78,10 +78,11 @@ $(function() {
          cssclass  : 'edit_form_text',
          tooltip   : 'Click to edit...',
 		 submitdata : function(value, settings) {
-		 	 var column = $(this).data('column');
-		 	 var id     = $(this).data('id');
-		 	 var table  = $(this).data('table');
-			 return {column: column , id : id, table : table};
+		 	 var column    = $(this).data('column');
+		 	 var id        = $(this).data('id');
+		 	 var table     = $(this).data('table');
+		 	 var event_id  = $(this).data('event_id');
+			 return {column: column , id : id, table : table, event_id : event_id};
 	   	 }
     });  
     

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3e6ca46ec70a567ce6fc0549f5fd690c",
+    "hash": "7eab97130c329258330b6cdadcdbc89a",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -151,6 +151,46 @@
                 "preload"
             ],
             "time": "2013-06-24 22:58:34"
+        },
+        {
+            "name": "crhayes/validation",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/crhayes/laravel-extended-validator.git",
+                "reference": "d34b47da077c60cab73a71b41117b10c4e48e6d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/crhayes/laravel-extended-validator/zipball/d34b47da077c60cab73a71b41117b10c4e48e6d5",
+                "reference": "d34b47da077c60cab73a71b41117b10c4e48e6d5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "4.1.*",
+                "illuminate/support": "4.1.*",
+                "illuminate/validation": "4.1.*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Crhayes\\Validation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Chris Hayes",
+                    "email": "chris@chrishayes.ca",
+                    "homepage": "http://www.chrishayes.ca",
+                    "role": "Developer"
+                }
+            ],
+            "time": "2013-12-16 21:39:45"
         },
         {
             "name": "d11wtq/boris",
@@ -1490,12 +1530,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nrk/predis.git",
-                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7"
+                "reference": "fd1c6f244f120e9d4a087da5c2f0094fbe5c6910"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nrk/predis/zipball/87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
-                "reference": "87ca5a1a49737e15c1b4b429f7a21a5682bb62f7",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/fd1c6f244f120e9d4a087da5c2f0094fbe5c6910",
+                "reference": "fd1c6f244f120e9d4a087da5c2f0094fbe5c6910",
                 "shasum": ""
             },
             "require": {
@@ -1529,7 +1569,7 @@
                 "predis",
                 "redis"
             ],
-            "time": "2013-12-16 10:45:50"
+            "time": "2013-12-16 17:52:11"
         },
         {
             "name": "psr/log",
@@ -2487,12 +2527,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Mink.git",
-                "reference": "75aa32c75c72ebabc0d29c78374aae92f3f8d020"
+                "reference": "fa5a157f713d341f09f0e4e524233c58438efe6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Mink/zipball/75aa32c75c72ebabc0d29c78374aae92f3f8d020",
-                "reference": "75aa32c75c72ebabc0d29c78374aae92f3f8d020",
+                "url": "https://api.github.com/repos/Behat/Mink/zipball/fa5a157f713d341f09f0e4e524233c58438efe6b",
+                "reference": "fa5a157f713d341f09f0e4e524233c58438efe6b",
                 "shasum": ""
             },
             "require": {
@@ -2534,7 +2574,7 @@
                 "testing",
                 "web"
             ],
-            "time": "2013-12-14 01:28:10"
+            "time": "2013-12-16 15:13:55"
         },
         {
             "name": "behat/mink-browserkit-driver",
@@ -2542,12 +2582,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkBrowserKitDriver.git",
-                "reference": "8fa555312d754e64bdb14c62e0e52d44c63e484b"
+                "reference": "bf5733377cab4ee8a2d4d71bb0565670317fb9a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/8fa555312d754e64bdb14c62e0e52d44c63e484b",
-                "reference": "8fa555312d754e64bdb14c62e0e52d44c63e484b",
+                "url": "https://api.github.com/repos/Behat/MinkBrowserKitDriver/zipball/bf5733377cab4ee8a2d4d71bb0565670317fb9a6",
+                "reference": "bf5733377cab4ee8a2d4d71bb0565670317fb9a6",
                 "shasum": ""
             },
             "require": {
@@ -2589,7 +2629,7 @@
                 "browser",
                 "testing"
             ],
-            "time": "2013-12-07 19:30:08"
+            "time": "2013-12-16 14:28:42"
         },
         {
             "name": "behat/mink-goutte-driver",
@@ -2649,12 +2689,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/MinkSelenium2Driver.git",
-                "reference": "ad193537d1efc78fb5c60580607eb4f2fc117872"
+                "reference": "713090e85efe57797b717acff2ec651ed54c8ed3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/ad193537d1efc78fb5c60580607eb4f2fc117872",
-                "reference": "ad193537d1efc78fb5c60580607eb4f2fc117872",
+                "url": "https://api.github.com/repos/Behat/MinkSelenium2Driver/zipball/713090e85efe57797b717acff2ec651ed54c8ed3",
+                "reference": "713090e85efe57797b717acff2ec651ed54c8ed3",
                 "shasum": ""
             },
             "require": {
@@ -2699,7 +2739,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2013-12-13 18:10:21"
+            "time": "2013-12-16 14:30:23"
         },
         {
             "name": "codeception/codeception",
@@ -2868,12 +2908,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "3fb1622f940b99c8161c2659756753469c7fb054"
+                "reference": "9f4ad8979821b9d0052656dffaabea035eed6c86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/3fb1622f940b99c8161c2659756753469c7fb054",
-                "reference": "3fb1622f940b99c8161c2659756753469c7fb054",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/9f4ad8979821b9d0052656dffaabea035eed6c86",
+                "reference": "9f4ad8979821b9d0052656dffaabea035eed6c86",
                 "shasum": ""
             },
             "require": {
@@ -2882,7 +2922,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3.x-dev"
+                    "dev-master": "1.4.x-dev"
                 }
             },
             "autoload": {
@@ -2906,7 +2946,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2013-12-14 23:13:30"
+            "time": "2013-12-17 09:29:03"
         },
         {
             "name": "instaclick/php-webdriver",
@@ -3029,6 +3069,7 @@
         "way/generators": 20,
         "killswitch/laravel-mailgun": 20,
         "intervention/image": 20,
+        "crhayes/validation": 20,
         "codeception/codeception": 20,
         "mockery/mockery": 20,
         "fzaninotto/faker": 20

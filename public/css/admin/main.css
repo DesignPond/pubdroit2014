@@ -123,8 +123,8 @@
 	filter: alpha(opacity=0);
 }
 
-.sortable li .btn{
-	float: right;
+.btn-group-pivot{
+	padding-left: 5px;
 }
 
 .list-group span form{

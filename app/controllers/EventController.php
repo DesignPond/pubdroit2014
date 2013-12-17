@@ -2,6 +2,7 @@
 
 use Droit\Repo\Event\EventInterface;
 use Droit\Repo\Compte\CompteInterface;
+use Droit\Repo\Option\OptionInterface;
 use Droit\Repo\File\FileInterface;
 
 use Droit\Service\Form\Event\EventForm;
@@ -20,7 +21,18 @@ class EventController extends BaseController {
 	
 	protected $upload;
 	
-	public function __construct(EventInterface $event, EventForm $validator , CompteInterface $compte, UploadInterface $upload , FileForm $filevalidator, FileInterface $file){
+	protected $option;
+	
+	public function __construct(
+		EventInterface $event, 
+		EventForm $validator , 
+		CompteInterface $compte, 
+		UploadInterface $upload , 
+		FileForm $filevalidator, 
+		FileInterface $file,
+		OptionInterface $option
+	)
+	{
 		
 		$this->event         = $event;
 		
@@ -31,6 +43,8 @@ class EventController extends BaseController {
 		$this->filevalidator = $filevalidator;
 		
 		$this->compte        = $compte;
+		
+		$this->option        = $option;
 		
 		$this->upload        = $upload;
 
@@ -209,8 +223,17 @@ class EventController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */	 
+/*
 	 public function pivot(){
 		 
+		 //  [table] => event_options
+		 $data = array( 'id' => Input::get('id'), 'event_id' => Input::get('event_id'), Input::get('column') => Input::get('value') );
+		 //print_r( $data );
+		 if( $this->option->update($data) ){ 
+			 echo Input::get('value');
+		 }		 
 	 }
+*/
+
 
 }

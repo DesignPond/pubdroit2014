@@ -18,7 +18,7 @@ class Events extends Eloquent {
  	
     public function event_options()
     {
-        return $this->belongsToMany('Options', 'event_options', 'event_id', 'option_id');
+        return $this->hasMany('Options', 'event_id');
     }
     
     public function event_specialisations()

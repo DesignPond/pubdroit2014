@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('FilesTableSeeder');
 		$this->call('SpecialisationsTableSeeder');
 		$this->call('Event_specialisationTableSeeder');
-		$this->call('Event_optionTableSeeder');
+
 	}
 
 }

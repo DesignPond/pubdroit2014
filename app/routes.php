@@ -16,14 +16,8 @@ use Carbon\Carbon;
 Route::get('/', function()
 {
 	
-
-	$data = array();
-	
-	Mail::send('emails.welcome', $data, function($message)
-	{
-	    $message->to('cindy.leschaud@gmail.com', 'Cindy Leschaud')->subject('Welcome to laravel!');
-	});
-	
+	return Options::find(1)->event_id;
+		
 /*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
 	$formatDate = $instance->toDateString();
@@ -164,11 +158,16 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::get('/', array('uses' => 'EventController@index'));	    
 	    Route::get('lists', array('uses' => 'EventController@lists'));
 	    Route::get('archives', array('uses' => 'EventController@archives'));
+	    
 	    Route::get('event', array('uses' => 'EventController@index'));
 	    Route::post('event/upload', array('uses' => 'EventController@upload'));
 	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));
 	    
 	    Route::resource('event', 'EventController');
+	    
+	    Route::get('option/{option}/delete', array('uses' => 'OptionController@destroy'));
+	    Route::get('option/create/{event}', array('uses' => 'OptionController@create'));
+	    Route::resource('option', 'OptionController');
 	    
 	});
 	

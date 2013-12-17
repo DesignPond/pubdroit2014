@@ -221,21 +221,15 @@
 							  </div>
 					    </div>
 					</div><!-- end panel -->
-					
-					<?php
-/*
-						echo '<pre>';
-						print_r($event->prices);
-						echo '</pre>';
-*/
-					?>
-					
+
 					<!-- panel start -->
 					<div class="panel panel-green">	
 				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Prix et Options</h4></div>
 					   <div class="panel-body"><!-- start panel content -->
 					   					     
 							  <h3>Prix</h3>
+							  <p><a href="#" class="btn btn-sm btn-primary">Ajouter</a></p>
+							  
 							  <div class="row">
 							  	  <div class="col-sm-6 col-md-offset-3">
 							  	  
@@ -245,15 +239,19 @@
 							  	  	  
 								  	  <div class="panel panel-midnightblue">
 										  <div class="panel-body">
-											  <ul class="list-group sortable">
+											  <ul class="list-group">
 											  	@foreach($event->prices as $price)
 											  		@if($price->typePrix == 1)
 											  			<li class="list-group-item">
 											  				<div class="row">
-												  				<div class="col-sm-11">
-														  			<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+											  					<div class="col-sm-3">
+														  			<strong>{{ $price->prix }} CHF</strong>
 														  		</div>
-													  			<div class="col-sm-1">
+												  				<div class="col-sm-7">
+														  			{{ $price->remarquePrix }}
+														  		</div>
+													  			<div class="col-sm-2 btn-group btn-group-pivot ">
+														  			<a class="btn btn-xs btn-orange" href="#">éditer</a>
 																	<a href="#" class="btn btn-xs btn-danger">X</a>															
 																</div>
 															</div>
@@ -268,15 +266,19 @@
 								  	  
 								  	  <div class="panel panel-orange">
 										  <div class="panel-body">
-											  <ul class="list-group sortable">
+											  <ul class="list-group">
 											  	@foreach($event->prices as $price)
 											  		@if($price->typePrix == 2)
 											  			<li class="list-group-item">
 											  				<div class="row">
-												  				<div class="col-sm-11">
-														  			<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+											  					<div class="col-sm-3">
+														  			<strong>{{ $price->prix }} CHF</strong>
 														  		</div>
-													  			<div class="col-sm-1">
+												  				<div class="col-sm-7">
+														  			{{ $price->remarquePrix }}
+														  		</div>
+													  			<div class="col-sm-2 btn-group btn-group-pivot">
+														  			<a class="btn btn-xs btn-orange" href="#">éditer</a>
 																	<a href="#" class="btn btn-xs btn-danger">X</a>															
 																</div>
 															</div>
@@ -291,14 +293,10 @@
 								  	  
 							  	  </div>				
 							  </div>
-							  <?php
-/*
-								echo '<pre>';
-								print_r($event->event_options);
-								echo '</pre>';
-*/
-							  ?>
+
 							  <h3>Options</h3>
+							  <p><a href="{{ url('admin/pubdroit/option/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>
+							   
 							  <div class="row">
 					  	 		 <div class="col-sm-6 col-md-offset-3">
 									  <ul class="list-group">
@@ -306,20 +304,18 @@
 									  	@foreach($event->event_options as $option)
 									  		<li class="list-group-item">
 									  			<div class="row">
-									  				<div class="col-sm-11">
+									  				<div class="col-sm-10">
 									  					@if($option->typeOption == 'checkbox' )
 											  				<i class="fa fa-square-o"></i>
 											  			@else
 											  				<i class="fa fa-pencil-square-o"></i>
 											  			@endif
 											  			&nbsp;&nbsp;
-											  			<span 
-											  				data-id="<?php echo $option->id; ?>" 
-											  				data-table="event_options"  
-											  				data-column="titreOption" class="edit_text"><?php echo $option->titreOption; ?></span>
+											  			<?php echo $option->titreOption; ?>
 											  		</div>
-										  			<div class="col-sm-1 text-right">
-														<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $option->titreOption; ?>" href="#">X</a>						
+										  			<div class="col-sm-2 btn-group btn-group-pivot">
+										  				<a class="btn btn-xs btn-orange" href="{{ route('admin.pubdroit.option.edit',  $option->id ) }}">éditer</a>						
+														<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $option->titreOption; ?>" href="{{ url('admin/pubdroit/option/'.$option->id.'/delete') }}">X</a>	
 													</div>
 												</div>
 									  		</li>
@@ -330,6 +326,8 @@
 							  </div>						  		
 							  									  
 							  <h3>Spécialisations</h3> 
+							  <p><a href="#" class="btn btn-sm btn-primary">Ajouter</a></p>
+							  
 						  	  <div class="row">						  	  
 					  	  		 <div class="col-sm-6 col-md-offset-3">
 									  <ul class="list-group">
@@ -337,14 +335,12 @@
 										  	@foreach($event->event_specialisations as $specialisation)
 										  		<li class="list-group-item">
 										  			<div class="row">
-										  				<div class="col-sm-11">
+										  				<div class="col-sm-10">
 												  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;
-												  			<span 
-												  				data-id="<?php echo $specialisation->id; ?>" 
-												  				data-table="event_specialisations" 
-												  				data-column="titreSpecialisation" class="edit_text"><?php echo $specialisation->titreSpecialisation; ?></span>
+												  			<?php echo $specialisation->titreSpecialisation; ?>
 												  		</div>
-											  			<div class="col-sm-1">
+											  			<div class="col-sm-2 btn-group btn-group-pivot">
+										  					<a class="btn btn-xs btn-orange" href="#">éditer</a>
 															<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $specialisation->titreSpecialisation; ?>" href="#">X</a>
 														</div>
 													</div>
@@ -427,5 +423,6 @@
     
 	</div>
 </div>
+
     
 @stop
