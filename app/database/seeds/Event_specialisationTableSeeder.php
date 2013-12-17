@@ -13,8 +13,12 @@ class Event_specialisationTableSeeder extends Seeder {
 				'specialisation_id' => 1 // changed
 			),
 			array( 
-				'event_id'          => 1, // changed
+				'event_id'          => 2, // changed
 				'specialisation_id' => 2 // changed
+			),
+			array( 
+				'event_id'          => 2, // changed
+				'specialisation_id' => 3 // changed
 			)
 		);
 

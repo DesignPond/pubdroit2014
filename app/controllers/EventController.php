@@ -202,5 +202,15 @@ class EventController extends BaseController {
 
 		 return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') ); 
 	 }
+	
+	/**
+	 * Specialisation and options updates 
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */	 
+	 public function pivot(){
+		 
+	 }
 
 }

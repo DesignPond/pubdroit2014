@@ -3,6 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 use Events as E;
 use Comptes as C;
+use Options as O;
 use Files as F;
 
 class PubdroitServiceProvider extends ServiceProvider {
@@ -13,6 +14,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerEventService();	
     	$this->registerInscriptionService();
     	$this->registerCompteService();	
+    	$this->registerOptionService();	
 		$this->registerFileService();
 		$this->registerUploadService();	
     			
@@ -45,6 +47,15 @@ class PubdroitServiceProvider extends ServiceProvider {
         
     }
     
+    protected function registerOptionService(){
+    
+	    $this->app->bind('Droit\Repo\Option\OptionInterface', function()
+        {
+            return new \Droit\Repo\Option\OptionEloquent( new O );
+        });
+        
+    }
+        
     protected function registerFileService(){
 
 	    $this->app->bind('Droit\Repo\File\FileInterface', function()

@@ -29,6 +29,9 @@ $(document).ready(
 });
 
 $(function() {
+
+	var base_url = location.protocol + "//" + location.host+"/";
+	
 	//Parsley Form Validation
     //While the JS is not usually required in Parsley, we will be modifying
     //the default classes so it plays well with Bootstrap
@@ -54,8 +57,33 @@ $(function() {
 		input.show();		
 	});
 	
-	 $( ".sortable" ).sortable();
-	 $( ".sortable" ).disableSelection();
+	$( ".sortable" ).sortable();
+	$( ".sortable" ).disableSelection();
+	 
+	$('body').on('click','.deleteAction',function(){
+		
+		var $this   = $(this);
+		var action  = $this.data('action');
+		
+		var answer = confirm('Voulez-vous vraiment supprimer : '+ action +' ?');
+	    if (answer){
+			return true;
+	    }
+	    return false;	
+	});
+	
+    $('.edit_text').editable( base_url + 'admin/pubdroit/event/pivot', { 
+         submit    : 'OK',
+         indicator : 'Sauvegarde...',
+         cssclass  : 'edit_form_text',
+         tooltip   : 'Click to edit...',
+		 submitdata : function(value, settings) {
+		 	 var column = $(this).data('column');
+		 	 var id     = $(this).data('id');
+		 	 var table  = $(this).data('table');
+			 return {column: column , id : id, table : table};
+	   	 }
+    });  
     
 });
 

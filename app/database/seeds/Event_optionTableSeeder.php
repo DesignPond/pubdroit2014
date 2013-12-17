@@ -23,6 +23,10 @@ class Event_optionTableSeeder extends Seeder {
 			array( 
 				'event_id'     => 2, // changed
 				'option_id' => 2 // changed
+			),
+			array( 
+				'event_id'     => 2, // changed
+				'option_id' => 3 // changed
 			)
 		);
 

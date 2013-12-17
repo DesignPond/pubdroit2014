@@ -166,6 +166,7 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::get('archives', array('uses' => 'EventController@archives'));
 	    Route::get('event', array('uses' => 'EventController@index'));
 	    Route::post('event/upload', array('uses' => 'EventController@upload'));
+	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));
 	    
 	    Route::resource('event', 'EventController');
 	    

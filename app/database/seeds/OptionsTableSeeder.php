@@ -11,14 +11,16 @@ class OptionsTableSeeder extends Seeder {
 
 			array( 
 				'titreOption' => 'Participation au souper', // changed
-				'event_id'    => 1, // changed
 				'typeOption'  => 'checkbox'
 			),
 			array( 
 				'titreOption' => 'Réservation', // changed
-				'event_id'    => 1, // changed
 				'typeOption'  => 'checkbox'
-			)							
+			),
+			array( 
+				'titreOption' => 'Quel est votre université', // changed
+				'typeOption'  => 'text'
+			)						
 		);
 
 		// Uncomment the below to run the seeder

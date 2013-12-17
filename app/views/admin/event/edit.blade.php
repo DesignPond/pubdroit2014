@@ -237,7 +237,7 @@
 					   					     
 							  <h3>Prix</h3>
 							  <div class="row">
-							  	  <div class="col-sm-5 col-md-offset-3">
+							  	  <div class="col-sm-6 col-md-offset-3">
 							  	  
 							  	  	  @if ( ! $event->prices->isEmpty() )
 							  	  	  
@@ -249,8 +249,14 @@
 											  	@foreach($event->prices as $price)
 											  		@if($price->typePrix == 1)
 											  			<li class="list-group-item">
-											  				<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
-											  				<a href="#" class="btn btn-xs btn-danger">X</a>
+											  				<div class="row">
+												  				<div class="col-sm-11">
+														  			<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+														  		</div>
+													  			<div class="col-sm-1">
+																	<a href="#" class="btn btn-xs btn-danger">X</a>															
+																</div>
+															</div>
 											  			</li>
 												  	@endif
 												@endforeach
@@ -266,8 +272,14 @@
 											  	@foreach($event->prices as $price)
 											  		@if($price->typePrix == 2)
 											  			<li class="list-group-item">
-											  				<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
-											  				<a href="#" class="btn btn-xs btn-danger">X</a>
+											  				<div class="row">
+												  				<div class="col-sm-11">
+														  			<span class="label label-primary">{{ $price->prix }} CHF</span> &nbsp;{{ $price->remarquePrix }}
+														  		</div>
+													  			<div class="col-sm-1">
+																	<a href="#" class="btn btn-xs btn-danger">X</a>															
+																</div>
+															</div>
 											  			</li>
 												  	@endif
 												@endforeach
@@ -279,21 +291,35 @@
 								  	  
 							  	  </div>				
 							  </div>
-							  
+							  <?php
+/*
+								echo '<pre>';
+								print_r($event->event_options);
+								echo '</pre>';
+*/
+							  ?>
 							  <h3>Options</h3>
 							  <div class="row">
-					  	 		 <div class="col-sm-5 col-md-offset-3">
+					  	 		 <div class="col-sm-6 col-md-offset-3">
 									  <ul class="list-group">
 									  @if ( ! $event->event_options->isEmpty() )
 									  	@foreach($event->event_options as $option)
 									  		<li class="list-group-item">
 									  			<div class="row">
-									  				<div class="col-sm-10">
-											  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;<?php echo  $option->titreOption; ?>
+									  				<div class="col-sm-11">
+									  					@if($option->typeOption == 'checkbox' )
+											  				<i class="fa fa-square-o"></i>
+											  			@else
+											  				<i class="fa fa-pencil-square-o"></i>
+											  			@endif
+											  			&nbsp;&nbsp;
+											  			<span 
+											  				data-id="<?php echo $option->id; ?>" 
+											  				data-table="event_options"  
+											  				data-column="titreOption" class="edit_text"><?php echo $option->titreOption; ?></span>
 											  		</div>
-										  			<div class="btn-group col-sm-2">
-														<button class="btn btn-xs btn-warning" type="button">éditer</button>
-														<button class="btn btn-xs btn-danger" type="button">X</button>															
+										  			<div class="col-sm-1 text-right">
+														<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $option->titreOption; ?>" href="#">X</a>						
 													</div>
 												</div>
 									  		</li>
@@ -305,18 +331,21 @@
 							  									  
 							  <h3>Spécialisations</h3> 
 						  	  <div class="row">						  	  
-					  	  		 <div class="col-sm-5 col-md-offset-3">
+					  	  		 <div class="col-sm-6 col-md-offset-3">
 									  <ul class="list-group">
 								  		@if ( ! $event->event_specialisations->isEmpty() )
 										  	@foreach($event->event_specialisations as $specialisation)
 										  		<li class="list-group-item">
 										  			<div class="row">
-										  				<div class="col-sm-10">
-												  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;<?php echo  $specialisation->titreSpecialisation; ?>
+										  				<div class="col-sm-11">
+												  			<i class="fa fa-question-circle"></i>&nbsp;&nbsp;
+												  			<span 
+												  				data-id="<?php echo $specialisation->id; ?>" 
+												  				data-table="event_specialisations" 
+												  				data-column="titreSpecialisation" class="edit_text"><?php echo $specialisation->titreSpecialisation; ?></span>
 												  		</div>
-											  			<div class="btn-group col-sm-2">
-															<button class="btn btn-xs btn-warning" type="button">éditer</button>
-															<button class="btn btn-xs btn-danger" type="button">X</button>															
+											  			<div class="col-sm-1">
+															<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $specialisation->titreSpecialisation; ?>" href="#">X</a>
 														</div>
 													</div>
 										  		</li>

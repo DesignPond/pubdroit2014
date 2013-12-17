@@ -123,6 +123,7 @@
 	    <script type="text/javascript" src="<?php echo asset('js/admin/demo-datatables.js');?>"></script>
 		<script type="text/javascript" src="<?php echo asset('js/admin/placeholdr.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/application.js');?>"></script> 	
+		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.jeditable.js');?>"></script> 	
 	    <script type="text/javascript" src="<?php echo asset('js/admin/main.js');?>"></script>
     	
 	</body>

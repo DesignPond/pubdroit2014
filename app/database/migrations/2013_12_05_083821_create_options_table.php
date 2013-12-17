@@ -17,7 +17,6 @@ class CreateOptionsTable extends Migration {
 			$table->increments('id');
 			
 			$table->string('titreOption');
-			$table->integer('event_id');	// changed	
 			$table->string('typeOption');
 
 		});
