@@ -10,53 +10,53 @@ class PricesTableSeeder extends Seeder {
 		$prices = array(
 		
 			array( 
-				'event_id'     => 1, // changed
-				'remarquePrix' => 'Prix normal', // changed
-				'prix'         => 120, // changed
-				'rangPrix'     => 1,
-				'typePrix'     => 1 
+				'event_id'      => 1, // changed
+				'remarquePrice' => 'Prix normal', // changed
+				'Price'         => 120, // changed
+				'rangPrice'     => 1,
+				'typePrice'     => 1 
 			),
 			array( 
-				'event_id'     => 1, // changed
-				'remarquePrix' => 'Prix étudiants', // changed
-				'prix'         => 100, // changed
-				'rangPrix'     => 1,
-				'typePrix'     => 2 
+				'event_id'       => 1, // changed
+				'remarquePrice' => 'Prix étudiants', // changed
+				'Price'         => 100, // changed
+				'rangPrice'     => 1,
+				'typePrice'     => 2 
 			),
 			array( 
-				'event_id'     => 2, // changed
-				'remarquePrix' => 'Prix normal 2', // changed
-				'prix'         => 80, // changed
-				'rangPrix'     => 1,
-				'typePrix'     => 1 
+				'event_id'      => 2, // changed
+				'remarquePrice' => 'Prix normal 2', // changed
+				'Price'         => 80, // changed
+				'rangPrice'     => 1,
+				'typePrice'     => 1 
 			),
 			array( 
-				'event_id'     => 2, // changed
-				'remarquePrix' => 'Prix étudiants', // changed
-				'prix'         => 100, // changed
-				'rangPrix'     => 2,
-				'typePrix'     => 1 
+				'event_id'      => 2, // changed
+				'remarquePrice' => 'Prix étudiants', // changed
+				'Price'         => 100, // changed
+				'rangPrice'     => 2,
+				'typePrice'     => 1 
 			),
 			array( 
-				'event_id'     => 2, // changed
-				'remarquePrix' => 'Prix tout compris', // changed
-				'prix'         => 150, // changed
-				'rangPrix'     => 3,
-				'typePrix'     => 1 
+				'event_id'      => 2, // changed
+				'remarquePrice' => 'Prix tout compris', // changed
+				'Price'         => 150, // changed
+				'rangPrice'     => 3,
+				'typePrice'     => 1 
 			),
 			array( 
-				'event_id'     => 2, // changed
-				'remarquePrix' => 'Prix tout compris gratuit', // changed
-				'prix'         => 0, // changed
-				'rangPrix'     => 2,
-				'typePrix'     => 2 
+				'event_id'      => 3, // changed
+				'remarquePrice' => 'Prix tout compris gratuit', // changed
+				'Price'         => 0, // changed
+				'rangPrice'     => 2,
+				'typePrice'     => 2 
 			),
 			array( 
-				'event_id'     => 2, // changed
-				'remarquePrix' => 'Prix invité', // changed
-				'prix'         => 10, // changed
-				'rangPrix'     => 1,
-				'typePrix'     => 2 
+				'event_id'      => 4, // changed
+				'remarquePrice' => 'Prix invité', // changed
+				'Price'         => 10, // changed
+				'rangPrice'     => 1,
+				'typePrice'     => 2 
 			)		
 		);
 

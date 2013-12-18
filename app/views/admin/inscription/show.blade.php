@@ -8,12 +8,12 @@
 		<div id="page-heading">
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
-				<li class="active">Spécialisation</li>
+				<li class="active">Profession</li>
 			</ol>
-			<h1>Spécialisation</h1>
+			<h1>Profession</h1>
 			<div class="options">
 	            <div class="btn-toolbar">
-	                <a href="{{ url('admin/pubdroit/specialisation/create') }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Créer</a>
+	                <a href="{{ url('admin/pubdroit/profession/create') }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Créer</a>
 	            </div>
 			</div>
 		</div>
@@ -40,13 +40,13 @@
 					</div>
 					@endif
 					
-					@foreach($specialisations as $specialisation)
+					@foreach($professions as $profession)
 					
-					<div class="specialisation">
-						<h3><strong>{{ $specialisation->titreSpecialisation }}</strong></h3>
-						<div class="btn-group-vertical specialisation-btn">
-							<a class="btn btn-xs btn-orange" href="{{ url('admin/pubdroit/specialisation/'.$specialisation->id.'/edit') }}">&eacute;diter</a>
-							<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $specialisation->titreSpecialisation; ?>" href="{{ url('admin/pubdroit/specialisation/'.$specialisation->id.'/delete') }}">X</a>
+					<div class="profession">
+						<h3><strong>{{ $profession->titreProfession }}</strong></h3>
+						<div class="btn-group-vertical profession-btn">
+							<a class="btn btn-xs btn-orange" href="{{ url('admin/pubdroit/profession/'.$profession->id.'/edit') }}">&eacute;diter</a>
+							<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $profession->titreProfession; ?>" href="{{ url('admin/pubdroit/profession/'.$profession->id.'/delete') }}">X</a>
 						</div>
 					</div>
 					

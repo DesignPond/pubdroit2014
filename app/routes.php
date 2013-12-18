@@ -16,7 +16,7 @@ use Carbon\Carbon;
 Route::get('/', function()
 {
 	
-	return Options::find(1)->event_id;
+	return Inscriptions::where('event_id', '=' ,1)->with( array('prices','users') )->get();
 		
 /*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
@@ -146,15 +146,16 @@ Route::group(array('prefix' => 'admin'), function()
 		Routes   
 	=========================================== */ 
 	
+	// Index administration
     Route::get('/', array('uses' => 'AdminController@index'));
     
-    // test
+    // Upload file
 	Route::post('upload', array('uses' => 'UploadController@store'));
 	Route::get('files', array('uses' => 'AdminController@files'));
     
     Route::group(array('prefix' => 'pubdroit'), function()
 	{
-	
+		// Colloques
 	    Route::get('/', array('uses' => 'EventController@index'));	    
 	    Route::get('lists', array('uses' => 'EventController@lists'));
 	    Route::get('archives', array('uses' => 'EventController@archives'));	    
@@ -162,16 +163,27 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::post('event/upload', array('uses' => 'EventController@upload'));
 	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));	    
 	    Route::resource('event', 'EventController');
+
+		// Inscriptions
+	    Route::get('inscription/event/{event}', array('uses' => 'InscriptionController@event'));	      
+	    Route::resource('inscription', 'InscriptionController');
 	    
+	    // Options colloques
 	    Route::get('option/{option}/delete', array('uses' => 'OptionController@destroy'));
 	    Route::get('option/create/{event}', array('uses' => 'OptionController@create'));
 	    Route::resource('option', 'OptionController');
 	    
+	    // Spécialisations users and colloques
 	    Route::get('specialisation/{specialisation}/delete', array('uses' => 'SpecialisationController@destroy'));
 	    Route::resource('specialisation', 'SpecialisationController');
 	    
+	    // Membres users
 	    Route::get('membre/{membre}/delete', array('uses' => 'MembreController@destroy'));
 	    Route::resource('membre', 'MembreController');
+	    
+	    // Professions users
+	    Route::get('profession/{profession}/delete', array('uses' => 'ProfessionController@destroy'));
+	    Route::resource('profession', 'ProfessionController');
 	    
 	});
 	

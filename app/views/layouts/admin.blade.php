@@ -82,8 +82,11 @@
 					    		<i class="fa fa-bookmark"></i> <span>Spécialisations</span></a>
 					    	</li>
 					   		<li><a class="{{ Request::is( 'admin/pubdroit/membre') ? 'active' : '' }}" href="{{ url('admin/pubdroit/membre') }}">
-					    		<i class="fa fa-bookmark"></i> <span>Membres</span></a>
+					    		<i class="fa fa-tags"></i> <span>Membres</span></a>
 					    	</li>
+					   		<li><a class="{{ Request::is( 'admin/pubdroit/profession') ? 'active' : '' }}" href="{{ url('admin/pubdroit/profession') }}">
+					    		<i class="fa fa-legal"></i> <span>Profession</span></a>
+					    	</li>					
 					    </ul>
 				    </li>
 				    <li><a href="javascript:;"><i class="fa fa-book"></i> <span>Publications-droit</span></a>
@@ -93,7 +96,7 @@
 					    	</li>
 					    	<li><a class="{{ Request::is( 'admin/pubdroit/archives') ? 'active' : '' }}" href="{{ url('admin/pubdroit/archives') }}">
 					    		<i class="fa fa-archive"></i> <span>Archives</span></a>
-					    	</li>
+					    	</li>					 
 					    </ul>
 				    </li>
 				    <li><a href="javascript:;"><i class="fa fa-home"></i> <span>Bail</span></a>

@@ -1,7 +1,6 @@
 <?php
 
 class Comptes extends Eloquent {
-	protected $guarded = array();
 
-	public static $rules = array();
+	protected $guarded = array('id');
 }

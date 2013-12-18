@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Event_specialisationTableSeeder');
 
 		$this->call('MembresTableSeeder');
+		$this->call('ProfessionsTableSeeder');
+		$this->call('InscriptionsTableSeeder');
 	}
 
 }

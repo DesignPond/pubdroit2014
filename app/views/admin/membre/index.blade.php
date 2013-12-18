@@ -43,7 +43,7 @@
 					@foreach($membres as $membre)
 					
 					<div class="membre">
-						<h3>{{ $membre->titreMembre }}</h3>
+						<h3><strong>{{ $membre->titreMembre }}</strong></h3>
 						<div class="btn-group-vertical membre-btn">
 							<a class="btn btn-xs btn-orange" href="{{ url('admin/pubdroit/membre/'.$membre->id.'/edit') }}">&eacute;diter</a>
 							<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $membre->titreMembre; ?>" href="{{ url('admin/pubdroit/membre/'.$membre->id.'/delete') }}">X</a>

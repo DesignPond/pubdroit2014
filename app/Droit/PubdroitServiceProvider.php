@@ -2,10 +2,12 @@
 
 use Illuminate\Support\ServiceProvider;
 use Events as E;
+use Inscriptions as I;
 use Comptes as C;
 use Options as O;
 use Specialisations as S;
 use Membres as M;
+use Professions as P;
 use Files as F;
 
 class PubdroitServiceProvider extends ServiceProvider {
@@ -13,12 +15,13 @@ class PubdroitServiceProvider extends ServiceProvider {
     public function register()
     {     
        	// Admin
-    	$this->registerEventService();	
-    	$this->registerInscriptionService();
+    	$this->registerEventService();
+    	$this->registerInscriptionService();	
     	$this->registerCompteService();	
     	$this->registerOptionService();	
     	$this->registerSpecialisationService();	
-    	$this->registerMembreService();	
+    	$this->registerMembreService();
+    	$this->registerProfessionService();	
 		$this->registerFileService();
 		$this->registerUploadService();	
     			
@@ -37,11 +40,11 @@ class PubdroitServiceProvider extends ServiceProvider {
     
 	    $this->app->bind('Droit\Repo\Inscription\InscriptionInterface', function()
         {
-            return new \Droit\Repo\Inscription\InscriptionEloquent( new E );
+            return new \Droit\Repo\Inscription\InscriptionEloquent( new I );
         });
         
     }
-    
+
     protected function registerCompteService(){
     
 	    $this->app->bind('Droit\Repo\Compte\CompteInterface', function()
@@ -77,7 +80,16 @@ class PubdroitServiceProvider extends ServiceProvider {
         });
         
 	}
+    
+    public function registerProfessionService(){
+		
+		$this->app->bind('Droit\Repo\Profession\ProfessionInterface', function()
+        {
+            return new \Droit\Repo\Profession\ProfessionEloquent( new P );
+        });
         
+	}
+	        
     protected function registerFileService(){
 
 	    $this->app->bind('Droit\Repo\File\FileInterface', function()

@@ -17,10 +17,10 @@ class CreatePricesTable extends Migration {
 			$table->increments('id');
 			
 			$table->integer('event_id'); // changed	
-			$table->string('remarquePrix');
-			$table->float('prix'); // changed	
-			$table->integer('rangPrix'); // changed	
-			$table->enum('typePrix', array('1','2'));
+			$table->string('remarquePrice');
+			$table->float('price'); // changed	
+			$table->integer('rangPrice'); // changed	
+			$table->enum('typePrice', array('1','2'));
 			
 		});
 	}

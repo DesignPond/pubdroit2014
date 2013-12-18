@@ -1,7 +1,7 @@
 <?php namespace Droit\Repo\Inscription;
 
 use Droit\Repo\Inscription\InscriptionInterface;
-use Illuminate\Database\Eloquent\Model as M;
+use Inscriptions as M;
 
 class InscriptionEloquent implements InscriptionInterface {
 
@@ -24,25 +24,34 @@ class InscriptionEloquent implements InscriptionInterface {
 		
 	public function getAll(){
 		
-		return $this->inscription->get();		
+		return $this->inscription->all();		
 	}
 		
 	public function find($id){
 		
-		//return $this->inscription->with( array('inscriptionsoptions') )->findOrFail($id);			
+		return $this->inscription->where('id', '=' ,$id)->with( array('prices','users') )->get();		
+	}
+	
+	public function getEvent($event){
+		
+		return $this->inscription->where('event_id', '=' ,$event)->with( array('users'=> function($query) 
+		{ 
+			$query->join('adresses', 'users.id', '=', 'adresses.user_id');
+			$query->where('adresses.type', '=', 2);
+			
+		}))->get();
+		
 	}
 	
 	public function create(array $data){
 		
-/*
 		// Create the article
 		$inscription = $this->inscription->create(array(
-			'titre'       => $data['titre'],
-			'description' => $data['description'],
-			'user_id'     => $data['user_id'],
-			'categorie_id'=> $data['categorie_id'],
-			'theme_id'    => $data['theme_id'],
-			'subtheme_id' => $data['subtheme_id']
+			'event_id'        => $data['event_id'],
+			'user_id'         => $data['user_id'],
+			'price_id'        => $data['price_id'],
+			'noInscription'   => $data['noInscription'],
+			'dateInscription' => $data['dateInscription']
 		));
 		
 		if( ! $inscription )
@@ -51,12 +60,10 @@ class InscriptionEloquent implements InscriptionInterface {
 		}
 		
 		return true;
-*/
 	}
 	
 	public function update(array $data){
 		
-/*
 		$inscription = $this->inscription->find($data['id']);
 		
 		if( ! $inscription )
@@ -64,16 +71,16 @@ class InscriptionEloquent implements InscriptionInterface {
 			return false;
 		}
 
-		$inscription->titre        = $data['titre'];
-		$inscription->description  = $data['description'];
-		$inscription->user_id      = $data['user_id'];
-		$inscription->categorie_id = $data['categorie_id'];
-		$inscription->theme_id     = $data['theme_id'];
-		$inscription->subtheme_id  = $data['subtheme_id'];
+		$inscription->user_id         = $data['user_id'];
+		$inscription->event_id        = $data['event_id'];
+		$inscription->price_id         = $data['price_id'];
+		$inscription->noInscription   = $data['noInscription'];
+		$inscription->dateInscription = $data['dateInscription'];
+
 		$inscription->save();	
 		
 		return true;
-*/
+
 	}
 	
 }
