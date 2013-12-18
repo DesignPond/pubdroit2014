@@ -67,15 +67,25 @@
 		<div id="page-container">
 			<nav id="page-leftbar" role="navigation">
 				<ul id="sidebar" class="acc-menu">
-				<li id="search">
-                    <a href="javascript:;"><i class="fa fa-search opacity-control"></i></a>
-                     <form>
-                        <input type="text" class="search-query" placeholder="Search...">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </li>
-                <li class="divider"></li>
-				    <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><i class="fa fa-cog"></i> <span>Dashboard</span></a></li>
+					<li id="search">
+	                    <a href="javascript:;"><i class="fa fa-search opacity-control"></i></a>
+	                     <form>
+	                        <input type="text" class="search-query" placeholder="Search...">
+	                        <button type="submit"><i class="fa fa-search"></i></button>
+	                    </form>
+	                </li>
+	                <li class="divider"></li>
+	                <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><i class="fa fa-cog"></i> <span>Dashboard</span></a></li>
+				    <li><a href="javascript:;"><i class="fa fa-cogs"></i> <span>Outils</span></a>
+					    <ul class="acc-menu">
+					   		<li><a class="{{ Request::is( 'admin/pubdroit/specialisation') ? 'active' : '' }}" href="{{ url('admin/pubdroit/specialisation') }}">
+					    		<i class="fa fa-bookmark"></i> <span>Spécialisations</span></a>
+					    	</li>
+					   		<li><a class="{{ Request::is( 'admin/pubdroit/membre') ? 'active' : '' }}" href="{{ url('admin/pubdroit/membre') }}">
+					    		<i class="fa fa-bookmark"></i> <span>Membres</span></a>
+					    	</li>
+					    </ul>
+				    </li>
 				    <li><a href="javascript:;"><i class="fa fa-book"></i> <span>Publications-droit</span></a>
 					    <ul class="acc-menu">
 					    	<li><a class="{{ Request::is( 'admin/pubdroit/lists') ? 'active' : '' }}" href="{{ url('admin/pubdroit/lists') }}">

@@ -172,3 +172,26 @@
   user-select: none;
 }
 
+.specialisation , .membre{
+	display: inline-block;
+	width: 20%;
+	margin: 10px 2%;
+	background: #f0f0f0;
+	border: 1px solid #d9d9d9;
+}
+
+	.specialisation h3 , .membre h3{
+		display: block;
+		padding: 5px;
+		font-size: 14px;
+		line-height: 16px;
+		width: 80%;
+		float:left;
+	}
+	
+	.specialisation .specialisation-btn , .membre .membre-btn{
+		display: block;
+		width: 20%;
+		float:left;
+	}
+

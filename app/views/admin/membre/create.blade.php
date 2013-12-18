@@ -8,10 +8,10 @@
 		<div id="page-heading">
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
-				<li>Option</li>
+				<li>Membre</li>
 				<li class="active">Créer</li>
 			</ol>
-			<h1>Option</h1>
+			<h1>Membre</h1>
 		</div>
 		
 		<div class="container">
@@ -45,7 +45,7 @@
 								'id' => 'validate-form',
 								'data-validate' => 'parsley',
 								'class' => 'form-horizontal',
-								'route' => 'admin.pubdroit.option.store')) 
+								'route' => 'admin.pubdroit.membre.store')) 
 							}} 
 
 							<!-- panel start -->
@@ -54,19 +54,11 @@
 							   <div class="panel-body"><!-- start panel content -->
 							
 									<div class="form-group">
-										  <label for="titreOption" class="col-sm-3 control-label">Titre de l'option</label>
+										  <label for="titreMembre" class="col-sm-3 control-label">Titre du membre</label>
 										  <div class="col-sm-6">
-										  	 {{ Form::text('titreOption', null , array('class' => 'form-control' )) }}
+										  	 {{ Form::text('titreMembre', null , array('class' => 'form-control' )) }}
 										  </div>
 										  <div class="col-sm-3">Requis</div>
-									</div>
-													  		
-									<div class="form-group">
-										  <label for="selector1" class="col-sm-3 control-label">Type d'option</label>
-										  <div class="col-sm-6">
-										  	 {{ Form::select('typeOption', array('checkbox'=>'checkbox','text'=>'text') , null , array( 'class' => 'form-control' ) ) }}
-										  </div>
-										  <div class="col-sm-3"></div>
 									</div>
 							
 							    </div><!-- end panel content -->
@@ -75,7 +67,6 @@
 							      		<div class="col-sm-6 col-sm-offset-3">
 							      			<div class="btn-toolbar">
 							      				{{ Form::hidden('id', null )}}
-							      				{{ Form::hidden('event_id', $event )}}
 								      			<button type="submit" class="btn-primary btn">Envoyer</button>
 							      			</div>
 							      		</div>

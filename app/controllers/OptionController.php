@@ -7,8 +7,6 @@ class OptionController extends BaseController {
 
 	protected $option;
 	
-	protected $validator;
-	
 	public function __construct( OptionInterface $option )
 	{		
 		$this->option     = $option;
@@ -48,7 +46,7 @@ class OptionController extends BaseController {
 		{
 			$this->option->create(Input::all());
 			
-			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success') );
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'L\'option à été crée' ) );
 		}
 		
 		return Redirect::to('admin/pubdroit/option/'.$id.'/create')->withErrors( $optionValidator->errors() )->withInput( Input::all() ); 
@@ -94,7 +92,7 @@ class OptionController extends BaseController {
 		{
 			$this->option->update(Input::all());
 			
-			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success') );
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'L\'option à été mise à jour') );
 		}
 		
 		return Redirect::to('admin/pubdroit/option/'.$id.'/edit')->withErrors( $optionValidator->errors() )->withInput( Input::all() ); 
@@ -113,8 +111,10 @@ class OptionController extends BaseController {
 
 		if( $this->option->delete($id) )
 		{
-			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success') );
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'L\'option à été supprimée') );
 		}
+		
+		return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') );
 	}
 
 }

@@ -94,7 +94,7 @@ Route::group(array('prefix' => 'matrimonial'), function()
 
 
 /* ========================================
-	 Login for admin
+	 Login 
 =========================================== */ 
 
 // Session Routes
@@ -157,17 +157,21 @@ Route::group(array('prefix' => 'admin'), function()
 	
 	    Route::get('/', array('uses' => 'EventController@index'));	    
 	    Route::get('lists', array('uses' => 'EventController@lists'));
-	    Route::get('archives', array('uses' => 'EventController@archives'));
-	    
+	    Route::get('archives', array('uses' => 'EventController@archives'));	    
 	    Route::get('event', array('uses' => 'EventController@index'));
 	    Route::post('event/upload', array('uses' => 'EventController@upload'));
-	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));
-	    
+	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));	    
 	    Route::resource('event', 'EventController');
 	    
 	    Route::get('option/{option}/delete', array('uses' => 'OptionController@destroy'));
 	    Route::get('option/create/{event}', array('uses' => 'OptionController@create'));
 	    Route::resource('option', 'OptionController');
+	    
+	    Route::get('specialisation/{specialisation}/delete', array('uses' => 'SpecialisationController@destroy'));
+	    Route::resource('specialisation', 'SpecialisationController');
+	    
+	    Route::get('membre/{membre}/delete', array('uses' => 'MembreController@destroy'));
+	    Route::resource('membre', 'MembreController');
 	    
 	});
 	

@@ -29,7 +29,9 @@
 					
 					@if(Session::has('status'))
 					<div class="alert alert-dismissable alert-{{  Session::get('status') }}">
-						<strong>Well done!</strong>You successfully read this important alert message.
+						@if(Session::has('message'))
+							{{  Session::get('message') }}
+						@endif
 						<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
 					</div>
 					@endif
@@ -294,7 +296,7 @@
 							  	  </div>				
 							  </div>
 
-							  <h3>Options</h3>
+							  <h3><a name="option">Options</a></h3>
 							  <p><a href="{{ url('admin/pubdroit/option/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>
 							   
 							  <div class="row">

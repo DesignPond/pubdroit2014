@@ -10473,6 +10473,15 @@ body.collapse-leftbar #search.keep-open form button[type="submit"] {
   border: 1px solid #d2d3d6;
   border-radius: 1px;
 }
+
+.panel-body h3 a{
+  color: #4D4D4D;
+}
+	.panel-body h3 a:hover{
+	  color: #4D4D4D;
+	  text-decoration: none;
+	}
+
 .panel-body:before,
 .panel-body:after {
   content: " ";
