@@ -9,7 +9,7 @@ class NewsletterController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('newsletters.index');
+        return View::make('newsletter.index');
 	}
 
 	/**
@@ -45,6 +45,10 @@ class NewsletterController extends BaseController {
 		// Link both usr account and newsletter subscription
 		
 		
+	}
+	
+	public function send($newsletter){
+    
 	}
 
 	/**

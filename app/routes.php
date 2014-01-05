@@ -45,6 +45,7 @@ Route::get('/', function()
 	/* Newsletter */
 	
 	Route::post('newsletter', array( 'uses' => 'NewsletterController@add') );
+	Route::post('newsletter/send/{newsletter}', array( 'uses' => 'NewsletterController@send') );
 
         
 /* ==================================
