@@ -317,20 +317,429 @@ a.newsletterLink:hover {
   text-align: center;
 }
 
+/******************************************************
+* RIGHT
+******************************************************/
+/* line 286, main.scss */
+#rightmenu {
+  min-height: 190px;
+  padding: 15px 15px;
+}
+
+/* line 290, main.scss */
+#rightmenu a {
+  display: block;
+  color: #000;
+  text-decoration: none;
+}
+
+/* line 296, main.scss */
+#rightmenu h4 a {
+  font-style: italic;
+  font-size: 13px;
+  margin-bottom: 3px;
+}
+
+/* line 302, main.scss */
+#rightmenu a:hover {
+  color: #CB2629;
+  text-decoration: none;
+}
+
+/* line 306, main.scss */
+#rightmenu h4 {
+  background: url(../../images/bail/right_close.png) 100% 7px no-repeat;
+  border-bottom: 1px solid #CB2629;
+  display: block;
+  margin: 0 0 12px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 15px;
+  font-weight: normal;
+  text-decoration: none;
+  color: #000;
+}
+
+/* line 318, main.scss */
+#rightmenu h4:last-child {
+  margin-bottom: 0;
+}
+
+/* line 321, main.scss */
+#rightmenu h4.accordion {
+  background: url(../../images/bail/right_close.png) 100% 7px no-repeat;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  padding: 0;
+}
+
+/* line 328, main.scss */
+#rightmenu h4.accordion.active {
+  font-weight: bold;
+  background: url(../../images/bail/right_open.png) 100% 7px no-repeat;
+}
+
+/* line 334, main.scss */
+#rightmenu h4 a,
+#rightmenu h4 span.a {
+  padding: 3px 0;
+}
+
+/* line 338, main.scss */
+#rightmenu ul.menu {
+  margin: 0;
+  padding: 0 10px 20px;
+  list-style: none;
+}
+
+/* line 343, main.scss */
+#rightmenu ul.menu li {
+  margin: 0;
+  font-size: 13px;
+}
+
+/* line 347, main.scss */
+#rightmenu ul.menu li a.act {
+  color: #CB2629;
+}
+
+/* line 352, main.scss */
+#rightmenu ul.menu2col1,
+#rightmenu ul.menu2col2 {
+  float: left;
+  width: 80px;
+  margin: 0;
+  padding: 0 10px 20px;
+  list-style: none;
+}
+
+/* line 360, main.scss */
+#rightmenu ul.menu2col1 li,
+#rightmenu ul.menu2col2 li {
+  margin: 0 0 3px;
+}
+
+/* line 364, main.scss */
+#rightmenu ul.menu2col1 li a.act,
+#rightmenu ul.menu2col2 li a.act {
+  color: #CB2629;
+}
+
+/* line 369, main.scss */
+#right .box {
+  margin: 0px 20px 32px;
+}
+
+/* line 373, main.scss */
+#right .box h4 {
+  position: relative;
+  left: -20px;
+  width: 215px;
+  display: block;
+  margin: 0;
+  height: 25px;
+  padding: 11px 20px 2px;
+  background: #cb2629 url("../images/search_bg.png") 0 0 repeat-y;
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+  border: 0;
+}
+
+/*** special soutien ***/
+/* line 389, main.scss */
+#right .soutien .logo {
+  padding: 10px 0 0;
+  text-align: right;
+}
+
+/*** special jurisprudence ***/
+/* line 395, main.scss */
+.accordionContent.jurisprudence h6 {
+  margin-top: 0;
+}
+
+/* line 398, main.scss */
+.accordionContent.jurisprudence .list {
+  margin: 0 0 20px;
+  list-style: none;
+}
+
+/* line 402, main.scss */
+.accordionContent.jurisprudence .list li {
+  position: relative;
+}
+
+/* line 405, main.scss */
+.accordionContent.jurisprudence .list li a {
+  display: block;
+  height: 15px;
+  padding: 0 0 0 20px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  text-decoration: none;
+  background: url("../../images/bail/check.png") 0 0 no-repeat;
+}
+
+/* line 414, main.scss */
+.accordionContent.jurisprudence .list li a:hover {
+  text-decoration: underline;
+  color: #B80E1D;
+}
+
+/* line 418, main.scss */
+.accordionContent.jurisprudence .list li a.active {
+  text-decoration: underline;
+  color: #B80E1D;
+  background: url("../../images/bail/check.png") 0 -26px no-repeat;
+}
+
+/*** special seminaire ***/
+/* line 425, main.scss */
+.accordionContent.seminaire h6 {
+  margin-top: 0;
+}
+
+/* line 428, main.scss */
+.accordionContent.seminaire .list {
+  margin: 0 0 20px;
+  list-style: none;
+}
+
+/* line 432, main.scss */
+.accordionContent.seminaire .list li {
+  position: relative;
+}
+
+/* line 435, main.scss */
+.accordionContent.seminaire .list li a {
+  display: block;
+  height: 15px;
+  padding: 1px 0 0 20px;
+  margin-bottom: 6px;
+  text-decoration: none;
+  background: url(../images/check.png) 0 0 no-repeat;
+}
+
+/* line 443, main.scss */
+.accordionContent.seminaire .list li a:hover {
+  text-decoration: underline;
+  color: #B80E1D;
+}
+
+/* line 447, main.scss */
+.accordionContent.seminaire .list li a.active {
+  text-decoration: underline;
+  color: #B80E1D;
+  background: url(../images/check.png) 0 -26px no-repeat;
+}
+
+/* line 453, main.scss */
+#seminaires .sujets .col {
+  float: left;
+}
+
+/* line 456, main.scss */
+#seminaires .sujets .sujet {
+  padding: 10px 0;
+  border-bottom: 1px solid #B80E1D;
+}
+
+/* line 460, main.scss */
+#seminaires .sujets .category {
+  width: 90px;
+  margin-right: 4px;
+}
+
+/* line 464, main.scss */
+#seminaires .sujets .edition {
+  width: 110px;
+  margin-right: 4px;
+}
+
+/* line 468, main.scss */
+#seminaires .sujets .annee {
+  width: 33px;
+  margin-right: 4px;
+}
+
+/* line 472, main.scss */
+#seminaires .sujets .catTitle .annee strong {
+  position: relative;
+  left: -4px;
+}
+
+/* line 476, main.scss */
+#seminaires .sujets .desc {
+  width: 200px;
+  margin-right: 4px;
+}
+
+/* line 480, main.scss */
+#seminaires .sujets .auteur {
+  width: 100px;
+  margin-right: 4px;
+}
+
+/* line 484, main.scss */
+#seminaires .sujets .order {
+  width: 72px;
+}
+
+/* line 488, main.scss */
+.ui-accordion .ui-accordion-content {
+  padding: 0;
+}
+
+/* line 493, main.scss */
+.ui-accordion-header-active.ui-state-active a {
+  font-weight: bold;
+}
+
+/* line 497, main.scss */
+.chzn-container-multi .chzn-choices .search-field .default {
+  color: #999999;
+}
+
+/* line 500, main.scss */
+.chzn-container-multi .chzn-choices .search-field input {
+  background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+  border: 0 none !important;
+  box-shadow: none;
+  color: #666666;
+  margin: 1px 0;
+  outline: 0 none;
+  padding: 5px;
+}
+
+/* line 510, main.scss */
+.filtre h6 {
+  color: #666666;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 0;
+}
+
+/******************************************************
+* Calculette
+******************************************************/
+/* line 519, main.scss */
+#bail_calculette .line {
+  clear: both;
+}
+
+/* line 522, main.scss */
+#bail_calculette .line label {
+  display: block;
+  float: left;
+  width: 206px;
+  margin: 10px 10px 3px 0;
+}
+
+/* line 528, main.scss */
+#bail_calculette .line input[type=text], #bail_calculette .line input[type=submit], #bail_calculette .line select {
+  float: left;
+  width: 215px;
+  background: #fff;
+  border: 1px solid #a7a5a5;
+}
+
+/* line 534, main.scss */
+#bail_calculette .line.submit {
+  padding: 15px 0 0 0;
+  text-align: center;
+}
+
+/* line 539, main.scss */
+#bail_calculette .line.submit input#calculette_submit {
+  width: auto;
+  background: #CB2629;
+  color: #fff;
+  border: 1px solid #CB2629;
+  padding: 2px 10px;
+  cursor: pointer;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  -khtml-box-sizing: content-box;
+  box-sizing: content-box;
+  -moz-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  /*
+  behavior: url(PIE.htc);
+  */
+}
+
+/* line 559, main.scss */
+#bail_calculette .zone {
+  width: 230px;
+  margin-top: 30px;
+}
+
+/* line 563, main.scss */
+#bail_calculette .zone .line {
+  margin-bottom: 6px;
+}
+
+/* line 566, main.scss */
+#bail_calculette .zone .line.result {
+  height: 45px;
+}
+
+/* line 569, main.scss */
+#bail_calculette .zone .line.gris {
+  color: #999;
+  font-size: 11px;
+}
+
+/* line 573, main.scss */
+#bail_calculette .zone .label {
+  display: block;
+  float: left;
+  width: 160px;
+  margin: 0 10px 0 0;
+}
+
+/* line 579, main.scss */
+#bail_calculette .zone .value {
+  display: block;
+  float: left;
+}
+
+/* line 583, main.scss */
+#bail_calculette .zone .date {
+  display: block;
+  clear: both;
+  color: #999;
+  font-size: 11px;
+}
+
+/* line 589, main.scss */
+#bail_calculette .result {
+  font-weight: bold;
+}
+
+/* line 592, main.scss */
+#bail_calculette .result .difference {
+  font-weight: normal;
+}
+
 /*======================================
 	Arrets
 =======================================*/
-/* line 287, main.scss */
+/* line 601, main.scss */
 .arret {
   margin-bottom: 25px;
 }
 
-/* line 291, main.scss */
+/* line 605, main.scss */
 .arret p, .arret ul {
   margin-bottom: 10px;
 }
 
-/* line 295, main.scss */
+/* line 609, main.scss */
 .arret ul li {
   font-size: 13px;
 }
@@ -338,12 +747,12 @@ a.newsletterLink:hover {
 /*======================================
 	Misc
 =======================================*/
-/* line 303, main.scss */
+/* line 617, main.scss */
 .upMarge {
   margin-top: 15px;
 }
 
-/* line 307, main.scss */
+/* line 621, main.scss */
 .line {
   line-height: 30px;
   margin-bottom: 20px;

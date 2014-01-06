@@ -27,6 +27,11 @@ class BailController extends BaseController {
     	return View::make('bail.jurisprudence');	
 	}
 	
+	public function doctrine(){
+    
+    	return View::make('bail.doctrine');	
+	}
+	
 	public function search(){
     	
     	$query = Request::get('q');

@@ -56,7 +56,12 @@ Route::group(array('prefix' => 'bail'), function()
 
     Route::get('/', array('uses' => 'BailController@index'));	 
   
-    Route::get('lois', array('uses' => 'BailController@index'));	 
+    Route::get('lois', array('uses' => 'BailController@lois'));	
+    
+    Route::get('jurisprudence', array('uses' => 'BailController@jurisprudence'));	
+
+    Route::get('doctrine', array('uses' => 'BailController@doctrine'));	    
+     
     
 });
 

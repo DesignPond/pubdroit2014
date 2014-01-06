@@ -13,6 +13,7 @@
     ================================================== -->
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/smoothness/jquery-ui-1.10.3.custom.css'); ?>" type="text/css"  />
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/chosen.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/bail/main.css');?>">
@@ -21,9 +22,11 @@
     ================================================== -->        
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+    <script src="<?php echo asset('js/jquery-ui.js');?>"></script>
     <script src="<?php echo asset('js/chosen.jquery.js');?>"></script>
     <script src="<?php echo asset('js/bail/main.js');?>"></script>
-
+    <script src="<?php echo asset('js/bail/bail.js');?>"></script>
+	<base id="base" href="http://pubdroit.local/bail/" />
 	</head>
 	<body>
         <div id="main" class="container">
@@ -74,22 +77,25 @@
             	
             	<!-- Bloc archives newsletter --> 
             	
-             	<div class="min-inner upMarge">
-	            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
-	            		<div class="toggleNewsletter" style="display:none;">
-		            		<ul>
-			            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=347" >Newsletter été 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=340" >Newsletter juin 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=334" >Newsletter mai 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
-		            		</ul>
-	            		</div>
-					<h3 class="link">
-						{{ link_to('bail/jurisprudence', 'Jurisprudence' , array('class' => 'newsletterLink') ) }}
-					</h3>
-						<div>
+             	<div class="upMarge">
+             		<div id="rightmenu">	
+	             		<!--
+		            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
+		            		<div class="toggleNewsletter" style="display:none;">
+			            		<ul>
+				            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
+				            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
+				            		<li><a href="index.php?id=206&amp;uid=347" >Newsletter été 2013</a></li>
+				            		<li><a href="index.php?id=206&amp;uid=340" >Newsletter juin 2013</a></li>
+				            		<li><a href="index.php?id=206&amp;uid=334" >Newsletter mai 2013</a></li>
+				            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
+			            		</ul>
+		            		</div>
+						<h3 class="link">
+							{{ link_to('bail/jurisprudence', 'Jurisprudence' , array('class' => 'newsletterLink') ) }}
+						</h3>
+	
+						<div id="jurisprudence-filter">
 							<select class="chosen-select" multiple data-placeholder="Filtrer" name="filter">
 								<option value="Défaut">Défaut</option>
 								<option value="Bail à ferme">Bail à ferme</option>
@@ -107,10 +113,90 @@
 								<option value="Vente">Vente</option>
 							</select>
 						</div>
-					<h3 class="link"><a class="newsletterLink" href="#" >Articles de doctrine</a></h3>
-					<h3 class="link"><a class="newsletterLink" href="#" >Revues</a></h3>
-					<h3 class="link"><a class="newsletterLink" href="#" >Bibliographie</a></h3>
-					<h3 class="link"><a class="newsletterLink" href="#" >Commentaire pratique</a></h3>	          	
+	
+						<h3 class="link"><a class="newsletterLink" href="#" >Articles de doctrine</a></h3>
+						<h3 class="link"><a class="newsletterLink" href="#" >Revues</a></h3>
+						<h3 class="link"><a class="newsletterLink" href="#" >Bibliographie</a></h3>
+						<h3 class="link"><a class="newsletterLink" href="#" >Commentaire pratique</a></h3>	
+						-->
+						
+						<h4 class="accordion"><a href="#"><span>Newsletter</span></a></h4>
+							<div class="newsletterMenu accordionContent">
+								<ul class="menu">
+									<li><a href="index.php?id=108&amp;uid=364" >Newsletter décembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=357" >Newsletter novembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=354" >Newsletter octobre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=349" >Newsletter septembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=344" >Newsletter août 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=343" >Newsletter juillet 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=338" >Newsletter juin 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=330" >Newsletter mai 2013</a></li>
+								</ul>
+							</div>
+						<h4 class="accordionPart jurisprudence"><a href="{{ url('bail/jurisprudence') }}" title="Jurisprudence"><span>Jurisprudence</span></a></h4>
+							<div class="accordionContentPart accordionContent jurisprudence">
+								<div class="filtre">
+									<h6>Par catégorie</h6>
+									<div class="list categories clear">
+										<select class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+											<option value="c2">Analyse</option>
+											<option value="c17">Bail à ferme</option>
+											<option value="c45">Bail à ferme agricole</option>
+											<option value="c21">Changement de propriétaire</option>
+											<option value="c16">Conclusion</option>
+											<option value="c4">Défaut</option>
+											<option value="c10">Destiné à la publication</option>
+											<option value="c18">Diligence</option>
+											<option value="c20">Expulsion</option>
+											<option value="c13">Faillite</option>
+											<option value="c15">Frais accessoires</option>
+											<option value="c3">Général</option>
+											<option value="c14">Législation</option>
+											<option value="c9">Logement de famille</option>
+											<option value="c1">Loyer</option>
+											<option value="c7">Procédure</option>
+											<option value="c8">Prolongation</option>
+											<option value="c12">Prostitution</option>
+											<option value="c6">Résiliation</option>
+											<option value="c5">Sous-location</option>
+											<option value="c19">Vente</option>
+										</select>
+									</div>
+									<h6>Par année</h6>
+									<ul class="list annees clear">
+										<li><a rel="y2013" href="#">Paru en 2013</a></li>
+										<li><a rel="y2012" href="#">Paru en 2012</a></li>
+										<li><a rel="y2011" href="#">Paru en 2011</a></li>
+										<li><a rel="y2010" href="#">Paru en 2010</a></li>
+									</ul>
+								</div>
+							</div>
+						<h4 class="accordionPart seminaire"><a href="{{ url('bail/doctrine') }}" title="Articles de doctrine"><span>Articles de doctrine</span></a></h4>
+							<div class="accordionContentPart"></div>
+						<h4 class="accordion"><a href="#"><span>Revues</span></a></h4>
+							<div class="revueMenu accordionContent">
+								<ul class="menu">
+									<li><a href="index.php?id=97#DB1989" >DB 1/1989</a></li>
+									<li><a href="index.php?id=97#DB1990" >DB 2/1990</a></li>
+									<li><a href="index.php?id=97#DB1991" >DB 3/1991</a></li>
+									<li><a href="index.php?id=97#DB1992" >DB 4/1992</a></li>
+									<li><a href="index.php?id=97#DB1993" >DB 5/1993</a></li>
+									<li><a href="index.php?id=97#DB1994" >DB 6/1994</a></li>
+									<li><a href="index.php?id=97#DB1995" >DB 7/1995</a></li>
+									<li><a href="index.php?id=97#DB1996" >DB 8/1996</a></li>
+									<li><a href="index.php?id=97#DB1997" >DB 9/1997</a></li>
+									<li><a href="index.php?id=97#DB1998" >DB 10/1998</a></li>
+									<li><a href="index.php?id=97#DB1999" >DB 11/1999</a></li>
+									<li><a href="index.php?id=97#DB2000" >DB 12/2000</a></li>
+									<li><a href="index.php?id=97#DB2001" >DB 13/2001</a></li>
+								</ul>
+							</div>
+						<h4><a href="{{ url('bail/bibliographie') }}" title="Bibliographie"><span>Bibliographie</span></a></h4>
+						<div class="accordionContentPart"></div>
+						<h4><a href="{{ url('bail/commentaire') }}" title="Commentaire pratique"><span>Commentaire pratique</span></a></h4>
+						<div class="accordionContentPart"></div>
+					
+					</div>          	
             	</div>
 				
 				<!-- Bloc Soutiens --> 
