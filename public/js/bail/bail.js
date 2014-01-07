@@ -2,14 +2,9 @@ function initAccordion(){
 	// Get URL of current page
 	var baseUrl = $('#base').attr('href');
 	
-	//console.log(baseUrl);
-	//var referrerBrut = document.referrer;
-	//var referrer = referrerBrut.replace(baseUrl,'');
 	var currentUrl = window.location.href.replace(baseUrl, '');
-	//console.log('yes '+ currentUrl);
-	// Activate accordion for good items
-	var overflowFixClass    = false;
-	var overflowFixSelector = '';
+
+	$('.accordionContent').hide();
 	
 	$('.accordionPart').each(function(i) {
 
@@ -26,6 +21,7 @@ function initAccordion(){
 				newClass            = 'jurisprudence';
 				overflowFixClass    = 'jurisprudence';
 				overflowFixSelector = '.accordionContent.jurisprudence';
+				$( ".accordionContent.seminaire" ).hide();
 			}
 		}
 		
@@ -39,11 +35,13 @@ function initAccordion(){
 				newClass            = 'seminaire';
 				overflowFixClass    = 'seminaire';
 				overflowFixSelector = '.accordionContent.seminaire';
+				$( ".accordionContent.jurisprudence" ).hide();
 			}
 		}
 		
 		if(ok) 
 		{
+
 			$( this ).addClass('accordion');
 			$( this ).addClass('active');
 			$( this ).next().addClass('accordionContent');
@@ -63,57 +61,15 @@ function initAccordion(){
 	   
 	});
 	
-	console.log(show);
-	
-/*
-	// check if active
-	$('.accordionContent').each(function(i) {
-	  $( this ).find('a').each(function(linkIndex) {
-	  	console.log(i);
-		 if($( this ).attr('href') == currentUrl) {
-			show = i;
-		 }
-	  });
-	});
-	
-*/
-
-	// Event functions (for accordions)
-	var onActive = function(element) {
-		$('.accordion h4').removeClass('active');
-		$( this ).addClass('active');
-		if(overflowFixClass) {
-			if($( this ).hasClass(overflowFixClass)) {
-			  if($(overflowFixSelector).length > 0) {
-				 $(overflowFixSelector)[0].css('overflow','visible');
-			  }
-			}
+	$("#rightmenu").accordion({ 
+		header: "h4.accordion" , 
+		heightStyle: 'content', 
+		collapsible: true , 
+		active: show ,
+		create: function( event, ui ) { 
+			
 		}
-	};
-	var onBackground = function(element) {
-	  $( this ).removeClass('active');
-		if(overflowFixClass) {
-			if($( this ).hasClass(overflowFixClass)) {
-			  if($(overflowFixSelector).length > 0) {
-				 $(overflowFixSelector)[0].css('overflow','hidden');
-			  }
-			}
-		}
-	};
-
-	
-	// Setup accordions
-/*
-	var matriAccordion = new Fx.Accordion($$('h4.accordion'), $$("h4.accordion+.accordionContent"), {
-	  'display': -1,
-	  'show': show,
-	  'alwaysHide': true,
-	  'onActive': onActive,
-	  'onBackground': onBackground
 	});
-*/
-	
-	$("#rightmenu").accordion({ header: "h4.accordion" , heightStyle: 'content', collapsible: true , active: show });
 	
 		
 	// Cancel links on accordion toggler
@@ -150,20 +106,6 @@ $( document ).ready(function() {
 	//bailInit();
 	
 	initAccordion();
-	
-/*
-	initRevueMenu();
-	 
-	// PIE
-	if(window.PIE) {
-		var classes = ['.Redbox','.Greybox','#search .input','.shadow'];
-		classes.each(function(c,i) {
-			$(c).each(function(item,index) {
-				PIE.attach(item);
-			});
-		});
-    }
-*/
-	
+
 	
 });

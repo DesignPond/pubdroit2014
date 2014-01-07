@@ -392,17 +392,17 @@ a.newsletterLink:hover{
 }
 
 /*** special jurisprudence ***/
-.accordionContent.jurisprudence h6 {
-  margin-top: 0;
+.accordionContent.jurisprudence h6 , .accordionContent.seminaire h6 {
+   margin-top: 0;
 }
-.accordionContent.jurisprudence .list {
+.accordionContent.jurisprudence .list, .accordionContent.seminaire .list {
   margin: 0 0 20px;
   list-style: none;
 }
-.accordionContent.jurisprudence .list li {
+.accordionContent.jurisprudence .list li , .accordionContent.seminaire .list li {
 	position: relative;
 }
-.accordionContent.jurisprudence .list li a {
+.accordionContent.jurisprudence .list li a, .accordionContent.seminaire .list li a {
 	display: block;
 	height: 15px;
 	padding: 0 0 0 20px;
@@ -411,44 +411,17 @@ a.newsletterLink:hover{
 	text-decoration: none;
 	background: url('../../images/bail/check.png') 0 0 no-repeat;
 }
-.accordionContent.jurisprudence .list li a:hover {
+.accordionContent.jurisprudence .list li a:hover , .accordionContent.seminaire .list li a:hover {
 	text-decoration: underline;
 	color: #B80E1D;
 }
-.accordionContent.jurisprudence .list li a.active {
+.accordionContent.jurisprudence .list li a.active , .accordionContent.seminaire .list li a.active {
 	text-decoration: underline;
 	color: #B80E1D;
 	background: url('../../images/bail/check.png') 0 -26px no-repeat;
 }
 
 /*** special seminaire ***/
-.accordionContent.seminaire h6 {
-  margin-top: 0;
-}
-.accordionContent.seminaire .list {
-  margin: 0 0 20px;
-  list-style: none;
-}
-.accordionContent.seminaire .list li {
-	position: relative;
-}
-.accordionContent.seminaire .list li a {
-	display: block;
-	height: 15px;
-	padding: 1px 0 0 20px;
-	margin-bottom: 6px;
-	text-decoration: none;
-	background: url(../images/check.png) 0 0 no-repeat;
-}
-.accordionContent.seminaire .list li a:hover {
-	text-decoration: underline;
-	color: #B80E1D;
-}
-.accordionContent.seminaire .list li a.active {
-	text-decoration: underline;
-	color: #B80E1D;
-	background: url(../images/check.png) 0 -26px no-repeat;
-}
 
 #seminaires .sujets .col {
   float: left;

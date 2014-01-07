@@ -11,46 +11,60 @@
 		 	 	<h5 class="line">Jurisprudence</h5>
 	 	 	</div>
 	 	 </div>
-	 	 	 	 	
-	 	 <div class="row">
-	 	 	<div class="large-3 columns">
-		 	 	<img src="http://pubdroit.local/images/pubdroit/pics/38a27c6831.jpg" width="140" height="107" border="0" alt="Analyse" />
-	 	 	</div>	 
-	 	 	<div id="arrets" class="large-9 columns">
-	 	 	
-				<a name="analyse-64"></a>																							 
-				<div class="arret analyse c2 c4">
-					<h3>Analyse de Marino Montini</h3>
-					<ul class="liste-arrets arrets-internal-links">
-						<li><a href="index.php?id=196#a-632"  title="TF 4A_582/2012">TF 4A_582/2012</a> du 28 juin 2013</li>
-					</ul>
-					<p class="abstract">Notion de défaut ; accès entravé sur la route menant à l’entrée de l’immeuble ; installation commune ou réservée, en 
-					l’espèce, à l’usage exclusif d’un tiers ? ; art. 256, 259a, 259d CO</p>
-					<p><a href="uploads/tx_bailarrets/2_13_septembre_analyse_4A_582_2012_01.pdf" target="_blank">Télécharger cette analyse en PDF</a></p>
+ 
+	 	 <div class="arrets">
+			{foreach item=cat from=$listeCategories}
+			<div class="row">
+				<div class="cat clear{if isset($listeArrets[$cat.uid]) and $listeArrets[$cat.uid][0].type == 'analyse' } analyse{/if}">
+					<div class="details large-3 columns">
+						{image file="uploads/tx_bailarrets/`$cat.image`" file.maxW="140" file.maxH=140 altText="`$cat.title`"}
+						<h4>{$cat.title}</h4>
+					</div>
+					<div class="liste large-9 columns">
+						{foreach item=arret from=$listeArrets[$cat.uid]}
+							{if $arret.type == 'analyse'}
+								<a name="analyse-{$arret.uid}"></a>
+								<div class="arret analyse c{$arret.category_uid}{foreach item=a_uid from=$arret.arrets name=analyse_arrets} y{$listeArretsById[$a_uid].year}{/foreach}">
+									<h3>Analyse de {$arret.authors}</h3>
+									<ul class="liste-arrets arrets-internal-links">
+									{foreach item=a_uid from=$arret.arrets name=analyse_arrets}
+										<li>{link parameter="_self" section=a-`$a_uid`}{$listeArretsById[$a_uid].reference}{/link} du {$listeArretsById[$a_uid].pub_date|date_format:"%e %B %Y"}</li>
+									{/foreach}
+									</ul>
+									<p class="abstract">{$arret.abstract}</p>
+									{strip}
+									{if !empty($arret.file)}
+									<p><a href="uploads/tx_bailarrets/{$arret.file}" target="_blank">Télécharger cette analyse en PDF</a></p>
+									{/if}
+									{/strip}
+									</p>
+								</div>
+							{else}
+								<a name="a-{$arret.uid}"></a>
+								<div class="arret c{$arret.category_uid} y{$arret.year}">
+									<h3>{$arret.reference} du {$arret.pub_date|date_format:"%e %B %Y"}</h3>
+									<p class="abstract">{$arret.abstract}</p>
+									<p class="text bodytext">{$arret.pub_text}</p>
+									{strip}
+									{if !empty($arret.file)}
+									<p><a href="uploads/tx_bailarrets/{$arret.file}" target="_blank">Télécharger en PDF</a></p>
+									{/if}
+									<ul class="liste-analyses arrets-internal-links">
+									{foreach item=a_uid from=$arret.analyses name=arret_analyses}
+										<li>{link parameter="_self" section=analyse-`$a_uid`}Analyse de {$listeAnalysesById[$a_uid].authors}{/link}</li>
+									{/foreach}
+									</ul>
+									{/strip}
+									</p>
+								</div>
+							{/if}
+						{/foreach}
+					</div>
 				</div>
-				
-				<a name="analyse-66"></a>																							 
-				<div class="arret analyse c2 c7">
-					<h3>Analyse de François Bohnet</h3>
-					<ul class="liste-arrets arrets-internal-links">
-						<li><a href="index.php?id=196#a-654"  title="TF 4A_131/2013">TF 4A_131/2013</a> du  3 septembre 2013</li>
-					</ul>
-					<p class="abstract">Les voies de droit contre les actes de l’autorité de conciliation, en particulier en matière de récusation et de classement suite au défaut</p>
-					<p><a href="uploads/tx_bailarrets/2_13_octobre_Analyse_4A_131_2013_01.pdf" target="_blank">Télécharger cette analyse en PDF</a></p>
-				</div>
-				
-				<a name="analyse-59"></a>							 
-				<div class="arret analyse c2 c1 c10">
-					<h3>Analyse de Julien Broquet</h3>
-					<ul class="liste-arrets arrets-internal-links">
-						<li><a href="index.php?id=196#a-597"  title="TF 4A_727/2012 - destiné à la publication">TF 4A_727/2012 - destiné à la publication</a> du 21 mai 2013</li>
-					</ul>
-					<p class="abstract">Libre choix du bailleur dans la méthode de répercussion du coût des travaux à plus-value sur les loyers - Analyse de l'arrêt 4A_727/2012</p>
-					<p><a href="uploads/tx_bailarrets/2_13_juillet_analyse_4A_727_2012_01.pdf" target="_blank">Télécharger cette analyse en PDF</a></p>
-				</div>
-				
-	 	 	</div>	 	 	
-	 	 </div>
+			</div>
+			{/foreach}
+		</div>
+	 	 		 
 	 	 
 	 </div>
 @stop

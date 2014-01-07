@@ -26,6 +26,8 @@
     <script src="<?php echo asset('js/chosen.jquery.js');?>"></script>
     <script src="<?php echo asset('js/bail/main.js');?>"></script>
     <script src="<?php echo asset('js/bail/bail.js');?>"></script>
+    <script src="<?php echo asset('js/bail/arrets.js');?>"></script>
+    <script src="<?php echo asset('js/bail/seminaires.js');?>"></script>
 	<base id="base" href="http://pubdroit.local/bail/" />
 	</head>
 	<body>
@@ -79,47 +81,7 @@
             	
              	<div class="upMarge">
              		<div id="rightmenu">	
-	             		<!--
-		            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
-		            		<div class="toggleNewsletter" style="display:none;">
-			            		<ul>
-				            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
-				            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
-				            		<li><a href="index.php?id=206&amp;uid=347" >Newsletter été 2013</a></li>
-				            		<li><a href="index.php?id=206&amp;uid=340" >Newsletter juin 2013</a></li>
-				            		<li><a href="index.php?id=206&amp;uid=334" >Newsletter mai 2013</a></li>
-				            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
-			            		</ul>
-		            		</div>
-						<h3 class="link">
-							{{ link_to('bail/jurisprudence', 'Jurisprudence' , array('class' => 'newsletterLink') ) }}
-						</h3>
-	
-						<div id="jurisprudence-filter">
-							<select class="chosen-select" multiple data-placeholder="Filtrer" name="filter">
-								<option value="Défaut">Défaut</option>
-								<option value="Bail à ferme">Bail à ferme</option>
-								<option value="Bail à ferme agricole">Bail à ferme agricole</option>
-								<option value="Changement de propriétaire">Changement de propriétaire</option>
-								<option value="Destiné à la publication">Destiné à la publication</option>
-								<option value="Diligence">Diligence</option>
-								<option value="Expulsion">Expulsion</option>
-								<option value="Faillite">Faillite</option>
-								<option value="Général">Général</option>
-								<option value="Logement de famille">Logement de famille</option>
-								<option value="Prolongation">Prolongation</option>
-								<option value="Résiliation">Résiliation</option>
-								<option value="Sous-location">Sous-location</option>
-								<option value="Vente">Vente</option>
-							</select>
-						</div>
-	
-						<h3 class="link"><a class="newsletterLink" href="#" >Articles de doctrine</a></h3>
-						<h3 class="link"><a class="newsletterLink" href="#" >Revues</a></h3>
-						<h3 class="link"><a class="newsletterLink" href="#" >Bibliographie</a></h3>
-						<h3 class="link"><a class="newsletterLink" href="#" >Commentaire pratique</a></h3>	
-						-->
-						
+	             								
 						<h4 class="accordion"><a href="#"><span>Newsletter</span></a></h4>
 							<div class="newsletterMenu accordionContent">
 								<ul class="menu">
@@ -172,7 +134,74 @@
 								</div>
 							</div>
 						<h4 class="accordionPart seminaire"><a href="{{ url('bail/doctrine') }}" title="Articles de doctrine"><span>Articles de doctrine</span></a></h4>
-							<div class="accordionContentPart"></div>
+							<div class="accordionContentPart accordionContent seminaire">
+								<div class="filtre">
+									<h6>Par catégorie</h6>
+									<div class="list categories clear">
+										<select class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+											<option value="c2">Accessoires</option>
+											<option value="c25">AMSL</option>
+											<option value="c15">Bail commercial</option>
+											<option value="c20">Conclusion du contrat</option>
+											<option value="c17">Décès</option>
+											<option value="c8">Défauts</option>
+											<option value="c22">Délai</option>
+											<option value="c21">Diligence et mesures de sécurité</option>
+											<option value="c11">Divers</option>
+											<option value="c23">Droit public</option>
+											<option value="c13">Expulsion</option>
+											<option value="c18">Faillite</option>
+											<option value="c19">Internet</option>
+											<option value="c3">Logement famille</option>
+											<option value="c6">Loyer</option>
+											<option value="c16">Procédure</option>
+											<option value="c24">Projets de révision</option>
+											<option value="c9">Prolongation</option>
+											<option value="c5">Résiliation</option>
+											<option value="c4">Sous-location</option>
+											<option value="c7">Sûretés</option>
+											<option value="c10">Transfert</option>
+											<option value="c14">Travaux</option>
+											<option value="c12">Vente</option>
+										</select>
+									</div>
+								<h6>Par année</h6>
+									<ul class="list annees clear">
+										<li><a rel="y17" href="#">Paru en 2012</a></li>
+										<li><a rel="y16" href="#">Paru en 2010</a></li>
+										<li><a rel="y15" href="#">Paru en 2008</a></li>
+										<li><a rel="y14" href="#">Paru en 2006</a></li>
+									</ul>
+								<h6>Par auteur</h6>
+								<div class="list auteurs clear">
+									<select class="chosen-select author" multiple data-placeholder="Filtrer par auteur..." name="filter">
+										<option value="a57">Andrea Braconi</option>
+										<option value="a51">Ariane Morin</option>
+										<option value="a25">Bénédict Foëx</option>
+										<option value="a4">Bernard Corboz</option>
+										<option value="a48">Bertrand Reeb</option>
+										<option value="a59">Blaise Carron</option>
+										<option value="a37">Blaise Knapp</option>
+										<option value="a49">Carole Aubert</option>
+										<option value="a19">Charles-André Junod</option>
+										<option value="a24">Christine Habermacher-Droz</option>
+										<option value="a41">Cipriano Alvarez</option>
+										<option value="a6">Claude Reymond</option>
+										<option value="a13">Claude Yerly</option>
+										<option value="a47">Daniel Devaud</option>
+										<option value="a22">David Lachat</option>
+										<option value="a38">Denis Piotet</option>
+										<option value="a42">Fabienne Byrde</option>
+										<option value="a34">Francis Michon</option>
+										<option value="a45">François Bohnet</option>
+										<option value="a9">François Knoepfler</option>
+										<option value="a21">Giacomo Roncoroni</option>
+										<option value="a55">Gianmaria Mosca</option>
+										<option value="a11">H.-R. Schüpbach</option>
+									</select>
+								</div>
+							</div>
+						</div>
 						<h4 class="accordion"><a href="#"><span>Revues</span></a></h4>
 							<div class="revueMenu accordionContent">
 								<ul class="menu">
