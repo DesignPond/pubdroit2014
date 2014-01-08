@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBaArretsCategoriesTable extends Migration {
+class CreateBaAnalysesCategoriesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateBaArretsCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ba_arrets_categories', function(Blueprint $table) {
+		Schema::create('ba_analyses_categories', function(Blueprint $table) {
 		
 			$table->increments('id');
-			$table->integer('arret_id')->unsigned()->index();
 			$table->integer('categorie_id')->unsigned()->index();
+			$table->integer('analyse_id')->unsigned()->index();
 			$table->integer('sorting');
 			
 		});
@@ -30,7 +30,7 @@ class CreateBaArretsCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ba_arrets_categories');
+		Schema::drop('ba_analyses_categories');
 	}
 
 }

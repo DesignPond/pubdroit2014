@@ -69,10 +69,13 @@ button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus
 		margin-top: 15px;
 	}
 
-.content{
-	background: #f0b4b4;
+.clear:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
 }
-
 
 footer{
 	text-align: center;

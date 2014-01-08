@@ -15,7 +15,7 @@ class CreateBaArretsTable extends Migration {
 		Schema::create('ba_arrets', function(Blueprint $table) {
 			
 			$table->increments('id');
-			
+			$table->integer('pid');
 			$table->integer('cruser_id');
 			$table->integer('deleted');
 			$table->string('reference');

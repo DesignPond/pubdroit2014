@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateBaCategoriesTable extends Migration {
+class CreateBaAnalysesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,19 @@ class CreateBaCategoriesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ba_categories', function(Blueprint $table) {
+		Schema::create('ba_analyses', function(Blueprint $table) {
 		
 			$table->increments('id');
 			$table->integer('pid');
 			$table->integer('cruser_id');
-			$table->integer('deleted');
-			$table->string('title');
-			$table->text('image');
-			$table->integer('ismain');				
+			$table->integer('deleted');			
+			$table->string('authors');
+			$table->integer('pub_date');
+			$table->text('abstract');
+			$table->text('pub_text');
+			$table->text('file');
+			$table->integer('categories');
+			$table->integer('arrets');								
 			$table->integer('created_at');
 			$table->integer('updated_at');
 			
@@ -35,7 +39,7 @@ class CreateBaCategoriesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ba_categories');
+		Schema::drop('ba_analyses');
 	}
 
 }

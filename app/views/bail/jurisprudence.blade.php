@@ -13,6 +13,8 @@
 	 	 </div>
  
 	 	 <div class="arrets">
+<!--
+
 			{foreach item=cat from=$listeCategories}
 			<div class="row">
 				<div class="cat clear{if isset($listeArrets[$cat.uid]) and $listeArrets[$cat.uid][0].type == 'analyse' } analyse{/if}">
@@ -63,6 +65,52 @@
 				</div>
 			</div>
 			{/foreach}
+-->
+					
+
+			<div class="cat clear bail">
+				<div class="liste">
+				@foreach($arrets as $arret)
+					<a name="a-{{ $arret->id }}"></a>
+	
+					<div class="arret clear">
+						<div class="categories large-3 columns">
+						<?php 	
+							
+							$categories_arret = $arret->arrets_categories->toArray(); 
+							$arrets_analyses  = $arret->arrets_analyses->toArray(); 
+							
+						?>
+						@foreach($categories_arret as $cat)							
+							<div class="details">					
+								<img src="{{ asset('/images/bail/categories/'.$cat['image']) }}" alt="{{ $cat['title'] }}" width="140" height="140" />
+								<h4><?php print_r($cat['title']); ?> </h4>
+							</div>						
+						@endforeach
+						</div>
+						<div class="content large-9 columns">
+							<h3>{{ $arret->reference }} du {{ $arret->pub_date }}</h3>
+							<p class="abstract">{{ $arret->abstract }}	</p>
+							{{ $arret->pub_text }}
+						
+							@if(!empty( $arret->file ))
+								<p><a href="uploads/tx_bailarrets/{{ $arret->file }}" target="_blank">Télécharger en PDF</a></p>
+							@endif
+							
+							<ul class="liste-analyses arrets-internal-links">
+							@foreach($arrets_analyses as $analyse)
+								<li>{{ link_to('bail/jurisprudence#analyse-'.$analyse['id'], 'Analyse de '.$analyse['authors'] ) }}</li>
+							@endforeach 
+							</ul>
+							
+						</div>
+					</div>
+				@endforeach 
+				</div>
+			</div>
+
+
+
 		</div>
 	 	 		 
 	 	 
