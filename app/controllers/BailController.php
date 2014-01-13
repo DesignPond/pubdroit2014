@@ -39,15 +39,6 @@ class BailController extends BaseController {
 	
 		$allarrets  = $this->arret->getAll(195);
 		$categories = $this->categorie->getAll(195);
-		//$allarrets  = $this->arret->find(702);
-		
-		$arrets = array();
-		
-		foreach($allarrets as $arret){
-			
-			//$arrets[] = $arret->arrets_categories->ismain;
-			
-		}
     
     	return View::make('bail.jurisprudence')->with( array( 'arrets' => $allarrets ));	
 	}
