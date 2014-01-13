@@ -11,6 +11,8 @@ use Professions as P;
 use Files as F;
 use Arrets as A;
 use BaCategories as BA;
+use Calculette_ipc as CI;
+use Calculette_taux as CT;
 
 class PubdroitServiceProvider extends ServiceProvider {
 
@@ -28,6 +30,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerCategorieService();	
 		$this->registerFileService();
 		$this->registerUploadService();	
+		$this->registerCalculetteService();
     			
     }
     
@@ -126,6 +129,15 @@ class PubdroitServiceProvider extends ServiceProvider {
 	    $this->app->bind('Droit\Service\Upload\UploadInterface', function()
         {
             return new \Droit\Service\Upload\UploadWorker();
+        });
+        
+    }
+    
+    protected function registerCalculetteService(){
+    
+	    $this->app->bind('Droit\Repo\Calculette\CalculetteInterface', function()
+        {
+            return new \Droit\Repo\Calculette\CalculetteEloquent( new CT , new CI );
         });
         
     }

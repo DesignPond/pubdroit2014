@@ -60,8 +60,9 @@ Route::group(array('prefix' => 'bail'), function()
     
     Route::get('jurisprudence', array('uses' => 'BailController@jurisprudence'));	
 
-    Route::get('doctrine', array('uses' => 'BailController@doctrine'));	    
-     
+    Route::get('doctrine', array('uses' => 'BailController@doctrine'));	
+       
+    Route::get('calcul', array('uses' => 'BailController@calcul'));	       
     
 });
 
