@@ -23,6 +23,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="<?php echo asset('js/jquery-ui.js');?>"></script>
+    <script src="<?php echo asset('js/jquery.validate.min.js');?>"></script>
+    <script src="<?php echo asset('js/localization/messages_fr.js');?>"></script>
     <script src="<?php echo asset('js/chosen.jquery.js');?>"></script>
     <script src="<?php echo asset('js/bail/main.js');?>"></script>
     <script src="<?php echo asset('js/bail/bail.js');?>"></script>
@@ -244,6 +246,7 @@
 					{{ Form::open(array( 'action' => 'BailController@calcul', 'id' => 'calculette')) }}						
 						{{ Form::label('Votre canton', '' ) }}
 						{{ Form::select('canton', array(
+														'' => 'Choisir dans la liste',
 														'be'=>'Berne',
 														'fr'=>'Fribourg',
 														'ge'=>'Genève',
@@ -251,13 +254,13 @@
 														'ne'=>'Neuchâtel',
 														'vs'=>'Valais',
 														'vd'=>'Vaud'
-													) , array('id' => 'input-canton')) }}
+													) , array('id' => 'input-canton' , 'required' => 'required' )) }}
 						
 						{{ Form::label('Votre loyer actuel (sans les charges)', '' ) }}
-						{{ Form::text('loyer', '', array('id' => 'input-loyer')) }}
+						{{ Form::text('loyer', '', array('id' => 'input-loyer', 'required' => 'required')) }}
 						
 						{{ Form::label('Date d\'entrée en vigueur de votre loyer actuel', '' ) }}
-						{{ Form::text('date', '', array('id' => 'input-datepicker')) }}
+						{{ Form::text('date', '', array('id' => 'input-datepicker', 'required' => 'required')) }}
 						
 						{{ Form::submit('Envoyer', array('class' => 'button tiny colorBlock')) }}
 					{{ Form::close() }}	

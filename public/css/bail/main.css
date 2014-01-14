@@ -324,35 +324,68 @@ a.newsletterLink:hover {
 /******************************************************
 * RIGHT
 ******************************************************/
-/* line 289, main.scss */
+/* line 290, main.scss */
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+  border-bottom-right-radius: 0;
+}
+
+/* line 293, main.scss */
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+  border-bottom-left-radius: 0;
+}
+
+/* line 296, main.scss */
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+  border-top-right-radius: 0;
+}
+
+/* line 299, main.scss */
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+  border-top-left-radius: 0;
+}
+
+/* line 303, main.scss */
 #rightmenu {
   min-height: 190px;
   padding: 15px 15px;
 }
 
-/* line 293, main.scss */
+/* line 307, main.scss */
 #rightmenu a {
   display: block;
   color: #000;
   text-decoration: none;
 }
 
-/* line 299, main.scss */
+/* line 313, main.scss */
+#rightmenu .ui-widget-content {
+  background: none;
+  border: none;
+  color: #222222;
+}
+
+/* line 319, main.scss */
 #rightmenu h4 a {
   font-style: italic;
   font-size: 13px;
   margin-bottom: 3px;
 }
 
-/* line 305, main.scss */
+/* line 325, main.scss */
+.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
+  background: none;
+}
+
+/* line 329, main.scss */
 #rightmenu a:hover {
   color: #CB2629;
   text-decoration: none;
 }
 
-/* line 309, main.scss */
+/* line 333, main.scss */
 #rightmenu h4 {
   background: url(../../images/bail/right_close.png) 100% 7px no-repeat;
+  border: none;
   border-bottom: 1px solid #CB2629;
   display: block;
   margin: 0 0 12px;
@@ -364,12 +397,12 @@ a.newsletterLink:hover {
   color: #000;
 }
 
-/* line 321, main.scss */
+/* line 346, main.scss */
 #rightmenu h4:last-child {
   margin-bottom: 0;
 }
 
-/* line 324, main.scss */
+/* line 349, main.scss */
 #rightmenu h4.accordion {
   background: url(../../images/bail/right_close.png) 100% 7px no-repeat;
   color: #fff;
@@ -378,37 +411,37 @@ a.newsletterLink:hover {
   padding: 0;
 }
 
-/* line 331, main.scss */
+/* line 356, main.scss */
 #rightmenu h4.accordion.active {
   font-weight: bold;
   background: url(../../images/bail/right_open.png) 100% 7px no-repeat;
 }
 
-/* line 337, main.scss */
+/* line 362, main.scss */
 #rightmenu h4 a,
 #rightmenu h4 span.a {
   padding: 3px 0;
 }
 
-/* line 341, main.scss */
+/* line 366, main.scss */
 #rightmenu ul.menu {
   margin: 0;
   padding: 0 10px 20px;
   list-style: none;
 }
 
-/* line 346, main.scss */
+/* line 371, main.scss */
 #rightmenu ul.menu li {
   margin: 0;
   font-size: 13px;
 }
 
-/* line 350, main.scss */
+/* line 375, main.scss */
 #rightmenu ul.menu li a.act {
   color: #CB2629;
 }
 
-/* line 355, main.scss */
+/* line 380, main.scss */
 #rightmenu ul.menu2col1,
 #rightmenu ul.menu2col2 {
   float: left;
@@ -418,24 +451,24 @@ a.newsletterLink:hover {
   list-style: none;
 }
 
-/* line 363, main.scss */
+/* line 388, main.scss */
 #rightmenu ul.menu2col1 li,
 #rightmenu ul.menu2col2 li {
   margin: 0 0 3px;
 }
 
-/* line 367, main.scss */
+/* line 392, main.scss */
 #rightmenu ul.menu2col1 li a.act,
 #rightmenu ul.menu2col2 li a.act {
   color: #CB2629;
 }
 
-/* line 372, main.scss */
+/* line 397, main.scss */
 #right .box {
   margin: 0px 20px 32px;
 }
 
-/* line 376, main.scss */
+/* line 401, main.scss */
 #right .box h4 {
   position: relative;
   left: -20px;
@@ -452,30 +485,30 @@ a.newsletterLink:hover {
 }
 
 /*** special soutien ***/
-/* line 392, main.scss */
+/* line 417, main.scss */
 #right .soutien .logo {
   padding: 10px 0 0;
   text-align: right;
 }
 
 /*** special jurisprudence ***/
-/* line 398, main.scss */
+/* line 423, main.scss */
 .accordionContent.jurisprudence h6, .accordionContent.seminaire h6 {
   margin-top: 0;
 }
 
-/* line 401, main.scss */
+/* line 426, main.scss */
 .accordionContent.jurisprudence .list, .accordionContent.seminaire .list {
   margin: 0 0 20px;
   list-style: none;
 }
 
-/* line 405, main.scss */
+/* line 430, main.scss */
 .accordionContent.jurisprudence .list li, .accordionContent.seminaire .list li {
   position: relative;
 }
 
-/* line 408, main.scss */
+/* line 433, main.scss */
 .accordionContent.jurisprudence .list li a, .accordionContent.seminaire .list li a {
   display: block;
   height: 15px;
@@ -486,13 +519,13 @@ a.newsletterLink:hover {
   background: url("../../images/bail/check.png") 0 0 no-repeat;
 }
 
-/* line 417, main.scss */
+/* line 442, main.scss */
 .accordionContent.jurisprudence .list li a:hover, .accordionContent.seminaire .list li a:hover {
   text-decoration: underline;
   color: #B80E1D;
 }
 
-/* line 421, main.scss */
+/* line 446, main.scss */
 .accordionContent.jurisprudence .list li a.active, .accordionContent.seminaire .list li a.active {
   text-decoration: underline;
   color: #B80E1D;
@@ -500,74 +533,74 @@ a.newsletterLink:hover {
 }
 
 /*** special seminaire ***/
-/* line 429, main.scss */
+/* line 454, main.scss */
 #seminaires .sujets .col {
   float: left;
 }
 
-/* line 432, main.scss */
+/* line 457, main.scss */
 #seminaires .sujets .sujet {
   padding: 10px 0;
   border-bottom: 1px solid #B80E1D;
 }
 
-/* line 436, main.scss */
+/* line 461, main.scss */
 #seminaires .sujets .category {
   width: 90px;
   margin-right: 4px;
 }
 
-/* line 440, main.scss */
+/* line 465, main.scss */
 #seminaires .sujets .edition {
   width: 110px;
   margin-right: 4px;
 }
 
-/* line 444, main.scss */
+/* line 469, main.scss */
 #seminaires .sujets .annee {
   width: 33px;
   margin-right: 4px;
 }
 
-/* line 448, main.scss */
+/* line 473, main.scss */
 #seminaires .sujets .catTitle .annee strong {
   position: relative;
   left: -4px;
 }
 
-/* line 452, main.scss */
+/* line 477, main.scss */
 #seminaires .sujets .desc {
   width: 200px;
   margin-right: 4px;
 }
 
-/* line 456, main.scss */
+/* line 481, main.scss */
 #seminaires .sujets .auteur {
   width: 100px;
   margin-right: 4px;
 }
 
-/* line 460, main.scss */
+/* line 485, main.scss */
 #seminaires .sujets .order {
   width: 72px;
 }
 
-/* line 464, main.scss */
+/* line 489, main.scss */
 .ui-accordion .ui-accordion-content {
   padding: 0;
 }
 
-/* line 469, main.scss */
+/* line 494, main.scss */
 .ui-accordion-header-active.ui-state-active a {
   font-weight: bold;
 }
 
-/* line 473, main.scss */
+/* line 498, main.scss */
 .chzn-container-multi .chzn-choices .search-field .default {
   color: #999999;
 }
 
-/* line 476, main.scss */
+/* line 501, main.scss */
 .chzn-container-multi .chzn-choices .search-field input {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
   border: 0 none !important;
@@ -578,7 +611,7 @@ a.newsletterLink:hover {
   padding: 5px;
 }
 
-/* line 486, main.scss */
+/* line 511, main.scss */
 .filtre h6 {
   color: #666666;
   font-size: 12px;
@@ -589,33 +622,33 @@ a.newsletterLink:hover {
 /******************************************************
 * Calculette
 ******************************************************/
-/* line 496, main.scss */
+/* line 521, main.scss */
 #calculatorResult {
   margin: 20px 0 0 0;
 }
 
-/* line 500, main.scss */
+/* line 525, main.scss */
 #calculatorResult .lines {
   clear: both;
   line-height: 18px;
   font-size: 12px;
 }
 
-/* line 506, main.scss */
+/* line 531, main.scss */
 #calculatorResult .details .lines .label-input, #calculatorResult .result .lines .label-input {
   display: block;
   float: left;
   width: 180px;
 }
 
-/* line 512, main.scss */
+/* line 537, main.scss */
 #calculatorResult .details .lines .value, #calculatorResult .result .lines .value {
   display: block;
   float: right;
   width: 30px;
 }
 
-/* line 519, main.scss */
+/* line 544, main.scss */
 #calculatorResult .details .dates {
   color: #808080;
   display: block;
@@ -623,12 +656,12 @@ a.newsletterLink:hover {
   padding-bottom: 5px;
 }
 
-/* line 527, main.scss */
+/* line 552, main.scss */
 #calculatorResult .result {
   margin-bottom: 20px;
 }
 
-/* line 532, main.scss */
+/* line 557, main.scss */
 #calculatorResult .result .nouveau_loyer {
   font-weight: bold;
 }
@@ -636,17 +669,17 @@ a.newsletterLink:hover {
 /*======================================
 	Arrets
 =======================================*/
-/* line 541, main.scss */
+/* line 566, main.scss */
 .arret {
   margin-bottom: 25px;
 }
 
-/* line 545, main.scss */
+/* line 570, main.scss */
 .arret p, .arret ul {
   margin-bottom: 10px;
 }
 
-/* line 549, main.scss */
+/* line 574, main.scss */
 .arret ul li {
   font-size: 13px;
 }
@@ -654,12 +687,12 @@ a.newsletterLink:hover {
 /*======================================
 	Misc
 =======================================*/
-/* line 557, main.scss */
+/* line 582, main.scss */
 .upMarge {
   margin-top: 15px;
 }
 
-/* line 561, main.scss */
+/* line 586, main.scss */
 .line {
   line-height: 30px;
   margin-bottom: 20px;

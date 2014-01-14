@@ -22,8 +22,24 @@ $(function() {
 	
 	$( "#input-datepicker" ).datepicker({
 		 changeMonth: true,
-		 changeYear: true
+		 changeYear: true,
+		 yearRange: "-100:+0"
 	});
+	
+		
+	$.validator.addMethod("valueNotEquals", function(value, element, arg){
+	  return arg != value;
+	}, "Value must not equal arg.");
+	
+	$("#calculette").validate({
+		  rules: {
+		     canton: { valueNotEquals: "" }
+		  },
+		  messages: {
+		     canton: { valueNotEquals: "Choisissez un canton" }
+		  }  
+	});
+
 	
 	var base_url = location.protocol + "//" + location.host+"/bail/";
 	
