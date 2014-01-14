@@ -237,24 +237,34 @@
             	
             	<!-- Bloc inscription newsletter --> 
             	<h5 class="min-inner colorBlock blockTitle">Calculateur</h5>             	
-            	<div class="inner calculator">   
+            	<div class="inner calculator">  
+            	
             		<p>Calculez les hausses et baisses de loyer en un clic</p>
             		         	
-					{{ Form::open(array( 'action' => 'NewsletterController@add', 'class' => '')) }}						
+					{{ Form::open(array( 'action' => 'BailController@calcul', 'id' => 'calculette')) }}						
 						{{ Form::label('Votre canton', '' ) }}
-						{{ Form::select('canton', array( 'Berne','Fribourg','Genève','Jura','Neuchâtel','Valais','Vaud' )) }}
+						{{ Form::select('canton', array(
+														'be'=>'Berne',
+														'fr'=>'Fribourg',
+														'ge'=>'Genève',
+														'ju'=>'Jura',
+														'ne'=>'Neuchâtel',
+														'vs'=>'Valais',
+														'vd'=>'Vaud'
+													) , array('id' => 'input-canton')) }}
 						
 						{{ Form::label('Votre loyer actuel (sans les charges)', '' ) }}
-						{{ Form::text('loyer', '') }}
+						{{ Form::text('loyer', '', array('id' => 'input-loyer')) }}
 						
 						{{ Form::label('Date d\'entrée en vigueur de votre loyer actuel', '' ) }}
-						{{ Form::text('date', '') }}
+						{{ Form::text('date', '', array('id' => 'input-datepicker')) }}
 						
-						{{ Form::submit('Inscription', array('class' => 'button tiny colorBlock')) }}
+						{{ Form::submit('Envoyer', array('class' => 'button tiny colorBlock')) }}
 					{{ Form::close() }}	
-									
+					
+					<div id="calculatorResult"></div>
+
             	</div>
-            	
             	<!-- Bloc inscription newsletter --> 
             	<h5 class="min-inner colorBlock blockTitle">Inscription à la newsletter</h5>             	
             	<div class="inner">            	

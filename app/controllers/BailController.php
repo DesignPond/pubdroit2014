@@ -62,17 +62,27 @@ class BailController extends BaseController {
 	
 	public function calcul(){
 		
-		$taux_depart = $this->calculette->taux_depart(1225494000,'be');
-		$taux_actuel = $this->calculette->taux_actuel();
-		
-		$ipc_depart  = $this->calculette->ipc_depart(1225494000);
-		$ipc_actuel  = $this->calculette->ipc_actuel();
-		
-		$calcul      = $this->calculette->calcul('be', 1225494000 , 620); 
-		
-		return View::make('bail.calcul')->with( array('taux_depart' => $taux_depart ,'taux_actuel' => $taux_actuel,'ipc_depart' => $ipc_depart ,'ipc_actuel' => $ipc_actuel,'calcul' => $calcul ));	
+		return View::make('bail.calcul')->with( array( ));	
 		
 	}
+	
+	public function loyer(){
+	
+		$calcul = array();
+		$data   = Input::all();
+		
+		if(!empty( $data ))
+		{
+			$canton = Input::get('canton');
+			$date   = strtotime(Input::get('date'));
+			$loyer  = Input::get('loyer');
+			
+			$calcul = $this->calculette->calculer($canton, $date , $loyer);
+		}
+		
+		return $calcul;
+	}
+
 
 	/**
 	 * Show the form for creating a new resource.

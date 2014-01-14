@@ -50,7 +50,7 @@ button.alert:hover, button.alert:focus, .button.alert:hover, .button.alert:focus
 =======================================*/
 
 #main{
-	background: #b2b2b2 url("../../images/bail/head_bg.png") repeat-y; /* Old browsers */
+	background: #b2b2b2 url("../../images/bail/head_bg2.png") repeat-y; /* Old browsers */
 }
 
 
@@ -85,7 +85,7 @@ footer{
 	color: #fff;
 	position: absolute;
 	bottom: 0;
-	width: 78%;
+	width: 769px;
 }
 	footer a{
 		color: #fff;
@@ -492,81 +492,45 @@ a.newsletterLink:hover{
 /******************************************************
 * Calculette
 ******************************************************/
-#bail_calculette .line {
-  clear: both;
-}
-#bail_calculette .line label {
-  display: block;
-  float: left;
-  width: 206px;
-  margin: 10px 10px 3px 0;
-}
-#bail_calculette .line input[type=text], #bail_calculette .line input[type=submit], #bail_calculette .line select {
-  float: left;
-  width: 215px;
-  background: #fff;
-  border: 1px solid #a7a5a5;
-}
-#bail_calculette .line.submit {
-  padding: 15px 0 0 0;
-  text-align: center;
+
+#calculatorResult {
+	margin: 20px 0 0 0;
 }
 
-#bail_calculette .line.submit input#calculette_submit {
-  width: auto;
-  background: #CB2629; 
-  color: #fff; 
-  border: 1px solid #CB2629;
-  padding: 2px 10px;
-  cursor: pointer;
-	-moz-box-sizing: content-box;
-	-webkit-box-sizing: content-box;
-	-khtml-box-sizing: content-box;
-	box-sizing: content-box;
-	-moz-border-radius: 5px;
-	-khtml-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	/*
-	behavior: url(PIE.htc);
-	*/
+#calculatorResult .lines {
+  clear: both;
+  line-height: 18px;
+  font-size: 12px;
 }
 
-#bail_calculette .zone {
-  width: 230px;
-  margin-top: 30px;
-}
-#bail_calculette .zone .line {
-  margin-bottom: 6px;
-}
-#bail_calculette .zone .line.result {
-  height: 45px;
-}
-#bail_calculette .zone .line.gris {
-  color: #999;
-  font-size: 11px;
-}
-#bail_calculette .zone .label {
+#calculatorResult .details .lines .label-input,#calculatorResult .result .lines .label-input {
   display: block;
   float: left;
-  width: 160px;
-  margin: 0 10px 0 0;
+  width: 180px;
 }
-#bail_calculette .zone .value {
+
+#calculatorResult .details .lines .value, #calculatorResult .result .lines .value{
   display: block;
-  float: left;
+  float: right;
+  width: 30px;
 }
-#bail_calculette .zone .date {
-  display: block;
-  clear: both;
-  color: #999;
-  font-size: 11px;
+
+
+#calculatorResult .details .dates{
+    color: #808080;
+    display: block;
+    font-size: 11px;
+    padding-bottom: 5px;
 }
-#bail_calculette .result {
-  font-weight: bold;
+
+
+#calculatorResult .result {
+  margin-bottom: 20px;
 }
-#bail_calculette .result .difference {
-  font-weight: normal;
+
+
+#calculatorResult .result .nouveau_loyer {
+	font-weight: bold;
 }
 
 

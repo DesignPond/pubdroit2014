@@ -11,14 +11,14 @@
 }
 	
 .maincontent{
-	width: 78%;
+	width: 769px;
 	float: left;
 	padding-bottom: 100px;
 	background: #fff;
 }
 
 .sidebar{
-	width: 22%;
+	width: 255px;
 	float: right;
 }
 

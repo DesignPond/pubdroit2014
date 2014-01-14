@@ -3,6 +3,7 @@
 use Droit\Repo\Calculette\CalculetteInterface;
 use Calculette_ipc as CI;
 use Calculette_taux as CT;
+use Carbon\Carbon;
 
 class CalculetteEloquent implements CalculetteInterface {
 
@@ -16,6 +17,38 @@ class CalculetteEloquent implements CalculetteInterface {
 		$this->ipc  = $ipc;	
 	}
 	
+	public function calculer($canton, $date , $loyer){
+			
+		$taux_depart  = $this->taux_depart($date,$canton);
+		$taux_actuel  = $this->taux_actuel();
+		$taux_date    = $this->taux_date_actuel();
+		$ipc_depart   = $this->ipc_depart($date);
+		$ipc_actuel   = $this->ipc_actuel();
+		$ipc_date     = $this->ipc_date_actuel();		
+		$new          = $this->calcul($canton, $date , $loyer); 
+		
+		$newloyer   = number_format($new,2,'.',"'");
+		$difference = number_format($newloyer-$loyer,2,'.',"'");
+		
+		setlocale(LC_ALL, 'fr_FR');  
+		$taux_date = Carbon::createFromTimeStamp($taux_date)->formatLocalized('%B %Y'); 
+		$ipc_date = Carbon::createFromTimeStamp($ipc_date)->formatLocalized('%B %Y'); 
+		
+		$calcul = array(
+			'taux_depart' => $taux_depart,
+			'taux_actuel' => $taux_actuel,
+			'taux_date'   => $taux_date,
+			'ipc_depart'  => $ipc_depart,
+			'ipc_actuel'  => $ipc_actuel,
+			'ipc_date'    => $ipc_date,
+			'difference'  => $difference,
+			'loyer'       => $newloyer,
+			'result'      => 'ok'
+		);
+		
+		return $calcul;
+	}
+	
 	public function calcul($canton, $date_depart, $loyer_actuel){
 	
 		// taux départ,taux actuel 
@@ -26,8 +59,7 @@ class CalculetteEloquent implements CalculetteInterface {
 		$ipc_depart = $this->ipc_depart($date_depart);
 		$ipc_actuel = $this->ipc_actuel();
 		
-		// calcul
-		
+		// calcul		
 		$taux_variation_ipc = (($ipc_actuel-$ipc_depart)*100)/$ipc_depart;
 		$augmentation_ipc   = $loyer_actuel * ($taux_variation_ipc/100) * 0.4;
 		$loyer_augmente_ipc = $loyer_actuel + $augmentation_ipc;
@@ -119,6 +151,14 @@ class CalculetteEloquent implements CalculetteInterface {
 				            ->pluck('taux');			
 	}
 	
+	public function taux_date_actuel(){
+	
+		  return $this->taux->where('canton', '=', 'u')
+				            ->orderBy('date_debut', 'DESC')
+				            ->take(1)
+				            ->pluck('date_debut');			
+	}
+	
 	public function ipc_depart($date_depart){
 
 		  return $this->ipc->where('date_debut','<=',$date_depart)
@@ -132,6 +172,13 @@ class CalculetteEloquent implements CalculetteInterface {
 		  return $this->ipc->orderBy('date_debut', 'DESC')
 				           ->take(1)
 				           ->pluck('indice');			
+	}
+	
+	public function ipc_date_actuel(){
+	
+		  return $this->ipc->orderBy('date_debut', 'DESC')
+				           ->take(1)
+				           ->pluck('date_debut');			
 	}
 
 }

@@ -62,7 +62,9 @@ Route::group(array('prefix' => 'bail'), function()
 
     Route::get('doctrine', array('uses' => 'BailController@doctrine'));	
        
-    Route::get('calcul', array('uses' => 'BailController@calcul'));	       
+    Route::get('calcul', array('uses' => 'BailController@calcul'));	
+    
+    Route::post('loyer', array('uses' => 'BailController@loyer'));	   
     
 });
 
