@@ -1,16 +1,19 @@
 <?php
 
 use Droit\Repo\Arret\ArretInterface;
+use Droit\Repo\Analyse\AnalyseInterface;
 use Droit\Repo\Categorie\CategorieInterface;
 
 class BailController extends BaseController {
 
 	protected $arret;
 	
-	public function __construct( ArretInterface $arret, CategorieInterface $categorie )
+	public function __construct( ArretInterface $arret, AnalyseInterface $analyse, CategorieInterface $categorie )
 	{
 		
 		$this->arret     = $arret;
+		
+		$this->analyse   = $analyse;
 		
 		$this->categorie = $categorie;
 
@@ -37,19 +40,11 @@ class BailController extends BaseController {
 	
 	public function jurisprudence(){
 	
-		$allarrets  = $this->arret->getAll(195);
-		$categories = $this->categorie->getAll(195);
-		//$allarrets  = $this->arret->find(702);
-		
-		$arrets = array();
-		
-		foreach($allarrets as $arret){
-			
-			//$arrets[] = $arret->arrets_categories->ismain;
-			
-		}
+		$allarrets    = $this->arret->getAll(195);
+		$allanalyses  = $this->analyse->getAll(195);
+		$categories   = $this->categorie->getAll(195);
     
-    	return View::make('bail.jurisprudence')->with( array( 'arrets' => $allarrets ));	
+    	return View::make('bail.jurisprudence')->with( array( 'arrets' => $allarrets , 'allanalyses' => $allanalyses));	
 	}
 	
 	public function doctrine(){

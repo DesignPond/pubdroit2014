@@ -695,16 +695,32 @@ a.newsletterLink:hover {
 	Arrets
 =======================================*/
 /* line 577, main.scss */
+#arrets .arrets .cat .details h4 {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* line 586, main.scss */
+#arrets .arrets .cat .details img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* line 591, main.scss */
 .arret {
   margin-bottom: 25px;
 }
 
-/* line 581, main.scss */
+/* line 595, main.scss */
 .arret p, .arret ul {
   margin-bottom: 10px;
 }
 
-/* line 585, main.scss */
+/* line 599, main.scss */
 .arret ul li {
   font-size: 13px;
 }
@@ -712,12 +728,12 @@ a.newsletterLink:hover {
 /*======================================
 	Misc
 =======================================*/
-/* line 593, main.scss */
+/* line 607, main.scss */
 .upMarge {
   margin-top: 15px;
 }
 
-/* line 597, main.scss */
+/* line 611, main.scss */
 .line {
   line-height: 30px;
   margin-bottom: 20px;

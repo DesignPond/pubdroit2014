@@ -10,6 +10,7 @@ use Membres as M;
 use Professions as P;
 use Files as F;
 use Arrets as A;
+use Analyses as AN;
 use BaCategories as BA;
 
 class PubdroitServiceProvider extends ServiceProvider {
@@ -25,6 +26,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerMembreService();
     	$this->registerProfessionService();	
     	$this->registerArretService();	
+    	$this->registerAnalyseService();	
     	$this->registerCategorieService();	
 		$this->registerFileService();
 		$this->registerUploadService();	
@@ -99,6 +101,15 @@ class PubdroitServiceProvider extends ServiceProvider {
 		$this->app->bind('Droit\Repo\Arret\ArretInterface', function()
         {
             return new \Droit\Repo\Arret\ArretEloquent( new A );
+        });
+        
+	}
+
+    public function registerAnalyseService(){
+		
+		$this->app->bind('Droit\Repo\Analyse\AnalyseInterface', function()
+        {
+            return new \Droit\Repo\Analyse\AnalyseEloquent( new AN );
         });
         
 	}
