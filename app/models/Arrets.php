@@ -5,6 +5,8 @@ class Arrets extends Eloquent {
 	protected $guarded   = array('id');
 	public static $rules = array();
 	
+	protected $dates = array('pub_date');
+	
 	protected $table = 'ba_arrets';
 	
 	public function arrets_categories()
