@@ -13,10 +13,18 @@
 
 use Carbon\Carbon;
 
+use Analyses as AN;
+
 Route::get('/', function()
 {
 	
-	return Inscriptions::where('event_id', '=' ,1)->with( array('prices','users') )->get();
+    	
+	$ans = AN::where('pid','=',195)->with( array('analyses_categories') )->orderBy('pub_date', 'DESC')->get()->toArray();	
+	
+	
+	echo '<pre>';
+	print_r($ans);
+	echo '</pre>';	
 		
 /*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
@@ -28,9 +36,6 @@ Route::get('/', function()
 	
 	$event = Events::with( array('prices','eventsoptions') )->findOrFail(3);
 	
-	echo '<pre>';
-	print_r($event);
-	echo '</pre>';	
 */
 });
 

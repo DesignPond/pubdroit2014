@@ -600,7 +600,12 @@ a.newsletterLink:hover {
   color: #999999;
 }
 
-/* line 501, main.scss */
+/* line 502, main.scss */
+.ui-accordion .ui-accordion-content {
+  overflow: hidden;
+}
+
+/* line 506, main.scss */
 .chzn-container-multi .chzn-choices .search-field input {
   background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
   border: 0 none !important;
@@ -611,7 +616,7 @@ a.newsletterLink:hover {
   padding: 5px;
 }
 
-/* line 511, main.scss */
+/* line 516, main.scss */
 .filtre h6 {
   color: #666666;
   font-size: 12px;
@@ -622,33 +627,33 @@ a.newsletterLink:hover {
 /******************************************************
 * Calculette
 ******************************************************/
-/* line 521, main.scss */
+/* line 526, main.scss */
 #calculatorResult {
   margin: 20px 0 0 0;
 }
 
-/* line 525, main.scss */
+/* line 530, main.scss */
 #calculatorResult .lines {
   clear: both;
   line-height: 18px;
   font-size: 12px;
 }
 
-/* line 531, main.scss */
+/* line 536, main.scss */
 #calculatorResult .details .lines .label-input, #calculatorResult .result .lines .label-input {
   display: block;
   float: left;
   width: 180px;
 }
 
-/* line 537, main.scss */
+/* line 542, main.scss */
 #calculatorResult .details .lines .value, #calculatorResult .result .lines .value {
   display: block;
   float: right;
   width: 30px;
 }
 
-/* line 544, main.scss */
+/* line 549, main.scss */
 #calculatorResult .details .dates {
   color: #808080;
   display: block;
@@ -656,12 +661,12 @@ a.newsletterLink:hover {
   padding-bottom: 5px;
 }
 
-/* line 552, main.scss */
+/* line 557, main.scss */
 #calculatorResult .result {
   margin-bottom: 20px;
 }
 
-/* line 557, main.scss */
+/* line 562, main.scss */
 #calculatorResult .result .nouveau_loyer {
   font-weight: bold;
 }
@@ -669,7 +674,12 @@ a.newsletterLink:hover {
 /*======================================
 	Arrets
 =======================================*/
+/* line 571, main.scss */
+#arrets .arrets .arret.hidden {
+  display: none;
+}
 
+/* line 575, main.scss */
 #arrets .arrets .cat .details h4 {
   font-size: 13px;
   margin: 0;
@@ -679,21 +689,23 @@ a.newsletterLink:hover {
   font-style: italic;
 }
 
-/* line 586, main.scss */
+/* line 584, main.scss */
 #arrets .arrets .cat .details img {
   display: block;
   margin: 0 auto;
 }
 
-
+/* line 589, main.scss */
 .arret {
   margin-bottom: 25px;
 }
 
+/* line 593, main.scss */
 .arret p, .arret ul {
   margin-bottom: 10px;
 }
 
+/* line 597, main.scss */
 .arret ul li {
   font-size: 13px;
 }
@@ -701,12 +713,21 @@ a.newsletterLink:hover {
 /*======================================
 	Misc
 =======================================*/
+/* line 604, main.scss */
+.regle {
+  border-bottom: 1px solid #DCDCDC;
+  height: 1px;
+  display: block;
+  width: 90%;
+  margin: 10px auto 40px auto;
+}
 
+/* line 612, main.scss */
 .upMarge {
   margin-top: 15px;
 }
 
-
+/* line 616, main.scss */
 .line {
   line-height: 30px;
   margin-bottom: 20px;

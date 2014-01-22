@@ -498,6 +498,11 @@ a.newsletterLink:hover{
 .chzn-container-multi .chzn-choices .search-field .default {
     color: #999999;
 }
+
+.ui-accordion .ui-accordion-content {
+    overflow: hidden;
+}
+
 .chzn-container-multi .chzn-choices .search-field input {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
     border: 0 none !important;
@@ -563,6 +568,10 @@ a.newsletterLink:hover{
 	Arrets
 =======================================*/
 
+#arrets .arrets .arret.hidden {
+    display: none;
+}
+
 #arrets .arrets .cat .details h4 {
     font-size: 13px;
     margin: 0;
@@ -592,6 +601,13 @@ a.newsletterLink:hover{
 /*======================================
 	Misc
 =======================================*/
+.regle{
+	border-bottom: 1px solid #DCDCDC;
+	height: 1px;
+	display: block;
+	width: 90%;
+	margin: 10px auto 40px auto;
+}
 
 .upMarge{
 	margin-top: 15px;
