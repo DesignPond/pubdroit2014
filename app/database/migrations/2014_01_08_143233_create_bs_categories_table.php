@@ -13,9 +13,17 @@ class CreateBsCategoriesTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_categories', function(Blueprint $table) {
+
 			$table->increments('id');
+			$table->integer('pid');
+			$table->integer('created_at');
+			$table->integer('updated_at');	
+			$table->integer('cruser_id');		
+			$table->integer('deleted');						
+			$table->integer('sorting');
+			$table->string('title');
+			$table->text('image');
 			
-			$table->timestamps();
 		});
 	}
 

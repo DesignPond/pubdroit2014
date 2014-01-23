@@ -11,6 +11,8 @@ use Professions as P;
 use Files as F;
 use Arrets as A;
 use Analyses as AN;
+use Seminaires as SM;
+use Subjects as SU;
 use BaCategories as BA;
 use Calculette_ipc as CI;
 use Calculette_taux as CT;
@@ -29,6 +31,8 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerProfessionService();	
     	$this->registerArretService();	
     	$this->registerAnalyseService();	
+    	$this->registerSeminaireService();	
+    	$this->registerSubjectService();	
     	$this->registerCategorieService();	
 		$this->registerFileService();
 		$this->registerUploadService();	
@@ -116,6 +120,25 @@ class PubdroitServiceProvider extends ServiceProvider {
         });
         
 	}
+	
+    public function registerSeminaireService(){
+		
+		$this->app->bind('Droit\Repo\Seminaire\SeminaireInterface', function()
+        {
+            return new \Droit\Repo\Seminaire\SeminaireEloquent( new SM );
+        });
+        
+	}
+	
+    public function registerSubjectService(){
+		
+		$this->app->bind('Droit\Repo\Subject\SubjectInterface', function()
+        {
+            return new \Droit\Repo\Subject\SubjectEloquent( new SU );
+        });
+        
+	}	
+	
 
     public function registerCategorieService(){
 		

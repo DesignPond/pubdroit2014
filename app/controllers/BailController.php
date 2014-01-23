@@ -2,6 +2,8 @@
 
 use Droit\Repo\Arret\ArretInterface;
 use Droit\Repo\Analyse\AnalyseInterface;
+use Droit\Repo\Seminaire\SeminaireInterface;
+use Droit\Repo\Subject\SubjectInterface;
 use Droit\Repo\Categorie\CategorieInterface;
 use Droit\Repo\Calculette\CalculetteInterface;
 
@@ -9,7 +11,7 @@ class BailController extends BaseController {
 
 	protected $arret;
 	
-	public function __construct( ArretInterface $arret, CategorieInterface $categorie,AnalyseInterface $analyse, CalculetteInterface $calculette )
+	public function __construct( ArretInterface $arret, CategorieInterface $categorie,AnalyseInterface $analyse, CalculetteInterface $calculette, SeminaireInterface $seminaire, SubjectInterface $subject )
 	{
 		
 		$this->arret      = $arret;
@@ -18,7 +20,11 @@ class BailController extends BaseController {
 		
 		$this->calculette = $calculette;
 
-		$this->analyse   = $analyse;
+		$this->analyse    = $analyse;
+		
+		$this->seminaire  = $seminaire;
+		
+		$this->subject    = $subject;	
 
 	}
 	/**
@@ -51,8 +57,13 @@ class BailController extends BaseController {
 	}
 	
 	public function doctrine(){
-    
-    	return View::make('bail.doctrine');	
+
+		$subjects   = $this->subject->getAll();
+		$categories = $this->subject->arrangeCategories($subjects);
+		$seminaires = $this->seminaire->getAll();
+   
+    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires ,'subjects' => $categories ));	
+
 	}
 	
 	public function search(){

@@ -1,16 +1,16 @@
 <?php
 
-namespace Behat\Mink\Element;
-
-use Behat\Mink\Exception\ElementNotFoundException;
-
 /*
- * This file is part of the Behat\Mink.
+ * This file is part of the Mink package.
  * (c) Konstantin Kudryashov <ever.zet@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+namespace Behat\Mink\Element;
+
+use Behat\Mink\Exception\ElementNotFoundException;
 
 /**
  * Traversable element.
@@ -78,7 +78,7 @@ abstract class TraversableElement extends Element
     }
 
     /**
-     * Checks whether document has a button (input[type=submit|image|button], button) with specified locator.
+     * Checks whether document has a button (input[type=submit|image|button|reset], button) with specified locator.
      *
      * @param string $locator button id, value or alt
      *
@@ -90,23 +90,7 @@ abstract class TraversableElement extends Element
     }
 
     /**
-     * Checks whether an element has a named CSS class
-     *
-     * @param string $className Name of the class
-     *
-     * @return boolean
-     */
-    public function hasClass($className)
-    {
-        if ($this->hasAttribute('class')) {
-            return in_array($className, explode(' ', $this->getAttribute('class')));
-        }
-
-        return false;
-    }
-
-    /**
-     * Finds button (input[type=submit|image|button], button) with specified locator.
+     * Finds button (input[type=submit|image|button|reset], button) with specified locator.
      *
      * @param string $locator button id, value or alt
      *
@@ -120,7 +104,7 @@ abstract class TraversableElement extends Element
     }
 
     /**
-     * Presses button (input[type=submit|image|button], button) with specified locator.
+     * Presses button (input[type=submit|image|button|reset], button) with specified locator.
      *
      * @param string $locator button id, value or alt
      *

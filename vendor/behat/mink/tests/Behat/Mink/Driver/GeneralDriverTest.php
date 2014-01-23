@@ -98,18 +98,6 @@ abstract class GeneralDriverTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @group issue162
-     * TODO: fix goutte behavior
-     */
-    public function _testIssue162()
-    {
-        $this->getSession()->visit($this->pathTo('/issue162.php'));
-
-        $this->getSession()->getPage()->uncheckField('Checkbox 1');
-        $this->getSession()->getPage()->pressButton('Submit');
-    }
-
-    /**
      * @group issue211
      */
     public function testIssue211()
@@ -488,6 +476,14 @@ abstract class GeneralDriverTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Konstantin', $firstname->getValue());
         $this->assertEquals('Kudryashov', $lastname->getValue());
 
+        $page->findButton('Reset')->click();
+
+        $this->assertEquals('Firstname', $firstname->getValue());
+        $this->assertEquals('Lastname', $lastname->getValue());
+
+        $firstname->setValue('Konstantin');
+        $page->fillField('last_name', 'Kudryashov');
+
         $page->findButton('Save')->click();
 
         if ($this->safePageWait(5000, 'document.getElementById("first") !== null')) {
@@ -495,6 +491,37 @@ abstract class GeneralDriverTest extends \PHPUnit_Framework_TestCase
             $this->assertEquals('Firstname: Konstantin', $page->find('css', '#first')->getText());
             $this->assertEquals('Lastname: Kudryashov', $page->find('css', '#last')->getText());
         }
+    }
+
+    /**
+     * @dataProvider formSubmitWaysDataProvider
+     */
+    public function testFormSubmitWays($submitVia)
+    {
+        $session = $this->getSession();
+        $session->visit($this->pathTo('/basic_form.php'));
+        $page = $session->getPage();
+
+        $firstname = $page->findField('first_name');
+        $firstname->setValue('Konstantin');
+
+        $page->findButton($submitVia)->click();
+
+        if ($this->safePageWait(5000, 'document.getElementById("first") !== null')) {
+            $this->assertEquals('Firstname: Konstantin', $page->find('css', '#first')->getText());
+        } else {
+            $this->fail('Form was never submitted');
+        }
+    }
+
+    public function formSubmitWaysDataProvider()
+    {
+        return array(
+            array('Save'),
+            array('input-type-image'),
+            array('button-without-type'),
+            array('button-type-submit'),
+        );
     }
 
     public function testFormSubmit()

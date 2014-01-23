@@ -13,9 +13,12 @@ class CreateBsSubjectsAuthorsTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_subjects_authors', function(Blueprint $table) {
+
 			$table->increments('id');
+			$table->integer('subject_id')->unsigned()->index();
+			$table->integer('author_id')->unsigned()->index();
+			$table->integer('sorting');		
 			
-			$table->timestamps();
 		});
 	}
 

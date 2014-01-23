@@ -13,9 +13,19 @@ class CreateBsSeminairesTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_seminaires', function(Blueprint $table) {
+
 			$table->increments('id');
+			$table->integer('pid');
+			$table->integer('created_at');
+			$table->integer('updated_at');	
+			$table->integer('cruser_id');		
+			$table->integer('deleted');						
+			$table->string('year');
+			$table->string('title');	
+			$table->text('image');	
+			$table->text('orderlink');
+			$table->integer('subjects');
 			
-			$table->timestamps();
 		});
 	}
 

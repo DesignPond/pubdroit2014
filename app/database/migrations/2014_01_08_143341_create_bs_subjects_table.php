@@ -13,9 +13,20 @@ class CreateBsSubjectsTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_subjects', function(Blueprint $table) {
+	
 			$table->increments('id');
-			
-			$table->timestamps();
+			$table->integer('pid');
+			$table->integer('created_at');
+			$table->integer('updated_at');	
+			$table->integer('cruser_id');		
+			$table->integer('sorting');	
+			$table->integer('deleted');						
+			$table->string('title');
+			$table->text('file');	
+			$table->text('appendixes');	
+			$table->integer('authors');
+			$table->integer('category');
+	
 		});
 	}
 

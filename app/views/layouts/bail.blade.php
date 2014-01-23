@@ -102,7 +102,7 @@
 								<div class="filtre">
 									<h6>Par catégorie</h6>
 									<div class="list categories clear">
-										<select class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+										<select id="arret-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
 											<option value="c2">Analyse</option>
 											<option value="c17">Bail à ferme</option>
 											<option value="c45">Bail à ferme agricole</option>
@@ -127,7 +127,7 @@
 										</select>
 									</div>
 									<h6>Par année</h6>
-									<ul class="list annees clear">
+									<ul id="arret-annees" class="list annees clear">
 										<li><a rel="y2013" href="#">Paru en 2013</a></li>
 										<li><a rel="y2012" href="#">Paru en 2012</a></li>
 										<li><a rel="y2011" href="#">Paru en 2011</a></li>
@@ -137,10 +137,11 @@
 							</div>
 						<h4 class="accordionPart seminaire"><a href="{{ url('bail/doctrine') }}" title="Articles de doctrine"><span>Articles de doctrine</span></a></h4>
 							<div class="accordionContentPart accordionContent seminaire">
+							
 								<div class="filtre">
 									<h6>Par catégorie</h6>
 									<div class="list categories clear">
-										<select class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+										<select id="seminaire-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
 											<option value="c2">Accessoires</option>
 											<option value="c25">AMSL</option>
 											<option value="c15">Bail commercial</option>
@@ -167,42 +168,42 @@
 											<option value="c12">Vente</option>
 										</select>
 									</div>
-								<h6>Par année</h6>
-									<ul class="list annees clear">
+									<h6>Par année</h6>
+									<ul id="seminaireannees" class="list annees clear">
 										<li><a rel="y17" href="#">Paru en 2012</a></li>
 										<li><a rel="y16" href="#">Paru en 2010</a></li>
 										<li><a rel="y15" href="#">Paru en 2008</a></li>
 										<li><a rel="y14" href="#">Paru en 2006</a></li>
 									</ul>
-								<h6>Par auteur</h6>
-								<div class="list auteurs clear">
-									<select class="chosen-select author" multiple data-placeholder="Filtrer par auteur..." name="filter">
-										<option value="a57">Andrea Braconi</option>
-										<option value="a51">Ariane Morin</option>
-										<option value="a25">Bénédict Foëx</option>
-										<option value="a4">Bernard Corboz</option>
-										<option value="a48">Bertrand Reeb</option>
-										<option value="a59">Blaise Carron</option>
-										<option value="a37">Blaise Knapp</option>
-										<option value="a49">Carole Aubert</option>
-										<option value="a19">Charles-André Junod</option>
-										<option value="a24">Christine Habermacher-Droz</option>
-										<option value="a41">Cipriano Alvarez</option>
-										<option value="a6">Claude Reymond</option>
-										<option value="a13">Claude Yerly</option>
-										<option value="a47">Daniel Devaud</option>
-										<option value="a22">David Lachat</option>
-										<option value="a38">Denis Piotet</option>
-										<option value="a42">Fabienne Byrde</option>
-										<option value="a34">Francis Michon</option>
-										<option value="a45">François Bohnet</option>
-										<option value="a9">François Knoepfler</option>
-										<option value="a21">Giacomo Roncoroni</option>
-										<option value="a55">Gianmaria Mosca</option>
-										<option value="a11">H.-R. Schüpbach</option>
-									</select>
-								</div>
-							</div>
+									<h6>Par auteur</h6>
+									<div class="list auteurs clear">
+										<select class="chosen-select author" multiple data-placeholder="Filtrer par auteur..." name="filter">
+											<option value="a57">Andrea Braconi</option>
+											<option value="a51">Ariane Morin</option>
+											<option value="a25">Bénédict Foëx</option>
+											<option value="a4">Bernard Corboz</option>
+											<option value="a48">Bertrand Reeb</option>
+											<option value="a59">Blaise Carron</option>
+											<option value="a37">Blaise Knapp</option>
+											<option value="a49">Carole Aubert</option>
+											<option value="a19">Charles-André Junod</option>
+											<option value="a24">Christine Habermacher-Droz</option>
+											<option value="a41">Cipriano Alvarez</option>
+											<option value="a6">Claude Reymond</option>
+											<option value="a13">Claude Yerly</option>
+											<option value="a47">Daniel Devaud</option>
+											<option value="a22">David Lachat</option>
+											<option value="a38">Denis Piotet</option>
+											<option value="a42">Fabienne Byrde</option>
+											<option value="a34">Francis Michon</option>
+											<option value="a45">François Bohnet</option>
+											<option value="a9">François Knoepfler</option>
+											<option value="a21">Giacomo Roncoroni</option>
+											<option value="a55">Gianmaria Mosca</option>
+											<option value="a11">H.-R. Schüpbach</option>
+										</select>
+									</div>
+							</div>						
 						</div>
 						<h4 class="accordion"><a href="#"><span>Revues</span></a></h4>
 							<div class="revueMenu accordionContent">

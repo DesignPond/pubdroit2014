@@ -451,40 +451,60 @@ a.newsletterLink:hover{
 
 /*** special seminaire ***/
 
+#seminaires .sujets{
+	color: #000000;
+    font-family: Arial,Verdana,Helvetica,sans-serif;
+    font-size: 12px;
+}
+
 #seminaires .sujets .col {
-  float: left;
+    float: left;
 }
 #seminaires .sujets .sujet {
-  padding: 10px 0;
-  border-bottom: 1px solid #B80E1D;
+    border-bottom: 1px solid #B80E1D;
+    padding: 10px 0;
 }
 #seminaires .sujets .category {
-  width: 90px;
-  margin-right: 4px;
+    margin-right: 4px;
+    width: 90px;
 }
+
+#seminaires .sujets .category h4{
+	color: #000000;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: normal;
+    padding: 0;
+}
+
+#seminaires .sujets .hidden {
+    display: none;
+}
+
 #seminaires .sujets .edition {
-  width: 110px;
-  margin-right: 4px;
+    margin-right: 4px;
+    width: 110px;
 }
 #seminaires .sujets .annee {
-  width: 33px;
-  margin-right: 4px;
+    margin-right: 4px;
+    width: 33px;
 }
 #seminaires .sujets .catTitle .annee strong {
-  position: relative;
-  left: -4px;
+    left: -4px;
+    position: relative;
 }
 #seminaires .sujets .desc {
-  width: 200px;
-  margin-right: 4px;
+    margin-right: 4px;
+    width: 200px;
 }
 #seminaires .sujets .auteur {
-  width: 100px;
-  margin-right: 4px;
+    margin-right: 4px;
+    width: 100px;
 }
 #seminaires .sujets .order {
-  width: 72px;
+    width: 72px;
 }
+
 
 .ui-accordion .ui-accordion-content  {
     padding: 0;
@@ -572,6 +592,29 @@ a.newsletterLink:hover{
     display: none;
 }
 
+#analyses {
+	border-bottom: 1px solid #DCDCDC;
+	display: block;
+	margin-bottom: 30px;
+}
+
+#arrets .arrets .cat.hidden {
+    display: none;
+}
+
+
+.arret .content {
+    font-size: 12px;
+    line-height: 18px;
+}
+
+.arret .content h3{
+	color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 0;
+}
+
 #arrets .arrets .cat .details h4 {
     font-size: 13px;
     margin: 0;
@@ -589,6 +632,7 @@ a.newsletterLink:hover{
 .arret{
 	margin-bottom: 25px;
 }
+
 
 .arret p,.arret ul{
 	margin-bottom: 10px;

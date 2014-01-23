@@ -81,7 +81,7 @@ function initAccordion(){
 }
 
 function initRevueMenu() {
-	var ulMenu = $$('.revueMenu ul.menu');
+	var ulMenu = $('.revueMenu ul.menu');
 	if(ulMenu.length > 0) {
 		ulMenu = ulMenu[0];
 		var parent = ulMenu.getParent();

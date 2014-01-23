@@ -13,9 +13,12 @@ class CreateBsSeminairesSubjectsTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_seminaires_subjects', function(Blueprint $table) {
+
 			$table->increments('id');
+			$table->integer('seminaire_id')->unsigned()->index();
+			$table->integer('subject_id')->unsigned()->index();
+			$table->integer('sorting');		
 			
-			$table->timestamps();
 		});
 	}
 

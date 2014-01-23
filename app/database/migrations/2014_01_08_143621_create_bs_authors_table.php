@@ -13,9 +13,16 @@ class CreateBsAuthorsTable extends Migration {
 	public function up()
 	{
 		Schema::create('bs_authors', function(Blueprint $table) {
+
 			$table->increments('id');
+			$table->integer('pid');
+			$table->integer('created_at');
+			$table->integer('updated_at');	
+			$table->integer('cruser_id');		
+			$table->integer('sorting');	
+			$table->integer('deleted');						
+			$table->string('name');
 			
-			$table->timestamps();
 		});
 	}
 
