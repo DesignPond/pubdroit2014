@@ -9,7 +9,19 @@ use Droit\Repo\Calculette\CalculetteInterface;
 
 class BailController extends BaseController {
 
+
 	protected $arret;
+	
+	protected $categorie;
+	
+	protected $analyse;
+	
+	protected $calculette;
+	
+	protected $seminaire;
+	
+	protected $subject;
+	
 	
 	public function __construct( ArretInterface $arret, CategorieInterface $categorie,AnalyseInterface $analyse, CalculetteInterface $calculette, SeminaireInterface $seminaire, SubjectInterface $subject )
 	{
@@ -18,9 +30,9 @@ class BailController extends BaseController {
 
 		$this->categorie  = $categorie;
 		
-		$this->calculette = $calculette;
-
 		$this->analyse    = $analyse;
+		
+		$this->calculette = $calculette;
 		
 		$this->seminaire  = $seminaire;
 		

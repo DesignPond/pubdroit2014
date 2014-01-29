@@ -1,7 +1,28 @@
 <?php
 
+use Droit\Repo\Arret\ArretInterface;
+use Droit\Repo\Analyse\AnalyseInterface;
+use Droit\Repo\Categorie\CategorieInterface;
+
+
 class MatrimonialController extends BaseController {
 
+	protected $arret;
+	
+	protected $categorie;
+	
+	protected $analyse;
+	
+	public function __construct( ArretInterface $arret, CategorieInterface $categorie, AnalyseInterface $analyse )
+	{
+		
+		$this->arret      = $arret;
+
+		$this->categorie  = $categorie;
+
+		$this->analyse    = $analyse;
+
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -31,6 +52,21 @@ class MatrimonialController extends BaseController {
 	{
 		//
 	}
+	
+	public function test()
+	{
+		$arrets       = $this->arret->getAll(207);
+		$categories   = $this->categorie->getAll(207);
+		$allanalyses  = $this->analyse->getAll(207);
+		
+		$arrArrange   = $this->arret->isMain($arrets);
+			
+		$categories   = $this->categorie->categories($categories);
+		
+		//return $allarrets;
+   
+    	return View::make('matrimonial.test')->with( array( 'arrets' => $arrArrange , 'categories' => $categories) );	
+	}
 
 	/**
 	 * Display the specified resource.
@@ -40,7 +76,17 @@ class MatrimonialController extends BaseController {
 	 */
 	public function show($id)
 	{
-        return View::make('matrimonials.show');
+        return View::make('matrimonial.show');
+	}
+	
+		
+	public function jurisprudence(){
+
+		$allarrets    = $this->arret->getAll(207);
+		$categories   = $this->categorie->getAll(207);
+		$allanalyses  = $this->analyse->getAll(207);
+   
+    	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $allarrets , 'allanalyses' => $allanalyses , 'categories' => $categories));	
 	}
 
 	/**

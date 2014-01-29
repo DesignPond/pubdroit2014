@@ -4,6 +4,7 @@ interface CategorieInterface {
 	
 	public function getAll($pid);
 	public function find($id);
+	public function categories($categories);
 	public function create(array $data);
 	public function update(array $data);
 	

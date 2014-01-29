@@ -23,6 +23,7 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="<?php echo asset('js/matrimonial/jquery-ui.js');?>"></script>
     <script src="<?php echo asset('js/matrimonial/main.js');?>"></script>
+    <script src="<?php echo asset('js/bail/arrets.js');?>"></script>
 
 	</head>
 	<body>
@@ -117,7 +118,7 @@
 			            		<li><a href="index.php?id=206&amp;uid=177" >Newsletter septembre 2011</a></li>
 		            		</ul>
 	            		</div>
-					<h3 class="link"><a class="newsletterLink" href="#" >Jurisprudence</a></h3>	          	
+					<h3 class="link"><a class="newsletterLink" href="{{ url('matrimonial/jurisprudence') }}" >Jurisprudence</a></h3>	          	
             	</div>
 				
 				<!-- Bloc Soutiens --> 

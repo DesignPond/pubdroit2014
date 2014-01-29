@@ -23,6 +23,31 @@ class ArretEloquent implements ArretInterface {
 		return $this->arret->where('id','=',$id)->with( array('arrets_categories') )->get();	
 	}
 	
+	public function isMain($arrets){
+		
+		$arrange = array();
+		
+		$arrets  = $arrets->toArray();
+		
+		foreach($arrets as $arret)
+		{
+			$cats = $arret['arrets_categories'];
+			
+			if(!empty($cats))
+			{
+				foreach($cats as $cat)
+				{
+					if($cat['ismain'] == 1)
+					{
+						$arrange[$cat['id']][] = $arret;
+					}	
+				}
+			}			
+		}
+		
+		return $arrange;
+	}
+	
 	public function create(array $data)
 	{
 		

@@ -22,6 +22,20 @@ class CategorieEloquent implements CategorieInterface {
 		
 		return $this->categorie->findOrFail($id);	
 	}
+			
+	public function categories($categories){
+	
+		$arrange = array();
+		
+		$categories  = $categories->toArray();
+		
+		foreach($categories as $categorie)
+		{
+			$arrange[$categorie['id']] = $categorie;
+		}
+		
+		return $arrange;		
+	}
 	
 	public function create(array $data)
 	{

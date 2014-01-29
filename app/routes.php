@@ -59,16 +59,11 @@ Route::get('/', function()
 Route::group(array('prefix' => 'bail'), function()
 {
 
-    Route::get('/', array('uses' => 'BailController@index'));	 
-  
-    Route::get('lois', array('uses' => 'BailController@lois'));	
-    
+    Route::get('/', array('uses' => 'BailController@index'));	   
+    Route::get('lois', array('uses' => 'BailController@lois'));	    
     Route::get('jurisprudence', array('uses' => 'BailController@jurisprudence'));	
-
-    Route::get('doctrine', array('uses' => 'BailController@doctrine'));	
-       
-    Route::get('calcul', array('uses' => 'BailController@calcul'));	
-    
+    Route::get('doctrine', array('uses' => 'BailController@doctrine'));	       
+    Route::get('calcul', array('uses' => 'BailController@calcul'));	    
     Route::post('loyer', array('uses' => 'BailController@loyer'));	   
     
 });
@@ -102,6 +97,8 @@ Route::group(array('prefix' => 'pubdroit'), function()
 Route::group(array('prefix' => 'matrimonial'), function()
 {
     Route::get('/', array('uses' => 'MatrimonialController@index'));
+    Route::get('jurisprudence', array('uses' => 'MatrimonialController@jurisprudence'));	
+    Route::get('test', array('uses' => 'MatrimonialController@test'));
     
 });
 
