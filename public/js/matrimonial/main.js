@@ -17,6 +17,7 @@ $(function() {
 		
 		return false;
 	});
-
+	
+	$("#arret-chosen").chosen();
 
 });

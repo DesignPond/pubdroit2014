@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="<?php echo asset('css/foundation.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/normalize.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/style.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/chosen.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/main.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/matrimonial/smoothness/jquery-ui-1.10.3.custom.css'); ?>" />	
 	
@@ -22,7 +23,11 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
     <script src="<?php echo asset('js/matrimonial/jquery-ui.js');?>"></script>
+    <script src="<?php echo asset('js/jquery.validate.min.js');?>"></script>
+    <script src="<?php echo asset('js/localization/messages_fr.js');?>"></script>
+    <script src="<?php echo asset('js/chosen.jquery.js');?>"></script>
     <script src="<?php echo asset('js/matrimonial/main.js');?>"></script>
+    <script src="<?php echo asset('js/bail/bail.js');?>"></script>
     <script src="<?php echo asset('js/bail/arrets.js');?>"></script>
 
 	</head>
@@ -88,37 +93,65 @@
             	
             	<!-- Bloc archives newsletter --> 
             	
-             	<div class="colorBlock">
-	            	<h3 class="link"><a class="newsletterLink" href="#" id="toggleNewsletter">Newsletter</a></h3>
-	            		<div class="toggleNewsletter colorSection" style="display:none;">
-		            		<ul>
-			            		<li><a href="index.php?id=206&amp;uid=356" >Newsletter octobre 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=353" >Newsletter septembre 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=347" >Newsletter été 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=340" >Newsletter juin 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=334" >Newsletter mai 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=328" >Newsletter avril 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=321" >Newsletter mars 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=314" >Newsletter février 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=307" >Newsletter janvier 2013</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=305" >Newsletter décembre 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=292" >Newsletter novembre 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=304" >Newsletter octobre 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=303" >Newsletter septembre 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=302" >Newsletter été 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=268" >Newsletter juin 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=264" >Newsletter mai 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=259" >Newsletter avril 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=252" >Newsletter mars 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=239" >Newsletter février 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=230" >Newsletter janvier 2012</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=209" >Newsletter décembre 2011</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=193" >Newsletter novembre 2011</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=183" >Newsletter octobre 2011</a></li>
-			            		<li><a href="index.php?id=206&amp;uid=177" >Newsletter septembre 2011</a></li>
-		            		</ul>
-	            		</div>
-					<h3 class="link"><a class="newsletterLink" href="{{ url('matrimonial/jurisprudence') }}" >Jurisprudence</a></h3>	          	
+				<div class="">
+             		<div id="rightmenu">	
+             		
+	             		<div class="accordion">
+					 		<h4 class="accordion"><a href="#"><span>Newsletter</span></a></h4>
+							<div class="newsletterMenu accordionContent">
+								<ul class="menu newsletter">
+									<li><a href="index.php?id=108&amp;uid=364" >Newsletter décembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=357" >Newsletter novembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=354" >Newsletter octobre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=349" >Newsletter septembre 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=344" >Newsletter août 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=343" >Newsletter juillet 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=338" >Newsletter juin 2013</a></li>
+									<li><a href="index.php?id=108&amp;uid=330" >Newsletter mai 2013</a></li>
+								</ul>
+							</div>
+							<h4 class="accordionPart jurisprudence"><a href="{{ url('bail/jurisprudence') }}" title="Jurisprudence"><span>Jurisprudence</span></a></h4>
+							<div class="accordionContentPart accordionContent jurisprudence">
+								<div class="filtre">
+									<h6>Par catégorie</h6>
+									<div class="list categories clear">
+										<select id="arret-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+											<option value="c2">Analyse</option>
+											<option value="c17">Bail à ferme</option>
+											<option value="c45">Bail à ferme agricole</option>
+											<option value="c21">Changement de propriétaire</option>
+											<option value="c16">Conclusion</option>
+											<option value="c4">Défaut</option>
+											<option value="c10">Destiné à la publication</option>
+											<option value="c18">Diligence</option>
+											<option value="c20">Expulsion</option>
+											<option value="c13">Faillite</option>
+											<option value="c15">Frais accessoires</option>
+											<option value="c3">Général</option>
+											<option value="c14">Législation</option>
+											<option value="c9">Logement de famille</option>
+											<option value="c1">Loyer</option>
+											<option value="c7">Procédure</option>
+											<option value="c8">Prolongation</option>
+											<option value="c12">Prostitution</option>
+											<option value="c6">Résiliation</option>
+											<option value="c5">Sous-location</option>
+											<option value="c19">Vente</option>
+										</select>
+									</div>
+									<h6>Par année</h6>
+									<ul id="arret-annees" class="list annees clear">
+										<li><a rel="y2013" href="#">Paru en 2013</a></li>
+										<li><a rel="y2012" href="#">Paru en 2012</a></li>
+										<li><a rel="y2011" href="#">Paru en 2011</a></li>
+										<li><a rel="y2010" href="#">Paru en 2010</a></li>
+									</ul>
+								</div>
+							</div>
+							
+						</div>
+
+					</div>          	
             	</div>
 				
 				<!-- Bloc Soutiens --> 

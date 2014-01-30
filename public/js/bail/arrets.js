@@ -21,7 +21,7 @@ $( document ).ready(function(event) {
 		var activeCategories   = [];
 				
 		filtres.on('click', function(event) {
-			
+						
 			event.preventDefault();
 			event.stopPropagation();
 

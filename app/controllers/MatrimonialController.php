@@ -82,11 +82,15 @@ class MatrimonialController extends BaseController {
 		
 	public function jurisprudence(){
 
-		$allarrets    = $this->arret->getAll(207);
+		$arrets       = $this->arret->getAll(207);
 		$categories   = $this->categorie->getAll(207);
 		$allanalyses  = $this->analyse->getAll(207);
+		
+		$arrArrange   = $this->arret->isMain($arrets);
+			
+		$categories   = $this->categorie->categories($categories);
    
-    	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $allarrets , 'allanalyses' => $allanalyses , 'categories' => $categories));	
+    	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $arrArrange  , 'allanalyses' => $allanalyses , 'categories' => $categories));	
 	}
 
 	/**
