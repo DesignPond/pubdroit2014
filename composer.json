@@ -11,7 +11,8 @@
 		"iron-io/iron_mq": "1.4.8",
 		"killswitch/laravel-mailgun": "dev-master",
 		"intervention/image": "dev-master",
-		"crhayes/validation": "dev-master"
+		"crhayes/validation": "dev-master",
+		"barryvdh/laravel-debugbar": "dev-master"
 	},
 	"require-dev": {
 		"codeception/codeception": "dev-master",
@@ -37,6 +38,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
+			"php artisan debugbar:publish",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [

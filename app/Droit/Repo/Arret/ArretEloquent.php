@@ -15,7 +15,10 @@ class ArretEloquent implements ArretInterface {
 	
 	public function getAll( $pid ){
 	
-		return $this->arret->where('pid','=',$pid)->with( array('arrets_categories','arrets_analyses') )->orderBy('pub_date', 'DESC')->get();	
+		return $this->arret->where('pid','=',$pid)->where('deleted', '=', 0)->with( array('arrets_categories' => function ($query)
+		  {
+		    $query->orderBy('sorting', 'ASC');
+		  },'arrets_analyses') )->orderBy('pub_date', 'DESC')->get();	
 	}
 	
 	public function find($id){

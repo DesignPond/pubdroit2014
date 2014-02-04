@@ -3,8 +3,55 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "7eab97130c329258330b6cdadcdbc89a",
+    "hash": "3411610212d1409f24917bc01075c119",
     "packages": [
+        {
+            "name": "barryvdh/laravel-debugbar",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-debugbar.git",
+                "reference": "200c48a600bf4a7c4608c6433c41fd02b6c26a36"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/200c48a600bf4a7c4608c6433c41fd02b6c26a36",
+                "reference": "200c48a600bf4a7c4608c6433c41fd02b6c26a36",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/filesystem": "~4.0",
+                "illuminate/support": "~4.0",
+                "maximebf/debugbar": "~1.9",
+                "php": ">=5.3.0",
+                "symfony/finder": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Barryvdh\\Debugbar": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "PHP Debugbar integration for Laravel",
+            "keywords": [
+                "debug",
+                "debugbar",
+                "laravel",
+                "profiler",
+                "webprofiler"
+            ],
+            "time": "2014-02-01 12:59:18"
+        },
         {
             "name": "cartalyst/sentry",
             "version": "dev-master",
@@ -799,6 +846,56 @@
             ],
             "description": "The Mailgun SDK provides methods for all API functions.",
             "time": "2013-10-12 00:31:04"
+        },
+        {
+            "name": "maximebf/debugbar",
+            "version": "1.9.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/maximebf/php-debugbar.git",
+                "reference": "0412fe76f798948c7f31bd8ecb648d39287a28c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/0412fe76f798948c7f31bd8ecb648d39287a28c2",
+                "reference": "0412fe76f798948c7f31bd8ecb648d39287a28c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "php": ">=5.3.0"
+            },
+            "suggest": {
+                "kriswallsmith/assetic": "The best way to manage assets",
+                "monolog/monolog": "Log using Monolog",
+                "predis/predis": "Redis storage"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "DebugBar": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Bouroumeau-Fuseau",
+                    "email": "maxime.bouroumeau@gmail.com",
+                    "homepage": "http://maximebf.com"
+                }
+            ],
+            "description": "Debug bar in the browser for php application",
+            "homepage": "https://github.com/maximebf/php-debugbar",
+            "keywords": [
+                "debug"
+            ],
+            "time": "2014-01-29 18:10:09"
         },
         {
             "name": "monolog/monolog",
@@ -3083,6 +3180,7 @@
         "killswitch/laravel-mailgun": 20,
         "intervention/image": 20,
         "crhayes/validation": 20,
+        "barryvdh/laravel-debugbar": 20,
         "codeception/codeception": 20,
         "mockery/mockery": 20,
         "fzaninotto/faker": 20

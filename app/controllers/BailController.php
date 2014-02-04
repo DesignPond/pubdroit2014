@@ -65,7 +65,7 @@ class BailController extends BaseController {
 		$categories   = $this->categorie->getAll(195);
 		$allanalyses  = $this->analyse->getAll(195);
    
-    	return View::make('bail.jurisprudence')->with( array( 'arrets' => $allarrets , 'allanalyses' => $allanalyses));	
+    	return View::make('bail.jurisprudence')->with( array( 'arrets' => $allarrets , 'analyses' => $allanalyses));	
 	}
 	
 	public function doctrine(){

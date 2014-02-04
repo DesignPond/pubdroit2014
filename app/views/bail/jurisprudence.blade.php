@@ -26,12 +26,13 @@
 					
 					<div class="liste large-9 columns">
 					
-					@if( !empty($allanalyses) )
+					@if( !empty($analyses) )
 					
-						@foreach($allanalyses as $analyse)
+						@foreach($analyses as $analyse)
 							<a name="analyse-{{ $analyse->id }}"></a>
 								
 								<?php 
+								
 									$allcat = ''; 
 									$anacat = $analyse->analyses_categories->toArray();	
 									$anarr  = $analyse->arrets_analyses;	
@@ -54,7 +55,7 @@
 									<p class="abstract">{{ $analyse->abstract }}</p>
 	
 									@if( !empty($analyse->file) )
-									<p><a href="uploads/tx_bailarrets/{$analyse.file}" target="_blank">Télécharger cette analyse en PDF</a></p>
+									<p><a href="uploads/tx_bailarrets/{{$analyse['file']}}" target="_blank">Télécharger cette analyse en PDF</a></p>
 									@endif
 								</div>
 								

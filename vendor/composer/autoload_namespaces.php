@@ -47,6 +47,7 @@ return array(
     'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
     'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Droit' => array($baseDir . '/app'),
+    'DebugBar' => array($vendorDir . '/maximebf/debugbar/src'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Crhayes\\Validation\\' => array($vendorDir . '/crhayes/validation/src'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),
@@ -56,4 +57,5 @@ return array(
     'Boris' => array($vendorDir . '/d11wtq/boris/lib'),
     'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-selenium2-driver/src', $vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src'),
     'Behat\\Mink' => array($vendorDir . '/behat/mink/src'),
+    'Barryvdh\\Debugbar' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
 );

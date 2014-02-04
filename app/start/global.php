@@ -93,3 +93,5 @@ require __DIR__.'/../observables.php';
 |--------------------------------------------------------------------------
 */
 $app['Cartalyst\Sentry\Sentry'] = $app['sentry'];
+
+

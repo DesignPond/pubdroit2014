@@ -37,6 +37,13 @@ class CategorieEloquent implements CategorieInterface {
 		return $arrange;		
 	}
 	
+		
+	public function droplist($pid)
+	{
+		
+		return $this->categorie->where('pid','=',$pid)->lists('title', 'id');
+	}
+	
 	public function create(array $data)
 	{
 		

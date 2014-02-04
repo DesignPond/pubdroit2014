@@ -55,17 +55,9 @@ class MatrimonialController extends BaseController {
 	
 	public function test()
 	{
-		$arrets       = $this->arret->getAll(207);
-		$categories   = $this->categorie->getAll(207);
-		$allanalyses  = $this->analyse->getAll(207);
-		
-		$arrArrange   = $this->arret->isMain($arrets);
-			
-		$categories   = $this->categorie->categories($categories);
-		
-		//return $allarrets;
+		$arrets  = $this->analyse->getAll(207);
    
-    	return View::make('matrimonial.test')->with( array( 'arrets' => $arrArrange , 'categories' => $categories) );	
+    	return View::make('matrimonial.test')->with( array( 'arrets' => $arrets) );	
 	}
 
 	/**
@@ -82,15 +74,16 @@ class MatrimonialController extends BaseController {
 		
 	public function jurisprudence(){
 
-		$arrets       = $this->arret->getAll(207);
-		$categories   = $this->categorie->getAll(207);
-		$allanalyses  = $this->analyse->getAll(207);
+		$arrets     = $this->arret->getAll(207);
+		$categories = $this->categorie->getAll(207);
+		$cat_list   = $this->categorie->droplist(207);
+		$analyses   = $this->analyse->getAll(207);
 		
-		$arrArrange   = $this->arret->isMain($arrets);
+		$arrArrange = $this->arret->isMain($arrets);
 			
-		$categories   = $this->categorie->categories($categories);
+		$categories = $this->categorie->categories($categories);
    
-    	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $arrArrange  , 'allanalyses' => $allanalyses , 'categories' => $categories));	
+    	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $arrArrange, 'analyses' => $analyses, 'categories' => $categories, 'cat_list' => $cat_list));	
 	}
 
 	/**

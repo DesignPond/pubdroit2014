@@ -115,29 +115,45 @@
 								<div class="filtre">
 									<h6>Par catégorie</h6>
 									<div class="list categories clear">
+										
 										<select id="arret-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
-											<option value="c2">Analyse</option>
-											<option value="c17">Bail à ferme</option>
-											<option value="c45">Bail à ferme agricole</option>
-											<option value="c21">Changement de propriétaire</option>
-											<option value="c16">Conclusion</option>
-											<option value="c4">Défaut</option>
-											<option value="c10">Destiné à la publication</option>
-											<option value="c18">Diligence</option>
-											<option value="c20">Expulsion</option>
-											<option value="c13">Faillite</option>
-											<option value="c15">Frais accessoires</option>
-											<option value="c3">Général</option>
-											<option value="c14">Législation</option>
-											<option value="c9">Logement de famille</option>
-											<option value="c1">Loyer</option>
-											<option value="c7">Procédure</option>
-											<option value="c8">Prolongation</option>
-											<option value="c12">Prostitution</option>
-											<option value="c6">Résiliation</option>
-											<option value="c5">Sous-location</option>
-											<option value="c19">Vente</option>
+											<option value="c22">Thème du mois</option>
+											<option value="c23">Revenu hypothétique</option>
+											<option value="c24">Arrêts commentés</option>
+											<option value="c25">Mariage</option>
+											<option value="c26">Etranger</option>
+											<option value="c27">Liquidation du régime matrimonial</option>
+											<option value="c28">Domicile conjugal</option>
+											<option value="c29">Mesures protectrices</option>
+											<option value="c30">Droit de garde</option>
+											<option value="c31">Autorité parentale</option>
+											<option value="c32">Entretien</option>
+											<option value="c33">Divorce</option>
+											<option value="c34">Procédure</option>
+											<option value="c35">Droit de visite</option>
+											<option value="c36">Avis débiteur</option>
+											<option value="c37">Partage prévoyance</option>
+											<option value="c38">Législation</option>
+											<option value="c39">Publication prévue</option>
+											<option value="c40">Garde des enfants</option>
+											<option value="c41">Modification du jugement de divorce</option>
+											<option value="c42">Couple non marié</option>
+											<option value="c43">Thème du mois</option>
+											<option value="c46">Protection de l'enfant</option>
+											<option value="c47">Thème du mois</option>
+											<option value="c48">Analyse</option>
+											<option value="c49">Partenariat</option>
+											<option value="c50">Couple</option>
+											<option value="c51">Nom de famille</option>
+											<option value="c52">Violence conjugale</option>
+											<option value="c53">S.O.S.</option>
+											<option value="c55">Séquestre</option>
+											<option value="c56">Audition enfant</option>
+											<option value="c57">Contrat</option>
+											<option value="c58">Partage des biens</option>
+											<option value="c60">NoelMatrimonial</option>
 										</select>
+										
 									</div>
 									<h6>Par année</h6>
 									<ul id="arret-annees" class="list annees clear">

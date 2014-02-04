@@ -8,7 +8,61 @@
 
 	 	 <div id="arrets" class="row">		 	  	 
 		 	 <div class="arrets">
-		 	 
+			 	
+			 	 <div class="cat clear">
+	
+		 	 		 <div class="title clear">
+						 <img src="<?php echo asset('/images/matrimonial/categories/analyse_02.jpg'); ?>" alt="" width="140" height="140" />
+						 <h4>Analyses</h4>						
+					  </div>
+					  <div class="liste">	
+		 	  		  
+		 	  		  @if(!empty($analyses))							
+						@foreach($analyses as $analyse)
+						
+					 		 <a name="analyse-{{ $analyse['id'] }}"></a>
+					 		 
+								<?php 
+								
+									$allancat         = '';									
+									$arrets_analyses  = $analyse->arrets_analyses;
+									$categories_analy = $analyse->analyses_categories->toArray();  
+									setlocale(LC_ALL, 'fr_FR');  
+
+								?>
+								
+								@foreach($categories_analy as $arcats)					
+									<?php  $allancat .= 'c'.$arcats['id'].' '; ?>				
+								@endforeach	
+								
+								<div class="arret analyse {{ $allancat }} y{{ $analyse->pub_date->year }} clear row">
+
+									<div class="content">
+										
+										<h3>Analyse de <?php echo $analyse->authors; ?></h3>
+											
+										<ul class="liste-arrets arrets-internal-links">
+										@if(!empty($arrets_analyses))
+											@foreach($arrets_analyses as $arret_an)
+											<li>{{ link_to('matrimonial/jurisprudence#a-'.$arret_an->id,$arret_an->reference) }} du {{ $arret_an->pub_date->formatLocalized('%e %B %Y') }}</li>
+											@endforeach
+										@endif
+										</ul>
+										<p class="abstract"><?php echo $analyse->abstract; ?></p>
+										
+										@if( !empty($analyse->file) )
+											<p><a href="uploads/tx_bailarrets/{{$analyse['file']}}" target="_blank">Télécharger cette analyse en PDF</a></p>
+										@endif
+											
+									</div>
+								</div>	
+									
+		 	 				@endforeach
+		 	 			@endif
+						</div>
+										
+			 	 </div>
+			 	 
 			 	 <div class="cat clear">
 			 	 
 			 	 	@if(!empty($arrets))							

@@ -121,7 +121,8 @@ return array(
 		'Crhayes\Validation\ValidationServiceProvider',
 		'Droit\Repo\RepoServiceProvider',
 		'Droit\Service\Form\FormServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider'
 	),
 
 	/*

@@ -16,7 +16,7 @@ class Arrets extends Eloquent {
 
 	public function arrets_analyses()
     {     
-        return $this->belongsToMany('Analyses', 'ba_analyses_arrets', 'arret_id', 'analyse_id');
+        return $this->belongsToMany('Analyses', 'ba_analyses_arrets', 'analyse_id', 'arret_id');
     }
     
 }

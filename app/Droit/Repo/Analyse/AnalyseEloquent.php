@@ -15,7 +15,7 @@ class AnalyseEloquent implements AnalyseInterface {
 	
 	public function getAll( $pid ){
 	
-		return $this->analyse->where('pid','=',$pid)->with( array('analyses_categories','arrets_analyses') )->orderBy('pub_date', 'DESC')->get();	
+		return $this->analyse->where('pid','=',$pid)->where('deleted', '=', 0)->with( array('analyses_categories','arrets_analyses') )->orderBy('pub_date', 'DESC')->get();	
 	}
 	
 	public function find($id){

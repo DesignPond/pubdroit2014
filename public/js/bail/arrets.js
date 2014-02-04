@@ -104,6 +104,8 @@ $( document ).ready(function(event) {
 				});
 			}
 			
+			console.log(activeSelectors);
+			
 
 			blockCat.removeClass('hidden');
 			

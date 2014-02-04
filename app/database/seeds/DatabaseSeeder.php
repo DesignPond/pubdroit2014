@@ -29,6 +29,11 @@ class DatabaseSeeder extends Seeder {
 		$this->call('MembresTableSeeder');
 		$this->call('ProfessionsTableSeeder');
 		$this->call('InscriptionsTableSeeder');
+		$this->call('Cm_articlesTableSeeder');
+		$this->call('Cm_articles_pricesTableSeeder');
+		$this->call('Cm_articles_typesTableSeeder');
+		$this->call('Cm_articles_attributesTableSeeder');
+		$this->call('Cm_attributesTableSeeder');
 	}
 
 }
