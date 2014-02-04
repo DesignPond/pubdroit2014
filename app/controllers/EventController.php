@@ -3,6 +3,8 @@
 use Droit\Repo\Event\EventInterface;
 use Droit\Repo\Compte\CompteInterface;
 use Droit\Repo\Option\OptionInterface;
+use Droit\Repo\Price\PriceInterface;
+use Droit\Repo\Specialisation\SpecialisationInterface;
 use Droit\Repo\File\FileInterface;
 
 use Droit\Service\Form\Event\EventForm;
@@ -23,6 +25,10 @@ class EventController extends BaseController {
 	
 	protected $option;
 	
+	protected $specialisation;
+	
+	protected $price;
+	
 	public function __construct(
 		EventInterface $event, 
 		EventForm $validator , 
@@ -30,23 +36,29 @@ class EventController extends BaseController {
 		UploadInterface $upload , 
 		FileForm $filevalidator, 
 		FileInterface $file,
-		OptionInterface $option
+		OptionInterface $option,
+		PriceInterface $price,
+		SpecialisationInterface $specialisation
 	)
 	{
 		
-		$this->event         = $event;
+		$this->event          = $event;
 		
-		$this->file          = $file;
+		$this->file           = $file;
 		
-		$this->validator     = $validator;
+		$this->validator      = $validator;
 		
-		$this->filevalidator = $filevalidator;
+		$this->filevalidator  = $filevalidator;
 		
-		$this->compte        = $compte;
+		$this->compte         = $compte;
 		
-		$this->option        = $option;
+		$this->option         = $option;
 		
-		$this->upload        = $upload;
+		$this->upload         = $upload;
+		
+		$this->specialisation = $specialisation;
+		
+		$this->price          = $price;
 
 	}
 
@@ -216,24 +228,5 @@ class EventController extends BaseController {
 
 		 return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') ); 
 	 }
-	
-	/**
-	 * Specialisation and options updates 
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */	 
-/*
-	 public function pivot(){
-		 
-		 //  [table] => event_options
-		 $data = array( 'id' => Input::get('id'), 'event_id' => Input::get('event_id'), Input::get('column') => Input::get('value') );
-		 //print_r( $data );
-		 if( $this->option->update($data) ){ 
-			 echo Input::get('value');
-		 }		 
-	 }
-*/
-
 
 }

@@ -3,6 +3,8 @@
 use Droit\Repo\Specialisation\SpecialisationInterface;
 use Droit\Service\Form\Specialisation\SpecialisationValidator as SpecialisationValidator;
 
+use Event_specialisations as ES;
+
 class SpecialisationController extends BaseController {
 
 	protected $specialisation;
@@ -30,9 +32,11 @@ class SpecialisationController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($event)
 	{
-        return View::make('admin.specialisation.create');
+        $specialisations = $this->specialisation->droplist();
+        
+        return View::make('admin.event.form.specialisation_create')->with( array( 'event' => $event , 'specialisations' => $specialisations) );
 	}
 
 	/**
@@ -112,6 +116,37 @@ class SpecialisationController extends BaseController {
 		}
 		
 		return Redirect::to('admin/pubdroit/specialisation')->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') );
+	}
+	
+	/* Link to events */
+	
+	public function linkEvent(){
+	
+		$specialisation = Input::get('specialisation_id');
+		$event          = Input::get('event_id');
+		
+		if( $this->specialisation->linkEvent($specialisation,$event) )
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event.'/edit')->with( array('status' => 'success') );
+		}
+		
+		return Redirect::back()->with('status', 'Problème avec l\'ajout');
+	}
+	
+	public function unlinkEvent($id){
+	
+		//$event_id = ES::find($id)->event_id;
+		
+		$event = ES::find($id);
+		
+		$event_id  = $event->event_id;
+		
+		if( $this->specialisation->unlinkEvent($id) )
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'La spécialisation a été supprimée') );
+		}
+		
+		return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') );
 	}
 
 }

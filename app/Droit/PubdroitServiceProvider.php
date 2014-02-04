@@ -1,6 +1,7 @@
 <?php namespace Droit;
 
 use Illuminate\Support\ServiceProvider;
+
 use Events as E;
 use Inscriptions as I;
 use Comptes as C;
@@ -8,12 +9,16 @@ use Options as O;
 use Specialisations as S;
 use Membres as M;
 use Professions as P;
+use Prices as PR;
+
 use Files as F;
+
 use Arrets as A;
 use Analyses as AN;
 use Seminaires as SM;
 use Subjects as SU;
 use BaCategories as BA;
+
 use Calculette_ipc as CI;
 use Calculette_taux as CT;
 
@@ -29,6 +34,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerSpecialisationService();	
     	$this->registerMembreService();
     	$this->registerProfessionService();	
+    	$this->registerPriceService();	
     	$this->registerArretService();	
     	$this->registerAnalyseService();	
     	$this->registerSeminaireService();	
@@ -99,6 +105,15 @@ class PubdroitServiceProvider extends ServiceProvider {
 		$this->app->bind('Droit\Repo\Profession\ProfessionInterface', function()
         {
             return new \Droit\Repo\Profession\ProfessionEloquent( new P );
+        });
+        
+	}
+	
+	public function registerPriceService(){
+	
+		$this->app->bind('Droit\Repo\Price\PriceInterface', function()
+        {
+            return new \Droit\Repo\Price\PriceEloquent( new PR );
         });
         
 	}

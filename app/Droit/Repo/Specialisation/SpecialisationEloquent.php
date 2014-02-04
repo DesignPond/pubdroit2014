@@ -2,6 +2,7 @@
 
 use Droit\Repo\Specialisation\SpecialisationInterface;
 use Specialisations as M;
+use Event_specialisations as ES;
 
 class SpecialisationEloquent implements SpecialisationInterface {
 	
@@ -17,6 +18,11 @@ class SpecialisationEloquent implements SpecialisationInterface {
 		
 		return $this->specialisation->all();
 		
+	}
+	
+	public function droplist(){
+	
+		return $this->specialisation->lists('titreSpecialisation', 'id');
 	}
 	
 	public function find($id){
@@ -61,6 +67,28 @@ class SpecialisationEloquent implements SpecialisationInterface {
 		$specialisation->save();	
 		
 		return true;		
+	}
+	
+	public function linkEvent($specialisation,$event){
+	
+		$link = ES::create(array(
+			'event_id'          => $event,
+			'specialisation_id' => $specialisation
+		));
+		
+		if( ! $link )
+		{
+			return false;
+		}
+		
+		return true;	
+	}
+	
+	public function unlinkEvent($id){
+		
+		$link = ES::find($id);
+
+		return $link->delete();
 	}
 	
 }

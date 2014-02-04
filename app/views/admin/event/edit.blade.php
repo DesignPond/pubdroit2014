@@ -230,7 +230,7 @@
 					   <div class="panel-body"><!-- start panel content -->
 					   					     
 							  <h3>Prix</h3>
-							  <p><a href="#" class="btn btn-sm btn-primary">Ajouter</a></p>
+							  <p><a href="{{ url('admin/pubdroit/price/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>
 							  
 							  <div class="row">
 							  	  <div class="col-sm-6 col-md-offset-3">
@@ -243,6 +243,15 @@
 										  <div class="panel-body">
 											  <ul class="list-group">
 											  	@foreach($event->prices as $price)
+											  	
+											  	<?php
+							  	  	  
+							  	  	  	echo '<pre>';
+							  	  	  	print_r($price->typePrix);
+							  	  	  	echo '</pre>';
+							  	  	  	
+							  	  	  ?>
+							  	  	  
 											  		@if($price->typePrix == 1)
 											  			<li class="list-group-item">
 											  				<div class="row">
@@ -328,7 +337,7 @@
 							  </div>						  		
 							  									  
 							  <h3>Spécialisations</h3> 
-							  <p><a href="#" class="btn btn-sm btn-primary">Ajouter</a></p>
+							  <p><a href="{{ url('admin/pubdroit/specialisation/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>
 							  
 						  	  <div class="row">						  	  
 					  	  		 <div class="col-sm-6 col-md-offset-3">
@@ -342,8 +351,7 @@
 												  			<?php echo $specialisation->titreSpecialisation; ?>
 												  		</div>
 											  			<div class="col-sm-2 btn-group btn-group-pivot">
-										  					<a class="btn btn-xs btn-orange" href="#">éditer</a>
-															<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $specialisation->titreSpecialisation; ?>" href="#">X</a>
+												  			<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $specialisation->titreSpecialisation; ?>" href="{{ url('admin/pubdroit/specialisation/'.$specialisation->pivot->id.'/unlinkEvent') }}">X</a>	
 														</div>
 													</div>
 										  		</li>

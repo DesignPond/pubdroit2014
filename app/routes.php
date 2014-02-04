@@ -182,9 +182,17 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::get('option/{option}/delete', array('uses' => 'OptionController@destroy'));
 	    Route::get('option/create/{event}', array('uses' => 'OptionController@create'));
 	    Route::resource('option', 'OptionController');
+
+	    // Prix colloques
+	    Route::get('price/{price}/delete', array('uses' => 'PriceController@destroy'));
+	    Route::get('price/create/{event}', array('uses' => 'PriceController@create'));
+	    Route::resource('price', 'PriceController');
 	    
 	    // Spécialisations users and colloques
 	    Route::get('specialisation/{specialisation}/delete', array('uses' => 'SpecialisationController@destroy'));
+	    Route::get('specialisation/create/{event}', array('uses' => 'SpecialisationController@create'));
+	    Route::post('specialisation/linkEvent', array('uses' => 'SpecialisationController@linkEvent'));
+	    Route::get('specialisation/{id}/unlinkEvent', array('uses' => 'SpecialisationController@unlinkEvent'));
 	    Route::resource('specialisation', 'SpecialisationController');
 	    
 	    // Membres users

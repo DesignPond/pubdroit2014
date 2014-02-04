@@ -23,7 +23,7 @@ class Events extends Eloquent {
     
     public function event_specialisations()
     {     
-        return $this->belongsToMany('Specialisations', 'event_specialisations', 'event_id', 'specialisation_id');
+        return $this->belongsToMany('Specialisations', 'event_specialisations', 'event_id', 'specialisation_id')->withPivot(array('id'));
     }
  	
     public function files(){

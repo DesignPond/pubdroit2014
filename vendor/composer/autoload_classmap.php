@@ -418,6 +418,8 @@ return array(
     'Droit\\Repo\\Membre\\MembreInterface' => $baseDir . '/app/Droit/Repo/Membre/MembreInterface.php',
     'Droit\\Repo\\Option\\OptionEloquent' => $baseDir . '/app/Droit/Repo/Option/OptionEloquent.php',
     'Droit\\Repo\\Option\\OptionInterface' => $baseDir . '/app/Droit/Repo/Option/OptionInterface.php',
+    'Droit\\Repo\\Price\\PriceEloquent' => $baseDir . '/app/Droit/Repo/Price/PriceEloquent.php',
+    'Droit\\Repo\\Price\\PriceInterface' => $baseDir . '/app/Droit/Repo/Price/PriceInterface.php',
     'Droit\\Repo\\Profession\\ProfessionEloquent' => $baseDir . '/app/Droit/Repo/Profession/ProfessionEloquent.php',
     'Droit\\Repo\\Profession\\ProfessionInterface' => $baseDir . '/app/Droit/Repo/Profession/ProfessionInterface.php',
     'Droit\\Repo\\RepoAbstract' => $baseDir . '/app/Droit/Repo/RepoAbstract.php',
