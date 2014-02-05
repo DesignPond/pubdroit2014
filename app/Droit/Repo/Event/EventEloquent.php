@@ -2,6 +2,8 @@
 
 use Droit\Repo\Event\EventInterface;
 use Events as M;
+use Event_emails as EM;
+use Event_attestations as EA;
 
 class EventEloquent implements EventInterface {
 
@@ -130,6 +132,96 @@ class EventEloquent implements EventInterface {
 		$event->save();	
 		
 		return true;
+	}
+	
+	// Emails
+	
+	public function getEmail($type,$event){
+		
+		return EM::where('typeEmail','=',$type)->where('event_id','=',$event)->first();		
+	}
+	
+	public function createEmail($data){
+	
+		if(!empty($data['id']))
+		{
+			$email = EM::findOrFail($data['id']);	
+			
+			if( ! $email )
+			{
+				return false;
+			}
+			
+			$email->typeEmail = $data['typeEmail'];
+			$email->message   = $data['message'];
+			$email->event_id  = $data['event_id'];		
+			
+			$email->save();	
+			
+			return true;	
+		}
+		else
+		{			
+			$email = EM::create(array(
+				'typeEmail' => $data['typeEmail'],
+				'message'   => $data['message'],
+				'event_id'  => $data['event_id']
+			));
+	
+			if( ! $email )
+			{
+				return false;
+			}
+			
+			return true;	
+		}	
+	}
+	
+	public function getAttestation($event){
+	
+		return EA::where('event_id','=',$event)->first();		
+	}
+	
+	public function createAttestation($data){
+	
+		if(!empty($data['id']))
+		{
+			$attestation = EA::findOrFail($data['id']);	
+			
+			if( ! $attestation )
+			{
+				return false;
+			}
+			
+			$attestation->lieu           = $data['lieu'];
+			$attestation->organisateur   = $data['organisateur'];
+			$attestation->remarque 	     = $data['remarque'];
+			$attestation->signature      = $data['signature'];
+			$attestation->responsabilite = $data['responsabilite'];
+			$attestation->event_id       = $data['event_id'];		
+			
+			$attestation->save();	
+			
+			return true;	
+		}
+		else
+		{			
+			$attestation = EA::create(array(
+				'lieu'           => $data['lieu'],
+				'organisateur'   => $data['organisateur'],
+				'remarque'       => $data['remarque'],
+				'signature'      => $data['message'],
+				'responsabilite' => $data['responsabilite'],
+				'event_id'       => $data['event_id']
+			));
+	
+			if( ! $attestation )
+			{
+				return false;
+			}
+			
+			return true;	
+		}	
 	}
 	
 }

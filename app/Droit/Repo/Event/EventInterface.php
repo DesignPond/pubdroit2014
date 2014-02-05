@@ -10,5 +10,15 @@ interface EventInterface {
 	public function create(array $data);
 	public function update(array $data);
 	
+	// Emails
+	
+	public function getEmail($type,$event);
+	public function createEmail($data);
+	
+	// Attestations
+	
+	public function getAttestation($event);
+	public function createAttestation($data);
+	
 }
 

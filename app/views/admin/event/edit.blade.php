@@ -36,10 +36,11 @@
 					</div>
 					@endif
 					
+					<!-- Images et documents -->
 					<!-- panel start -->
 					<div class="panel panel-primary">
-				       <div class="panel-heading"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
-					    <div class="panel-body"><!-- start panel content -->
+				       <div rel="#images" class="panel-heading event_section"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
+					    <div id="images" class="toggle_in panel-body"><!-- start panel content -->
 					    	
 							@foreach($documents as $type => $document)
 							
@@ -62,8 +63,8 @@
 												    	<p><strong>{{ ucfirst($doc) }}</strong></p>
 												    	<input class="uploadFile" disabled="disabled" placeholder="{{ $allfiles[$type][$doc]->filename }}">
 												    	<div class="btn-group admin-icon-options">
-													    	<a href="#" class="btn btn-sm btn-info">changer</a>
-													    	<a href="#" class="btn btn-sm btn-danger">supprimer</a>
+														  	<a class="btn btn-sm btn-danger alone_btn deleteAction" data-action="<?php echo $allfiles[$type][$doc]->filename; ?>" 
+														  	href="{{ url('admin/pubdroit/event/'.$allfiles[$type][$doc]->id.'/destroy_file') }}">X</a>
 												    	</div>
 											    	</div>
 											    </div>
@@ -120,32 +121,181 @@
 										    	</div>
 										    </div>
 										</div>												
-									@endforeach	
-																	
+									@endforeach																		
 								@endif	
 								
 						    	</div><!-- end row -->
-						    	
-							
 							@endforeach
 					    	
 					    </div><!-- end panel content -->
 					</div><!-- end panel -->
+					
+					<!-- Textes email -->
+					<!-- panel start -->
+					<div class="panel panel-sky">
+				       <div rel="#email_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Textes pour email inscription</h4></div>
+					    <div id="email_event" class="toggle_in panel-body"><!-- start panel content -->
+					    
+							<!-- form start --> 
+							{{ Form::model($email,array(
+								'method'        => 'POST',
+								'id'            => 'validate-form',
+								'data-validate' => 'parsley',
+								'class'         => 'form-horizontal',
+								'url'           => array('admin/pubdroit/event/email'))) 
+							}}
+							  
+							<div class="form-group">
+							  	<label for="message" class="col-sm-3 control-label">Message</label>
+							  	<div class="col-sm-6">
+							  	
+							  		@if(!empty($email))
+					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      			@else
+					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      			@endif
+							  	  	
+							  	</div>
+							</div>
+							  
+							<div class="col-sm-6 col-sm-offset-3">
+					      		<div class="btn-toolbar">
+					      		
+					      			@if(!empty($email))
+					      				{{ Form::hidden('id', $email->id )}}
+					      			@endif
+					      			
+					      			{{ Form::hidden('typeEmail', 'inscription' )}}
+					      			{{ Form::hidden('event_id', $event->id )}}
+						      		<button type="submit" class="btn-primary btn">Envoyer</button>
+					      		</div>
+					      	</div>
+	
+							{{ Form::close() }}
+					    	
+					    </div><!-- end panel content -->
+					</div><!-- end panel -->
+					
+					<!-- Textes Attestation -->
+					<!-- panel start -->
+					<div class="panel panel-midnightblue">
+				       <div rel="#attestation_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Infos pour attestation</h4></div>
+					    <div id="attestation_event" class="toggle_in panel-body"><!-- start panel content -->
+					    
+							<!-- form start --> 
+							{{ Form::open(array(
+								'method'        => 'POST',
+								'id'            => 'validate-form',
+								'data-validate' => 'parsley',
+								'class'         => 'form-horizontal',
+								'url'           => 'admin/pubdroit/event/attestation' ))
+							}}
+							
+							
+							<div class="form-group">
+								  <label for="lieu" class="col-sm-3 control-label">Lieu</label>
+								  <div class="col-sm-6">
+								  	
+									  @if(!empty($attestation))
+									      {{ Form::text('lieu', $attestation->lieu , array('class' => 'form-control required' )) }}
+									  @else
+						      			  {{ Form::text('lieu', null , array('class' => 'form-control required' )) }}
+						      		  @endif
+						      		  
+								  </div>
+								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
+							</div>
+							
+							
+							<div class="form-group">
+								  <label for="organisateur" class="col-sm-3 control-label">Organisateur</label>
+								  <div class="col-sm-6">
+								  
+								      @if(!empty($attestation))
+									      {{ Form::text('organisateur', $attestation->organisateur , array('class' => 'form-control required' )) }}
+									  @else
+						      			  {{ Form::text('organisateur', null , array('class' => 'form-control required' )) }}
+						      		  @endif
+						      		  
+								  </div>
+								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
+							</div>
+							
+							
+							<div class="form-group">
+								  <label for="signature" class="col-sm-3 control-label">Signature</label>
+								  <div class="col-sm-6">
+								  
+								      @if(!empty($attestation))
+									      {{ Form::text('signature', $attestation->signature , array('class' => 'form-control required' )) }}
+									  @else
+						      			  {{ Form::text('signature', null , array('class' => 'form-control required' )) }}
+						      		  @endif
+						      		  
+								  </div>
+								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
+							</div>
+							
+							
+							<div class="form-group">
+								  <label for="responsabilite" class="col-sm-3 control-label">Responsabilite</label>
+								  <div class="col-sm-6">
+								  
+								      @if(!empty($attestation))
+									      {{ Form::text('responsabilite', $attestation->responsabilite , array('class' => 'form-control' )) }}
+									  @else
+						      			  {{ Form::text('responsabilite', null , array('class' => 'form-control required' )) }}
+						      		  @endif
+						      		  
+								  </div>
+								  <div class="col-sm-3"><p class="help-block"></p></div>
+							</div>
+							  
+							<div class="form-group">
+							  	<label for="message" class="col-sm-3 control-label">Message</label>
+							  	<div class="col-sm-6">
+							  	
+							  		@if(!empty($attestation))
+					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      			@else
+					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      			@endif
+							  	  	
+							  	</div>
+							</div>
+							  
+							<div class="col-sm-6 col-sm-offset-3">
+					      		<div class="btn-toolbar">
+					      		
+					      			@if(!empty($attestation))
+					      				{{ Form::hidden('id', $attestation->id )}}
+					      			@endif
+					      			
+					      			{{ Form::hidden('event_id', $event->id )}}
+						      		<button type="submit" class="btn-primary btn">Envoyer</button>
+					      		</div>
+					      	</div>
+	
+							{{ Form::close() }}
+					    	
+					    </div><!-- end panel content -->
+					</div><!-- end panel -->
 
+					<!-- Info générales-->
 					<!-- form start --> 
 					{{ Form::model($event,array(
-						'method' => 'PATCH',
-						'id' => 'validate-form',
+						'method'        => 'PATCH',
+						'id'            => 'validate-form',
 						'data-validate' => 'parsley',
-						'class' => 'form-horizontal',
-						'route' => array('admin.pubdroit.event.update',$event->id))) 
+						'class'         => 'form-horizontal',
+						'route'         => array('admin.pubdroit.event.update',$event->id))) 
 					}} 
 
 					<!-- panel start -->
 					<div class="panel panel-green">
 	
-				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Informations</h4></div>
-					   <div class="panel-body"><!-- start panel content -->
+				       <div rel="#infos_gen" class="panel-heading event_section"><h4><i class="fa fa-calendar-o"></i> Informations</h4></div>
+					   <div id="infos_gen" class="panel-body"><!-- start panel content -->
 					    
 							<h3>Général</h3>
 							  <div class="form-group">
@@ -226,8 +376,8 @@
 
 					<!-- panel start -->
 					<div class="panel panel-green">	
-				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Prix et Options</h4></div>
-					   <div class="panel-body"><!-- start panel content -->
+				       <div rel="#infos_option" class="panel-heading event_section"><h4><i class="fa fa-flag-o"></i> Prix et Options</h4></div>
+					   <div id="infos_option" class="toggle_in panel-body"><!-- start panel content -->
 					   					     
 							  <h3>Prix</h3>
 							  <p><a href="{{ url('admin/pubdroit/price/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>
@@ -242,34 +392,25 @@
 								  	  <div class="panel panel-midnightblue">
 										  <div class="panel-body">
 											  <ul class="list-group">
-											  	@foreach($event->prices as $price)
-											  	
-											  	<?php
-							  	  	  
-							  	  	  	echo '<pre>';
-							  	  	  	print_r($price->typePrix);
-							  	  	  	echo '</pre>';
-							  	  	  	
-							  	  	  ?>
-							  	  	  
-											  		@if($price->typePrix == 1)
+											  @foreach($event->prices as $price)
+											  		@if($price->typePrice == 1)
 											  			<li class="list-group-item">
 											  				<div class="row">
 											  					<div class="col-sm-3">
-														  			<strong>{{ $price->prix }} CHF</strong>
+														  			<strong>{{ $price->price }} CHF</strong>
 														  		</div>
 												  				<div class="col-sm-7">
-														  			{{ $price->remarquePrix }}
+														  			{{ $price->remarquePrice }}
 														  		</div>
-													  			<div class="col-sm-2 btn-group btn-group-pivot ">
-														  			<a class="btn btn-xs btn-orange" href="#">éditer</a>
-																	<a href="#" class="btn btn-xs btn-danger">X</a>															
+													  			<div class="col-sm-2 btn-group btn-group-pivot">
+														  			<a class="btn btn-xs btn-orange" href="{{ route('admin.pubdroit.price.edit',  $price->id ) }}">éditer</a>		
+														  			<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $price->remarquePrice; ?>" href="{{ url('admin/pubdroit/price/'.$price->id.'/delete') }}">X</a>													
 																</div>
 															</div>
 											  			</li>
 												  	@endif
-												@endforeach
-											  </ul>
+												@endforeach											  
+												</ul>
 										  </div>
 								  	  </div>
 								  	  					
@@ -279,18 +420,18 @@
 										  <div class="panel-body">
 											  <ul class="list-group">
 											  	@foreach($event->prices as $price)
-											  		@if($price->typePrix == 2)
+											  		@if($price->typePrice == 2)
 											  			<li class="list-group-item">
 											  				<div class="row">
 											  					<div class="col-sm-3">
-														  			<strong>{{ $price->prix }} CHF</strong>
+														  			<strong>{{ $price->price }} CHF</strong>
 														  		</div>
 												  				<div class="col-sm-7">
-														  			{{ $price->remarquePrix }}
+														  			{{ $price->remarquePrice }}
 														  		</div>
 													  			<div class="col-sm-2 btn-group btn-group-pivot">
-														  			<a class="btn btn-xs btn-orange" href="#">éditer</a>
-																	<a href="#" class="btn btn-xs btn-danger">X</a>															
+														  			<a class="btn btn-xs btn-orange" href="{{ route('admin.pubdroit.price.edit',  $price->id ) }}">éditer</a>		
+														  			<a class="btn btn-xs btn-danger deleteAction" data-action="<?php echo $price->remarquePrice; ?>" href="{{ url('admin/pubdroit/price/'.$price->id.'/delete') }}">X</a>													
 																</div>
 															</div>
 											  			</li>
@@ -367,7 +508,7 @@
 
 					<!-- panel start -->
 					<div class="panel panel-green">	
-				       <div class="panel-heading"><h4><i class="fa fa-calendar-o"></i> Configuration</h4></div>
+				       <div class="panel-heading"><h4><i class="fa fa-gears"></i> Configuration</h4></div>
 					   <div class="panel-body"><!-- start panel content -->
 					   					     
 							  <h3>Documents</h3>

@@ -171,7 +171,10 @@ Route::group(array('prefix' => 'admin'), function()
 	    Route::get('archives', array('uses' => 'EventController@archives'));	    
 	    Route::get('event', array('uses' => 'EventController@index'));
 	    Route::post('event/upload', array('uses' => 'EventController@upload'));
-	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));	    
+	    Route::get('event/{id}/destroy_file', array('uses' => 'EventController@destroy_file')); 
+	    Route::post('event/pivot', array('uses' => 'EventController@pivot'));	
+	    Route::post('event/email', array('uses' => 'EventController@email'));
+	    Route::post('event/attestation', array('uses' => 'EventController@attestation'));	    
 	    Route::resource('event', 'EventController');
 
 		// Inscriptions

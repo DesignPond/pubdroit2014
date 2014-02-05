@@ -73,7 +73,7 @@ class PriceController extends BaseController {
 	{
 		 $price = $this->price->find($id);
 		 
-		 return View::make('admin.event.form.option_edit')->with( array('option' => $price) );
+		 return View::make('admin.event.form.price_edit')->with( array('price' => $price) );
 	}
 
 	/**

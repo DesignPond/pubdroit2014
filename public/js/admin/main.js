@@ -148,6 +148,15 @@ jQuery(document).ready(function() {
     $( "#dateFin" ).datepicker();
     $( "#dateDelai" ).datepicker();
     
+    $(".toggle_in").hide();
+    
+    // Toggle section of admin event
+	$(".event_section").click(function(){
+		var myelement = $(this).attr("rel")
+		$(myelement).slideToggle("slow");
+		$(".toggle:visible").not(myelement).hide();	
+	});
+	    
 
 });
 

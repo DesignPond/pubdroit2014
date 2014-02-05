@@ -8,10 +8,10 @@
 		<div id="page-heading">
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
-				<li>Option</li>
+				<li>Prix</li>
 				<li class="active">&Eacute;diter</li>
 			</ol>
-			<h1>Option</h1>
+			<h1>Prix</h1>
 		</div>
 		
 		<div class="container">

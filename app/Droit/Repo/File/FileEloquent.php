@@ -25,7 +25,7 @@ class FileEloquent implements FileInterface {
 		
 	public function find($id){
 		
-		return $this->file->with( array('prices','eventsoptions','files') )->findOrFail($id);			
+		return $this->file->findOrFail($id);			
 	}
 	
 	public function create(array $data){
@@ -61,6 +61,13 @@ class FileEloquent implements FileInterface {
 		$file->save();	
 		
 		return true;
+	}	
+	
+	public function delete($id){
+	
+		$file = $this->file->find($id);
+
+		return $file->delete();		
 	}
 	
 }

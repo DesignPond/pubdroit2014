@@ -149,8 +149,10 @@ class EventController extends BaseController {
 	 */
 	public function edit($id)
 	{
-		$event   = $this->event->find($id);
-		$comptes = $this->compte->getAll()->lists('motifCompte', 'id');
+		$event       = $this->event->find($id);
+		$email       = $this->event->getEmail('inscription',$id);
+		$attestation = $this->event->getAttestation($id);
+		$comptes     = $this->compte->getAll()->lists('motifCompte', 'id');
 		
 		// Uploads 
 		$documents = array(
@@ -160,7 +162,8 @@ class EventController extends BaseController {
 		
 		$allfiles = $this->event->setFiles($event,$documents);
 		
-        return View::make('admin.event.edit')->with( array( 'event' => $event, 'comptes' => $comptes , 'documents' => $documents , 'allfiles' => $allfiles ));
+        return View::make('admin.event.edit')
+        		->with( array( 'event' => $event, 'comptes' => $comptes , 'attestation' => $attestation, 'email' => $email , 'documents' => $documents , 'allfiles' => $allfiles ));
 	}
 
 	/**
@@ -179,11 +182,38 @@ class EventController extends BaseController {
 		else
 		{				
 			//return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->withInput( Input::all() )->withErrors( $this->validator->errors() );
-			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') )->withInput( Input::all() )->withErrors( $this->validator->errors() );
-		}
-		
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'danger') )->withInput( Input::all() )->withErrors( $this->validator->errors() );
+		}		
 	}
-
+	
+	public function email(){
+	
+		$event_id  = Input::get('event_id');
+		
+		if( $this->event->createEmail( Input::all() ) )
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'Mise à jour ok') ); 
+		}
+		else
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'danger' , 'message' => 'Problème') ); 
+		}
+	}
+	
+	public function attestation(){
+	
+		$event_id  = Input::get('event_id');
+		
+		if( $this->event->createAttestation( Input::all() ) )
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'Mise à jour ok') ); 
+		}
+		else
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'danger' , 'message' => 'Problème') ); 
+		}
+	}
+	
 	/**
 	 * Remove the specified resource from storage.
 	 *
@@ -205,8 +235,13 @@ class EventController extends BaseController {
 	 {
 		 $destination = Input::get('destination');
 		 $id = Input::get('event_id');
-		 	
-		 $data = $this->upload->upload( Input::file('file') , $destination );
+		 
+		 $data = false;
+		 
+		 if( Input::file('file') )
+		 {
+			 $data = $this->upload->upload( Input::file('file') , $destination );
+		 }
 		 	
 	 	 if($data)
 	 	 {
@@ -218,15 +253,34 @@ class EventController extends BaseController {
 	 	 	
 	 		if( $this->filevalidator->save( $file ) )
 			{				 	 	 	 
-				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success') );
+				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success' , 'message' => 'Fichier ajouté') );
 			} 
 			else
 			{
-				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') )->withErrors( $this->filevalidator->errors() );
+				return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error' , 'message' => 'Fichier ajouté') )->withErrors( $this->filevalidator->errors() );
 			} 
 		 }
 
-		 return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'error') ); 
+		 return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'danger' , 'message' => 'Aucun fichier') ); 
 	 }
+	 
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy_file($id)
+	{
+		
+		$event_id = $this->file->find($id)->event_id;
+
+		if( $this->file->delete($id) )
+		{
+			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'Le fichier a été supprimé') );
+		}
+		
+		return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') );
+	}
 
 }
