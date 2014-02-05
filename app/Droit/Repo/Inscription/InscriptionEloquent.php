@@ -24,7 +24,7 @@ class InscriptionEloquent implements InscriptionInterface {
 		
 	public function getAll(){
 		
-		return $this->inscription->all();		
+		return $this->inscription->with( array('prices','users') )->get();		
 	}
 		
 	public function find($id){
@@ -34,10 +34,9 @@ class InscriptionEloquent implements InscriptionInterface {
 	
 	public function getEvent($event){
 		
-		return $this->inscription->where('event_id', '=' ,$event)->with( array('users'=> function($query) 
-		{ 
-			$query->join('adresses', 'users.id', '=', 'adresses.user_id');
-			$query->where('adresses.type', '=', 2);
+		return $this->inscription->where('event_id', '=' ,$event)->with( array('prices','users'=> function($query) 
+		{ 			
+			$query->join('adresses','users.id','=','adresses.user_id')->where('adresses.type', '=', 1);
 			
 		}))->get();
 		

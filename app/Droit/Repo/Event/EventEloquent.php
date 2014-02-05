@@ -210,7 +210,7 @@ class EventEloquent implements EventInterface {
 				'lieu'           => $data['lieu'],
 				'organisateur'   => $data['organisateur'],
 				'remarque'       => $data['remarque'],
-				'signature'      => $data['message'],
+				'signature'      => $data['signature'],
 				'responsabilite' => $data['responsabilite'],
 				'event_id'       => $data['event_id']
 			));

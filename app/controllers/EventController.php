@@ -11,6 +11,9 @@ use Droit\Service\Form\Event\EventForm;
 use Droit\Service\Form\File\FileForm;
 use Droit\Service\Upload\UploadInterface;
 
+use Droit\Service\Form\Attestation\AttestationValidator as AttestationValidator;
+use Droit\Service\Form\Event\EmailEventValidator as EmailEventValidator;
+
 class EventController extends BaseController {
 
 	protected $event;
@@ -177,7 +180,7 @@ class EventController extends BaseController {
 					
 		if( $this->validator->update(Input::all()) )
 		{	
-			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success') );
+			return Redirect::to('admin/pubdroit/event/'.$id.'/edit')->with( array('status' => 'success', 'message' => 'Mise à jour ok') );
 		}
 		else
 		{				
@@ -187,31 +190,36 @@ class EventController extends BaseController {
 	}
 	
 	public function email(){
-	
+			
 		$event_id  = Input::get('event_id');
 		
-		if( $this->event->createEmail( Input::all() ) )
+		$emailEventValidator = EmailEventValidator::make(Input::all());
+		
+		if ($emailEventValidator->passes()) 
 		{
+			$this->event->createEmail( Input::all() );
+			
 			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'Mise à jour ok') ); 
 		}
-		else
-		{
-			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'danger' , 'message' => 'Problème') ); 
-		}
+		
+		return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->withErrors( $emailEventValidator->errors() )->withInput( Input::all() ); 
+		
 	}
 	
 	public function attestation(){
 	
 		$event_id  = Input::get('event_id');
 		
-		if( $this->event->createAttestation( Input::all() ) )
+		$attestationValidator = AttestationValidator::make(Input::all());
+		
+		if ($attestationValidator->passes()) 
 		{
+			$this->event->createAttestation( Input::all() );
+			
 			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'Mise à jour ok') ); 
 		}
-		else
-		{
-			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'danger' , 'message' => 'Problème') ); 
-		}
+		
+		return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->withErrors( $attestationValidator->errors() )->withInput( Input::all() ); 
 	}
 	
 	/**

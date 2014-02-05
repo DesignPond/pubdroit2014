@@ -40,7 +40,7 @@
 					<!-- panel start -->
 					<div class="panel panel-primary">
 				       <div rel="#images" class="panel-heading event_section"><h4><i class="fa fa-picture-o"></i> &nbsp;Images et documents</h4></div>
-					    <div id="images" class="toggle_in panel-body"><!-- start panel content -->
+					    <div id="images" class="panel-body"><!-- start panel content -->
 					    	
 							@foreach($documents as $type => $document)
 							
@@ -139,9 +139,9 @@
 							<!-- form start --> 
 							{{ Form::model($email,array(
 								'method'        => 'POST',
-								'id'            => 'validate-form',
+								'id'            => 'event_email',
 								'data-validate' => 'parsley',
-								'class'         => 'form-horizontal',
+								'class'         => 'validate-form form-horizontal',
 								'url'           => array('admin/pubdroit/event/email'))) 
 							}}
 							  
@@ -150,9 +150,9 @@
 							  	<div class="col-sm-6">
 							  	
 							  		@if(!empty($email))
-					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control required redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@else
-					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', null , array('class' => 'form-control required redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@endif
 							  	  	
 							  	</div>
@@ -185,9 +185,9 @@
 							<!-- form start --> 
 							{{ Form::open(array(
 								'method'        => 'POST',
-								'id'            => 'validate-form',
+								'id'            => 'event_attestation',
 								'data-validate' => 'parsley',
-								'class'         => 'form-horizontal',
+								'class'         => 'validate-form form-horizontal',
 								'url'           => 'admin/pubdroit/event/attestation' ))
 							}}
 							
@@ -252,13 +252,13 @@
 							</div>
 							  
 							<div class="form-group">
-							  	<label for="message" class="col-sm-3 control-label">Message</label>
+							  	<label for="remarque" class="col-sm-3 control-label">Remarque</label>
 							  	<div class="col-sm-6">
 							  	
 							  		@if(!empty($attestation))
-					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('remarque', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@else
-					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('remarque', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@endif
 							  	  	
 							  	</div>
@@ -285,9 +285,9 @@
 					<!-- form start --> 
 					{{ Form::model($event,array(
 						'method'        => 'PATCH',
-						'id'            => 'validate-form',
+						'id'            => 'event_info',
 						'data-validate' => 'parsley',
-						'class'         => 'form-horizontal',
+						'class'         => 'validate-form form-horizontal',
 						'route'         => array('admin.pubdroit.event.update',$event->id))) 
 					}} 
 
