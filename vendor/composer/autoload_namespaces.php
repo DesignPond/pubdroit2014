@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Whoops' => array($vendorDir . '/filp/whoops/src'),
-    'WebDriver' => array($vendorDir . '/instaclick/php-webdriver/lib'),
     'Way\\Generators' => array($vendorDir . '/way/generators/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Symfony\\Component\\Translation\\' => array($vendorDir . '/symfony/translation'),
@@ -34,9 +33,6 @@ return array(
     'Monolog' => array($vendorDir . '/monolog/monolog/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
     'Math' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
-    'Mailgun\\Tests' => array($vendorDir . '/mailgun/mailgun-php/tests'),
-    'Mailgun' => array($vendorDir . '/mailgun/mailgun-php/src'),
-    'Killswitch\\LaravelMailgun' => array($vendorDir . '/killswitch/laravel-mailgun/src'),
     'Jeremeamia\\SuperClosure' => array($vendorDir . '/jeremeamia/SuperClosure/src'),
     'Intervention\\Image' => array($vendorDir . '/intervention/image/src'),
     'Illuminate' => array($vendorDir . '/laravel/framework/src'),
@@ -47,7 +43,6 @@ return array(
     'Faker\\PHPUnit' => array($vendorDir . '/fzaninotto/faker/test'),
     'Faker' => array($vendorDir . '/fzaninotto/faker/src'),
     'Droit' => array($baseDir . '/app'),
-    'DebugBar' => array($vendorDir . '/maximebf/debugbar/src'),
     'Crypt' => array($vendorDir . '/phpseclib/phpseclib/phpseclib'),
     'Crhayes\\Validation\\' => array($vendorDir . '/crhayes/validation/src'),
     'Codeception' => array($vendorDir . '/codeception/codeception/src'),
@@ -55,7 +50,4 @@ return array(
     'Cartalyst\\Sentry' => array($vendorDir . '/cartalyst/sentry/src'),
     'Carbon' => array($vendorDir . '/nesbot/carbon/src'),
     'Boris' => array($vendorDir . '/d11wtq/boris/lib'),
-    'Behat\\Mink\\Driver' => array($vendorDir . '/behat/mink-selenium2-driver/src', $vendorDir . '/behat/mink-browserkit-driver/src', $vendorDir . '/behat/mink-goutte-driver/src'),
-    'Behat\\Mink' => array($vendorDir . '/behat/mink/src'),
-    'Barryvdh\\Debugbar' => array($vendorDir . '/barryvdh/laravel-debugbar/src'),
 );

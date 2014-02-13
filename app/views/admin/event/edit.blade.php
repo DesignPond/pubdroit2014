@@ -150,9 +150,9 @@
 							  	<div class="col-sm-6">
 							  	
 							  		@if(!empty($email))
-					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control required redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@else
-					      				{{ Form::textarea('message', null , array('class' => 'form-control required redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@endif
 							  	  	
 							  	</div>
@@ -197,9 +197,9 @@
 								  <div class="col-sm-6">
 								  	
 									  @if(!empty($attestation))
-									      {{ Form::text('lieu', $attestation->lieu , array('class' => 'form-control required' )) }}
+									      {{ Form::text('lieu', $attestation->lieu , array('class' => 'form-control' )) }}
 									  @else
-						      			  {{ Form::text('lieu', null , array('class' => 'form-control required' )) }}
+						      			  {{ Form::text('lieu', null , array('class' => 'form-control' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -212,9 +212,9 @@
 								  <div class="col-sm-6">
 								  
 								      @if(!empty($attestation))
-									      {{ Form::text('organisateur', $attestation->organisateur , array('class' => 'form-control required' )) }}
+									      {{ Form::text('organisateur', $attestation->organisateur , array('class' => 'form-control' )) }}
 									  @else
-						      			  {{ Form::text('organisateur', null , array('class' => 'form-control required' )) }}
+						      			  {{ Form::text('organisateur', null , array('class' => 'form-control' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -227,9 +227,9 @@
 								  <div class="col-sm-6">
 								  
 								      @if(!empty($attestation))
-									      {{ Form::text('signature', $attestation->signature , array('class' => 'form-control required' )) }}
+									      {{ Form::text('signature', $attestation->signature , array('class' => 'form-control' )) }}
 									  @else
-						      			  {{ Form::text('signature', null , array('class' => 'form-control required' )) }}
+						      			  {{ Form::text('signature', null , array('class' => 'form-control' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -244,7 +244,7 @@
 								      @if(!empty($attestation))
 									      {{ Form::text('responsabilite', $attestation->responsabilite , array('class' => 'form-control' )) }}
 									  @else
-						      			  {{ Form::text('responsabilite', null , array('class' => 'form-control required' )) }}
+						      			  {{ Form::text('responsabilite', null , array('class' => 'form-control' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -296,6 +296,30 @@
 	
 				       <div rel="#infos_gen" class="panel-heading event_section"><h4><i class="fa fa-calendar-o"></i> Informations</h4></div>
 					   <div id="infos_gen" class="panel-body"><!-- start panel content -->
+
+
+							<h3>Centres</h3>
+
+							  <div class="form-group">
+								  <label for="titre" class="col-sm-3 control-label">Centre organisateurs</label>
+								  <div class="col-sm-6">
+								  
+								  		<?php
+								  			
+								  			$centerLogos = explode(',', $event->centreLogos);
+									  		
+											if(!empty($centers)){
+												foreach($centers as $center){
+													echo '<div class="checkbox block"><label><input name="centres[]" value="'.$center.'" type="checkbox" ';
+													if( in_array($center, $centerLogos)){ echo 'checked'; }
+													echo ' >'.$center.'</label></div>';
+												}
+											}	
+										?>
+
+								  </div>
+								  <div class="col-sm-3"><p class="help-block">Requis</p></div>
+							  </div>
 					    
 							<h3>Général</h3>
 							  <div class="form-group">
@@ -377,7 +401,7 @@
 					<!-- panel start -->
 					<div class="panel panel-green">	
 				       <div rel="#infos_option" class="panel-heading event_section"><h4><i class="fa fa-flag-o"></i> Prix et Options</h4></div>
-					   <div id="infos_option" class="toggle_in panel-body"><!-- start panel content -->
+					   <div id="infos_option" class="panel-body"><!-- start panel content -->
 					   					     
 							  <h3>Prix</h3>
 							  <p><a href="{{ url('admin/pubdroit/price/create/'.$event->id) }}" class="btn btn-sm btn-primary">Ajouter</a></p>

@@ -112,18 +112,16 @@ class EventEloquent implements EventInterface {
 		$event->dateDelai    = $data['dateDelai'];
 		$event->remarques    = $data['remarques'];
 		
-		// Centres, Compte ,Type, Documents (bons, factures, bv) , config 
-		
 		// Liste les centres
-		/*
-		$centres = $data['centreLogos'];
+		
+		$centres = $data['centres'];
 				
 		if(!empty($centres))
 		{
 			 $centreLogos        = implode(',' , $centres);
 			 $event->centreLogos = $centreLogos;
 		}
-		*/
+		
 		
 		$event->typeColloque = $data['typeColloque'];
 		$event->compte_id    = $data['compte_id'];

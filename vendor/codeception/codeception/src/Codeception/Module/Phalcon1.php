@@ -4,7 +4,7 @@ namespace Codeception\Module;
 
 use Codeception\Exception\ModuleConfig;
 use Codeception\Step;
-use Codeception\Util\Connector\PhalconMemorySession;
+use Codeception\Lib\Connector\PhalconMemorySession;
 
 /**
  * This module provides integration with [Phalcon framework](http://www.phalconphp.com/) (1.x).
@@ -54,7 +54,7 @@ use Codeception\Util\Connector\PhalconMemorySession;
  *
  *
  */
-class Phalcon1 extends \Codeception\Util\Framework
+class Phalcon1 extends \Codeception\Lib\Framework
 {
     protected $config = array(
         'bootstrap' => 'app/config/bootstrap.php',
@@ -83,7 +83,7 @@ class Phalcon1 extends \Codeception\Util\Framework
                 'return new \Phalcon\Mvc\Application($di);'
             );
         }
-        $this->client = new \Codeception\Util\Connector\Phalcon1();
+        $this->client = new \Codeception\Lib\Connector\Phalcon1();
 
     }
 

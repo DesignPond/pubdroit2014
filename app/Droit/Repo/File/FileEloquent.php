@@ -70,5 +70,36 @@ class FileEloquent implements FileInterface {
 		return $file->delete();		
 	}
 	
+	/* File manipulation */
+	public function directory_map($directory , array $extension){
+		
+		$list = array();
+		
+		$list = array_filter(glob($directory.'/*', GLOB_BRACE),'is_file');
+		
+		$files = array();
+		
+		if(!empty($list))
+		{
+			foreach($list as $file)
+			{
+				
+				$explode  = explode( '/' , $file );
+				$end      = array_pop($explode);
+				$name     = explode( '.' , $end );
+				$center   = array_shift($name);					
+				$ext      = array_pop($name);
+				
+				if( in_array($ext, $extension))
+				{
+					$files[] = $center; 
+				}
+			}
+		}
+		
+		return $files;
+		
+	}
+	
 }
 

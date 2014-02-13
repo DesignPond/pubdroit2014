@@ -157,6 +157,9 @@ class EventController extends BaseController {
 		$attestation = $this->event->getAttestation($id);
 		$comptes     = $this->compte->getAll()->lists('motifCompte', 'id');
 		
+		$root        = getcwd().'/centers';
+		$centers     = $this->file->directory_map( $root , array('png','jpg') );
+		
 		// Uploads 
 		$documents = array(
 			'images' => array('carte','vignette','badge'),
@@ -166,7 +169,7 @@ class EventController extends BaseController {
 		$allfiles = $this->event->setFiles($event,$documents);
 		
         return View::make('admin.event.edit')
-        		->with( array( 'event' => $event, 'comptes' => $comptes , 'attestation' => $attestation, 'email' => $email , 'documents' => $documents , 'allfiles' => $allfiles ));
+        		->with( array( 'event' => $event, 'centers' => $centers , 'comptes' => $comptes , 'attestation' => $attestation, 'email' => $email , 'documents' => $documents , 'allfiles' => $allfiles ));
 	}
 
 	/**

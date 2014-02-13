@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Cm_articles_typesTableSeeder');
 		$this->call('Cm_articles_attributesTableSeeder');
 		$this->call('Cm_attributesTableSeeder');
+		$this->call('CentersTableSeeder');
 	}
 
 }

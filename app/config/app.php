@@ -115,14 +115,12 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 		'Illuminate\Remote\RemoteServiceProvider',
 		'Way\Generators\GeneratorsServiceProvider',
-		'Killswitch\LaravelMailgun\LaravelMailgunServiceProvider',
 		'Droit\PubdroitServiceProvider',
 		'Cartalyst\Sentry\SentryServiceProvider',
 		'Crhayes\Validation\ValidationServiceProvider',
 		'Droit\Repo\RepoServiceProvider',
 		'Droit\Service\Form\FormServiceProvider',
-		'Intervention\Image\ImageServiceProvider',
-		'Barryvdh\Debugbar\ServiceProvider'
+		'Intervention\Image\ImageServiceProvider'
 	),
 
 	/*

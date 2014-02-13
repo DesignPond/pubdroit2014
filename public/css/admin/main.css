@@ -203,4 +203,12 @@
 		width: 20%;
 		float:left;
 	}
+	
 
+/* Form */
+
+.checkbox.block{
+	width: 20%;
+	display: block;
+	float: left;
+}

@@ -2,7 +2,7 @@
 namespace Codeception;
 
 use Codeception\Exception\Configuration as ConfigurationException;
-use Codeception\Util\Autoload;
+use Codeception\Lib\Autoload;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Finder;
 
@@ -32,7 +32,8 @@ class Configuration
             'colors' => false,
             'log' => false,
             'bootstrap' => '_bootstrap.php',
-        )
+        ),
+        'coverage' => []
     );
 
     public static $defaultSuiteSettings = array(
@@ -115,7 +116,7 @@ class Configuration
         self::$suites = array();
         foreach ($suites as $suite) {
             preg_match('~(.*?)(\.suite|\.suite\.dist)\.yml~', $suite->getFilename(), $matches);
-            self::$suites[] = $matches[1];
+            self::$suites[$matches[1]] = $matches[1];
         }
     }
 
@@ -124,7 +125,7 @@ class Configuration
         // cut namespace name from suite name
         if ($suite != $config['namespace'] && substr($suite, 0, strlen($config['namespace'])) == $config['namespace']) {
             $suite = substr($suite, strlen($config['namespace']));
-        }         
+        }
 
         if (!in_array($suite, self::$suites)) throw new \Exception("Suite $suite was not loaded");
 

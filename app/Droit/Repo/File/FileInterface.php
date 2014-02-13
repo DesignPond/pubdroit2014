@@ -7,5 +7,8 @@ interface FileInterface {
 	public function create(array $data);
 	public function update(array $data);
 	public function delete($id);
+	
+	/* File manipulation */
+	public function directory_map($directory , array $extension);
 }
 

@@ -99,7 +99,7 @@ abstract class GuzzleTestCase extends \PHPUnit_Framework_TestCase
     /**
      * Get a wildcard observer for an event dispatcher
      *
-     * @param HasDispatcherInterface $hasEvent
+     * @param HasDispatcherInterface $hasDispatcher
      *
      * @return MockObserver
      */
@@ -187,6 +187,12 @@ abstract class GuzzleTestCase extends \PHPUnit_Framework_TestCase
         $mock->getEventDispatcher()->addListener('mock.request', function(Event $event) use ($that) {
             $that->addMockedRequest($event['request']);
         });
+
+        if ($paths instanceof Response) {
+            // A single response instance has been specified, create an array with that instance
+            // as the only element for the following loop to work as expected
+            $paths = array($paths);
+        }
 
         foreach ((array) $paths as $path) {
             $mock->addResponse($this->getMockResponse($path));

@@ -23,8 +23,6 @@ namespace Mockery;
 use Mockery\Generator\Generator;
 use Mockery\Generator\MockConfigurationBuilder;
 use Mockery\Loader\Loader as LoaderInterface;
-use Mockery\Loader\EvalLoader;
-use Mockery\Loader\RequireLoader;
 
 class Container
 {
@@ -68,6 +66,11 @@ class Container
      */
     protected $_loader;
 
+    /**
+     * @var array
+     */
+    protected $_namedMocks = array();
+
     public function __construct(Generator $generator = null, LoaderInterface $loader = null)
     {
         $this->_generator = $generator ?: \Mockery::getDefaultGenerator();
@@ -95,13 +98,23 @@ class Container
         if (count($args) > 1) {
             $finalArg = end($args);
             reset($args);
-            if (is_callable($finalArg)) {
-                $expectationClosure = array_pop($args);
+            if (is_callable($finalArg) && is_object($finalArg)) {
+                 $expectationClosure = array_pop($args);
             }
         }
 
         $builder = new MockConfigurationBuilder();
+
+        foreach ($args as $k => $arg) {
+            if ($arg instanceof MockConfigurationBuilder) {
+                $builder = $arg;
+                unset($args[$k]);
+            }
+        }
+        reset($args);
+
         $builder->setParameterOverrides(\Mockery::getConfiguration()->getInternalClassMethodParamMaps());
+
         while (count($args) > 0) {
             $arg = current($args);
             // check for multiple interfaces
@@ -121,20 +134,20 @@ class Container
                 array_shift($args);
 
                 continue;
-            } else if (is_string($arg) && substr($arg, 0, 6) == 'alias:') {
+            } elseif (is_string($arg) && substr($arg, 0, 6) == 'alias:') {
                 $name = array_shift($args);
                 $name = str_replace('alias:', '', $name);
                 $builder->addTarget('stdClass');
                 $builder->setName($name);
                 continue;
-            } else if (is_string($arg) && substr($arg, 0, 9) == 'overload:') {
+            } elseif (is_string($arg) && substr($arg, 0, 9) == 'overload:') {
                 $name = array_shift($args);
                 $name = str_replace('overload:', '', $name);
                 $builder->setInstanceMock(true);
                 $builder->addTarget('stdClass');
                 $builder->setName($name);
                 continue;
-            } else if (is_string($arg) && substr($arg, strlen($arg)-1, 1) == ']') {
+            } elseif (is_string($arg) && substr($arg, strlen($arg)-1, 1) == ']') {
                 $parts = explode('[', $arg);
                 if (!class_exists($parts[0], true) && !interface_exists($parts[0], true)) {
                     throw new \Mockery\Exception('Can only create a partial mock from'
@@ -147,15 +160,15 @@ class Container
                 $builder->setWhiteListedMethods($partialMethods);
                 array_shift($args);
                 continue;
-            } else if (is_string($arg) && (class_exists($arg, true) || interface_exists($arg, true))) {
+            } elseif (is_string($arg) && (class_exists($arg, true) || interface_exists($arg, true))) {
                 $class = array_shift($args);
                 $builder->addTarget($class);
                 continue;
-            } else if (is_string($arg)) {
+            } elseif (is_string($arg)) {
                 $class = array_shift($args);
                 $builder->addTarget($class);
                 continue;
-            } else if (is_object($arg)) {
+            } elseif (is_object($arg)) {
                 $partial = array_shift($args);
                 $builder->addTarget($partial);
                 continue;
@@ -164,7 +177,7 @@ class Container
                 if(array_key_exists(self::BLOCKS, $arg)) $blocks = $arg[self::BLOCKS]; unset($arg[self::BLOCKS]);
                 $quickdefs = array_shift($args);
                 continue;
-            } else if (is_array($arg)) {
+            } elseif (is_array($arg)) {
                 $constructorArgs = array_shift($args);
                 continue;
             }
@@ -186,6 +199,8 @@ class Container
         }
 
         $config = $builder->getMockConfiguration();
+
+        $this->checkForNamedMockClashes($config);
 
         $def = $this->getGenerator()->generate($config);
         $this->getLoader()->load($def);
@@ -427,7 +442,7 @@ class Container
             );
         }
         if (false !== strpos($fqcn, "\\")) {
-            $parts = array_filter(explode("\\", $fqcn), function($part) {
+            $parts = array_filter(explode("\\", $fqcn), function ($part) {
                 return $part !== "";
             });
             $cl = array_pop($parts);
@@ -438,4 +453,24 @@ class Container
         }
     }
 
+    protected function checkForNamedMockClashes($config)
+    {
+        $name = $config->getName();
+
+        if (!$name) {
+            return;
+        }
+
+        $hash = $config->getHash();
+
+        if (isset($this->_namedMocks[$name])) {
+            if ($hash !== $this->_namedMocks[$name]) {
+                throw new \Mockery\Exception(
+                    "The mock named '$name' has been already defined with a different mock configuration"
+                );
+            }
+        }
+
+        $this->_namedMocks[$name] = $hash;
+    }
 }

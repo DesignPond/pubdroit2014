@@ -3,7 +3,7 @@
 namespace Codeception\Module;
 
 use Yii;
-use Codeception\Util\Framework;
+use Codeception\Lib\Framework;
 use Codeception\Exception\ModuleConfig;
 
 /**
@@ -24,8 +24,7 @@ use Codeception\Exception\ModuleConfig;
  *     enabled: [FileSystem, TestHelper, Yii2]
  *     config:
  *         Yii2:
- *             entryScript: '/path/to/index.php'
- *             url: 'http://localhost/path/to/index.php'
+ *             configFile: '/path/to/config.php'
  * </pre>
  *
  * ## Status
@@ -51,7 +50,7 @@ class Yii2 extends Framework
 			throw new ModuleConfig(__CLASS__, "The application config file does not exist: {$this->config['configFile']}");
 		}
 
-		$this->client = new \Codeception\Util\Connector\Yii2();
+		$this->client = new \Codeception\Lib\Connector\Yii2();
 		$this->client->configFile = realpath($this->config['configFile']);
 	}
 

@@ -18,6 +18,7 @@
  * @license    http://github.com/padraic/mockery/blob/master/LICENSE New BSD License
  */
 
+use Mockery\Generator\MockConfigurationBuilder;
 use Mockery\Generator\CachingGenerator;
 use Mockery\Generator\StringManipulationGenerator;
 use Mockery\Generator\StringManipulation\Pass\CallTypeHintPass;
@@ -28,7 +29,6 @@ use Mockery\Generator\StringManipulation\Pass\InterfacePass;
 use Mockery\Generator\StringManipulation\Pass\MethodDefinitionPass;
 use Mockery\Generator\StringManipulation\Pass\RemoveBuiltinMethodsThatAreFinalPass;
 use Mockery\Loader\EvalLoader;
-use Mockery\Loader\RequireLoader;
 use Mockery\Loader\Loader;
 
 class Mockery
@@ -73,6 +73,22 @@ class Mockery
     public static function instanceMock()
     {
         $args = func_get_args();
+        return call_user_func_array(array(self::getContainer(), 'mock'), $args);
+    }
+
+    /**
+     * Static shortcut to \Mockery\Container::mock(), first argument names the
+     * mock
+     *
+     * @return \Mockery\MockInterface
+     */
+    public static function namedMock()
+    {
+        $args = func_get_args();
+        $name = array_shift($args);
+        $builder = new MockConfigurationBuilder();
+        $builder->setName($name);
+        array_unshift($args, $builder);
         return call_user_func_array(array(self::getContainer(), 'mock'), $args);
     }
 
@@ -410,16 +426,14 @@ class Mockery
         }
         $reflection = new \ReflectionClass($object);
         $properties = array();
-        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $publicProperty)
-        {
+        foreach ($reflection->getProperties(\ReflectionProperty::IS_PUBLIC) as $publicProperty) {
             if ($publicProperty->isStatic()) continue;
             $name = $publicProperty->getName();
             $properties[$name] = self::_cleanupNesting($object->$name, $nesting);
         }
 
         $getters = array();
-        foreach ($reflection->getMethods(\ReflectionProperty::IS_PUBLIC) as $publicMethod)
-        {
+        foreach ($reflection->getMethods(\ReflectionProperty::IS_PUBLIC) as $publicMethod) {
             if ($publicMethod->isStatic()) continue;
             $name = $publicMethod->getName();
             $numberOfParameters = $publicMethod->getNumberOfParameters();
@@ -434,7 +448,8 @@ class Mockery
         return array('class' => get_class($object), 'properties' => $properties, 'getters' => $getters);
     }
 
-    private static function _cleanupNesting($arg, $nesting) {
+    private static function _cleanupNesting($arg, $nesting)
+    {
         if (is_object($arg)) {
             $object = self::_objectToArray($arg, $nesting - 1);
             $object['class'] = get_class($arg);
@@ -445,7 +460,8 @@ class Mockery
         return $arg;
     }
 
-    private static function _cleanupArray($arg, $nesting = 3) {
+    private static function _cleanupArray($arg, $nesting = 3)
+    {
         if ($nesting == 0) {
             return '...';
         }

@@ -10,14 +10,33 @@ use Codeception\Exception\ConditionalAssertionFailed;
 use Codeception\SuiteManager;
 use Codeception\TestCase\ScenarioDriven;
 use Codeception\TestCase;
-use Codeception\Util\Console\Message;
-use Codeception\Util\Console\Output;
+use Codeception\Lib\Console\Message;
+use Codeception\Lib\Console\Output;
 use Codeception\Util\Debug;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class Console implements EventSubscriberInterface
 {
+    use Shared\StaticEvents;
+
+    static $events = [
+        CodeceptionEvents::SUITE_BEFORE    => 'beforeSuite',
+        CodeceptionEvents::SUITE_AFTER     => 'afterSuite',
+        CodeceptionEvents::TEST_BEFORE     => 'before',
+        CodeceptionEvents::TEST_AFTER      => 'afterTest',
+        CodeceptionEvents::TEST_START      => 'startTest',
+        CodeceptionEvents::TEST_END        => 'endTest',
+        CodeceptionEvents::STEP_BEFORE     => 'beforeStep',
+        CodeceptionEvents::STEP_AFTER      => 'afterStep',
+        CodeceptionEvents::TEST_SUCCESS    => 'testSuccess',
+        CodeceptionEvents::TEST_FAIL       => 'testFail',
+        CodeceptionEvents::TEST_ERROR      => 'testError',
+        CodeceptionEvents::TEST_INCOMPLETE => 'testIncomplete',
+        CodeceptionEvents::TEST_SKIPPED    => 'testSkipped',
+        CodeceptionEvents::TEST_FAIL_PRINT => 'printFail',
+    ];
+
     protected $steps = true;
     protected $debug = false;
     protected $color = true;
@@ -97,7 +116,7 @@ class Console implements EventSubscriberInterface
                 ->write();
         }
 
-        if ($this->steps && count($e->getTest()->getScenario()->getSteps())) {
+        if ($this->steps && $this->isDetailed($test)) {
             $this->output->writeln("\nScenario:");
         }
 
@@ -166,13 +185,10 @@ class Console implements EventSubscriberInterface
 
     protected function isDetailed($test)
     {
-        if (!($test instanceof ScenarioDriven)) {
-            return false;
-        }
-        if (!$this->steps or (!count($test->getScenario()->getSteps()))) {
-            return false;
-        }
-        return true;
+        if ($test instanceof ScenarioDriven && $this->steps) {
+            return !$test->getScenario()->isBlocked();
+        };
+        return false;
     }
 
     public function beforeStep(StepEvent $e)
@@ -361,23 +377,4 @@ class Console implements EventSubscriberInterface
         }
     }
 
-    static function getSubscribedEvents()
-    {
-        return array(
-            CodeceptionEvents::SUITE_BEFORE    => 'beforeSuite',
-            CodeceptionEvents::SUITE_AFTER     => 'afterSuite',
-            CodeceptionEvents::TEST_BEFORE     => 'before',
-            CodeceptionEvents::TEST_AFTER      => 'afterTest',
-            CodeceptionEvents::TEST_START      => 'startTest',
-            CodeceptionEvents::TEST_END        => 'endTest',
-            CodeceptionEvents::STEP_BEFORE     => 'beforeStep',
-            CodeceptionEvents::STEP_AFTER      => 'afterStep',
-            CodeceptionEvents::TEST_SUCCESS    => 'testSuccess',
-            CodeceptionEvents::TEST_FAIL       => 'testFail',
-            CodeceptionEvents::TEST_ERROR      => 'testError',
-            CodeceptionEvents::TEST_INCOMPLETE => 'testIncomplete',
-            CodeceptionEvents::TEST_SKIPPED    => 'testSkipped',
-            CodeceptionEvents::TEST_FAIL_PRINT => 'printFail',
-        );
-    }
 }

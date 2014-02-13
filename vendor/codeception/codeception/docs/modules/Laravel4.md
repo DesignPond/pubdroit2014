@@ -37,7 +37,7 @@ Codeception creates internal form fields, so you get exception trying to save th
 ### amHttpAuthenticated
 
 
-Authenticates user for HTTP_AUTH 
+Authenticates user for HTTP_AUTH
 
  * param $username
  * param $password
@@ -46,11 +46,11 @@ Authenticates user for HTTP_AUTH
 ### amLoggedAs
 
 
- the currently logged in user for the application.
+Set the currently logged in user for the application.
 
-ram  \Illuminate\Auth\UserInterface  $user
-ram  string  $driver
-turn void
+ * param  \Illuminate\Auth\UserInterface $user
+ * param  string $driver
+ * return void
 
 
 ### amOnPage
@@ -177,6 +177,15 @@ $I->seeCheckboxIsChecked('#signup_form input[type=checkbox]'); // I suppose user
 ```
 
  * param $checkbox
+
+
+### dontSeeCookie
+
+
+Checks that cookie doesn't exist
+
+ * param $cookie
+ * return mixed
 
 
 ### dontSeeCurrentUrlEquals
@@ -326,6 +335,15 @@ $I->fillField("//input[@type='text']", "Hello World!");
 __not documented__
 
 
+### grabCookie
+
+
+Grabs a cookie value.
+
+ * param $cookie
+ * return mixed
+
+
 ### grabFromCurrentUrl
 
 
@@ -347,27 +365,27 @@ $uri = $I->grabFromCurrentUrl();
 ### grabService
 
 
-urn an instance of a class from the IoC Container.
-tp://laravel.com/docs/ioc)
+Return an instance of a class from the IoC Container.
+(http://laravel.com/docs/ioc)
 
-mple
- php
+Example
+``` php
 <?php
-In Laravel
-::bind('foo', function($app)
+// In Laravel
+App::bind('foo', function($app)
+{
+    return new FooBar;
+});
 
- return new FooBar;
+// Then in test
+$service = $I->grabService('foo');
 
-
-Then in test
-rvice = $I->grabService('foo');
-
-Will return an instance of FooBar, also works for singletons.
+// Will return an instance of FooBar, also works for singletons.
 ?>
+```
 
-
-ram  string  $class
-turn mixed
+ * param  string $class
+ * return mixed
 
 
 ### grabTextFrom
@@ -410,6 +428,15 @@ $name = $I->grabValueFrom('descendant-or-self::form/descendant::input[@name = 'u
  * return mixed
 
 
+### resetCookie
+
+
+Unsets cookie
+
+ * param $cookie
+ * return mixed
+
+
 ### see
 
 
@@ -447,6 +474,15 @@ $I->seeCheckboxIsChecked('//form/input[@type=checkbox and  * name=agree]');
 ```
 
  * param $checkbox
+
+
+### seeCookie
+
+
+Checks that cookie is set.
+
+ * param $cookie
+ * return mixed
 
 
 ### seeCurrentUrlEquals
@@ -536,11 +572,11 @@ $I->seeInField('//form/*[@name=search]','Search');
 ### seeInSession
 
 
-ert that the session has a given list of values.
+Assert that the session has a given list of values.
 
-ram  string|array  $key
-ram  mixed  $value
-turn void
+ * param  string|array $key
+ * param  mixed $value
+ * return void
 
 
 ### seeInTitle
@@ -611,18 +647,18 @@ Checks that response code is equal to value provided.
 ### seeSessionHasErrors
 
 
-ert that the session has errors bound.
+Assert that the session has errors bound.
 
-turn bool
+ * return bool
 
 
 ### seeSessionHasValues
 
 
-ert that the session has a given list of values.
+Assert that the session has a given list of values.
 
-ram  array  $bindings
-turn void
+ * param  array $bindings
+ * return void
 
 
 ### selectOption
@@ -706,6 +742,16 @@ $I->sendAjaxRequest('PUT', /posts/7', array('title' => 'new title');
  * param $method
  * param $uri
  * param $params
+
+
+### setCookie
+
+
+Sets a cookie.
+
+ * param $cookie
+ * param $value
+ * return mixed
 
 
 ### submitForm

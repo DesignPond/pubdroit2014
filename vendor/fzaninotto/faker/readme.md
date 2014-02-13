@@ -6,7 +6,7 @@ Faker is heavily inspired by Perl's [Data::Faker](http://search.cpan.org/~jasonk
 
 Faker requires PHP >= 5.3.3.
 
-[![Build Status](https://secure.travis-ci.org/fzaninotto/Faker.png)](http://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
+[![Monthly Downloads](https://poser.pugx.org/fzaninotto/faker/d/monthly.png)](https://packagist.org/packages/fzaninotto/faker) [![Build Status](https://secure.travis-ci.org/fzaninotto/Faker.png)](http://travis-ci.org/fzaninotto/Faker) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549/mini.png)](https://insight.sensiolabs.com/projects/eceb78a9-38d4-4ad5-8b6b-b52f323e3549)
 
 ## Basic Usage
 
@@ -246,7 +246,7 @@ try {
 
 // you can reset the unique modifier for all providers by passing true as first argument
 $faker->unique($reset = true)->randomDigitNotNull; // will not throw OverflowException since unique() was reset
-// tip: unique() keeps one array of values per provider 
+// tip: unique() keeps one array of values per provider
 
 // optional() sometimes bypasses the provider to return null instead
 $values = array();
@@ -741,6 +741,41 @@ echo $faker->firstKanaName; // "トモミ"
 
 // Generates a 'kana' last name
 echo $faker->lastKanaName; // "ナギサ"
+```
+
+### `Faker\Provider\ro_RO\Person`
+
+```php
+<?php
+
+// Generates a random male name prefix/title
+echo $faker->prefixMale; // "ing."
+// Generates a random female name prefix/title
+echo $faker->prefixFemale; // "d-na."
+// Generates a random male fist name
+echo $faker->firstNameMale; // "Adrian"
+// Generates a random female fist name
+echo $faker->firstNameFemale; // "Miruna"
+
+// Generates a random Personal Numerical Code (CNP)
+echo $faker->cnp; // "2800523081231"
+echo $faker->cnp($gender = NULL, $century = NULL, $county = NULL);
+
+// Valid option values:
+//  $gender: m, f, 1, 2
+//  $century: 1800, 1900, 2000, 1, 2, 3, 4, 5, 6
+//  $county: 2 letter ISO 3166-2:RO county codes and B1-B6 for Bucharest's 6 sectors
+```
+
+### `Faker\Provider\ro_RO\PhoneNumber`
+
+```php
+<?php
+
+// Generates a random toll-free phone number
+echo $faker->tollFreePhoneNumber; // "0800123456"
+// Generates a random premium-rate phone number
+echo $faker->premiumRatePhoneNumber; // "0900123456"
 ```
 
 ## License

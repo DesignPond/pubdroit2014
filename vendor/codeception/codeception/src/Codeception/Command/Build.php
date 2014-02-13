@@ -18,7 +18,6 @@ class Build extends Base
 // @codingStandardsIgnoreFile
 
 %s
-use \Codeception\Maybe;
 %s
 
 %s %s extends %s
@@ -32,21 +31,13 @@ EOF;
     protected $methodTemplate = <<<EOF
 
     /**
-     * This method is generated.
-     * Documentation taken from corresponding module.
-     * ----------------------------------------------
+     * [!] Method is generated. Documentation taken from corresponding module.
      *
      %s
      * @see %s::%s()
-     * @return \Codeception\Maybe
      */
     public function %s(%s) {
-        \$this->scenario->addStep(new \Codeception\Step\%s('%s', func_get_args()));
-        if (\$this->scenario->running()) {
-            \$result = \$this->scenario->runStep();
-            return new Maybe(\$result);
-        }
-        return new Maybe();
+        return \$this->scenario->runStep(new \Codeception\Step\%s('%s', func_get_args()));
     }
 EOF;
 
