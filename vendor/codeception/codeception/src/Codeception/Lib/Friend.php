@@ -1,6 +1,6 @@
 <?php
 namespace Codeception\Lib;
-use Codeception\AbstractGuy;
+use Codeception\Actor;
 use Codeception\Exception\TestRuntime;
 use Codeception\SuiteManager;
 use Codeception\Lib\MultiSessionInterface;
@@ -12,7 +12,7 @@ class Friend {
     protected $data = [];
     protected $multiSessionModules = [];
 
-    public function __construct($name, AbstractGuy $guy)
+    public function __construct($name, Actor $guy)
     {
         $this->name = $name;
         $this->guy = $guy;
@@ -29,13 +29,14 @@ class Friend {
         $currentUserData = [];
 
         foreach ($this->multiSessionModules as $module) {
-            $currentUserData[$module->getName()] = $module->_backupSessionData();
+            $name = $module->_getName();
+            $currentUserData[$name] = $module->_backupSessionData();
             if (empty($this->data)) {
                 $module->_initializeSession();
-                $this->data[$module->getName()] = $module->_backupSessionData();
+                $this->data[$name] = $module->_backupSessionData();
                 continue;
             }
-            $module->_loadSessionData($this->data[$module->getName()]);
+            $module->_loadSessionData($this->data[$name]);
         };
 
         $this->guy->comment(strtoupper("<info>{$this->name} does</info>:"));
@@ -43,23 +44,24 @@ class Friend {
         $this->guy->comment(strtoupper("<info>{$this->name} finished</info>"));
 
         foreach ($this->multiSessionModules as $module) {
-            $this->data[$module->getName()] = $module->_backupSessionData();
-            $module->_loadSessionData($currentUserData[$module->getName()]);
+            $name = $module->_getName();
+            $this->data[$name] = $module->_backupSessionData();
+            $module->_loadSessionData($currentUserData[$name]);
         };
         return $ret;
     }
 
-    public function amGoingTo($argumentation)
+    public function isGoingTo($argumentation)
     {
         $this->guy->amGoingTo($argumentation);
     }
 
-    public function expect($prediction)
+    public function expects($prediction)
     {
         $this->guy->expect($prediction);
     }
 
-    public function expectTo($prediction)
+    public function expectsTo($prediction)
     {
         $this->guy->expectTo($prediction);
     }

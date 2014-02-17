@@ -3,20 +3,63 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "5497e73f8924f1303e6253e0f8bf47eb",
+    "hash": "521a4947566b65a9c2e5241949d7b0a2",
     "packages": [
+        {
+            "name": "barryvdh/laravel-dompdf",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-dompdf.git",
+                "reference": "e609ad21ed11f5397dd703a8033471097f09481a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/e609ad21ed11f5397dd703a8033471097f09481a",
+                "reference": "e609ad21ed11f5397dd703a8033471097f09481a",
+                "shasum": ""
+            },
+            "require": {
+                "dompdf/dompdf": "0.6.x",
+                "illuminate/support": "4.x",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Barryvdh\\DomPDF": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "A DOMPDF Wrapper for Laravel",
+            "keywords": [
+                "dompdf",
+                "laravel",
+                "pdf"
+            ],
+            "time": "2014-02-13 12:38:09"
+        },
         {
             "name": "cartalyst/sentry",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "6f9a514f1231d5a056fe65bfba6898fcb09024eb"
+                "reference": "e245002f4f45c0e6d8136858806571acd8d17b58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/6f9a514f1231d5a056fe65bfba6898fcb09024eb",
-                "reference": "6f9a514f1231d5a056fe65bfba6898fcb09024eb",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/e245002f4f45c0e6d8136858806571acd8d17b58",
+                "reference": "e245002f4f45c0e6d8136858806571acd8d17b58",
                 "shasum": ""
             },
             "require": {
@@ -103,7 +146,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2014-01-28 17:31:53"
+            "time": "2014-02-15 10:14:34"
         },
         {
             "name": "classpreloader/classpreloader",
@@ -225,6 +268,47 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "time": "2014-01-17 12:21:18"
+        },
+        {
+            "name": "dompdf/dompdf",
+            "version": "v0.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "fbb288daad0096350cdead591dd8d450e490fbd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/fbb288daad0096350cdead591dd8d450e490fbd0",
+                "reference": "fbb288daad0096350cdead591dd8d450e490fbd0",
+                "shasum": ""
+            },
+            "require": {
+                "phenx/php-font-lib": "0.2.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "include/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                },
+                {
+                    "name": "Brian Sweeney",
+                    "email": "eclecticgeek@gmail.com"
+                }
+            ],
+            "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
+            "homepage": "https://github.com/dompdf/dompdf",
+            "time": "2014-02-07 02:58:53"
         },
         {
             "name": "filp/whoops",
@@ -880,17 +964,51 @@
             "time": "2014-02-02 17:09:49"
         },
         {
+            "name": "phenx/php-font-lib",
+            "version": "0.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PhenX/php-font-lib.git",
+                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PhenX/php-font-lib/zipball/c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
+                "reference": "c30c7fc00a6b0d863e9bb4c5d5dd015298b2dc82",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Ménager",
+                    "email": "fabien.menager@gmail.com"
+                }
+            ],
+            "description": "A library to read, parse, export and make subsets of different types of font files.",
+            "homepage": "https://github.com/PhenX/php-font-lib",
+            "time": "2014-02-01 15:22:28"
+        },
+        {
             "name": "phpseclib/phpseclib",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "a7106a737ee937281878bbe53c181fb5aefc1f8d"
+                "reference": "b03100601bbe739d5a0aa63c72e25b56c0132f3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/a7106a737ee937281878bbe53c181fb5aefc1f8d",
-                "reference": "a7106a737ee937281878bbe53c181fb5aefc1f8d",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/b03100601bbe739d5a0aa63c72e25b56c0132f3a",
+                "reference": "b03100601bbe739d5a0aa63c72e25b56c0132f3a",
                 "shasum": ""
             },
             "require": {
@@ -971,7 +1089,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2014-02-11 00:00:44"
+            "time": "2014-02-13 22:34:10"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -979,12 +1097,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092"
+                "reference": "3a60a660998e8d41d5ea81ff8d96ead546bce150"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092",
-                "reference": "34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/3a60a660998e8d41d5ea81ff8d96ead546bce150",
+                "reference": "3a60a660998e8d41d5ea81ff8d96ead546bce150",
                 "shasum": ""
             },
             "require": {
@@ -1032,7 +1150,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-02-12 16:38:11"
+            "time": "2014-02-16 12:11:19"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1223,12 +1341,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d24e9877331039582497052cc3c4d9f465b88210"
+                "reference": "5728eadfb7859241d7aafd26592cee0ad1876d2d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d24e9877331039582497052cc3c4d9f465b88210",
-                "reference": "d24e9877331039582497052cc3c4d9f465b88210",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/5728eadfb7859241d7aafd26592cee0ad1876d2d",
+                "reference": "5728eadfb7859241d7aafd26592cee0ad1876d2d",
                 "shasum": ""
             },
             "require": {
@@ -1289,7 +1407,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-02-03 07:46:27"
+            "time": "2014-02-15 22:46:11"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1297,12 +1415,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "ed9c8ef8cecd7fa0e7dcee78970e5a972bcfd751"
+                "reference": "c39c4511c3b007539eb170c32cbc2af49a07351a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/ed9c8ef8cecd7fa0e7dcee78970e5a972bcfd751",
-                "reference": "ed9c8ef8cecd7fa0e7dcee78970e5a972bcfd751",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c39c4511c3b007539eb170c32cbc2af49a07351a",
+                "reference": "c39c4511c3b007539eb170c32cbc2af49a07351a",
                 "shasum": ""
             },
             "require": {
@@ -1346,7 +1464,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-01-30 16:40:39"
+            "time": "2014-02-16 12:43:56"
         },
         {
             "name": "predis/predis",
@@ -2375,12 +2493,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "e7dae42fcfe78ce8d931c1bb79799b01286355f9"
+                "reference": "7501202aed8c71b78aa5ce361269243bc9ce63cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/e7dae42fcfe78ce8d931c1bb79799b01286355f9",
-                "reference": "e7dae42fcfe78ce8d931c1bb79799b01286355f9",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/7501202aed8c71b78aa5ce361269243bc9ce63cc",
+                "reference": "7501202aed8c71b78aa5ce361269243bc9ce63cc",
                 "shasum": ""
             },
             "require": {
@@ -2430,7 +2548,7 @@
                 "functional testing",
                 "unit testing"
             ],
-            "time": "2014-02-07 03:20:03"
+            "time": "2014-02-17 05:37:52"
         },
         {
             "name": "fabpot/goutte",
@@ -2578,12 +2696,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "b4c0948f1e6d1c73047895f9432fa83a69a176c7"
+                "reference": "c03449e8830d9bd32bef544de1b1de7d1d876982"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b4c0948f1e6d1c73047895f9432fa83a69a176c7",
-                "reference": "b4c0948f1e6d1c73047895f9432fa83a69a176c7",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/c03449e8830d9bd32bef544de1b1de7d1d876982",
+                "reference": "c03449e8830d9bd32bef544de1b1de7d1d876982",
                 "shasum": ""
             },
             "require": {
@@ -2662,7 +2780,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-02-12 17:53:56"
+            "time": "2014-02-14 01:12:10"
         },
         {
             "name": "mockery/mockery",
@@ -2737,6 +2855,7 @@
     "stability-flags": {
         "way/generators": 20,
         "intervention/image": 20,
+        "barryvdh/laravel-dompdf": 20,
         "crhayes/validation": 20,
         "codeception/codeception": 20,
         "mockery/mockery": 20,

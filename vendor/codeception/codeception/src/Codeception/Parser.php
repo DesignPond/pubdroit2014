@@ -49,20 +49,51 @@ class Parser {
 
     public function parseSteps($code)
     {
-        $res = preg_match_all("~\\\$I->(.*)\((.*?)\);~", $code, $matches);
-        if (!$res) {
-            return;
-        }
-
-        foreach ($matches[0] as $k => $all) {
-            $action = $matches[1][$k];
-            $params = $matches[2][$k];
-            if (in_array($action, array('wantTo','wantToTest'))) {
+        // parse per line
+        $friends = [];
+        $lines = explode("\n", $code);
+        $isFriend = false;
+        foreach ($lines as $line) {
+            // friends
+            if (preg_match("~\\\$I->haveFriend\((.*?)\);~", $line, $matches)) {
+                $friends[] = trim($matches[1],'\'"');
+            }
+            // friend's section start
+            if (preg_match("~\\\$(.*?)->does\(~", $line, $matches)) {
+                if (!in_array($friend = $matches[1], $friends)) {
+                    continue;
+                }
+                $isFriend = true;
+                $this->addCommentStep("\n----- $friend does -----");
                 continue;
             }
-            $this->scenario->addStep(new Step\Action($action, explode(',', $params)));
+
+            // actions
+            if (preg_match("~\\\$I->(.*)\((.*?)\);~", $line, $matches)) {
+                $this->addStep($matches);
+            }
+
+            // friend's section ends
+            if ($isFriend and strpos($line, '}') !== false) {
+                $this->addCommentStep("-------- back to me\n");
+                $isFriend = false;
+            }
         }
 
+    }
+
+    protected function addStep($matches)
+    {
+        list($m, $action, $params) = $matches;
+        if (in_array($action, array('wantTo','wantToTest'))) {
+            return;
+        }
+        $this->scenario->addStep(new Step\Action($action, explode(',', $params)));
+    }
+
+    protected function addCommentStep($comment)
+    {
+        $this->scenario->addStep(new \Codeception\Step\Comment($comment,array()));
     }
 
 }

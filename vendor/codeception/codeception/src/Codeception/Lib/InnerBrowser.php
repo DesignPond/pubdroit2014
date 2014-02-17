@@ -101,7 +101,7 @@ class InnerBrowser extends Module implements WebInterface
                 $this->forms = [];
                 $this->debugResponse();
                 return;
-            } elseif ($node->nodeName == 'input' && $node->getAttribute('type') == 'submit') {
+            } elseif ($node->getAttribute('type') == 'submit') {
                 $this->submitFormWithButton($nodes->first());
                 $this->debugResponse();
                 return;
@@ -504,8 +504,8 @@ class InnerBrowser extends Module implements WebInterface
     {
         $this->debugSection('Response', $this->getResponseStatusCode());
         $this->debugSection('Page', $this->client->getHistory()->current()->getUri());
-        $this->debugSection('Cookies', $this->client->getRequest()->getCookies());
-        $this->debugSection('Headers', $this->client->getResponse()->getHeaders());
+        $this->debugSection('Cookies', $this->client->getInternalRequest()->getCookies());
+        $this->debugSection('Headers', $this->client->getInternalResponse()->getHeaders());
     }
 
     protected function getResponseStatusCode()

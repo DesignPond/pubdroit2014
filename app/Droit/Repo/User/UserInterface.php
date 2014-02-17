@@ -38,6 +38,6 @@ interface UserInterface {
 	 *
 	 * @return stdObject Collection of users
 	 */
-	public function all();
+	public function all();	
 
 }

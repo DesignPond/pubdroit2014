@@ -476,6 +476,7 @@ class SentryUser extends RepoAbstract implements UserInterface {
 		return $user;
 	}
 
+
 	/**
 	 * Return all the registered users
 	 *

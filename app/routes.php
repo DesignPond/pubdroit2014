@@ -162,6 +162,7 @@ Route::group(array('prefix' => 'admin'), function()
     // Upload file
 	Route::post('upload', array('uses' => 'UploadController@store'));
 	Route::get('files', array('uses' => 'AdminController@files'));
+	Route::get('pdf', array('uses' => 'AdminController@pdf'));
     
     Route::group(array('prefix' => 'pubdroit'), function()
 	{

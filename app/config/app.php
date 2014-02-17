@@ -120,7 +120,8 @@ return array(
 		'Crhayes\Validation\ValidationServiceProvider',
 		'Droit\Repo\RepoServiceProvider',
 		'Droit\Service\Form\FormServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider'
 	),
 
 	/*
@@ -175,6 +176,7 @@ return array(
 		'Mailgun'          => 'Killswitch\LaravelMailgun\LaravelMailgunFacade',
 		'Paginator'        => 'Illuminate\Support\Facades\Paginator',
 		'Password'         => 'Illuminate\Support\Facades\Password',
+		'PDF'              => 'Barryvdh\DomPDF\Facade',
 		'Queue'            => 'Illuminate\Support\Facades\Queue',
 		'Redirect'         => 'Illuminate\Support\Facades\Redirect',
 		'Redis'            => 'Illuminate\Support\Facades\Redis',

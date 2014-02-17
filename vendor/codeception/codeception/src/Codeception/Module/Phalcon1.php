@@ -1,10 +1,11 @@
 <?php
-
 namespace Codeception\Module;
 
 use Codeception\Exception\ModuleConfig;
 use Codeception\Step;
-use Codeception\Lib\Connector\PhalconMemorySession;
+use Codeception\Lib\Framework;
+use Codeception\Lib\ActiveRecordInterface;
+use Codeception\LIb\Connector\PhalconMemorySession;
 
 /**
  * This module provides integration with [Phalcon framework](http://www.phalconphp.com/) (1.x).
@@ -54,7 +55,7 @@ use Codeception\Lib\Connector\PhalconMemorySession;
  *
  *
  */
-class Phalcon1 extends \Codeception\Lib\Framework
+class Phalcon1 extends Framework implements ActiveRecordInterface
 {
     protected $config = array(
         'bootstrap' => 'app/config/bootstrap.php',
@@ -252,7 +253,7 @@ class Phalcon1 extends \Codeception\Lib\Framework
      * Retrieves record from database
      *
      * ``` php
-     * $category = $I->grabFromDatabase('Phosphorum\Models\Categories', array('name' => 'Testing'));
+     * $category = $I->grabRecord('Phosphorum\Models\Categories', array('name' => 'Testing'));
      * ```
      *
      * @param $model

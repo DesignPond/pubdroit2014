@@ -44,7 +44,7 @@ class EventEloquent implements EventInterface {
 		return $this->event->with( array('prices'=> function($query)
 													{
 													    $query->orderBy('prices.rangPrice');
-													}, 'event_options','event_specialisations','files') )->findOrFail($id);			
+													}, 'event_options','event_specialisations','files','event_config') )->findOrFail($id);			
 	}
 	
 	public function setFiles($list,$documents){

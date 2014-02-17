@@ -10,6 +10,7 @@
 		"way/generators": "dev-master",
 		"iron-io/iron_mq": "1.4.8",
 		"intervention/image": "dev-master",
+		"barryvdh/laravel-dompdf": "dev-master",
 		"crhayes/validation": "dev-master"
 	},
 	"require-dev": {

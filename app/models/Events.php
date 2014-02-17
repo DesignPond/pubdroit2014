@@ -30,5 +30,10 @@ class Events extends Eloquent {
     	
     	return $this->hasMany('Files', 'event_id');
  	}
+ 	
+ 	public function event_config(){
+ 	
+	 	return $this->hasOne('Event_config', 'event_id');
+ 	}
 	
 }

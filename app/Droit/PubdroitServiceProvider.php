@@ -11,6 +11,8 @@ use Membres as M;
 use Professions as P;
 use Prices as PR;
 
+use User as U;
+
 use Files as F;
 
 use Arrets as A;
@@ -43,16 +45,28 @@ class PubdroitServiceProvider extends ServiceProvider {
 		$this->registerFileService();
 		$this->registerUploadService();	
 		$this->registerCalculetteService();
+		$this->registerGenerateService();
+		
+		// User
+    	$this->registerUserService();
     			
     }
+    
+    
+    protected function registerUserService(){
+    
+	    $this->app->bind('Droit\Repo\User\UserInfoInterface', function()
+        {
+            return new \Droit\Repo\User\UserInfoEloquent( new U );
+        });       
+    }    
     
     protected function registerEventService(){
     
 	    $this->app->bind('Droit\Repo\Event\EventInterface', function()
         {
             return new \Droit\Repo\Event\EventEloquent( new E );
-        });
-        
+        });        
     }
     
     protected function registerInscriptionService(){
@@ -190,5 +204,14 @@ class PubdroitServiceProvider extends ServiceProvider {
         });
         
     }
+	        
+    protected function registerGenerateService(){
 
+	    $this->app->bind('Droit\Service\Generate\GenerateInterface', function()
+        {
+            return new \Droit\Service\Generate\GenerateWorker();
+        });
+        
+    }
+    
 }
