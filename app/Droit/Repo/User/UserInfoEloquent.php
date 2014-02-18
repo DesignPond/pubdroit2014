@@ -1,6 +1,7 @@
 <?php namespace Droit\Repo\User;
 
 use User as U;
+use Civilites as Civilites;
 
 class UserInfoEloquent implements UserInfoInterface{
 
@@ -12,7 +13,6 @@ class UserInfoEloquent implements UserInfoInterface{
 	public function __construct(U $user)
 	{
 		$this->user = $user;
-
 	}
 
 	/**
@@ -38,8 +38,19 @@ class UserInfoEloquent implements UserInfoInterface{
 								$query->where('inscriptions.event_id','=',$event)->where('inscriptions.user_id','=',$id); },
 						  'adresses'    => function($query){ 
 								$query->where('adresses.livraison','=',1); }) )
-			->first();
-													
+			->first();													
+	}
+
+	/**
+	 * Return the name of the title (civilité)
+	 *
+	 * @return stdObject Collection of users
+	 */	
+	public function whatTitle($title){
+		
+		$civilites = \Civilites::all()->lists('title','id');
+		
+		return $civilites[$title];		
 	}
 	
 }

@@ -15,7 +15,7 @@ class PriceEloquent implements PriceInterface {
 	
 	public function getAll($event){
 		
-		return $this->price->where('evet_id' ,'=', $event )->get();	
+		return $this->price->where('event_id' ,'=', $event )->get();	
 	}
 	
 	public function find($id){

@@ -256,7 +256,7 @@
 							  	<div class="col-sm-6">
 							  	
 							  		@if(!empty($attestation))
-					      				{{ Form::textarea('remarque', $email->message , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('remarque', $attestation->remarque , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@else
 					      				{{ Form::textarea('remarque', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@endif

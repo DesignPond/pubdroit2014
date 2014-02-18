@@ -13,4 +13,23 @@ class Custom {
         return $formatDate;
     }
     
+    public static function ifExist(&$argument, $default="") {
+    
+	    if(!isset($argument)) {
+	       $argument = $default;
+	       return $argument;
+	    }
+	   
+	    $argument = trim($argument);
+	   
+	    return $argument;
+	}
+	
+	public static function preparePrice($price){
+		
+		$prepared = explode('.', $price);
+		
+		return $prepared;
+	}
+    
 }

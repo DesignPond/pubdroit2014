@@ -24,6 +24,8 @@ use BaCategories as BA;
 use Calculette_ipc as CI;
 use Calculette_taux as CT;
 
+use Droit\Repo\Price\PriceInterface;
+
 class PubdroitServiceProvider extends ServiceProvider {
 
     public function register()
@@ -209,7 +211,12 @@ class PubdroitServiceProvider extends ServiceProvider {
 
 	    $this->app->bind('Droit\Service\Generate\GenerateInterface', function()
         {
-            return new \Droit\Service\Generate\GenerateWorker();
+            return new \Droit\Service\Generate\GenerateWorker( 
+            	\App::make('Droit\Repo\Price\PriceInterface') , 
+            	\App::make('Droit\Repo\Compte\CompteInterface') , 
+            	\App::make('Droit\Repo\File\FileInterface') ,
+            	\App::make('Droit\Repo\User\UserInfoInterface')
+            );
         });
         
     }

@@ -22,6 +22,11 @@ class FileEloquent implements FileInterface {
 		
 		return $this->file->where('event_id','=', $event)->get();		
 	}
+	
+	public function getFilesEvent($event,$type){
+	
+		return $this->file->where('typeFile','=', $type)->where('event_id','=', $event)->get();			
+	}
 		
 	public function find($id){
 		
