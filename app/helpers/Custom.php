@@ -1,6 +1,10 @@
 <?php
 
 use Carbon\Carbon;
+use Civilites as Civilites;
+use Cantons as Cantons;
+use Professions as Professions;
+use Pays as Pays;
 
 class Custom {
 
@@ -31,5 +35,52 @@ class Custom {
 		
 		return $prepared;
 	}
-    
+	
+	/**
+	 * Return the name of the title (civilité)
+	 *
+	 * @return string
+	 */	
+	public function whatCivilite($title){
+		
+		$civilites = \Civilites::all()->lists('title','id');
+		
+		return $civilites[$title];		
+	}
+	
+	/**
+	 * Return the name of the title (professsion)
+	 *
+	 * @return string 
+	 */	
+	public function whatProfession($title){
+		
+		$professions = \Professions::all()->lists('titreProfession','id');
+		
+		return $professions[$title];		
+	}    
+		
+	/**
+	 * Return the name of the title (canton)
+	 *
+	 * @return string 
+	 */	
+	public function whatCanton($title){
+		
+		$cantons = \Cantons::all()->lists('titreCanton','id');
+		
+		return $cantons[$title];		
+	} 
+			
+	/**
+	 * Return the name of the title (canton)
+	 *
+	 * @return string 
+	 */	
+	public function whatPays($title){
+		
+		$pays = \Pays::all()->lists('titrePays','id');
+		
+		return $pays[$title];		
+	} 
 }

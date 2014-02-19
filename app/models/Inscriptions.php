@@ -5,6 +5,7 @@ class Inscriptions extends Eloquent {
 	protected $guarded   = array('id');
 	public static $rules = array();
 	public $timestamps   = false;
+	protected $dates     = array('inscription_at');
 	
 	public function prices(){
     	

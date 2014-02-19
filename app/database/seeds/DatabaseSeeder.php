@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CivilitesTableSeeder');
 		$this->call('Event_optionsTableSeeder');
 		$this->call('Event_option_userTableSeeder');
+		$this->call('CantonsTableSeeder');
+		$this->call('PaysTableSeeder');
 	}
 
 }
