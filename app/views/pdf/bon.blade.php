@@ -34,15 +34,13 @@
 					<tr><td><p>&nbsp;</p></td></tr><!-- empty line -->
 					<tr>
 						<td>
-						 	<p id="userInfos">
-				             
+						 	<p id="userInfos">				             
 							 	<?php echo $data['civilite'].' '.$data['user']['prenom'].' '.$data['user']['nom']; ?><br/>
 					            <?php if(!empty($data['user']['entreprise'])){ echo $data['user']['entreprise'].'<br/>'; } ?>
 					            <?php echo $data['user']['adresse']; ?><br/>
 					            <?php if(!empty($data['user']['complement'])){ echo $data['user']['complement'].'<br/>'; } ?>
 					            <?php if(!empty($data['user']['cp'])){ echo 'CP '.$data['user']['cp'].'<br/>'; } ?>
 					            <?php echo $data['user']['npa'].' '.$data['user']['ville']; ?>
-
 							 </p>
 			   			</td>
 					</tr>
@@ -57,21 +55,30 @@
 		
 		<!-- Content table start-->	
 	    <table id="content" width="100%"border="0" cellpadding="0"  cellspacing="0" style="border:none;margin:0;padding:0;">
-	    	<tr>
+	    	 <tr>
 	    		<td>
 	    		
-	              <h2 style="text-align:center;"><strong>BON DE PARTICIPATION   No <?php echo $data['inscription']['inscriptionNumber']; ?></strong></h2>
+	              <h2 style="text-align:center;"><strong>BON DE PARTICIPATION   No <?php echo $data['inscription']['invoiceNumber']; ?></strong></h2>
 	              <h2 style="font-family:sans-serif;"><?php echo $data['event']['titre']; ?><br/><?php echo $data['event']['soustitre']; ?></h2>
-	              <p style="font-family:sans-serif;"><?php echo $data['event']['endroit']; ?></p>
-	              <p style="font-family:sans-serif;"><strong><?php echo $custom->formatDate($data['event']['dateDebut']); ?></strong></p>
+	              <p  style="font-family:sans-serif;"><?php echo $data['event']['endroit']; ?></p>
+	              <p  style="font-family:sans-serif;"><strong><?php echo $custom->formatDate($data['event']['dateDebut']); ?></strong></p>
 	              
-	              <?php  if( !empty($typeOption) && ($typeOption != 'text') && !empty($TitreOption) ){ ?>
-	              <p style="font-family:sans-serif;margin-top:20px; font-size:13px;"><strong><?php echo $TitreOption; ?></strong></p>
-	              <?php } ?>
+	              <?php  
+	              		if( !empty($data['options']) )
+	              		{ 
+		              		foreach($data['options'] as $option)
+		              		{ 
+			              		if($option['typeOption'] != 'text')
+			              		{
+							  		echo '<p style="font-family:sans-serif;margin:0;padding:0;font-size:11px;line-height:14px;"><strong>'.$option['titreOption'].'</strong></p>';
+							  	} 
+							}
+						 } 
+				  ?>
 	              
 				</td>
-	        </tr>
-	        <tr>
+	         </tr>
+	         <tr>
 	        	<td align="center">
 	               <p><?php if(!empty($data['carte'])) {?><img src="<?php echo $data['carte']; ?>" alt="Carte"><?php } ?></p>
 				</td>

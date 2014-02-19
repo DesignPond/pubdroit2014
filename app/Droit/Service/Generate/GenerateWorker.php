@@ -35,20 +35,33 @@ class GenerateWorker implements GenerateInterface {
 	 * Arrange infos for pdf for view 
 	 * @return instance
 	*/		
-	public function arrange($event, $user, $infos, $attestation = NULL){
+	public function arrange($event, $user, $infos, $options , $attestation = NULL){
 		
 		$data = array();
 		
 		$event_id = $event->id;
 		
-		// organisator infos if exist
-		$config = $event->event_config;
-		$files  = $event->files;
-		$infos  = $infos->first()->toArray();		
-		$carte  = $this->files->getFilesEvent($event_id,'carte')->first()->toArray();	
+		// Get infos from event
+		$config  = $event->event_config;
+		$files   = $event->files;
 		
-		$vignette      = $this->files->getFilesEvent($event_id,'vignette');		
+		if( !$infos->isEmpty() )
+		{
+			$infos = $infos->first()->toArray();		
+		}
+		
+		// Map for bon
+		$map = $this->files->getFilesEvent($event_id,'carte')->first();
+		
+		if( $map )
+		{
+			$carte         = $map->toArray();
+			$data['carte'] = getcwd().'/files/carte/'.$carte['filename'];			
+		}
+		
+		// Logo for organisator
 		$organisateur  = (!empty($config) ? $config->toArray() : $infos);
+		$vignette      = $this->files->getFilesEvent($event_id,'vignette');		
 		
 		// Logos for the pdfs
 		if( ! $vignette->isEmpty() )
@@ -61,11 +74,19 @@ class GenerateWorker implements GenerateInterface {
 			$logo = $config->toArray();
 			$data['logo'] = getcwd().'/images/'.$logo['logo'];  
 		}
-		else
+		else if(isset($infos['logo']))
 		{
 			$data['logo'] = getcwd().'/images/'.$infos['logo']; 
 		}
+		else{
+			$data['logo'] = getcwd().'/images/logos/facdroit.jpg'; 
+		}
 		
+		// Options for bon
+		if( !$options->isEmpty() ){
+			$data['options']  = $options->toArray();
+		}
+				
 		// inscription price
 		$inscription = $user->inscription->first()->toArray();
 		$idprice     = $inscription['price_id'];
@@ -85,7 +106,6 @@ class GenerateWorker implements GenerateInterface {
 		
 		$data['civilite']     = $civilite;
 		$data['organisateur'] = $organisateur;	
-		$data['carte']        = getcwd().'/files/carte/'.$carte['filename'];	
 		$data['compte']       = $compte->toArray();;
 		$data['price']        = $this->price->find($idprice)->toArray();
 		$data['user']         = $user_infos;

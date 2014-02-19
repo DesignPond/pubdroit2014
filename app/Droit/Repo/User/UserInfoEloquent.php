@@ -2,6 +2,7 @@
 
 use User as U;
 use Civilites as Civilites;
+use Event_options_user;
 
 class UserInfoEloquent implements UserInfoInterface{
 
@@ -51,6 +52,19 @@ class UserInfoEloquent implements UserInfoInterface{
 		$civilites = \Civilites::all()->lists('title','id');
 		
 		return $civilites[$title];		
+	}
+
+	/**
+	 * Return all options for user for an event
+	 *
+	 * @return stdObject Collection
+	 */		
+	public function eventOptions($user,$event){
+		
+		return \Event_options_user::join('event_options', 'event_options.id', '=','event_option_user.event_option_id')
+									->where('event_options.event_id','=',$event)
+									->where('user_id','=',$user)
+									->get();
 	}
 	
 }

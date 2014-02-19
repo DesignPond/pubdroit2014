@@ -35,37 +35,35 @@ class AdminController extends BaseController {
 
 	public function pdf(){
 		
-		$event = $this->event->find(4);
-		$infos = \Event_config::where('event_id','=',0)->get();
-		$user  = $this->user->findWithInscription(1,4);
-		$att   = $this->event->getAttestation(4);
+		$event   = $this->event->find(4);
+		$infos   = \Event_config::where('event_id','=',0)->get();
+		$user    = $this->user->findWithInscription(1,4);
+		$options = $this->user->eventOptions(1,4);
+		$att     = $this->event->getAttestation(4);
 		
 		$attestation = ( !empty($att) ? $att : NULL );
 		
-		$data = $this->generate->arrange($event,$user,$infos,$attestation);
+		$data = $this->generate->arrange($event,$user,$infos,$options,$attestation);
 				
-		$view = 'pdf.attestation';
+		$view = 'pdf.bon';
 		$name = 'bon';
-
-		//return View::make($view)->with( array( 'data' => $data ) );
-		
-		//$this->generate->generate($view , $data , $name , 'invoice' , TRUE );
 		
 		return $this->generate->generate($view , array( 'data' => $data ) , $name , 'bon' , FALSE );
 	}
 	
 	public function files(){
 	
-		$event = $this->event->find(4);
-		$infos = \Event_config::where('event_id','=',0)->get();
-		$user  = $this->user->findWithInscription(1,4);		
-		$att   = $this->event->getAttestation(4);
+		$event   = $this->event->find(4);
+		$infos   = \Event_config::where('event_id','=',0)->get();
+		$user    = $this->user->findWithInscription(1,4);
+		$options = $this->user->eventOptions(1,4);
+		$att     = $this->event->getAttestation(4);
 		
 		$attestation = ( !empty($att) ? $att : NULL );
 		
-		$data = $this->generate->arrange($event,$user,$infos,$attestation);
+		$data = $this->generate->arrange($event,$user,$infos,$options,$attestation);
 			
-    	return View::make('admin.upload')->with( array( 'event' => $data ) );    
+    	return View::make('pdf.test')->with( array( 'data' => $data , 'options' => $options ) );    
 	}	
 	
 	/**

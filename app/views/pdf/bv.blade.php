@@ -21,7 +21,7 @@
 	<div class="nofacture">
 		<p>
 			<?php echo $data['compte']['motifCompte']; ?><br/>
-			<?php echo 'No '.$data['inscription']['inscriptionNumber']; ?>
+			<?php echo 'No '.$data['inscription']['invoiceNumber']; ?>
 		</p>
 	</div>
 

@@ -8,6 +8,6 @@ interface GenerateInterface{
 	*/	
 	public function generate($view , $data , $name, $path , $write = NULL);	
 	
-	public function arrange($event,$user,$infos);
+	public function arrange($event, $user, $options , $infos);
 	
 }

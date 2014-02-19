@@ -37,6 +37,8 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CentersTableSeeder');
 		$this->call('Event_configTableSeeder');
 		$this->call('CivilitesTableSeeder');
+		$this->call('Event_optionsTableSeeder');
+		$this->call('Event_option_userTableSeeder');
 	}
 
 }

@@ -63,7 +63,7 @@
 		<table id="content" width="100%"border="0" cellpadding="0"  cellspacing="0" style="border:none;margin:0;padding:0;">
 	    	<tr>
 	    		<td colspan="2"> 		
-	               <h2 style="font-family:sans-serif;"><strong>FACTURE No <?php echo $data['inscription']['inscriptionNumber']; ?></strong></h2>
+	               <h2 style="font-family:sans-serif;"><strong>FACTURE No <?php echo $data['inscription']['invoiceNumber']; ?></strong></h2>
 	               <h2 style="font-family:sans-serif;"><?php echo $data['event']['titre']; ?><br/><?php echo $data['event']['soustitre']; ?></h2>
 	               <p class="red"><strong><?php echo $data['event']['endroit']; ?></strong></p>         
 				</td>

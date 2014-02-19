@@ -280,7 +280,7 @@
 					    	
 					    </div><!-- end panel content -->
 					</div><!-- end panel -->
-
+					
 					<!-- Info générales-->
 					<!-- form start --> 
 					{{ Form::model($event,array(

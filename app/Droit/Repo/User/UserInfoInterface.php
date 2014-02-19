@@ -11,6 +11,8 @@ interface UserInfoInterface {
 	
 	public function findWithInscription($id,$event);
 	
+	public function eventOptions($user,$event);
+	
 	public function whatTitle($title);
 
 }
