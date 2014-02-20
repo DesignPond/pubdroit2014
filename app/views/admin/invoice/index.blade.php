@@ -10,9 +10,9 @@
 		<div id="page-heading">
 			<ol class="breadcrumb">
 				<li><a href="index.htm">Dashboard</a></li>
-				<li class="active">Inscriptions</li>
+				<li class="active">Factures</li>
 			</ol>
-			<h1>Inscriptions</h1>
+			<h1>Factures</h1>
 			<div class="options">
 				<div class="btn-toolbar">
                     <div class="btn-group hidden-xs">
@@ -22,7 +22,7 @@
                             <li><a href="#">PDF (*.pdf)</a></li>
                         </ul>
                     </div>
-                     <a href="{{ url('admin/pubdroit/invoice/event/'.$event->id) }}" class="btn btn-green"><i class="fa fa-file-text-o"></i> &nbsp;Factures</a>
+                     <a href="{{ url('admin/pubdroit/inscription/event/'.$event->id) }}" class="btn btn-sky"><i class="fa fa-file-text-o"></i> &nbsp;Inscriptions</a>
                 </div>
 			</div>
 		</div>
@@ -48,14 +48,14 @@
 						<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
 					</div>
 					@endif
-					
-					<div class="panel panel-sky"> <!-- start panel --> 
+
+					<div class="panel panel-green"> <!-- start panel --> 
                         <div class="panel-heading">
                             <h4><?php echo $event->titre; ?></h4>
                         </div>
                         <div class="panel-body collapse in">	
 							
-							@if( !$inscriptions->isEmpty() )
+							@if( !$invoices->isEmpty() )
 							
 							<div class="btn-group toggle-group">
 	                       		<a class="btn btn-sm btn-default" href="javascript:void(6);" onclick="fnShowHide(6);">Email<br></a>
@@ -86,23 +86,25 @@
 	                            <tbody>		                           
 		                            <?php 
 		                            
-		                            	foreach($inscriptions as $inscrit)
+		                            	foreach($invoices as $invoices)
 		                            	{ 
 		                                   	echo '<tr class="odd gradeX">';										   	
-										   		echo '<td>'.$inscrit->users->id.'</td>';
-												echo '<td>'.$inscrit->inscriptionNumber.'</td>';
-												echo '<td>'.$inscrit->inscription_at->format('d-m-Y').'</td>';
-												echo '<td>'.$custom->whatCivilite($inscrit->users->civilite).'</td>';
-												echo '<td>'.$inscrit->users->prenom.'</td>';
-												echo '<td>'.$inscrit->users->nom.'</td>';
-												echo '<td>'.$inscrit->users->email.'</td>';
-												echo '<td>'.$inscrit->users->entreprise.'</td>';
-												echo '<td>'.$custom->whatProfession($inscrit->users->profession).'</td>';
-												echo '<td>'.$inscrit->users->adresse.'</td>';
-												echo '<td>'.$inscrit->users->npa.'</td>';
-												echo '<td>'.$inscrit->users->ville.'</td>';
-												echo '<td>'.$custom->whatCanton($inscrit->users->canton).'</td>';
-												echo '<td>'.$custom->whatPays($inscrit->users->pays).'</td>';								
+										   		
+											   	echo '<td>'.$invoices->users->id.'</td>';
+												echo '<td>'.$invoices->inscriptionNumber.'</td>';
+												echo '<td>'.$invoices->payed_at->format('d-m-Y').'</td>';
+												echo '<td>'.$custom->whatCivilite($invoices->users->civilite).'</td>';
+												echo '<td>'.$invoices->users->prenom.'</td>';
+												echo '<td>'.$invoices->users->nom.'</td>';
+												echo '<td>'.$invoices->users->email.'</td>';
+												echo '<td>'.$invoices->users->entreprise.'</td>';
+												echo '<td>'.$custom->whatProfession($invoices->users->profession).'</td>';
+												echo '<td>'.$invoices->users->adresse.'</td>';
+												echo '<td>'.$invoices->users->npa.'</td>';
+												echo '<td>'.$invoices->users->ville.'</td>';
+												echo '<td>'.$custom->whatCanton($invoices->users->canton).'</td>';
+												echo '<td>'.$custom->whatPays($invoices->users->pays).'</td>';	
+																		
 										   	echo '</tr>';
 		                                } 
 		                            ?>									
@@ -110,7 +112,7 @@
 	                       </table>
 	                       @else
 	                       
-	                       	<p>Aucune inscription pour le moment</p>
+	                       	<p>Aucune facture pour le moment</p>
 	                       
 	                       @endif
 	                       

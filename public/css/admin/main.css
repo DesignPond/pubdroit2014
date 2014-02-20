@@ -212,3 +212,19 @@
 	display: block;
 	float: left;
 }
+
+.dataTables_wrapper{
+	margin-top: 20px;
+}
+
+
+.toggle-group{
+	float: right;
+	margin-bottom: 20px;
+}
+
+.toggle-group:after{
+	content: ".";
+	clear: both;
+	visibility: hidden;
+}

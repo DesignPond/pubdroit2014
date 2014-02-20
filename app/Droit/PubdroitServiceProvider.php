@@ -4,6 +4,7 @@ use Illuminate\Support\ServiceProvider;
 
 use Events as E;
 use Inscriptions as I;
+use Invoices as IN;
 use Comptes as C;
 use Options as O;
 use Specialisations as S;
@@ -32,7 +33,8 @@ class PubdroitServiceProvider extends ServiceProvider {
     {     
        	// Admin
     	$this->registerEventService();
-    	$this->registerInscriptionService();	
+    	$this->registerInscriptionService();
+    	$this->registerInvoiceService();	
     	$this->registerCompteService();	
     	$this->registerOptionService();	
     	$this->registerSpecialisationService();	
@@ -79,7 +81,16 @@ class PubdroitServiceProvider extends ServiceProvider {
         });
         
     }
-
+    
+    protected function registerInvoiceService(){
+    
+	    $this->app->bind('Droit\Repo\Invoice\InvoiceInterface', function()
+        {
+            return new \Droit\Repo\Invoice\InvoiceEloquent( new IN );
+        });
+        
+    }
+    
     protected function registerCompteService(){
     
 	    $this->app->bind('Droit\Repo\Compte\CompteInterface', function()

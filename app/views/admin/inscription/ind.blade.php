@@ -72,16 +72,16 @@
 									   		echo '<td>'.$inscrit->id.'</td>';
 											echo '<td>'.$inscrit->inscriptionNumber.'</td>';
 											echo '<td>'.$inscrit->inscription_at->toDateTimeString().'</td>';
-											echo '<td>'.$inscrit->users->civilite.'</td>';
+											echo '<td>'.$custom->ifExist($inscrit->users->civilite).'</td>';
 											echo '<td>'.$inscrit->users->prenom.'</td>';
 											echo '<td>'.$inscrit->users->nom.'</td>';
 											echo '<td>'.$inscrit->users->email.'</td>';
-											echo '<td>'.$inscrit->users->entreprise.'</td>';
-											echo '<td>'.$inscrit->users->profession.'</td>';
+											echo '<td>'.$custom->ifExist($inscrit->users->entreprise).'</td>';
+											echo '<td>'.$custom->ifExist($inscrit->users->profession).'</td>';
 											echo '<td>'.$inscrit->users->adresse.'</td>';
-											echo '<td>'.$inscrit->users->npa.'</td>';
+											echo '<td>'.$custom->ifExist($inscrit->users->npa).'</td>';
 											echo '<td>'.$inscrit->users->ville.'</td>';
-											echo '<td>'.$inscrit->users->canton.'</td>';
+											echo '<td>'.$custom->ifExist($inscrit->users->canton).'</td>';
 											echo '<td>'.$inscrit->users->pays.'</td>';
 										
 									   	echo '</tr>';

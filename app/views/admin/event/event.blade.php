@@ -45,7 +45,7 @@
 									<a class="btn btn-sm btn-success" href="{{ url('admin/pubdroit/inscription/event/'.$event->id) }}">Inscriptions 
 										<span class="badge blank">42</span>
 									</a>
-									<a class="btn btn-sm btn-primary" href="#">Factures <span class="badge blank">42</span></a>
+									<a class="btn btn-sm btn-primary" href="{{ url('admin/pubdroit/invoice/event/'.$event->id) }}">Factures <span class="badge blank">42</span></a>
 								</div>
 							</div>
 					    </div>

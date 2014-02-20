@@ -2,21 +2,24 @@
 
 use Droit\Repo\Inscription\InscriptionInterface;
 use Droit\Repo\Event\EventInterface;
+use Droit\Repo\Invoice\InvoiceInterface;
 
-use Droit\Service\Form\Inscription\InscriptionValidator as InscriptionValidator;
+class InvoiceController extends BaseController {
 
-class InscriptionController extends BaseController {
-
-	protected $inscription;	
+	protected $inscription;
 	
 	protected $event;
 	
-	public function __construct( InscriptionInterface $inscription , EventInterface $event )
+	protected $invoice;
+	
+	public function __construct( InscriptionInterface $inscription , InvoiceInterface $invoice , EventInterface $event )
 	{
 		
 		$this->inscription = $inscription;
 		
 		$this->event       = $event;
+		
+		$this->invoice     = $invoice;
 
 	}
 
@@ -27,7 +30,7 @@ class InscriptionController extends BaseController {
 	 */
 	public function index()
 	{
-        return View::make('admin.inscription.index');
+        return View::make('admin.facture.index');
 	}
 
 	/**
@@ -37,7 +40,7 @@ class InscriptionController extends BaseController {
 	 */
 	public function create()
 	{
-        return View::make('admin.inscription.create');
+        return View::make('admin.facture.create');
 	}
 
 	/**
@@ -52,10 +55,10 @@ class InscriptionController extends BaseController {
 	
 	public function event($id){
 		
-		$event        = $this->event->find($id);
-		$inscriptions = $this->inscription->getEvent($id);
+		$event    = $this->event->find($id);
+		$invoices = $this->invoice->getEvent($id);
 		
-		return View::make('admin.inscription.index')->with( array('inscriptions' => $inscriptions , 'event' => $event ));
+		return View::make('admin.invoice.index')->with( array('invoices' => $invoices , 'event' => $event ));
 
 	}
 

@@ -41,6 +41,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('Event_option_userTableSeeder');
 		$this->call('CantonsTableSeeder');
 		$this->call('PaysTableSeeder');
+		$this->call('InvoicesTableSeeder');
 	}
 
 }

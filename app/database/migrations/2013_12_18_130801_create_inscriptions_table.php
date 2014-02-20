@@ -19,7 +19,7 @@ class CreateInscriptionsTable extends Migration {
 			$table->integer('event_id');
 			$table->integer('user_id');
 			$table->integer('price_id');
-			$table->string('invoiceNumber');
+			$table->string('inscriptionNumber');
 			$table->dateTime('inscription_at');
 
 		});

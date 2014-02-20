@@ -9,32 +9,32 @@ class InscriptionsTableSeeder extends Seeder {
 
 		$inscriptions = array(
 			array( 
-				'event_id'        => 1, // changed
-				'user_id'         => 1,
-				'price_id'        => 1,
-				'invoiceNumber'   => '1-2014/1',
-				'inscription_at'  => date('Y-m-d G:i:s')
+				'event_id'           => 1, // changed
+				'user_id'            => 1,
+				'price_id'           => 1,
+				'inscriptionNumber'  => '1-2014/1',
+				'inscription_at'     => date('Y-m-d G:i:s')
 			),
 			array( 
-				'event_id'        => 2, // changed
-				'user_id'         => 1,
-				'price_id'        => 2,
-				'invoiceNumber'   => '2-2014/1',
-				'inscription_at'  => date('Y-m-d G:i:s')				
+				'event_id'           => 2, // changed
+				'user_id'            => 1,
+				'price_id'           => 2,
+				'inscriptionNumber'  => '2-2014/1',
+				'inscription_at'     => date('Y-m-d G:i:s')				
 			),
 			array( 
-				'event_id'        => 1, // changed
-				'user_id'         => 1,
-				'price_id'        => 1,
-				'invoiceNumber'   => '3-2014/1',
-				'inscription_at'  => date('Y-m-d G:i:s')	
+				'event_id'           => 1, // changed
+				'user_id'            => 1,
+				'price_id'           => 1,
+				'inscriptionNumber'  => '3-2014/1',
+				'inscription_at'     => date('Y-m-d G:i:s')	
 			),
 			array( 
-				'event_id'        => 4, // changed
-				'user_id'         => 1,
-				'price_id'        => 3,
-				'invoiceNumber'   => '4-2014/1',
-				'inscription_at'  => date('Y-m-d G:i:s')				
+				'event_id'           => 4, // changed
+				'user_id'            => 1,
+				'price_id'           => 3,
+				'inscriptionNumber'  => '4-2014/1',
+				'inscription_at'     => date('Y-m-d G:i:s')				
 			)
 		);
 

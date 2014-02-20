@@ -181,7 +181,11 @@ Route::group(array('prefix' => 'admin'), function()
 		// Inscriptions
 	    Route::get('inscription/event/{event}', array('uses' => 'InscriptionController@event'));	      
 	    Route::resource('inscription', 'InscriptionController');
-	    
+
+		// Invoices
+	    Route::get('invoice/event/{event}', array('uses' => 'InvoiceController@event'));	      
+	    Route::resource('invoice', 'InvoiceController');
+	    	    
 	    // Options colloques
 	    Route::get('option/{option}/delete', array('uses' => 'OptionController@destroy'));
 	    Route::get('option/create/{event}', array('uses' => 'OptionController@create'));

@@ -15,18 +15,11 @@ class CreateInvoicesTable extends Migration {
 		Schema::create('invoices', function(Blueprint $table) {
 		
 			$table->increments('id');
-			
-			$table->integer('pid');	
 			$table->integer('deleted');	
-			$table->string('invoiceNumber');
 			$table->string('inscriptionNumber');
-			$table->enum('payementType', array('1'))->default(1);
-			$table->integer('user_id');
-			$table->integer('delivery_id');	
-			$table->string('price');
-			$table->text('comment');
-			$table->dateTime('payed_at'); 
-			
+			$table->integer('user_id');	
+			$table->string('price_id');
+			$table->dateTime('payed_at'); 			
 			$table->integer('event_id');
 			$table->enum('status', array('attente','paye','gratuit'))->default('attente');
 			
