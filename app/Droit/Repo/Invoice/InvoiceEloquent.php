@@ -23,12 +23,14 @@ class InvoiceEloquent implements InvoiceInterface {
 	}
 	
 	public function getEvent($event){
-
-		return $this->invoice->where('event_id', '=' ,$event)->with( array('event','prices','users'=> function($query) 
-		{ 			
-			$query->join('adresses','users.id','=','adresses.user_id')->where('adresses.type', '=', 1);
-			
-		}))->get();
+		
+		return $this->invoice
+			->join('users','users.id','=','invoices.user_id')
+			->join('adresses','users.id','=','adresses.user_id')
+			->join('prices','prices.id','=','invoices.price_id')
+			->where('invoices.event_id', '=' ,$event)
+			->where('adresses.type', '=' ,1)
+			->get();
 	
 	}
 	

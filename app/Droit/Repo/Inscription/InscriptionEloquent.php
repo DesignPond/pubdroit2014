@@ -34,14 +34,15 @@ class InscriptionEloquent implements InscriptionInterface {
 	
 	public function getEvent($event){
 		
-		return $this->inscription->where('event_id', '=' ,$event)->with( array('event','prices','users'=> function($query) 
-		{ 			
-			$query->join('adresses','users.id','=','adresses.user_id')->where('adresses.type', '=', 1);
-			
-		}))->get();
-		
+		return $this->inscription
+					->join('users','users.id','=','inscriptions.user_id')
+					->join('adresses','users.id','=','adresses.user_id')
+					->join('prices','prices.id','=','inscriptions.price_id')
+					->where('inscriptions.event_id', '=' ,$event)
+					->where('adresses.type', '=' ,1)
+					->get();
 	}
-	
+
 	public function create(array $data){
 		
 		// Create the article

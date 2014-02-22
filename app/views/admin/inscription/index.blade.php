@@ -15,13 +15,6 @@
 			<h1>Inscriptions</h1>
 			<div class="options">
 				<div class="btn-toolbar">
-                    <div class="btn-group hidden-xs">
-                        <a href='#' class="btn btn-default dropdown-toggle" data-toggle='dropdown'><i class="fa fa-cloud-download"></i><span class="hidden-sm"> &nbsp;Exporter &nbsp;</span><span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Excel (*.xlsx)</a></li>
-                            <li><a href="#">PDF (*.pdf)</a></li>
-                        </ul>
-                    </div>
                      <a href="{{ url('admin/pubdroit/invoice/event/'.$event->id) }}" class="btn btn-green"><i class="fa fa-file-text-o"></i> &nbsp;Factures</a>
                 </div>
 			</div>
@@ -86,25 +79,29 @@
 	                            <tbody>		                           
 		                            <?php 
 		                            
-		                            	foreach($inscriptions as $inscrit)
-		                            	{ 
+									foreach($inscriptions as $inscrit)
+		                            { 		                            	
+		                            	if( $inscrit )
+										{		                            	
 		                                   	echo '<tr class="odd gradeX">';										   	
-										   		echo '<td>'.$inscrit->users->id.'</td>';
+										   		echo '<td>'.$inscrit->user_id.'</td>';
 												echo '<td>'.$inscrit->inscriptionNumber.'</td>';
 												echo '<td>'.$inscrit->inscription_at->format('d-m-Y').'</td>';
-												echo '<td>'.$custom->whatCivilite($inscrit->users->civilite).'</td>';
-												echo '<td>'.$inscrit->users->prenom.'</td>';
-												echo '<td>'.$inscrit->users->nom.'</td>';
-												echo '<td>'.$inscrit->users->email.'</td>';
-												echo '<td>'.$inscrit->users->entreprise.'</td>';
-												echo '<td>'.$custom->whatProfession($inscrit->users->profession).'</td>';
-												echo '<td>'.$inscrit->users->adresse.'</td>';
-												echo '<td>'.$inscrit->users->npa.'</td>';
-												echo '<td>'.$inscrit->users->ville.'</td>';
-												echo '<td>'.$custom->whatCanton($inscrit->users->canton).'</td>';
-												echo '<td>'.$custom->whatPays($inscrit->users->pays).'</td>';								
+												echo '<td>'.$custom->whatCivilite($inscrit->civilite).'</td>';
+												echo '<td>'.$inscrit->prenom.'</td>';
+												echo '<td>'.$inscrit->nom.'</td>';
+												echo '<td>'.$inscrit->email.'</td>';
+												echo '<td>'.$inscrit->entreprise.'</td>';
+												echo '<td>'.$custom->whatProfession($inscrit->profession).'</td>';
+												echo '<td>'.$inscrit->adresse.'</td>';
+												echo '<td>'.$inscrit->npa.'</td>';
+												echo '<td>'.$inscrit->ville.'</td>';
+												echo '<td>'.$custom->whatCanton($inscrit->canton).'</td>';
+												echo '<td>'.$custom->whatPays($inscrit->pays).'</td>';								
 										   	echo '</tr>';
 		                                } 
+		                            }
+		                            
 		                            ?>									
 	                            </tbody>
 	                       </table>

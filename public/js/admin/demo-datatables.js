@@ -2,38 +2,43 @@
 // Initialize Data Tables
 // -------------------------------
 
+var base_url = location.protocol + "//" + location.host+"/";
+
 $(document).ready(
   function() {
-  
+  	
+  	TableTools.DEFAULTS.aButtons = [ "xls" ];
+  	
     $('.datatables').dataTable({
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
             "sLengthMenu": "_MENU_ inscriptions par page",
-            "sInfo": "Un total de _TOTAL_ sur _END_",
-            "sSearch": "",
+            "sInfo"    : "Un total de _TOTAL_ sur _END_",
+            "sSearch"  : "",
             "oPaginate": {
-		        "sNext": "Suivant",
+		        "sNext"     : "Suivant",
 		        "sPrevious" : "Précédent",
-		        "sFirst": "Première page",
-		        "sLast": "Dernière page"
+		        "sFirst"    : "Première page",
+		        "sLast"     : "Dernière page"
 		     }
         },
+        // "oTableTools": { "sSwfPath": base_url + "swf/copy_csv_xls_pdf.swf"},
 		"aoColumns": [
-			    /* uid */   null,
-			    /* no */   null,
-			    /* date */   null,
-			    /* civilité */  null,
-			    /* prenom */ null,
-			    /* nom */  null,
-			    /* email */    { "bVisible": false },
-			    /* entreprise */    null,
-			    /* profession */    { "bVisible": false },
+			    /* uid */        null,
+			    /* no */         null,
+			    /* date */       null,
+			    /* civilité */   null,
+			    /* prenom */     null,
+			    /* nom */        null,
+			    /* email */      { "bVisible": false },
+			    /* entreprise */ null,
+			    /* profession */ { "bVisible": false },
 			    /* adresse */    null,
-			    /* npa */    null,
-			    /* ville */    null,
-			    /* canton */    { "bVisible": false },
-			    /* pays */    { "bVisible": false }
+			    /* npa */        null,
+			    /* ville */      null,
+			    /* canton */     { "bVisible": false },
+			    /* pays */       { "bVisible": false }
 			]
     });
     $('.dataTables_filter input').addClass('form-control').attr('placeholder','Rechercher...');

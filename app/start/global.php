@@ -95,3 +95,16 @@ require __DIR__.'/../observables.php';
 $app['Cartalyst\Sentry\Sentry'] = $app['sentry'];
 
 
+// Logging queries for debbug
+
+Event::listen('illuminate.query', function($sql, $bindings)
+{
+	foreach ($bindings as $i => $val) {
+	$bindings[$i] = "'$val'";
+	}
+	 
+	$sql = str_replace(['?'], $bindings, $sql);
+	 
+	Log::info($sql);
+}); 
+

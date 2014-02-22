@@ -18,6 +18,17 @@ class InvoicesTableSeeder extends Seeder {
 				'payed_at'           => date('Y-m-d G:i:s'),
 				'created_at'         => date('Y-m-d G:i:s'),
 				'updated_at'         => date('Y-m-d G:i:s')
+			),
+			array( 
+				'event_id'           => 4, 
+				'user_id'            => 2,
+				'price_id'           => 7,
+				'deleted'            => 0,
+				'inscriptionNumber'  => '4-2014/2',
+				'status'             => 'attente',
+				'payed_at'           => date('Y-m-d G:i:s'),
+				'created_at'         => date('Y-m-d G:i:s'),
+				'updated_at'         => date('Y-m-d G:i:s')
 			)
 
 		);

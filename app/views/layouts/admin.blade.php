@@ -17,6 +17,7 @@
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href="<?php echo asset('fonts/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">
     <link href="<?php echo asset('plugins/datatables/dataTables.css');?>" rel="stylesheet">
+    <link href="<?php echo asset('css/TableTools.css');?>" rel="stylesheet">
     <link href="<?php echo asset('plugins/jqueryui-timepicker/jquery.ui.timepicker.css');?>" rel="stylesheet">
     <link href="<?php echo asset('js/admin/jqueryui.css');?>" rel="stylesheet">
     
@@ -131,9 +132,12 @@
 		<script type="text/javascript" src="<?php echo asset('plugins/form-parsley/parsley.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/daterangepicker.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-daterangepicker/moment.min.js');?>"></script> 
+		<!-- datatable -->
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/jquery.dataTables.min.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/dataTables.bootstrap.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('js/admin/demo-datatables.js');?>"></script>
+	    <script type="text/javascript" src="<?php echo asset('js/admin/TableTools.min.js');?>"></script>
+	    
 		<script type="text/javascript" src="<?php echo asset('js/admin/placeholdr.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/application.js');?>"></script> 	
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.jeditable.js');?>"></script> 	

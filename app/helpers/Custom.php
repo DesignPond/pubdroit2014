@@ -45,7 +45,7 @@ class Custom {
 		
 		$civilites = \Civilites::all()->lists('title','id');
 		
-		return $civilites[$title];		
+		return (isset($civilites[$title]) ? $civilites[$title] : "");		
 	}
 	
 	/**
@@ -56,8 +56,8 @@ class Custom {
 	public function whatProfession($title){
 		
 		$professions = \Professions::all()->lists('titreProfession','id');
-		
-		return $professions[$title];		
+
+		return (isset($professions[$title]) ? $professions[$title] : "");			
 	}    
 		
 	/**
@@ -68,8 +68,8 @@ class Custom {
 	public function whatCanton($title){
 		
 		$cantons = \Cantons::all()->lists('titreCanton','id');
-		
-		return $cantons[$title];		
+
+		return (isset($cantons[$title]) ? $cantons[$title] : "");	
 	} 
 			
 	/**
@@ -80,7 +80,7 @@ class Custom {
 	public function whatPays($title){
 		
 		$pays = \Pays::all()->lists('titrePays','id');
-		
-		return $pays[$title];		
+
+		return (isset($pays[$title]) ? $pays[$title] : "");	
 	} 
 }

@@ -55,6 +55,30 @@ class AddressesTableSeeder extends Seeder {
 	           'deleted'    => '0',
 	           'created_at' => date('Y-m-d G:i:s'),
 			   'updated_at' => date('Y-m-d G:i:s')        
+	        ),
+	        array(
+	           'civilite'   => '1',
+	           'prenom'     => 'User',
+	           'nom'        => 'Username',
+	           'email'      => 'user@user.com',
+	           'entreprise' => 'DesignPond',
+	           'fonction'   => '',
+	           'profession' => '1',
+	           'telephone'  => '078 690 00 23',
+	           'mobile'     => '078 690 00 23',
+	           'adresse'    => 'Rue du marché',
+	           'cp'         => '',
+	           'complement' => '',
+	           'npa'        => '2000',
+	           'ville'      => 'Neuchâtel',
+	           'canton'     => '13',
+	           'pays'       => '208',
+	           'type'       => '1',
+	           'user_id'    => '2',	           
+	           'livraison'  => '1',	           
+	           'deleted'    => '0',
+	           'created_at' => date('Y-m-d G:i:s'),
+			   'updated_at' => date('Y-m-d G:i:s')        
 	        )
 		);
 

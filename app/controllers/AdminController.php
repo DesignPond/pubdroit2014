@@ -3,6 +3,7 @@
 use Droit\Repo\Event\EventInterface;
 use Droit\Repo\User\UserInfoInterface;
 use Droit\Service\Form\Event\EventForm;
+use Droit\Repo\Inscription\InscriptionInterface;
 
 use Droit\Service\Generate\GenerateInterface;
 
@@ -14,13 +15,15 @@ class AdminController extends BaseController {
 	
 	protected $generate;
 	
-	public function __construct(EventInterface $event , UserInfoInterface $user , GenerateInterface $generate){
+	public function __construct(EventInterface $event , UserInfoInterface $user ,  InscriptionInterface $inscription , GenerateInterface $generate){
 		
 		$this->event    = $event;
 		
 		$this->user     = $user;
 		
 		$this->generate = $generate;
+		
+		$this->inscription = $inscription;
 	}
 	
 	/**
@@ -54,16 +57,9 @@ class AdminController extends BaseController {
 	public function files(){
 	
 		$event   = $this->event->find(4);
-		$infos   = \Event_config::where('event_id','=',0)->get();
-		$user    = $this->user->findWithInscription(1,4);
-		$options = $this->user->eventOptions(1,4);
-		$att     = $this->event->getAttestation(4);
-		
-		$attestation = ( !empty($att) ? $att : NULL );
-		
-		$data = $this->generate->arrange($event,$user,$infos,$options,$attestation);
+		$inscriptions = $this->inscription->getEvent(4);
 			
-    	return View::make('pdf.test')->with( array( 'data' => $data , 'options' => $options ) );    
+    	return View::make('pdf.test')->with( array( 'data' => $inscriptions ) );    
 	}	
 	
 	/**
