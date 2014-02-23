@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration {
 			$table->integer('profession');
 			$table->string('telephone');
 			$table->string('mobile');
+			$table->string('fax');
 			$table->text('adresse');
 			$table->string('cp');
 			$table->string('complement');

@@ -5,9 +5,9 @@ use Codeception\Exception\ElementNotFound;
 use Codeception\Exception\TestRuntime;
 use Codeception\Util\Debug;
 use Codeception\Util\Locator;
-use Codeception\Lib\MultiSessionInterface;
-use Codeception\Lib\WebInterface;
-use Codeception\Lib\RemoteInterface;
+use Codeception\Lib\Interfaces\MultiSession;
+use Codeception\Lib\Interfaces\Web;
+use Codeception\Lib\Interfaces\Remote;
 use Symfony\Component\DomCrawler\Crawler;
 use Codeception\PHPUnit\Constraint\WebDriver as WebDriverConstraint;
 use Codeception\PHPUnit\Constraint\WebDriverNot as WebDriverConstraintNot;
@@ -61,7 +61,7 @@ use Codeception\PHPUnit\Constraint\Page as PageConstraint;
  * Class WebDriver
  * @package Codeception\Module
  */
-class WebDriver extends \Codeception\Module implements WebInterface, RemoteInterface {
+class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession {
 
     protected $requiredFields = array('browser', 'url');
     protected $config = array(
@@ -968,7 +968,7 @@ class WebDriver extends \Codeception\Module implements WebInterface, RemoteInter
             }
             if ($el->getTagName() == 'input') {
                 $type = $el->getAttribute('type');
-                if ($type == 'text') {
+                if ($type == 'text' or $type == 'password') {
                     $this->fillField($el, $value);
                 }
                 if ($type == 'radio' or $type == 'checkbox') {

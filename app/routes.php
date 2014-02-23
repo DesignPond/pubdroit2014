@@ -159,6 +159,8 @@ Route::group(array('prefix' => 'admin'), function()
 	// Index administration
     Route::get('/', array('uses' => 'AdminController@index'));
     
+    Route::get('search', array('uses' => 'SearchController@index'));
+    
     // Upload file
 	Route::post('upload', array('uses' => 'UploadController@store'));
 	Route::get('files', array('uses' => 'AdminController@files'));

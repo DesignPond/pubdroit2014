@@ -6,9 +6,7 @@ use \Robo\Task\GenMarkdownDocTask as Doc;
 
 class RoboFile extends \Robo\Tasks {
 
-    const BRANCH = '2.0';
-    use \Robo\Task\PackPhar;
-    use \Robo\Task\SymfonyCommand;
+    const STABLE_BRANCH = '1.8';
 
     public function release()
     {
@@ -125,7 +123,7 @@ class RoboFile extends \Robo\Tasks {
             ->addFile('codecept', 'package/bin')
             ->run();
         
-        $code = $this->taskExec('php package/codecept.phar')->run();
+        $code = $this->taskExec('php package/codecept.phar')->run()->getExitCode();
         if ($code !== 0) {
             throw new Exception("There was problem compiling phar");
         }
@@ -136,9 +134,15 @@ class RoboFile extends \Robo\Tasks {
      */
     public function buildDocs()
     {
-        $this->taskCleanDir('docs/modules')->run();
         $this->say('generating documentation from source files');
+        $this->buildDocsModules();
+        $this->buildDocsUtils();
+        $this->buildDocsCommands();
+    }
 
+    public function buildDocsModules()
+    {
+        $this->taskCleanDir('docs/modules')->run();
         $this->say("Modules");
         $modules = Finder::create()->files()->name('*.php')->in(__DIR__ . '/src/Codeception/Module');
 
@@ -165,8 +169,11 @@ class RoboFile extends \Robo\Tasks {
                 })->reorderMethods('ksort')
                 ->run();
         }
-        $this->say("Util Classes");
+    }
 
+    public function buildDocsUtils()
+    {
+        $this->say("Util Classes");
         $utils = Finder::create()->files()->name('*.php')->depth(0)->in(__DIR__ . '/src/Codeception/Util');
 
         foreach ($utils as $util) {
@@ -187,6 +194,25 @@ class RoboFile extends \Robo\Tasks {
                 ->reorderMethods('ksort')
                 ->run();
         }
+    }
+
+    public function buildDocsCommands()
+    {
+        $this->say("Commands");
+
+        $commands = Finder::create()->files()->name('*.php')->depth(0)->in(__DIR__ . '/src/Codeception/Command');
+
+        $commandGenerator = $this->taskGenDoc('docs/reference/commands.md');
+        foreach ($commands as $command) {
+            $commandName = basename(substr($command, 0, -4));
+            $className = '\Codeception\Command\\' . $commandName;
+            $commandGenerator->docClass($className);
+        }
+        $commandGenerator
+            ->prepend("# Console Commands\n")
+            ->processClass(function ($r, $text) { $name = $r->getShortName();return "## $name\n$text";  })
+            ->filterMethods(function(ReflectionMethod $r) { return false; })
+            ->run();
 
     }
 
@@ -197,16 +223,16 @@ class RoboFile extends \Robo\Tasks {
     {
         $this->cloneSite();
         $version = \Codeception\Codecept::VERSION;
-        if (strpos($version, self::BRANCH) === 0) {
+        if (strpos($version, self::STABLE_BRANCH) === 0) {
             $this->say("publishing to release branch");
             copy('../codecept.phar','codecept.phar');
+            $this->taskExec('git add codecept.phar')->run();
         }
 
         @mkdir("releases/$version");
-        copy('codecept.phar',"releases/$version/codecept.phar");
+        copy('../codecept.phar',"releases/$version/codecept.phar");
 
-        $this->taskExec('git add codecept.phar')->run();
-        $this->taskExec('git add releases/$version/codecept.phar')->run();
+        $this->taskExec("git add releases/$version/codecept.phar")->run();
         $this->publishSite();
     }
 
@@ -215,7 +241,7 @@ class RoboFile extends \Robo\Tasks {
      */
     public function publishDocs()
     {
-        if (strpos(\Codeception\Codecept::VERSION, self::BRANCH) !== 0) {
+        if (strpos(\Codeception\Codecept::VERSION, self::STABLE_BRANCH) !== 0) {
             $this->say("The ".\Codeception\Codecept::VERSION." is not in release branch. Site is not build");
             return;
         }
@@ -297,13 +323,15 @@ class RoboFile extends \Robo\Tasks {
     /**
      * @desc creates a new version tag and pushes to github
      */
-    public function publishGit()
+    public function publishGit($branch = null)
     {
         $version = \Codeception\Codecept::VERSION;
         $this->say('creating new tag for '.$version);
-        $branch = explode('.', $version);
-        array_pop($branch);
-        $branch = implode('.',$branch);
+        if (!$branch) {
+            $branch = explode('.', $version);
+            array_pop($branch);
+            $branch = implode('.',$branch);
+        }
         $this->taskExec("git tag $version")->run();
         $this->taskExec("git push origin $branch --tags")->run();
     }

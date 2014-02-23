@@ -1,13 +1,35 @@
 <?php
 
-class SearchController extends BaseController {
+use Droit\Repo\Search\SearchInterface;
 
+class SearchController extends BaseController {
+	
+	protected $search;
+
+	
+	public function __construct( SearchInterface $search){
+		
+		$this->search = $search;
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
+	{
+		$search = Request::get('search');
+		
+		$data = array();
+		
+		$data = $this->search->find($search);
+		
+		return View::make('admin.search.index')->with( array('data' => $data) );
+		        
+	}
+	
+
+	public function product()
 	{
 		$action = Request::get('action');
 		

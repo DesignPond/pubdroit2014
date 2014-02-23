@@ -13,6 +13,7 @@ use Professions as P;
 use Prices as PR;
 
 use User as U;
+use Adresses as AD;
 
 use Files as F;
 
@@ -50,9 +51,11 @@ class PubdroitServiceProvider extends ServiceProvider {
 		$this->registerUploadService();	
 		$this->registerCalculetteService();
 		$this->registerGenerateService();
+		$this->registerSearchService();
 		
 		// User
     	$this->registerUserService();
+    	$this->registerAdresseService();
     			
     }
     
@@ -65,6 +68,22 @@ class PubdroitServiceProvider extends ServiceProvider {
         });       
     }    
     
+    protected function registerAdresseService(){
+    
+	    $this->app->bind('Droit\Repo\Adresse\AdresseInterface', function()
+        {
+            return new \Droit\Repo\Adresse\AdresseEloquent( new AD );
+        });       
+    } 
+    
+    protected function registerSearchService(){
+    
+	    $this->app->bind('Droit\Repo\Search\SearchInterface', function()
+        {
+            return new \Droit\Repo\Search\SearchEloquent( \App::make('Droit\Repo\User\UserInfoInterface') , \App::make('Droit\Repo\Adresse\AdresseInterface') );
+        });       
+    } 
+            
     protected function registerEventService(){
     
 	    $this->app->bind('Droit\Repo\Event\EventInterface', function()

@@ -13,6 +13,16 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Creates default config, tests directory and sample suites for current project. Use this command to start building a test suite.
+ * You will be asked to choose one of the actors that will be used in tests. To skip this question run bootstrap with `--silent` option.
+ *
+ * `codecept bootstrap` creates `tests` dir and `codeception.yml` in current dir.
+ * `codecept bootstrap --namespace Frontend` - creates tests, and use `Frontend` namespace for actor classes and helpers.
+ * `codecept bootstrap --actor Wizard` - sets actor as Wizard, to have `TestWizard` actor in tests.
+ * `codecept bootstrap path/to/the/project` - provide different path to a project, where tests should be placed
+ *
+ */
 class Bootstrap extends Command
 {
     protected $namespace = '';
@@ -23,7 +33,7 @@ class Bootstrap extends Command
     {
         $this->setDefinition([
             new InputArgument('path', InputArgument::OPTIONAL, 'custom installation path', '.'),
-            new InputOption('namespace', 'ns', InputOption::VALUE_OPTIONAL, 'Namespace to add for guy classes and helpers'),
+            new InputOption('namespace', 'ns', InputOption::VALUE_OPTIONAL, 'Namespace to add for actor classes and helpers'),
             new InputOption('actor', 'a', InputOption::VALUE_OPTIONAL, 'Custom actor instead of Guy'),
             new InputOption('silent', null, InputOption::VALUE_NONE, 'Don\'t ask stupid questions')
         ]);
@@ -46,7 +56,7 @@ class Bootstrap extends Command
         } elseif (!$input->getOption('silent')) {
             $output->writeln("Before proceed you can choose default actor:");
             $output->writeln("\n\$I = new {{ACTOR}}");
-            $index = $dialog->select($output, "<question>  Select an actor. Guy is default  </question>", $this->availableActors, $this->actor);
+            $index = $dialog->select($output, "<question>  Select an actor. Default: Guy  </question>", $this->availableActors, $this->actor);
             $this->actor = $this->availableActors[$index];
         }
 

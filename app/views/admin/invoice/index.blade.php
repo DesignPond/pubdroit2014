@@ -77,7 +77,7 @@
 	                                </tr>
 	                            </thead>
 	                            <tbody>		                           
-		                            <?php 
+		                         <?php 
 
 		                            foreach($invoices as $invoice)
 		                            { 
@@ -104,7 +104,7 @@
 		                                } 
 		                             }
 		                             
-		                            ?>									
+		                          ?>									
 	                            </tbody>
 	                       </table>
 	                       @else

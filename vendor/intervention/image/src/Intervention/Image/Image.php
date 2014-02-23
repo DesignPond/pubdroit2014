@@ -72,7 +72,7 @@ class Image
     /**
      * Attributes of the original created image
      *
-     * @var Array
+     * @var resource
      */
     protected $original;
 
@@ -1758,9 +1758,10 @@ class Image
      */
     private function cloneResource($resource)
     {
-        ob_start();
-        imagegd2($resource);
-        return imagecreatefromstring(ob_get_clean());
+        $clone = imagecreatetruecolor($this->width, $this->height);
+        imagecopy($clone, $resource, 0, 0, 0, 0, $this->width, $this->height);
+
+        return $clone;
     }
 
     /**
@@ -1887,6 +1888,17 @@ class Image
         header('Content-Type: ' . $this->mime);
 
         return $this->encoded;
+    }
+
+    /**
+     * Destroys image resource and frees memory
+     *
+     * @return void
+     */
+    public function destroy()
+    {
+        is_resource($this->resource) ? imagedestroy($this->resource) : null;
+        is_resource($this->original) ? imagedestroy($this->original) : null;
     }
 
     /**
