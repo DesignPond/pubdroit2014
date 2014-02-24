@@ -160,6 +160,7 @@ Route::group(array('prefix' => 'admin'), function()
     Route::get('/', array('uses' => 'AdminController@index'));
     
     Route::get('search', array('uses' => 'SearchController@index'));
+    Route::post('search', array('uses' => 'SearchController@index'));
     
     // Upload file
 	Route::post('upload', array('uses' => 'UploadController@store'));

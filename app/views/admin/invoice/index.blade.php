@@ -9,7 +9,7 @@
 			
 		<div id="page-heading">
 			<ol class="breadcrumb">
-				<li><a href="index.htm">Dashboard</a></li>
+				<li><a href="{{ url('admin') }}">Dashboard</a></li>
 				<li class="active">Factures</li>
 			</ol>
 			<h1>Factures</h1>

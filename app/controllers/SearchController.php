@@ -18,11 +18,13 @@ class SearchController extends BaseController {
 	 */
 	public function index()
 	{
-		$search = Request::get('search');
 		
+		$search = Request::get('search');
 		$data = array();
 		
-		$data = $this->search->find($search);
+		if($search){
+			$data = $this->search->find($search);
+		}
 		
 		return View::make('admin.search.index')->with( array('data' => $data) );
 		        

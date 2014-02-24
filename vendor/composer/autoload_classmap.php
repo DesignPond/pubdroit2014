@@ -363,7 +363,7 @@ return array(
     'Droit\\Mailers\\UserMailer' => $baseDir . '/app/Droit/Mailers/UserMailer.php',
     'Droit\\PubdroitServiceProvider' => $baseDir . '/app/Droit/PubdroitServiceProvider.php',
     'Droit\\Repo\\Adresse\\AdresseEloquent' => $baseDir . '/app/Droit/Repo/Adresse/AdresseEloquent.php',
-    'Droit\\Repo\\Adresse\\AdresseInfoInterface' => $baseDir . '/app/Droit/Repo/Adresse/AdresseInterface.php',
+    'Droit\\Repo\\Adresse\\AdresseInterface' => $baseDir . '/app/Droit/Repo/Adresse/AdresseInterface.php',
     'Droit\\Repo\\Analyse\\AnalyseEloquent' => $baseDir . '/app/Droit/Repo/Analyse/AnalyseEloquent.php',
     'Droit\\Repo\\Analyse\\AnalyseInterface' => $baseDir . '/app/Droit/Repo/Analyse/AnalyseInterface.php',
     'Droit\\Repo\\Arret\\ArretEloquent' => $baseDir . '/app/Droit/Repo/Arret/ArretEloquent.php',

@@ -41,6 +41,23 @@ $(document).ready(
 			    /* pays */       { "bVisible": false }
 			]
     });
+    
+    $('.results_table').dataTable({
+        "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ resultat par page",
+            "sInfo"    : "Un total de _TOTAL_ sur _END_",
+            "sSearch"  : "",
+            "oPaginate": {
+		        "sNext"     : "Suivant",
+		        "sPrevious" : "Précédent",
+		        "sFirst"    : "Première page",
+		        "sLast"     : "Dernière page"
+		     }
+        }
+    });
+    
     $('.dataTables_filter input').addClass('form-control').attr('placeholder','Rechercher...');
     $('.dataTables_length select').addClass('form-control');
     
