@@ -42,6 +42,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CantonsTableSeeder');
 		$this->call('PaysTableSeeder');
 		$this->call('InvoicesTableSeeder');
+		$this->call('User_specialisationsTableSeeder');
 	}
 
 }

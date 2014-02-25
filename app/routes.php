@@ -108,7 +108,7 @@ Route::group(array('prefix' => 'matrimonial'), function()
 =========================================== */ 
 
 // Session Routes
-Route::get('login',  array('as' => 'login', 'uses' => 'SessionController@create'));
+Route::get('login',  array('as' => 'login',  'uses' => 'SessionController@create'));
 Route::get('logout', array('as' => 'logout', 'uses' => 'SessionController@destroy'));
 Route::resource('sessions', 'SessionController', array('only' => array('create', 'store', 'destroy')));
 
@@ -133,10 +133,10 @@ Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
 {
 	return View::make('users.suspend')->with('id', $id);
 }));
-
-Route::post('users/{id}/suspend', 'UserController@suspend')->where('id', '[0-9]+');
+ 
+Route::post('users/{id}/suspend',  'UserController@suspend')->where('id', '[0-9]+');
 Route::get('users/{id}/unsuspend', 'UserController@unsuspend')->where('id', '[0-9]+');
-Route::get('users/{id}/ban', 'UserController@ban')->where('id', '[0-9]+');
+Route::get('users/{id}/ban',   'UserController@ban')->where('id', '[0-9]+');
 Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
 Route::resource('users', 'UserController');
 
@@ -166,7 +166,43 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::post('upload', array('uses' => 'UploadController@store'));
 	Route::get('files', array('uses' => 'AdminController@files'));
 	Route::get('pdf', array('uses' => 'AdminController@pdf'));
+
+	
+	// User Routes
+	Route::get('register', 'AdminUserController@create');
+	Route::get('users/{id}/activate/{code}', 'AdminUserController@activate')->where('id', '[0-9]+');
+	Route::get('resend', array('as' => 'resendActivationForm', function()
+	{
+		return View::make('users.resend');
+	}));
+	
+	Route::post('resend', 'AdminUserController@resend');
+	Route::get('forgot', array('as' => 'forgotPasswordForm', function()
+	{
+		return View::make('users.forgot');
+	}));
+	
+	Route::post('forgot', 'AdminUserController@forgot');
+	Route::post('users/{id}/change', 'AdminUserController@change');
+	Route::get('users/{id}/reset/{code}', 'AdminUserController@reset')->where('id', '[0-9]+');
+	Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
+	{
+		return View::make('users.suspend')->with('id', $id);
+	}));
+	 
+	Route::post('users/{id}/suspend',  'AdminUserController@suspend')->where('id', '[0-9]+');
+	Route::get('users/{id}/unsuspend', 'AdminUserController@unsuspend')->where('id', '[0-9]+');
+	Route::get('users/{id}/ban',   'AdminUserController@ban')->where('id', '[0-9]+');
+	Route::get('users/{id}/unban', 'AdminUserController@unban')->where('id', '[0-9]+');
+		
+	// Users and adresses
+	Route::get('getAllAdresse', 'AdminUserController@getAllAdresse');
+	Route::resource('users', 'AdminUserController');
+
+	// Group Routes
+	Route::resource('groups', 'GroupController');	
     
+    // Pubdroit in admin
     Route::group(array('prefix' => 'pubdroit'), function()
 	{
 		// Colloques

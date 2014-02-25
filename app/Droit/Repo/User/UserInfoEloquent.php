@@ -1,6 +1,6 @@
 <?php namespace Droit\Repo\User;
 
-use User as U;
+use User as M;
 use Civilites as Civilites;
 use Event_options_user;
 
@@ -11,9 +11,14 @@ class UserInfoEloquent implements UserInfoInterface{
 	/**
 	 * Construct a new SentryUser Object
 	 */
-	public function __construct(U $user)
+	public function __construct(M $user)
 	{
 		$this->user = $user;
+	}
+	
+	public function getAll(){
+		
+		return $this->user->with( array('adresses') )->get();
 	}
 
 	/**
@@ -23,7 +28,7 @@ class UserInfoEloquent implements UserInfoInterface{
 	 */
 	public function find($id){
 				
-		return $this->user->findOrFail($id);													
+		return $this->user->where('id','=',$id)->with( array('adresses') )->first();														
 	}
 				
 	/**

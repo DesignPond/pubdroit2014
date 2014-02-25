@@ -7,6 +7,9 @@ interface UserInfoInterface {
 	 *
 	 * @return stdObject Collection of users
 	 */
+	 
+	public function getAll();
+	
 	public function find($id);
 	
 	public function findWithInscription($id,$event);

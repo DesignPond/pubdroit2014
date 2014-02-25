@@ -105,4 +105,33 @@ class SearchEloquent implements SearchInterface {
 		return NULL;
 	}
 	
+	public function triage($filters){
+	
+		$filters = array(
+			'canton'         => array( '6' , '11' , '13'),
+			'specialisation' => array( '1' , '4' ),
+			'membre'         => array( '1' , '2' , '4' )
+		);
+		
+		// ( SELECT * FROM user_membres WHERE membre IN (1,2,4) ) AS membre
+		
+		$query  = 'SELECT adresses.id , adresses.prenom , adresses.nom ,adresses.canton  FROM adresses ';
+
+		foreach($filters['membre'] as $membre){
+			
+			$query .= 'INNER JOIN ( SELECT * FROM user_membres WHERE membre = '.$membre.' ) AS membre'.$membre.' ON adresses.id = membre'.$membre.'.adresse_id ';
+			
+		}	       
+		
+		// $query .= 'INNER JOIN ( SELECT * FROM user_specialisations WHERE specialisation IN (1) ) AS specialisation ON adresses.id = specialisation.adresse_id ';
+		
+		$query .= ' WHERE adresses.canton = 13';	       
+		$query .= ' GROUP BY adresses.id';
+			      
+		// $results = \DB::select( $query );
+	
+		return $query;
+
+	}
+	
 }

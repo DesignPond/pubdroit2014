@@ -34,16 +34,8 @@
 		            </div>
 		        <!-- end row -->
 		        <hr/>
-		        
-<!--
-		        <?php
-					echo '<pre>';
-					print_r($data);
-					echo '</pre>';
-				?>
--->
+
 				<!-- Start row -->
-				
 				
 				<div class="row">
 	              <div class="col-md-12">

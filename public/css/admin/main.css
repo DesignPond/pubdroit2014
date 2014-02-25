@@ -217,6 +217,11 @@
 	margin-top: 20px;
 }
 
+table.results_table td .list-group{
+	margin-bottom: 0;
+	margin-top: -20px;
+}
+
 
 .toggle-group{
 	float: right;

@@ -2,6 +2,7 @@
 
 interface AdresseInterface {
 
+	public function getAll();
 	/**
 	 * Return all infos of the user
 	 *

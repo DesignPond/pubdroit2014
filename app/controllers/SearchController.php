@@ -26,7 +26,11 @@ class SearchController extends BaseController {
 			$data = $this->search->find($search);
 		}
 		
-		return View::make('admin.search.index')->with( array('data' => $data) );
+		$filters = array();
+		
+		$tri = $this->search->triage($filters);
+		
+		return View::make('admin.search.index')->with( array('data' => $data , 'tri' => $tri ) );
 		        
 	}
 	

@@ -3,6 +3,7 @@
 interface SearchInterface {
 
 	public function find($data);
+	public function triage($filters);
 	
 }
 
