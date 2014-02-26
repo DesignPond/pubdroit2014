@@ -15,7 +15,7 @@ use Droit\Service\Form\SuspendUser\SuspendUserForm;
 class AdminUserController extends BaseController {
 
 	protected $user;
-	protected $userAdresse;
+	protected $userInfo;
 	protected $adresse;
 	protected $group;
 	protected $registerForm;
@@ -30,7 +30,7 @@ class AdminUserController extends BaseController {
 	 */
 	public function __construct(
 		UserInterface $user, 
-		UserInfoInterface $userAdresse, 
+		UserInfoInterface $userInfo, 
 		AdresseInterface $adresse, 
 		GroupInterface $group, 
 		RegisterForm $registerForm, 
@@ -42,7 +42,7 @@ class AdminUserController extends BaseController {
 	)
 	{
 		$this->user                 = $user;
-		$this->userAdresse          = $userAdresse;
+		$this->userInfo             = $userInfo;
 		$this->adresse              = $adresse;
 		$this->group                = $group;
 		$this->registerForm         = $registerForm;
@@ -68,8 +68,8 @@ class AdminUserController extends BaseController {
 	 */
 	public function index()
 	{
-        $users    = $this->userAdresse->getAll();
-        $adresses = $this->adresse->test('Cindy');
+        $users    = $this->userInfo->getAll();
+        $adresses = $this->adresse->test('yann');
         
         $columns  = array('email','prenom','nom','adresse','ville');
         
@@ -83,9 +83,34 @@ class AdminUserController extends BaseController {
       
         return View::make('admin.users.index')->with( array('users' => $users, 'adresses' => $adresses , 'types' => $types , 'filter' => $filter ) );
 	}
+
+	/**
+	 * Display a listing of all users.
+	 *
+	 * @return Response
+	 */
+	public function getAllUser()
+	{
+
+        $columns = array('email','prenom','nom','activated'); 
+        
+        $sSearch = NULL;
+        
+        if(Input::get('sSearch'))
+        {
+	        $sSearch = Input::get('sSearch');
+        }
+
+        $sEcho          = Input::get('sEcho');      
+        $iDisplayStart  = Input::get('iDisplayStart');
+        $iDisplayLength = Input::get('iDisplayLength');
+        
+        return $this->userInfo->get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch );
+        
+	}
 	
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of all adresses.
 	 *
 	 * @return Response
 	 */

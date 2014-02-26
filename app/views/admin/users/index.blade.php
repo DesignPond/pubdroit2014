@@ -13,11 +13,17 @@
 		</div>
 		
 		<div class="container">
-		<?php
-echo '<pre>';
-print_r($adresses);
-echo '</pre>';
+
+<?php
+
+/*
+		echo '<pre>';
+		print_r($ordered);
+		echo '</pre>';
+*/
+	
 ?>
+
 			<div class="row">
 	          <div class="col-md-12">
 	              <div class="panel panel-sky">               
@@ -29,48 +35,13 @@ echo '</pre>';
 	                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered results_table" id="example">
 								<thead>
 									<th>Nom d'utilisateur</th>
+									<th>Prénom</th>
 									<th>Nom</th>
 									<th>Status</th>
 									<th>Adresses</th>									
 									<th class="text-right">Options</th>
 								</thead>
-								<tbody>
-									@foreach ($users as $user)
-									<tr>							
-										<td><a href="{{ action('AdminUserController@show', array($user->id)) }}">{{ $user->email }}</a></td>
-										<td>{{ $user->prenom }} {{ $user->nom }}</td>
-										<td><?php  if($user->activated == 1) { echo 'Active'; } else{ echo 'Inactive'; } ?></td>
-										<td> 
-											@if( !$user->adresses->isEmpty() )
-												<div class="list-group">
-												@foreach($user->adresses as $adresse)
-												
-													@if($adresse->type == '1')
-														<a href="{{ url('admin/user/'.$adresse->id) }}" class="list-group-item"><i class="fa fa-envelope">
-														</i>&nbsp;&nbsp;Contact</a>
-													@endif
-													
-													@if($adresse->type == '2')
-														<a href="{{ url('admin/user/'.$adresse->id) }}" class="list-group-item"><i class="fa fa-home">
-														</i>&nbsp;&nbsp;Privé</a>
-													@endif
-													
-													@if($adresse->type == '3')
-														<a href="{{ url('admin/user/'.$adresse->id) }}" class="list-group-item"><i class="fa fa-briefcase">
-														</i>&nbsp;&nbsp;Professionnelle</a>
-													@endif
-													
-												@endforeach
-												</div>
-											@endif 
-										</td>
-										<td class="text-right">
-											<button class="btn btn-info" type="button" onClick="location.href='{{ action('AdminUserController@edit', array($user->id)) }}'">
-											&Eacute;diter</button> 
-										</td>
-									</tr>
-									@endforeach
-								</tbody>
+								<tbody></tbody>
 							</table>
 							
 	                    </div><!-- end body panel --> 
@@ -95,9 +66,7 @@ echo '</pre>';
 									<th>Adresses</th>
 									<th>Ville</th>									
 								</thead>
-								<tbody>
-									
-								</tbody>
+								<tbody></tbody>
 							</table>
 							
 	                    </div><!-- end body panel --> 

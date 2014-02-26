@@ -45,6 +45,12 @@ $(document).ready(
     $('.results_table').dataTable({
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
+        "bPaginate": true,
+        "sProcessing":"Recherche...",
+        "bProcessing": true,
+        "bServerSide": true,
+        "iDisplayLength": "10",
+        "sAjaxSource": base_url + "admin/getAllUser",
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
             "sInfo"    : "Affiché _END_ sur un total de _TOTAL_",
@@ -61,10 +67,11 @@ $(document).ready(
     $('.adresse_table').dataTable({
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
+        "bPaginate": true,
+        "sProcessing":"Recherche...",
         "bProcessing": true,
         "bServerSide": true,
-        "iDisplayLength": 10,
-        "sEcho": 1,
+        "iDisplayLength": "10",
         "sAjaxSource": base_url + "admin/getAllAdresse",
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",

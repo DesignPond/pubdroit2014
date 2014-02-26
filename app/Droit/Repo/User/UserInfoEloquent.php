@@ -20,6 +20,94 @@ class UserInfoEloquent implements UserInfoInterface{
 		
 		return $this->user->with( array('adresses') )->get();
 	}
+	
+	
+	/*
+	 * Ajax call for datatable
+	 *
+	*/
+	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL){
+	
+		$iTotal   = $this->user->get()->count();
+		
+		if($sSearch)
+		{
+			$data = $this->user->with( array('adresses') )
+							   ->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" )')
+							   ->take($iDisplayLength)
+							   ->skip($iDisplayStart)
+							   ->get();
+								    
+			$iTotalDisplayRecords = $this->user->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" )')
+											   ->get()
+											   ->count();	
+		}
+		else
+		{
+			$data = $this->user->with( array('adresses') )->take($iDisplayLength)->skip($iDisplayStart)->get();
+			
+			$iTotalDisplayRecords = $iTotal;	
+		}
+
+		$output = array(
+			"sEcho"                => $sEcho,
+			"iTotalRecords"        => $iTotal,
+			"iTotalDisplayRecords" => $iTotalDisplayRecords,
+			"aaData"               => array()
+		);
+		
+		$adresses = $data->toArray();
+		
+		foreach($adresses as $adresse)
+		{
+			$row = array();
+			
+			foreach($adresse as $info)
+			{
+				$row['email']  = "<a href=".action('AdminUserController@show', array($adresse['id'])).">".$adresse['email'].'</a>';
+				$row['prenom'] = $adresse['prenom'];
+				$row['nom']    = $adresse['nom'];
+
+				if( $adresse['activated'] == 1 ) { $row['activated'] = 'Active'; } else{ $row['activated'] = 'Inactive'; } 
+				
+				$options = '';
+				
+				if( isset($adresse['adresses']) ){
+				
+						$options .= '<div class="list-group">';
+						
+						foreach($adresse['adresses'] as $adre)
+						{
+						
+							if($adre['type'] == '1'){
+								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Contact</a>';
+							}
+							
+							if($adre['type'] == '2'){
+								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-home"></i>&nbsp;&nbsp;Privé</a>';
+							}
+							
+							if($adre['type'] == '3'){
+								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;Professionnelle</a>';
+							}							
+						}
+						
+						$options .= '</div>';
+				}
+				
+				
+				$row['adresses'] = $options;
+				$row['options']  = '<a class="btn btn-info edit_btn" type="button" href='.action('AdminUserController@edit', array($adresse['id'])).'">&Eacute;diter</a> ';
+			}
+			
+			$row = array_values($row);
+
+			$output['aaData'][] = $row;
+		}
+		
+		return json_encode( $output );
+		
+	}
 
 	/**
 	 * Return all infos of the user with insciption

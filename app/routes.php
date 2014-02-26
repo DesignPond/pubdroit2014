@@ -196,6 +196,7 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('users/{id}/unban', 'AdminUserController@unban')->where('id', '[0-9]+');
 		
 	// Users and adresses
+	Route::get('getAllUser', 'AdminUserController@getAllUser');
 	Route::get('getAllAdresse', 'AdminUserController@getAllAdresse');
 	Route::resource('users', 'AdminUserController');
 
