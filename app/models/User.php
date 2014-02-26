@@ -1,9 +1,6 @@
 <?php
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableInterface;
-
-class User extends Eloquent implements UserInterface, RemindableInterface {
+class User extends Eloquent {
 
 	/**
 	 * The database table used by the model.
@@ -19,40 +16,15 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password');
 
-	/**
-	 * Get the unique identifier for the user.
-	 *
-	 * @return mixed
-	 */
-	public function getAuthIdentifier()
-	{
-		return $this->getKey();
-	}
 
-	/**
-	 * Get the password for the user.
-	 *
-	 * @return string
-	 */
-	public function getAuthPassword()
+	public function groups() 
 	{
-		return $this->password;
+		return $this->belongsToMany('Groups', 'users_groups', 'user_id', 'group_id');
 	}
-
-	/**
-	 * Get the e-mail address where password reminders are sent.
-	 *
-	 * @return string
-	 */
-	public function getReminderEmail()
-	{
-		return $this->email;
-	}
-
 
 	public function adresses() 
 	{
 		return $this->hasMany('Adresses' ,'user_id'); 
 	}
-	
+
 }

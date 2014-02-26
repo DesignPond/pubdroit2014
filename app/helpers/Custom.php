@@ -83,4 +83,18 @@ class Custom {
 
 		return (isset($pays[$title]) ? $pays[$title] : "");	
 	} 
+	
+			
+	/**
+	 * Return the name of the title (type of adresse)
+	 *
+	 * @return string 
+	 */	
+	public function whatType($title){
+		
+		$types = \Adresse_types::all()->lists('type','id');
+
+		return (isset($types[$title]) ? $types[$title] : "");	
+	} 
+	
 }

@@ -738,6 +738,7 @@ return array(
     'GD_Adapter' => $vendorDir . '/dompdf/dompdf/include/gd_adapter.cls.php',
     'Goutte\\Client' => $vendorDir . '/fabpot/goutte/Goutte/Client.php',
     'GroupController' => $baseDir . '/app/controllers/GroupController.php',
+    'Groups' => $baseDir . '/app/models/Groups.php',
     'Guzzle\\Batch\\AbstractBatchDecorator' => $vendorDir . '/guzzle/guzzle/src/Guzzle/Batch/AbstractBatchDecorator.php',
     'Guzzle\\Batch\\Batch' => $vendorDir . '/guzzle/guzzle/src/Guzzle/Batch/Batch.php',
     'Guzzle\\Batch\\BatchBuilder' => $vendorDir . '/guzzle/guzzle/src/Guzzle/Batch/BatchBuilder.php',

@@ -104,47 +104,6 @@ Route::group(array('prefix' => 'matrimonial'), function()
 
 
 /* ========================================
-	 Login 
-=========================================== */ 
-
-// Session Routes
-Route::get('login',  array('as' => 'login',  'uses' => 'SessionController@create'));
-Route::get('logout', array('as' => 'logout', 'uses' => 'SessionController@destroy'));
-Route::resource('sessions', 'SessionController', array('only' => array('create', 'store', 'destroy')));
-
-// User Routes
-Route::get('register', 'UserController@create');
-Route::get('users/{id}/activate/{code}', 'UserController@activate')->where('id', '[0-9]+');
-Route::get('resend', array('as' => 'resendActivationForm', function()
-{
-	return View::make('users.resend');
-}));
-
-Route::post('resend', 'UserController@resend');
-Route::get('forgot', array('as' => 'forgotPasswordForm', function()
-{
-	return View::make('users.forgot');
-}));
-
-Route::post('forgot', 'UserController@forgot');
-Route::post('users/{id}/change', 'UserController@change');
-Route::get('users/{id}/reset/{code}', 'UserController@reset')->where('id', '[0-9]+');
-Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
-{
-	return View::make('users.suspend')->with('id', $id);
-}));
- 
-Route::post('users/{id}/suspend',  'UserController@suspend')->where('id', '[0-9]+');
-Route::get('users/{id}/unsuspend', 'UserController@unsuspend')->where('id', '[0-9]+');
-Route::get('users/{id}/ban',   'UserController@ban')->where('id', '[0-9]+');
-Route::get('users/{id}/unban', 'UserController@unban')->where('id', '[0-9]+');
-Route::resource('users', 'UserController');
-
-// Group Routes
-Route::resource('groups', 'GroupController');
-
-
-/* ========================================
 	Administration Routes  
 =========================================== */ 
 	
@@ -169,6 +128,7 @@ Route::group(array('prefix' => 'admin'), function()
 
 	
 	// User Routes
+/*
 	Route::get('register', 'AdminUserController@create');
 	Route::get('users/{id}/activate/{code}', 'AdminUserController@activate')->where('id', '[0-9]+');
 	Route::get('resend', array('as' => 'resendActivationForm', function()
@@ -194,14 +154,16 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('users/{id}/unsuspend', 'AdminUserController@unsuspend')->where('id', '[0-9]+');
 	Route::get('users/{id}/ban',   'AdminUserController@ban')->where('id', '[0-9]+');
 	Route::get('users/{id}/unban', 'AdminUserController@unban')->where('id', '[0-9]+');
+*/
 		
 	// Users and adresses
+	Route::get('users', 'AdminUserController@index');
+	Route::get('users/{user}', 'UserController@show');
+	Route::get('users/{user}/edit', 'UserController@edit');
 	Route::get('getAllUser', 'AdminUserController@getAllUser');
 	Route::get('getAllAdresse', 'AdminUserController@getAllAdresse');
-	Route::resource('users', 'AdminUserController');
-
-	// Group Routes
-	Route::resource('groups', 'GroupController');	
+	
+	//Route::resource('users', 'AdminUserController');
     
     // Pubdroit in admin
     Route::group(array('prefix' => 'pubdroit'), function()

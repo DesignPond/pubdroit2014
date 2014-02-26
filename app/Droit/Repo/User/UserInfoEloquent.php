@@ -64,7 +64,7 @@ class UserInfoEloquent implements UserInfoInterface{
 			
 			foreach($adresse as $info)
 			{
-				$row['email']  = "<a href=".action('AdminUserController@show', array($adresse['id'])).">".$adresse['email'].'</a>';
+				$row['email']  = "<a href=".url('admin/users/'.$adresse['id']).">".$adresse['email'].'</a>';
 				$row['prenom'] = $adresse['prenom'];
 				$row['nom']    = $adresse['nom'];
 
@@ -80,15 +80,15 @@ class UserInfoEloquent implements UserInfoInterface{
 						{
 						
 							if($adre['type'] == '1'){
-								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Contact</a>';
+								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Contact</a>';
 							}
 							
 							if($adre['type'] == '2'){
-								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-home"></i>&nbsp;&nbsp;Privé</a>';
+								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-home"></i>&nbsp;&nbsp;Privé</a>';
 							}
 							
 							if($adre['type'] == '3'){
-								$options .= '<a href="'.url('admin/user/'.$adre['id']).'" class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;Professionnelle</a>';
+								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;Professionnelle</a>';
 							}							
 						}
 						
@@ -97,7 +97,7 @@ class UserInfoEloquent implements UserInfoInterface{
 				
 				
 				$row['adresses'] = $options;
-				$row['options']  = '<a class="btn btn-info edit_btn" type="button" href='.action('AdminUserController@edit', array($adresse['id'])).'">&Eacute;diter</a> ';
+				$row['options']  = '<a class="btn btn-info edit_btn" type="button" href="'.url('admin/users/'.$adresse['id']).'">&Eacute;diter</a> ';
 			}
 			
 			$row = array_values($row);
@@ -116,7 +116,7 @@ class UserInfoEloquent implements UserInfoInterface{
 	 */
 	public function find($id){
 				
-		return $this->user->where('id','=',$id)->with( array('adresses') )->first();														
+		return $this->user->where('id','=',$id)->with( array('adresses' , 'groups') )->first();														
 	}
 				
 	/**
@@ -127,12 +127,12 @@ class UserInfoEloquent implements UserInfoInterface{
 	public function findWithInscription($id,$event){
 				
 		return $this->user
-			->where('id','=',$id)
-			->with( array('inscription' => function($query)use($event,$id){ 
-								$query->where('inscriptions.event_id','=',$event)->where('inscriptions.user_id','=',$id); },
-						  'adresses'    => function($query){ 
-								$query->where('adresses.livraison','=',1); }) )
-			->first();													
+					->where('id','=',$id)
+					->with( array('inscription' => function($query)use($event,$id){ 
+										$query->where('inscriptions.event_id','=',$event)->where('inscriptions.user_id','=',$id); },
+								  'adresses'    => function($query){ 
+										$query->where('adresses.livraison','=',1); }) )
+					->first();													
 	}
 
 	/**
