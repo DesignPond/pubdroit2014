@@ -2,6 +2,8 @@
 
 use Droit\Repo\Adresse\AdresseInterface;
 use Adresses as M;
+use User_membres as UM;
+use User_specialisations as US;
 
 class AdresseEloquent implements AdresseInterface{
 
@@ -98,6 +100,7 @@ class AdresseEloquent implements AdresseInterface{
 		return json_encode( $output );
 		
 	}
+	
 	/**
 	 * Return all infos of the user with insciption
 	 *
@@ -106,6 +109,26 @@ class AdresseEloquent implements AdresseInterface{
 	public function find($id){
 				
 		return $this->adresse->findOrFail($id);													
+	}
+	
+	/**
+	 * Return all memberships for adresse
+	 *
+	 * @return stdObject Collection of users
+	 */	
+	public function members($id){
+				
+		$members = UM::where( 'id', '=' , $id);													
+	}
+	
+	/**
+	 * Return all memberships for adresse
+	 *
+	 * @return stdObject Collection of users
+	 */	
+	public function specialisations($id){
+				
+		$members = US::where( 'id', '=' , $id);													
 	}
 					
 }

@@ -18,7 +18,7 @@
 		
 			<div class="row"><!-- row -->
 				<div class="col-md-12"><!-- col -->
-				
+
 					<div class="panel panel-midnightblue"><!-- panel -->
 						<div class="panel-heading">
 	                        <h4><?php echo $custom->whatType($adresse->type); ?></h4>
@@ -38,7 +38,7 @@
 										 	 <div class="col-sm-6">	
 												{{ Form::select('civilite', $civilites , $adresse->civilite , array( 'class' => 'form-control required' ) ) }}		
 											 </div>
-											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
+											 <div class="col-sm-3"><p class="help-block"></p></div>
 										</div>								 
 
 										<div class="form-group row">

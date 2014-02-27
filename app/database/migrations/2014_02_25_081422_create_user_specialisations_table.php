@@ -15,7 +15,7 @@ class CreateUserSpecialisationsTable extends Migration {
 		Schema::create('user_specialisations', function(Blueprint $table) {
 		
 			$table->bigIncrements('id');
-			$table->bigInteger('specialisation');
+			$table->bigInteger('specialisation_id');
 			$table->bigInteger('adresse_id');
 
 		});
