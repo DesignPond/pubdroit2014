@@ -222,7 +222,7 @@ table.results_table td .list-group{
 	
 }
 
-table.results_table td .edit_btn{
+table.users_table td .edit_btn, table.adresse_table td .edit_btn{
 	float: right;
 }
 

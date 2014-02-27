@@ -13,6 +13,7 @@
     ================================================== -->
 	<link rel="stylesheet" href="<?php echo asset('css/admin/styles.css?=120');?>">
 	<link rel="stylesheet" href="<?php echo asset('css/admin/main.css');?>">
+	<link rel="stylesheet" href="<?php echo asset('css/admin/sidebar-steel.css');?>">
 	<link rel="stylesheet" href="<?php echo asset('js/admin/redactor/redactor.css'); ?>">
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
     <link href="<?php echo asset('fonts/font-awesome/css/font-awesome.min.css');?>" rel="stylesheet">
@@ -68,43 +69,63 @@
 		<div id="page-container">
 			<nav id="page-leftbar" role="navigation">
 				<ul id="sidebar" class="acc-menu">
+
+					<!-- Recherche globale -->
 					<li id="search">
 	                    <a href="javascript:;"><i class="fa fa-search opacity-control"></i></a>
-	                     <form>
-	                        <input type="text" class="search-query" placeholder="Search...">
+	                     {{ Form::open(array( 'url' => 'admin/search' )) }}
+	                        <input type="text" class="search-query" name="search" placeholder="Recherche...">
 	                        <button type="submit"><i class="fa fa-search"></i></button>
-	                    </form>
+	                     {{ Form::close() }}
 	                </li>
+	                
 	                <li class="divider"></li>
+	                
+	                <!-- Accueil admin -->
 	                <li><a class="{{ Request::is( 'admin') ? 'active' : '' }}" href="#"><i class="fa fa-cog"></i> <span>Dashboard</span></a></li>
+	                
+	                <!-- Outils: membres, specialisations, professions -->
 				    <li><a href="javascript:;"><i class="fa fa-cogs"></i> <span>Outils</span></a>
 					    <ul class="acc-menu">
 					   		<li><a class="{{ Request::is( 'admin/pubdroit/specialisation') ? 'active' : '' }}" href="{{ url('admin/pubdroit/specialisation') }}">
-					    		<i class="fa fa-bookmark"></i> <span>Spécialisations</span></a>
+					    		<span>Spécialisations</span></a>
 					    	</li>
 					   		<li><a class="{{ Request::is( 'admin/pubdroit/membre') ? 'active' : '' }}" href="{{ url('admin/pubdroit/membre') }}">
-					    		<i class="fa fa-tags"></i> <span>Membres</span></a>
+					    		<span>Membres</span></a>
 					    	</li>
 					   		<li><a class="{{ Request::is( 'admin/pubdroit/profession') ? 'active' : '' }}" href="{{ url('admin/pubdroit/profession') }}">
-					    		<i class="fa fa-legal"></i> <span>Profession</span></a>
+					    		<span>Profession</span></a>
 					    	</li>					
 					    </ul>
 				    </li>
-				    <li><a href="javascript:;"><i class="fa fa-book"></i> <span>Publications-droit</span></a>
+
+				    <!-- Utilisateurs -->
+				    <li><a href="javascript:;" class="{{ Request::is( 'admin/users') ? 'active' : '' }}"><i class="fa fa-group"></i> <span>Utilisateurs</span></a>
+					    <ul class="acc-menu">
+						    <li>{{ link_to('admin/users', 'Comptes utilisateurs' , array('class' => Request::is( 'admin/users') ? 'active' : '') ) }}</li>
+						    <li>{{ link_to('admin/adresses', 'Adresses' , array('class' => Request::is( 'admin/adresses') ? 'active' : '') ) }}</li>
+					    </ul>
+				    </li>
+				    				    
+				    <!-- Site: publications-droit.ch -->
+				    <li><a href="javascript:;" class="{{ Request::is( 'admin/pubdroit') ? 'active' : '' }}"><i class="fa fa-book"></i> <span>Publications-droit</span></a>
 					    <ul class="acc-menu">
 					    	<li><a class="{{ Request::is( 'admin/pubdroit/lists') ? 'active' : '' }}" href="{{ url('admin/pubdroit/lists') }}">
-					    		<i class="fa fa-clock-o"></i> <span>Colloques</span></a>
+					    		<span>Colloques</span></a>
 					    	</li>
 					    	<li><a class="{{ Request::is( 'admin/pubdroit/archives') ? 'active' : '' }}" href="{{ url('admin/pubdroit/archives') }}">
-					    		<i class="fa fa-archive"></i> <span>Archives</span></a>
+					    		<span>Archives</span></a>
 					    	</li>					 
 					    </ul>
 				    </li>
-				    <li><a href="javascript:;"><i class="fa fa-home"></i> <span>Bail</span></a>
+				    
+				    <!-- Site: bail.ch -->
+				    <li><a href="javascript:;" class="{{ Request::is( 'admin/bail') ? 'active' : '' }}"><i class="fa fa-home"></i> <span>Bail</span></a>
 					    <ul class="acc-menu">
 						    <li>{{ link_to('admin/bail/arrets', 'Arrêts' , array('class' => Request::is( 'admin/bail/arrets') ? 'active' : '') ) }}</li>
 					    </ul>
 				    </li>
+				    
 			    </ul>
 			</nav>
 	
@@ -126,6 +147,7 @@
 		<script type="text/javascript" src="<?php echo asset('js/admin/redactor/redactor.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.cookie.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.nicescroll.min.js');?>"></script> 
+		
 		<script type="text/javascript" src="<?php echo asset('plugins/codeprettifier/prettify.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-toggle/toggle.min.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('plugins/form-parsley/messages.fr.js');?>"></script> 
@@ -135,7 +157,7 @@
 		<!-- datatable -->
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/jquery.dataTables.min.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('plugins/datatables/dataTables.bootstrap.js');?>"></script>
-	    <script type="text/javascript" src="<?php echo asset('js/admin/demo-datatables.js');?>"></script>
+	    <script type="text/javascript" src="<?php echo asset('js/admin/admin-datatables.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('js/admin/TableTools.min.js');?>"></script>
 	    
 		<script type="text/javascript" src="<?php echo asset('js/admin/placeholdr.js');?>"></script> 

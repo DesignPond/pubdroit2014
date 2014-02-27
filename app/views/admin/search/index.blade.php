@@ -42,11 +42,11 @@
 	                    <div class="panel panel-sky">
 	                    
 	                        <div class="panel-heading">
-	                            <h4>Resultats</h4>
+	                            <h4>Resultats pour "<?php echo $search; ?>"</h4>
 	                        </div>
 	                        
 	                        <div class="panel-body collapse in">
-	                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered results_table" id="example">
+	                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered search_table" id="example">
 	                                <thead>
 	                                    <tr>
 	                                        <th>Id</th>

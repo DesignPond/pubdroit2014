@@ -12,6 +12,7 @@ return array(
     'AdminController' => $baseDir . '/app/controllers/AdminController.php',
     'AdminUserController' => $baseDir . '/app/controllers/AdminUserController.php',
     'Adobe_Font_Metrics' => $vendorDir . '/phenx/php-font-lib/classes/Adobe_Font_Metrics.php',
+    'AdresseController' => $baseDir . '/app/controllers/AdresseController.php',
     'Adresse_types' => $baseDir . '/app/models/Adresse_types.php',
     'Adresse_typesTableSeeder' => $baseDir . '/app/database/seeds/Adresse_typesTableSeeder.php',
     'Adresses' => $baseDir . '/app/models/Adresses.php',

@@ -42,7 +42,7 @@ $(document).ready(
 			]
     });
     
-    $('.results_table').dataTable({
+    $('.users_table').dataTable({
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
@@ -85,7 +85,25 @@ $(document).ready(
 		     }
         }
     });
-    
+            
+    $('.search_table').dataTable({
+        "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+        "sPaginationType": "bootstrap",
+        "bPaginate": true,
+        "iDisplayLength": "10",
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ resultat par page",
+            "sInfo"    : "Affiché _END_ sur un total de _TOTAL_",
+            "sSearch"  : "",
+            "oPaginate": {
+		        "sNext"     : "Suivant",
+		        "sPrevious" : "Précédent",
+		        "sFirst"    : "Première page",
+		        "sLast"     : "Dernière page"
+		     }
+        }
+    });
+
     $('.dataTables_filter input').addClass('form-control').attr('placeholder','Rechercher...');
     $('.dataTables_length select').addClass('form-control');
     

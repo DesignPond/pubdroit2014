@@ -20,7 +20,8 @@ class SearchController extends BaseController {
 	{
 		
 		$search = Request::get('search');
-		$data = array();
+		
+		$data  = array();
 		
 		if($search){
 			$data = $this->search->find($search);
@@ -30,7 +31,7 @@ class SearchController extends BaseController {
 		
 		$tri = $this->search->triage($filters);
 		
-		return View::make('admin.search.index')->with( array('data' => $data , 'tri' => $tri ) );
+		return View::make('admin.search.index')->with( array('data' => $data , 'tri' => $tri , 'search' => $search ) );
 		        
 	}
 	

@@ -20,13 +20,12 @@ class UserInfoEloquent implements UserInfoInterface{
 		
 		return $this->user->with( array('adresses') )->get();
 	}
-	
-	
+		
 	/*
 	 * Ajax call for datatable
 	 *
 	*/
-	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL){
+	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL ){
 	
 		$iTotal   = $this->user->get()->count();
 		

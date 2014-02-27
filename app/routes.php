@@ -38,6 +38,10 @@ Route::get('/', function()
 	
 */
 });
+        
+/* ==================================
+	View composer
+==================================== */
 
         
 /* ==================================
@@ -98,8 +102,7 @@ Route::group(array('prefix' => 'matrimonial'), function()
 {
     Route::get('/', array('uses' => 'MatrimonialController@index'));
     Route::get('jurisprudence', array('uses' => 'MatrimonialController@jurisprudence'));	
-    Route::get('test', array('uses' => 'MatrimonialController@test'));
-    
+    Route::get('test', array('uses' => 'MatrimonialController@test'));    
 });
 
 
@@ -160,8 +163,11 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('users', 'AdminUserController@index');
 	Route::get('users/{user}', 'UserController@show');
 	Route::get('users/{user}/edit', 'UserController@edit');
-	Route::get('getAllUser', 'AdminUserController@getAllUser');
-	Route::get('getAllAdresse', 'AdminUserController@getAllAdresse');
+	
+	Route::resource('adresses', 'AdresseController');
+	
+	Route::get('getAllUser',    'AdminUserController@getAllUser');
+	Route::get('getAllAdresse', 'AdresseController@getAllAdresse');
 	
 	//Route::resource('users', 'AdminUserController');
     

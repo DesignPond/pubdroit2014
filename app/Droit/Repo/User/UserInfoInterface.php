@@ -12,6 +12,9 @@ interface UserInfoInterface {
 	
 	public function find($id);
 	
+	// Ajax call
+	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );
+	
 	public function findWithInscription($id,$event);
 	
 	public function eventOptions($user,$event);

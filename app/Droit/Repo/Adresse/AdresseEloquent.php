@@ -17,11 +17,14 @@ class AdresseEloquent implements AdresseInterface{
 	
 	public function getAll(){
 		
-		return $this->adresse->where('user_id','=',0)->take(100)->skip(0)->get();	
+		return $this->adresse->where('user_id','=',0)->take(10)->skip(0)->get();	
 	}
 	
 	public function test($sSearch){
 	
+		$iTotal = $this->adresse->where('user_id','=',0)->take(10)->skip(0)->get();
+	
+		/*
 		$data  = $this->adresse->where('user_id','=',0)
 								->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" OR entreprise LIKE "%'.$sSearch.'%" OR adresse LIKE "%'.$sSearch.'%" )')
 								->take(10)
@@ -31,13 +34,16 @@ class AdresseEloquent implements AdresseInterface{
 								->whereRaw('( prenom LIKE "%'.$sSearch.'%" OR nom LIKE "%'.$sSearch.'%" OR entreprise LIKE "%'.$sSearch.'%" OR adresse LIKE "%'.$sSearch.'%" )')
 								->get()
 								->count();	
-						             
-		return $iTotalDisplayRecords;
+		*/						             
+		
+		return $iTotal;
+
 	}
 	
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL){
-	
-		$iTotal   = $this->adresse->where('user_id','=',0)->get()->count();
+			
+		
+		$iTotal = $this->adresse->where('user_id','=',0)->get()->count();
 		
 		if($sSearch)
 		{
@@ -78,7 +84,13 @@ class AdresseEloquent implements AdresseInterface{
 				{
 					$row[] = $info;
 				}
+				
+				
 			}
+			
+			$row['options'] = '<a class="btn btn-info edit_btn" type="button" href="'.url('admin/adresses/'.$adresse['id']).'">&Eacute;diter</a> ';
+			// Reste keys
+			$row = array_values($row);
 
 			$output['aaData'][] = $row;
 		}

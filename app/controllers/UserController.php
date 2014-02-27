@@ -12,6 +12,13 @@ class UserController extends BaseController {
 	public function __construct( UserInfoInterface $user )
 	{
 		$this->user = $user;
+		
+	    $civilites   = \Civilites::all()->lists('title','id');
+	    $professions = \Professions::all()->lists('titreProfession','id');
+		$cantons     = \Cantons::all()->lists('titreCanton','id');
+		$pays        = \Pays::all()->lists('titrePays','id');
+		
+		View::share( array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays ) );
 	}
 
 	/**
@@ -21,9 +28,8 @@ class UserController extends BaseController {
 	 */
 	public function index()
 	{
-        $users = $this->user->getAll();
-      
-        return View::make('admin.users.index')->with('users', $users);
+   
+        return View::make('admin.users.index');
 	}
 
 	/**
