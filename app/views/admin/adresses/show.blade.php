@@ -15,23 +15,18 @@
 		</div>
 		
 		<div class="container"><!-- container -->		
-		
+	
 			<div class="row"><!-- row -->
-				<div class="col-md-12"><!-- col -->
+				<div class="col-md-6"><!-- col -->		
 
 					<div class="panel panel-midnightblue"><!-- panel -->
-						<div class="panel-heading">
-	                        <h4><?php echo $custom->whatType($adresse->type); ?></h4>
-						</div>
 						<div class="panel-body"><!-- panel body -->
-	
-							<div class="row"><!-- row -->
-	
+
 								@if( !empty($adresse) )
 								
 								{{ Form::open(array( 'url' => 'admin/adresses')) }}
-															
-								<div class="col-md-6"><!-- col -->							
+									
+									<h3><strong><?php echo $custom->whatType($adresse->type); ?></strong></h3>						
 
 										<div class="form-group row">
 										 	 <label for="civilite" class="col-sm-3 control-label">Civilite</label>
@@ -88,10 +83,6 @@
 											 </div>
 											 <div class="col-sm-3"><p class="help-block"></p></div>
 										</div>											
-							
-								</div>
-								
-								<div class="col-md-6">
 								
 										<div class="form-group row">
 										 	 <label for="adresse" class="col-sm-3 control-label">Adresse</label>
@@ -148,9 +139,6 @@
 											 </div>
 											 <div class="col-sm-3"><p class="help-block"></p></div>
 										</div>																			
-									
-								</div><!-- end col -->														
-							</div><!-- end row -->
 
 						</div><!-- end panel body -->
 						
@@ -168,8 +156,35 @@
 							
 					</div><!-- end panel -->
 					
+					</div><!-- end col -->	
+					
+					<div class="col-md-6"><!-- col -->
+				
+					<div class="panel panel-midnightblue"><!-- panel -->
+						<div class="panel-body"><!-- panel body -->
+								
+								<h3><strong>Appartenances</strong></h3>
+								
+								<div class="well">
+								<?php if( !$specialisations->isEmpty() ){ ?>
+									 <div class="list-group">
+									 	<?php  
+									 		foreach ($specialisations as $spec)
+									 		{ 											 
+										 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';										 		
+									 		} 
+									 	?>
+									 </div>
+								<?php } ?>										 
+								</div>  
+
+						</div><!-- end panel body -->
+					</div><!-- end panel -->
+					
 				</div><!-- end col -->
+
 			</div><!-- end row -->
+
 			
 		</div><!-- end container -->		
 	</div><!-- end wrap -->

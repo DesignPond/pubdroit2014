@@ -52,17 +52,19 @@
 								<div class="col-md-6">
 								
 									<h3><strong>Appartenances</strong></h3>
-									<h5>Groupe</h5>
-									<?php  $userGroups = $user->groups->toArray(); ?>
-									    <ul>
-									    	@if (count($userGroups) >= 1)
-										    	@foreach ($userGroups as $group)
-													<li>{{ $group['name'] }}</li>
-												@endforeach
-											@else 
-												<li>No Group Memberships.</li>
-											@endif
-									    </ul>
+									
+									<div class="well">
+									<?php if( !$specialisations->isEmpty() ){ ?>
+										 <div class="list-group">
+										 	<?php  
+										 		foreach ($specialisations as $spec)
+										 		{ 											 
+											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';										 		
+										 		} 
+										 	?>
+										 </div>
+									<?php } ?>										 
+									</div>  
 								</div><!-- end col -->
 								
 							</div><!-- end row -->
@@ -84,12 +86,6 @@
 			<div class="row"><!-- row -->
 				
 			@foreach ($adresses as $adresse)
-			
-					<?php
-						echo '<pre>';
-						print_r($adresse);
-						echo '</pre>';
-					?>
 
 				<div class="col-md-<?php echo $col; ?>"><!-- col -->
 						

@@ -117,6 +117,21 @@ class UserInfoEloquent implements UserInfoInterface{
 				
 		return $this->user->where('id','=',$id)->with( array('adresses' , 'groups') )->first();														
 	}
+	
+
+	/**
+	 * Return adresse id type contact
+	 *
+	 * @return stdObject Collection of users
+	 */
+	public function findAdresseContact($id){
+				
+		return $this->user->where('id','=',$id)->with( array('adresses'=> function($query)
+					{
+					    $query->where('adresses.type', '=', 1);
+					    
+					}) )->get();														
+	}
 				
 	/**
 	 * Return all infos of the user with insciption

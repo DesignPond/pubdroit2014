@@ -75,7 +75,10 @@ class AdresseController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $adresse   = $this->adresse->find($id);
+        $adresse  = $this->adresse->find($id);
+        $membres          = $this->adresse->members($id);
+        $specialisations  = $this->adresse->specialisations($id);
+
 
         if($adresse == null || !is_numeric($id))
         {
@@ -84,7 +87,7 @@ class AdresseController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse  ));
+        return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse , 'membres' => $membres , 'specialisations' => $specialisations ));
 	}
 	
 	/**

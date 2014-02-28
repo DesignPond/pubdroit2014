@@ -1,17 +1,22 @@
 <?php
 
 use Droit\Repo\User\UserInfoInterface;
+use Droit\Repo\Adresse\AdresseInterface;
 
 class UserController extends BaseController {
 
 	protected $user;
+	
+	protected $adresse;
 
 	/**
 	 * Instantiate a new UserController
 	 */
-	public function __construct( UserInfoInterface $user )
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse )
 	{
-		$this->user = $user;
+		$this->user      = $user;
+		
+		$this->adresse   = $adresse;
 		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
@@ -60,7 +65,10 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $user  = $this->user->find($id);
+        $user             = $this->user->find($id);
+        $contact          = $this->user->findAdresseContact($id)->first()->id;
+        $membres          = $this->adresse->members($contact);
+        $specialisations  = $this->adresse->specialisations($contact);
 
         if($user == null || !is_numeric($id))
         {
@@ -69,7 +77,7 @@ class UserController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.users.show')->with(  array('user' => $user ) );
+        return View::make('admin.users.show')->with(  array('user' => $user , 'contact' => $contact  , 'membres' => $membres , 'specialisations' => $specialisations ) );
 	}
 
 	/**

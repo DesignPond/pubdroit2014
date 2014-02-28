@@ -85,9 +85,7 @@ class AdresseEloquent implements AdresseInterface{
 				if( in_array($col, $columns) )
 				{
 					$row[] = $info;
-				}
-				
-				
+				}	
 			}
 			
 			$row['options'] = '<a class="btn btn-info edit_btn" type="button" href="'.url('admin/adresses/'.$adresse['id']).'">&Eacute;diter</a> ';
@@ -118,7 +116,10 @@ class AdresseEloquent implements AdresseInterface{
 	 */	
 	public function members($id){
 				
-		$members = UM::where( 'id', '=' , $id);													
+		return UM::where( 'adresse_id', '=' , $id)->join('membres', function($join)
+        {
+            $join->on('user_membres.membre_id', '=', 'membres.id');
+        })->get();													
 	}
 	
 	/**
@@ -128,7 +129,10 @@ class AdresseEloquent implements AdresseInterface{
 	 */	
 	public function specialisations($id){
 				
-		$members = US::where( 'id', '=' , $id);													
+		return US::where( 'adresse_id', '=' , $id)->join('specialisations', function($join)
+        {
+            $join->on('user_specialisations.specialisation_id', '=', 'specialisations.id');
+        })->get();														
 	}
 					
 }
