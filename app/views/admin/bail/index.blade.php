@@ -2,6 +2,8 @@
 
 @section('content')
 
+<?php  $custom = new Custom; ?>
+
 <div id="page-content">
 	<div id="wrap">
 	
@@ -18,11 +20,10 @@
 		</div>
 		
 		<div class="container">
-			
-			<!-- Arrets bail -->
+		<!-- Arrets bail -->
 			<div class="row">
 	          <div class="col-md-12">
-	              <div class="panel panel-danger">               
+	              <div class="panel panel-sky">               
 	                  <div class="panel-heading">
 	                        <h4>Bail</h4>
 	                  </div>
@@ -33,15 +34,47 @@
 									<th>Réference</th>
 									<th>Date de parution</th>
 									<th>Sous-titre</th>
+									<th>Analyses</th>
+									<th>Catégories</th>
 									<th>Options</th>
 								</thead>
 								<tbody>
 									<?php if(!empty($arrets)){ ?>
-	                                <?php foreach($arrets as $arret){  setlocale(LC_ALL, 'fr_FR'); 	 ?>
+	                                <?php foreach($arrets as $arret)
+	                                	  {  
+	                                	  	// Set locale time in french
+	                                		//setlocale(LC_ALL, 'fr_FR'); 
+	                                		
+	                                		$arrets_categories = $arret->arrets_categories;
+	                                		$arrets_analyses   = $arret->arrets_analyses;	
+	                                ?>
 	                                    <tr class="odd gradeX">
 	                                        <td class="center"><strong><?php echo $arret->reference; ?></strong></td>	
-	                                        <td class="center"><?php echo $arret->pub_date->formatLocalized('%e %B %Y'); ?></td>	                                        
-	                                        <td class="center"><?php echo $arret->abstract; ?></td>
+	                                        <td class="center"><?php echo $arret->pub_date->format('d/m/Y'); ?></td>	                                        
+	                                        <td class="center"><?php echo $custom->limit_words($arret->abstract,20); ?></td>
+	                                        <td class="center">
+		                                        <?php if( !$arrets_analyses->isEmpty() ) {?>
+		                                        <?php 
+		                                        	foreach($arrets_analyses as $arrets_analyse)
+													{	
+												  		echo '<a href="#" class="">'.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a>';
+												  		var_dump($arrets_analyse->pub_date);
+												    } 
+  												?>
+		                                        <?php } ?>
+	                                        </td>
+	                                        <td>
+		                                      	<?php if( !$arrets_categories->isEmpty() ) { ?>
+		                                      	<div class="list-group">	  	
+		                                      		<?php 
+		                                      			foreach($arrets_categories as $arrets_categorie)
+		                                      			{
+												  			echo '<p class="list-group-item">'.$arrets_categorie->title.'</p>';	
+												        } 
+												    ?>
+												</div>
+		                                      	<?php } ?>	
+	                                        </td>
 	                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/bail/arret/'.$arret->id) }}">éditer</a></td>
 	                                    </tr>
 	                                <?php }} ?>

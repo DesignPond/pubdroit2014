@@ -17,6 +17,13 @@ class Custom {
         return $formatDate;
     }
     
+	public function getCreatedAtAttribute($value) { //created_at field in DB
+        //return $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $value);
+        setlocale(LC_TIME, 'fr_FR'); 	
+        return $carbonDate = date("%A %d %B %Y", strtotime($value)); 
+        //return $value;
+    }
+    
     public static function ifExist(&$argument, $default="") {
     
 	    if(!isset($argument)) {
@@ -34,6 +41,16 @@ class Custom {
 		$prepared = explode('.', $price);
 		
 		return $prepared;
+	}
+	
+	public function limit_words($string, $word_limit){
+	
+		$words = explode(" ",$string);
+		$new = implode(" ",array_splice($words,0,$word_limit));
+		if( !empty($new) ){
+			$new = $new.'...';
+		}
+		return $new;
 	}
 	
 	/**

@@ -104,6 +104,20 @@ $(document).ready(
         }
     });
     
+	jQuery.extend( jQuery.fn.dataTableExt.oSort, {
+	    "date-uk-pre": function ( a ) {
+	        var ukDatea = a.split('/');
+	        return (ukDatea[2] + ukDatea[1] + ukDatea[0]) * 1;
+	    },
+	 
+	    "date-uk-asc": function ( a, b ) {
+	        return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+	    },
+	 
+	    "date-uk-desc": function ( a, b ) {
+	        return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+	    }
+	} );
             
     $('.arrets_table').dataTable({
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
@@ -124,9 +138,11 @@ $(document).ready(
         },
         "aoColumns" : [
             { sWidth: '15%' },
-            { sWidth: '12%' },
-            { sWidth: '66%' },
-            { sWidth: '7%' }
+            { sWidth: '10%' , "sType": "date-uk"},
+            { sWidth: '32%' },
+            { sWidth: '20%' },
+            { sWidth: '17%' },
+            { sWidth: '6%' }
         ] 
     });
 
