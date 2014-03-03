@@ -1,18 +1,23 @@
 <?php
 
+use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
 
 class AdresseController extends BaseController {
 
+	protected $user;
+	
 	protected $adresse;
 
 	/**
 	 * Instantiate a new UserController
 	 */
-	public function __construct( AdresseInterface $adresse )
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse  )
 	{
 
-		$this->adresse  = $adresse;
+		$this->user      = $user;
+		
+		$this->adresse   = $adresse;
 		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
@@ -75,11 +80,36 @@ class AdresseController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $adresse  = $this->adresse->find($id);
-        $membres          = $this->adresse->members($id);
-        $specialisations  = $this->adresse->specialisations($id);
-
-
+        $adresse          = $this->adresse->find($id);
+        $type             = $this->adresse->typeAdresse($id);
+    
+        $user_id    = $this->adresse->isUser($id);   
+        // test if the adresse is linked to user
+        $user_id = $this->adresse->isUser($id); 
+        $user    = array();
+        
+        if($user_id != 0)
+        {
+	        $user = $this->user->find($user_id); 
+        }
+        
+        if($type == 1)
+        {
+       	 	$membres          = $this->adresse->members($id);
+	   	 	$specialisations  = $this->adresse->specialisations($id);	        
+        }
+        else
+        {
+			$contact_id = $this->user->findAdresseContact($user_id)->first(); 
+			
+			if($contact_id)
+	        {
+	        	$contact         = $contact_id->id;
+		        $membres         = $this->adresse->members($contact);
+				$specialisations = $this->adresse->specialisations($contact); 
+	        }
+        }
+        
         if($adresse == null || !is_numeric($id))
         {
             // @codeCoverageIgnoreStart
@@ -87,7 +117,7 @@ class AdresseController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse , 'membres' => $membres , 'specialisations' => $specialisations ));
+        return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse , 'user' => $user , 'membres' => $membres , 'specialisations' => $specialisations ));
 	}
 	
 	/**

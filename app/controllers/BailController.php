@@ -23,7 +23,7 @@ class BailController extends BaseController {
 	protected $subject;
 	
 	
-	public function __construct( ArretInterface $arret, CategorieInterface $categorie,AnalyseInterface $analyse, CalculetteInterface $calculette, SeminaireInterface $seminaire, SubjectInterface $subject )
+	public function __construct(ArretInterface $arret,CategorieInterface $categorie,AnalyseInterface $analyse,CalculetteInterface $calculette,SeminaireInterface $seminaire,SubjectInterface $subject)
 	{
 		
 		$this->arret      = $arret;
@@ -39,6 +39,7 @@ class BailController extends BaseController {
 		$this->subject    = $subject;	
 
 	}
+	
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -75,7 +76,6 @@ class BailController extends BaseController {
 		$seminaires = $this->seminaire->getAll();
    
     	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires ,'subjects' => $categories ));	
-
 	}
 	
 	public function search(){
@@ -89,8 +89,7 @@ class BailController extends BaseController {
 	
 	public function calcul(){
 		
-		return View::make('bail.calcul')->with( array( ));	
-		
+		return View::make('bail.calcul')->with( array( ));			
 	}
 	
 	public function loyer(){
@@ -110,6 +109,23 @@ class BailController extends BaseController {
 		return $calcul;
 	}
 
+	/*==============================================
+		ADMINISTRATION FUNCTIONS
+	===============================================*/
+
+	/**
+	 * Show list of arrets for admin
+	 *
+	 * @return Response
+	 */
+	public function arrets()
+	{
+		$arrets     = $this->arret->getAll(195);
+		$categories = $this->categorie->getAll(195);
+		$analyses   = $this->analyse->getAll(195);
+   
+    	return View::make('admin.bail.index')->with( array( 'arrets' => $arrets , 'analyses' => $analyses) );	
+	}
 
 	/**
 	 * Show the form for creating a new resource.

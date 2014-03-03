@@ -223,7 +223,7 @@ Route::group(array('prefix' => 'admin'), function()
 	
     Route::group(array('prefix' => 'bail'), function()
 	{
-	    //Route::get('/', array('uses' => 'BailController@index'));	    
+	    Route::get('arrets', array('uses' => 'BailController@arrets'));	    
 	});
 	
 	Route::group(array('prefix' => 'matrimonial'), function()

@@ -1,6 +1,8 @@
 <?php namespace Droit\Repo\Adresse;
 
 use Droit\Repo\Adresse\AdresseInterface;
+use Droit\Repo\User\UserInfoInterface;
+
 use Adresses as M;
 use User_membres as UM;
 use User_specialisations as US;
@@ -100,13 +102,37 @@ class AdresseEloquent implements AdresseInterface{
 	}
 	
 	/**
-	 * Return all infos of the user with insciption
+	 * Return all adresse of the user 
 	 *
-	 * @return stdObject Collection of users
+	 * @return stdObject users
 	 */
 	public function find($id){
 				
 		return $this->adresse->findOrFail($id);													
+	}
+
+	/**
+	 * Return if adresse is linked to user
+	 *
+	 * @return user id
+	 */	
+	public function isUser($adresse){
+		
+		$infos = $this->adresse->findOrFail($adresse);
+		
+		return $infos->user_id;			
+	}
+
+	/**
+	 * Return type of adresse
+	 *
+	 * @return utype
+	 */		
+	public function typeAdresse($adresse){
+	
+		$infos = $this->adresse->findOrFail($adresse);
+		
+		return $infos->type;			
 	}
 	
 	/**

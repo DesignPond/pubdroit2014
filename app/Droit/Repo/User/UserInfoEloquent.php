@@ -79,15 +79,15 @@ class UserInfoEloquent implements UserInfoInterface{
 						{
 						
 							if($adre['type'] == '1'){
-								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Contact</a>';
+								$options .= '<a href="'.url('admin/adresses/'.$adre['id']).'" class="list-group-item"><i class="fa fa-envelope"></i>&nbsp;&nbsp;Contact</a>';
 							}
 							
 							if($adre['type'] == '2'){
-								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-home"></i>&nbsp;&nbsp;Privé</a>';
+								$options .= '<a href="'.url('admin/adresses/'.$adre['id']).'" class="list-group-item"><i class="fa fa-home"></i>&nbsp;&nbsp;Privé</a>';
 							}
 							
 							if($adre['type'] == '3'){
-								$options .= '<a href="'.url('admin/users/'.$adre['id']).'" class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;Professionnelle</a>';
+								$options .= '<a href="'.url('admin/adresses/'.$adre['id']).'" class="list-group-item"><i class="fa fa-briefcase"></i>&nbsp;&nbsp;Professionnelle</a>';
 							}							
 						}
 						
@@ -125,12 +125,13 @@ class UserInfoEloquent implements UserInfoInterface{
 	 * @return stdObject Collection of users
 	 */
 	public function findAdresseContact($id){
-				
-		return $this->user->where('id','=',$id)->with( array('adresses'=> function($query)
-					{
-					    $query->where('adresses.type', '=', 1);
-					    
-					}) )->get();														
+
+		return $this->user->where('users.id','=',$id)
+						  ->join('adresses', function($join)
+					      {
+					          $join->on('users.id', '=', 'adresses.user_id')->where('adresses.type', '=', 1);
+					          
+					      })->get();															
 	}
 				
 	/**

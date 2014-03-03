@@ -53,7 +53,7 @@ $(document).ready(
         "sAjaxSource": base_url + "admin/getAllUser",
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
-            "sInfo"    : "Affiché _END_ sur un total de _TOTAL_",
+            "sInfo"    : "Total de _TOTAL_ utilisateurs, affichés _START_ à _END_",
             "sSearch"  : "",
             "oPaginate": {
 		        "sNext"     : "Suivant",
@@ -75,7 +75,7 @@ $(document).ready(
         "sAjaxSource": base_url + "admin/getAllAdresse",
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
-            "sInfo"    : "Affiché _END_ sur un total de _TOTAL_",
+            "sInfo"    : "Total de _TOTAL_ adresses, affichés _START_ à _END_",
             "sSearch"  : "",
             "oPaginate": {
 		        "sNext"     : "Suivant",
@@ -90,10 +90,10 @@ $(document).ready(
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
-        "iDisplayLength": "10",
+        "iDisplayLength": 10,
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
-            "sInfo"    : "Affiché _END_ sur un total de _TOTAL_",
+            "sInfo"    : "Total de _TOTAL_ resultats, affichés _START_ à _END_",
             "sSearch"  : "",
             "oPaginate": {
 		        "sNext"     : "Suivant",
@@ -102,6 +102,32 @@ $(document).ready(
 		        "sLast"     : "Dernière page"
 		     }
         }
+    });
+    
+            
+    $('.arrets_table').dataTable({
+        "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+        "sPaginationType": "bootstrap",
+        "bPaginate": true,
+        "bAutoWidth": false, 
+        "iDisplayLength": 10,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ resultat par page",
+            "sInfo"    : "Total de _TOTAL_ arrêts, affichés _START_ à _END_",
+            "sSearch"  : "",
+            "oPaginate": {
+		        "sNext"     : "Suivant",
+		        "sPrevious" : "Précédent",
+		        "sFirst"    : "Première page",
+		        "sLast"     : "Dernière page"
+		     }
+        },
+        "aoColumns" : [
+            { sWidth: '15%' },
+            { sWidth: '12%' },
+            { sWidth: '66%' },
+            { sWidth: '7%' }
+        ] 
     });
 
     $('.dataTables_filter input').addClass('form-control').attr('placeholder','Rechercher...');

@@ -230,7 +230,7 @@ table.results_table td .list-group , .well .list-group{
 	
 }
 
-table.users_table td .edit_btn, table.adresse_table td .edit_btn , .list-group .btn{
+table td .edit_btn , .list-group .btn{
 	float: right;
 }
 

@@ -65,10 +65,18 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
+		$membres          = array();
+		$specialisations  = array();
+		
         $user             = $this->user->find($id);
-        $contact          = $this->user->findAdresseContact($id)->first()->id;
-        $membres          = $this->adresse->members($contact);
-        $specialisations  = $this->adresse->specialisations($contact);
+        $contact_id       = $this->user->findAdresseContact($id);
+        
+        if($contact_id)
+        {
+        	$contact         = $contact_id->id;
+	        $membres         = $this->adresse->members($contact);
+			$specialisations = $this->adresse->specialisations($contact); 
+        }
 
         if($user == null || !is_numeric($id))
         {
@@ -77,7 +85,7 @@ class UserController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.users.show')->with(  array('user' => $user , 'contact' => $contact  , 'membres' => $membres , 'specialisations' => $specialisations ) );
+        return View::make('admin.users.show')->with(  array('user' => $user , 'contact_id' => $contact_id , 'membres' => $membres , 'specialisations' => $specialisations ) );
 	}
 
 	/**
