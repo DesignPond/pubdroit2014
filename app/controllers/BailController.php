@@ -124,7 +124,7 @@ class BailController extends BaseController {
 		$categories = $this->categorie->getAll(195);
 		$analyses   = $this->analyse->getAll(195);
    
-    	return View::make('admin.bail.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses) );	
+    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 195 ) );	
 	}
 
 	/**

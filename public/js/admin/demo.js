@@ -70,48 +70,6 @@ $(document).ready(
 });
 
 
-// -------------------------------
-// Demo: Chatbar.
-// -------------------------------
-
-$('.chatinput textarea').keypress(function (e) {
-  if (e.which == 13) {
-
-    var chatmsg = $(".chatinput textarea").val();
-    var oo=$(".chathistory").html();
-
-    var d=new Date();
-    var n=d.toLocaleTimeString();
-
-
-    if (!!$(".chatinput textarea").val())
-        $(".chathistory").html(oo+ "<div class='chatmsg'><p>"+chatmsg+"</p><span class='timestamp'>"+n+"</span></div>");
-
-
-    $(".chathistory").getNiceScroll().resize();
-    $(".chathistory").animate({ scrollTop: $(document).height() }, 0);
-
-    $(this).val(''); // empty textarea
-
-    return false;
-  }
-});
-
-
-// Toggle buttons
-
-$("a#hidechatbtn").click(function () {
-    $("#widgetarea").toggle();
-    $("#chatarea").toggle();
-});
-
-$("#chatbar li a").click(function () {
-    $("#widgetarea").toggle();
-    $("#chatarea").toggle();
-});
-
-
-
 
 // -------------------------------
 // Show Theme Settings

@@ -15,7 +15,7 @@ class CategorieEloquent implements CategorieInterface {
 	
 	public function getAll( $pid ){
 	
-		return $this->categorie->where('pid','=',$pid)->get();	
+		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->get();	
 	}
 	
 	public function find($id){
@@ -41,7 +41,7 @@ class CategorieEloquent implements CategorieInterface {
 	public function droplist($pid)
 	{
 		
-		return $this->categorie->where('pid','=',$pid)->lists('title', 'id');
+		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->lists('title', 'id');
 	}
 	
 	public function create(array $data)

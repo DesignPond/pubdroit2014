@@ -14,26 +14,34 @@
 			<h1>Arrêts</h1>
 			<div class="options">
 	            <div class="btn-toolbar">
-	                <a href="{{ url('admin/bail/arrets/create') }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter arrêt</a>
+	                <a href="{{ url('admin/arrets/create/'.$pid) }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter arrêt</a>
 	            </div>
 			</div>
 		</div>
-		
-		<div class="container">
+				
+		<div class="container">		
+	
 		<!-- Arrets bail -->
 			<div class="row">
 	          <div class="col-md-12">
+					
 	              <div class="panel panel-sky">               
-	                  <div class="panel-heading">
-	                        <h4>Bail</h4>
-	                  </div>
 	                  <div class="panel-body collapse in">
+	                                    	          
+							<h3 class="text-center">
+								@if ( $pid == 195 )	
+									{{HTML::image('/images/bail/logo.png')}}
+								@endif 
+								@if ( $pid == 207 )	
+									{{HTML::image('/images/admin/matrimonial.jpg')}}
+								@endif 
+							</h3>
 	                  
 	                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered arrets_table" id="users_table">
 								<thead>
 									<th>Réference</th>
 									<th>Date de parution</th>
-									<th>Sous-titre</th>
+									<th>Résumé</th>
 									<th>Analyses</th>
 									<th>Catégories</th>
 									<th>Options</th>
@@ -42,8 +50,6 @@
 									<?php if(!empty($arrets)){ ?>
 	                                <?php foreach($arrets as $arret)
 	                                	  {  
-	                                	  	// Set locale time in french
-	                                		//setlocale(LC_ALL, 'fr_FR'); 
 	                                		
 	                                		$arrets_categories = $arret->arrets_categories;
 	                                		$arrets_analyses   = $arret->arrets_analyses;	
@@ -54,13 +60,16 @@
 	                                        <td class="center"><?php echo $custom->limit_words($arret->abstract,20); ?></td>
 	                                        <td class="center">
 		                                        <?php if( !$arrets_analyses->isEmpty() ) {?>
+		                                        <ul class="fa-ul">
 		                                        <?php 
 		                                        	foreach($arrets_analyses as $arrets_analyse)
 													{	
-												  		echo '<a href="#" class="">'.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a>';
-												  		var_dump($arrets_analyse->pub_date);
+												  		echo '<li><a href="'.url('admin/analyses/'.$arrets_analyse->id).'" class="">
+												  					<i class="fa-li fa fa-bookmark"></i>
+												  					'.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a></li>';
 												    } 
   												?>
+		                                        </ul>
 		                                        <?php } ?>
 	                                        </td>
 	                                        <td>
@@ -75,7 +84,7 @@
 												</div>
 		                                      	<?php } ?>	
 	                                        </td>
-	                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/bail/arret/'.$arret->id) }}">éditer</a></td>
+	                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/arrets/'.$arret->id) }}">éditer</a></td>
 	                                    </tr>
 	                                <?php }} ?>
 								</tbody>

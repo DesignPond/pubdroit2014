@@ -86,6 +86,12 @@ $(function() {
 	   	 }
     });  
     
+        
+    $('#multi-select2').multiSelect({
+	      selectableHeader: "<strong>Disponibles</strong>",
+		  selectionHeader : "<strong>Sélectionnées</strong>"
+    });
+    
 });
 
 
@@ -147,6 +153,8 @@ jQuery(document).ready(function() {
 	$( "#dateDebut" ).datepicker();
     $( "#dateFin" ).datepicker();
     $( "#dateDelai" ).datepicker();
+    
+    $( ".datePicker" ).datepicker();
     
     $(".toggle_in").hide();
     

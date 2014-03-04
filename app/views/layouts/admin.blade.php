@@ -21,6 +21,7 @@
     <link href="<?php echo asset('css/TableTools.css');?>" rel="stylesheet">
     <link href="<?php echo asset('plugins/jqueryui-timepicker/jquery.ui.timepicker.css');?>" rel="stylesheet">
     <link href="<?php echo asset('js/admin/jqueryui.css');?>" rel="stylesheet">
+    <link href="<?php echo asset('plugins/form-multiselect/css/multi-select.css');?>" rel="stylesheet">    
     
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries. Placeholdr.js enables the placeholder attribute -->
 	<!--[if lt IE 9]>
@@ -126,6 +127,13 @@
 					    </ul>
 				    </li>
 				    
+				    <!-- Site: droitmatrimonial.ch -->
+				    <li><a href="javascript:;" class="{{ Request::is( 'admin/matrimonial') ? 'active' : '' }}"><i class="fa fa-heart-o"></i> <span>Droit matrimonial</span></a>
+					    <ul class="acc-menu">
+						    <li>{{ link_to('admin/matrimonial/arrets', 'Arrêts' , array('class' => Request::is( 'admin/matrimonial/arrets') ? 'active' : '') ) }}</li>
+					    </ul>
+				    </li>
+				    				    
 			    </ul>
 			</nav>
 	
@@ -160,6 +168,7 @@
 	    <script type="text/javascript" src="<?php echo asset('js/admin/admin-datatables.js');?>"></script>
 	    <script type="text/javascript" src="<?php echo asset('js/admin/TableTools.min.js');?>"></script>
 	    
+	    <script type='text/javascript' src="<?php echo asset('plugins/form-multiselect/js/jquery.multi-select.min.js'); ?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/placeholdr.js');?>"></script> 
 		<script type="text/javascript" src="<?php echo asset('js/admin/application.js');?>"></script> 	
 		<script type="text/javascript" src="<?php echo asset('js/admin/jquery.jeditable.js');?>"></script> 	

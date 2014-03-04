@@ -115,49 +115,27 @@ Route::group(array('prefix' => 'admin'), function()
 {
 	
 	/* ========================================
-		Routes   
+		Routes common admin
 	=========================================== */ 
 	
 	// Index administration
     Route::get('/', array('uses' => 'AdminController@index'));
+   
+    // Arrets for bail and droit matrimonial
+    Route::get('arrets/create/{pid}', array('uses'  => 'ArretsController@create'));
+    Route::resource('arrets', 'ArretsController');
     
-    Route::get('search', array('uses' => 'SearchController@index'));
+    // Analyse for bail and droit matrimonial
+    Route::get('analyses/create/{pid}', array('uses'  => 'AnalysesController@create'));
+    Route::resource('analyses', 'AnalysesController');
+    
+    Route::get('search', array('uses'  => 'SearchController@index'));
     Route::post('search', array('uses' => 'SearchController@index'));
     
     // Upload file
 	Route::post('upload', array('uses' => 'UploadController@store'));
-	Route::get('files', array('uses' => 'AdminController@files'));
-	Route::get('pdf', array('uses' => 'AdminController@pdf'));
-
-	
-	// User Routes
-/*
-	Route::get('register', 'AdminUserController@create');
-	Route::get('users/{id}/activate/{code}', 'AdminUserController@activate')->where('id', '[0-9]+');
-	Route::get('resend', array('as' => 'resendActivationForm', function()
-	{
-		return View::make('users.resend');
-	}));
-	
-	Route::post('resend', 'AdminUserController@resend');
-	Route::get('forgot', array('as' => 'forgotPasswordForm', function()
-	{
-		return View::make('users.forgot');
-	}));
-	
-	Route::post('forgot', 'AdminUserController@forgot');
-	Route::post('users/{id}/change', 'AdminUserController@change');
-	Route::get('users/{id}/reset/{code}', 'AdminUserController@reset')->where('id', '[0-9]+');
-	Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
-	{
-		return View::make('users.suspend')->with('id', $id);
-	}));
-	 
-	Route::post('users/{id}/suspend',  'AdminUserController@suspend')->where('id', '[0-9]+');
-	Route::get('users/{id}/unsuspend', 'AdminUserController@unsuspend')->where('id', '[0-9]+');
-	Route::get('users/{id}/ban',   'AdminUserController@ban')->where('id', '[0-9]+');
-	Route::get('users/{id}/unban', 'AdminUserController@unban')->where('id', '[0-9]+');
-*/
+	Route::get('files',  array('uses'  => 'AdminController@files'));
+	Route::get('pdf',  array('uses'    => 'AdminController@pdf'));
 		
 	// Users and adresses
 	Route::get('users', 'AdminUserController@index');
@@ -228,7 +206,39 @@ Route::group(array('prefix' => 'admin'), function()
 	
 	Route::group(array('prefix' => 'matrimonial'), function()
 	{
-
+		Route::get('arrets', array('uses' => 'MatrimonialController@arrets'));	
 	});
+	
+	
+	// User Routes
+/*
+	Route::get('register', 'AdminUserController@create');
+	Route::get('users/{id}/activate/{code}', 'AdminUserController@activate')->where('id', '[0-9]+');
+	Route::get('resend', array('as' => 'resendActivationForm', function()
+	{
+		return View::make('users.resend');
+	}));
+	
+	Route::post('resend', 'AdminUserController@resend');
+	Route::get('forgot', array('as' => 'forgotPasswordForm', function()
+	{
+		return View::make('users.forgot');
+	}));
+	
+	Route::post('forgot', 'AdminUserController@forgot');
+	Route::post('users/{id}/change', 'AdminUserController@change');
+	Route::get('users/{id}/reset/{code}', 'AdminUserController@reset')->where('id', '[0-9]+');
+	Route::get('users/{id}/suspend', array('as' => 'suspendUserForm', function($id)
+	{
+		return View::make('users.suspend')->with('id', $id);
+	}));
+	 
+	Route::post('users/{id}/suspend',  'AdminUserController@suspend')->where('id', '[0-9]+');
+	Route::get('users/{id}/unsuspend', 'AdminUserController@unsuspend')->where('id', '[0-9]+');
+	Route::get('users/{id}/ban',   'AdminUserController@ban')->where('id', '[0-9]+');
+	Route::get('users/{id}/unban', 'AdminUserController@unban')->where('id', '[0-9]+');
+*/
+
+
         
 });

@@ -18,9 +18,8 @@ class Custom {
     }
     
 	public function getCreatedAtAttribute($value) { //created_at field in DB
-        //return $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $value);
-        setlocale(LC_TIME, 'fr_FR'); 	
-        return $carbonDate = date("%A %d %B %Y", strtotime($value)); 
+        //return $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $value);	
+        return $carbonDate = date("d/m/Y", strtotime($value)); 
         //return $value;
     }
     

@@ -85,6 +85,24 @@ class MatrimonialController extends BaseController {
    
     	return View::make('matrimonial.jurisprudence')->with( array( 'arrets' => $arrArrange, 'analyses' => $analyses, 'categories' => $categories, 'cat_list' => $cat_list));	
 	}
+	
+	/*==============================================
+		ADMINISTRATION FUNCTIONS
+	===============================================*/
+
+	/**
+	 * Show list of arrets for admin
+	 *
+	 * @return Response
+	 */
+	public function arrets()
+	{
+		$arrets     = $this->arret->getAll(207);
+		$categories = $this->categorie->getAll(207);
+		$analyses   = $this->analyse->getAll(207);
+   
+    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 207 ) );	
+	}
 
 	/**
 	 * Show the form for editing the specified resource.
