@@ -4,13 +4,14 @@ This Laravel 4 package provides a variety of generators to speed up your develop
 - `generate:controller`
 - `generate:seed`
 - `generate:migration`
+- `generate:resource`
 
 ## Installation
 
 Begin by installing this package through Composer. Edit your project's `composer.json` file to require `way/generators`.
 
 	"require-dev": {
-		"way/generators": "v2.0"
+		"way/generators": "2.*"
 	}
 
 Next, update Composer from the Terminal:
@@ -34,6 +35,7 @@ Think of generators as an easy way to speed up your workflow. Rather than openin
 - [Migrations](#migrations)
 - [Models](#models)
 - [Seeds](#seeds)
+- [Resources](#resources)
 
 ### Migrations
 
@@ -60,6 +62,7 @@ class CreatePostsTable extends Migration {
 	{
         Schema::create('posts', function(Blueprint $table) {
             $table->increments('id');
+            $table->timestamps();
         });
 	}
 
@@ -159,6 +162,7 @@ class CreatePostsTable extends Migration {
             $table->increments('id');
             $table->string('title');
 			$table->text('body');
+			$table->timestamps();
         });
 	}
 
@@ -284,4 +288,29 @@ class UsersTableSeeder extends Seeder {
 
 This will give you a basic bit of boilerplate, using the popular Faker library. This is a nice way to seed your DB tables. Don't forget to pull in Faker through Composer!
 
+### Resources
 
+The `generate:resource` command will do a number of things for you:
+
+- Generate a model
+- Generate a controller
+- Generate a migration with schema
+- Generate a table seeder
+- Migrate the database
+
+When triggering this command, you'll be asked to confirm each of these actions. That way, you can tailor the generation to what you specifically require.
+
+#### Example
+
+Imagine that you need to build a way to display posts. While you could manually create a controller, create a model, create a migration and populate it with the schema, and then create a table seeder...why not let the generator do that?
+
+```bash
+php artisan generate:resource post --fields="title:string, body:text"
+```
+
+If you say yes to each confirmation, this single command will give you boilerplate for:
+
+- app/models/Post.php
+- app/controllers/PostsController.php
+- app/database/migrations/timestamp-create_posts_table.php (including the schema)
+- app/database/seeds/PostsTableSeeder.php

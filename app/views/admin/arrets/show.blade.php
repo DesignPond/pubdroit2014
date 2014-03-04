@@ -74,11 +74,31 @@
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Date de publication</label>
 								  	<div class="col-sm-2">
-						      			{{ Form::text('pub_date', $arret->pub_date->format('d/m/Y') , array('class' => 'form-control datePicker') ) }}								  	  	
+						      			{{ Form::text('pub_date', $arret->pub_date->format('Y-m-d') , array('class' => 'form-control datePicker') ) }}								  	  	
 								  	</div>
 								</div>
-																								  
+								
+								@if(!empty($arret->file ))
 								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	<div class="list-group">
+							      			<div class="list-group-item">
+							      				<a href=""><i class="fa fa-file"></i> &nbsp;&nbsp;{{ $arret->file }}</a>
+												<button class="btn btn-xs btn-danger pull-right" type="button">X</button>
+							      			</div>
+									  	</div>								  	  	
+								  	</div>
+								</div>
+								@else
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('file') }}
+								  	</div>
+								</div>
+								@endif	
+																<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Résumé</label>
 								  	<div class="col-sm-7">
 						      			{{ Form::textarea('abstract', $arret->abstract , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
@@ -90,7 +110,7 @@
 								  	<div class="col-sm-7">
 						      			{{ Form::textarea('pub_text', $arret->pub_text , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
 								  	</div>
-								</div>
+								</div>																						
 								
 							    <?php  
 							    

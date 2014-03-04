@@ -10,7 +10,7 @@
 					<li><a href="index.htm">Dashboard</a></li>
 					<li class="active"><a href="index.htm">Arrêts</a></li>
 				</ol>
-				<h1>Nouvel arrêt</h1>
+				<h1>Nouvel analyse</h1>
 			</div>
 			
 			<div class="container">
@@ -19,10 +19,10 @@
 					<div class="col-md-12"><!-- col -->	
 					
 						@if ( $pid == 195 )	
-							<p><a class="btn btn-default" href="{{ url('admin/bail/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
+							<p><a class="btn btn-default" href="{{ url('admin/bail/analyses') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
 						@endif 
 						@if ( $pid== 207 )	
-							<p><a class="btn btn-default" href="{{ url('admin/matrimonial/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
+							<p><a class="btn btn-default" href="{{ url('admin/matrimonial/analyses') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
 						@endif 
 
 					</div>
@@ -37,10 +37,10 @@
 							<!-- form start --> 
 							{{ Form::open(array(
 								'method'        => 'POST',
-								'id'            => 'arret',
+								'id'            => 'analyse',
 								'data-validate' => 'parsley',
 								'class'         => 'validate-form form-horizontal',
-								'url'           => array('admin/arrets') )) 
+								'url'           => array('admin/analyses') )) 
 							}}
 							
 						    <div class="panel-heading">
@@ -60,9 +60,9 @@
 								@endif 
 								
 								<div class="form-group">
-								  	<label for="message" class="col-sm-3 control-label">Référence</label>
+								  	<label for="message" class="col-sm-3 control-label">Auteurs</label>
 								  	<div class="col-sm-3">
-						      			{{ Form::text('reference', null , array('class' => 'form-control datePicker') ) }}
+						      			{{ Form::text('authors', null , array('class' => 'form-control datePicker') ) }}
 								  	</div>
 								</div>								
 								
@@ -72,7 +72,14 @@
 						      			{{ Form::text('pub_date', null , array('class' => 'form-control datePicker') ) }}
 								  	</div>
 								</div>
-																								  
+								
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('file') }}
+								  	</div>
+								</div>
+																																  
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Résumé</label>
 								  	<div class="col-sm-7">

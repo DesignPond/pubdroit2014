@@ -18,5 +18,10 @@ class Analyses extends Eloquent {
     {     
         return $this->belongsToMany('Arrets', 'ba_analyses_arrets', 'analyse_id', 'arret_id');
     }
+
+	public function analyses_arrets()
+    {     
+        return $this->belongsToMany('Arrets', 'ba_analyses_arrets', 'arret_id', 'analyse_id');
+    }
     
 }

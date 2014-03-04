@@ -10,9 +10,9 @@
 					<li><a href="index.htm">Dashboard</a></li>
 					<li class="active"><a href="index.htm">Arrêts</a></li>
 				</ol>
-				<h1>Arret 
-					@if ( !empty($arret) )	
-						{{ $arret->reference }}
+				<h1>Analyse 
+					@if ( !empty($analyse) )	
+						{{ $analyse->reference }}
 					@endif 
 				</h1>
 			</div>
@@ -22,88 +22,113 @@
 				<div class="row"><!-- row -->
 					<div class="col-md-12"><!-- col -->	
 					
-						@if ( $arret->pid == 195 )	
-							<p><a class="btn btn-default" href="{{ url('admin/bail/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
+						@if ( $analyse->pid == 195 )	
+							<p><a class="btn btn-default" href="{{ url('admin/bail/analyses') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
 						@endif 
-						@if ( $arret->pid == 207 )	
-							<p><a class="btn btn-default" href="{{ url('admin/matrimonial/arrets') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
+						@if ( $analyse->pid == 207 )	
+							<p><a class="btn btn-default" href="{{ url('admin/matrimonial/analyses') }}"><i class="fa fa-reply"></i> &nbsp;Retour à la liste</a></p>	
 						@endif 
 
 					</div>
-				</div>		
+				</div>	
+			
 	        	<!-- start row -->
 	            <div class="row">
 	            				
-				@if ( !empty($arret) )				
+				@if ( !empty($analyse) )				
 					
 					<div class="col-md-12">
 					    <div class="panel panel-sky">
 					    							    
 						<!-- form start --> 
-						{{ Form::model($arret,array(
+						{{ Form::model($analyse,array(
 							'method'        => 'POST',
 							'id'            => 'arret',
 							'data-validate' => 'parsley',
 							'class'         => 'validate-form form-horizontal',
 							'url'           => array('admin/arrets'))) 
 						}}
-							
+						
 						    <div class="panel-heading">
-						    	<h4>{{ $arret->reference }}</h4>
+						    	<h4>{{ $analyse->authors }}</h4>
 						    </div>
 						    <div class="panel-body event-info">
 						    	
-						    	@if ( !empty($arret) )
+						    	@if ( !empty($analyse) )
 								<h3>
-									@if ( $arret->pid == 195 )	
+									@if ( $analyse->pid == 195 )	
 										{{HTML::image('/images/bail/logo.png')}}
 									@endif 
-									@if ( $arret->pid == 207 )	
+									@if ( $analyse->pid == 207 )	
 										{{HTML::image('/images/admin/matrimonial.jpg')}}
 									@endif 
 								</h3>
 								@endif 
 								
 								<div class="form-group">
-								  	<label for="message" class="col-sm-3 control-label">Référence</label>
+								  	<label for="message" class="col-sm-3 control-label">Auteurs</label>
 								  	<div class="col-sm-3">								  	
-								  		{{ Form::text('reference', $arret->reference , array('class' => 'form-control') ) }}								  	  	
+								  		{{ Form::text('authors', $analyse->authors , array('class' => 'form-control') ) }}								  	  	
 								  	</div>
 								</div>								
 								
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Date de publication</label>
 								  	<div class="col-sm-2">
-						      			{{ Form::text('pub_date', $arret->pub_date->format('d/m/Y') , array('class' => 'form-control datePicker') ) }}								  	  	
+						      			{{ Form::text('pub_date', $analyse->pub_date->format('Y-m-d') , array('class' => 'form-control datePicker') ) }}								  	  	
 								  	</div>
 								</div>
+								
+								@if(!empty($analyse->file ))
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	<div class="list-group">
+							      			<div class="list-group-item">
+							      				<a href=""><i class="fa fa-file"></i> &nbsp;&nbsp;{{ $analyse->file }}</a>
+												<button class="btn btn-xs btn-danger pull-right" type="button">X</button>
+							      			</div>
+									  	</div>								  	  	
+								  	</div>
+								</div>
+								@else
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('file') }}
+								  	</div>
+								</div>
+								@endif
 																								  
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Résumé</label>
 								  	<div class="col-sm-7">
-						      			{{ Form::textarea('abstract', $arret->abstract , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
+						      			{{ Form::textarea('abstract', $analyse->abstract , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
 								  	</div>
 								</div>
 								  
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Texte</label>
 								  	<div class="col-sm-7">
-						      			{{ Form::textarea('pub_text', $arret->pub_text , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
+						      			{{ Form::textarea('pub_text', $analyse->pub_text , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
 								  	</div>
 								</div>
-								
+
 							    <?php  
+							   		
+							   		$arrets_analyses     = $analyse->analyses_arrets; 
 							    
-							    	$arrets_categories = $arret->arrets_categories; 
-                          			$hasCategorie      = array();
+							    	$analyses_categories = $analyse->analyses_categories; 
+                          			$hasCategorie        = array();
                           			
-                          			if( !$arrets_categories->isEmpty() ) 
+                          			if( !$analyses_categories->isEmpty() ) 
                           			{ 		
-                              			foreach($arrets_categories as $arrets_categorie)
+                              			foreach($analyses_categories as $analyses_categorie)
                               			{
-								  			$hasCategorie[] = $arrets_categorie->id;
+								  			$hasCategorie[] = $analyses_categorie->id;
 								        } 
 								    }
+								    
 							    ?>
 
                               	<div class="form-group">
@@ -129,7 +154,7 @@
      
 						    </div>
 						    <div class="panel-footer mini-footer ">
-						      	{{ Form::hidden('id', $arret->id )}}
+						      	{{ Form::hidden('id', $analyse->id )}}
 						      	<div class="col-sm-3"></div>
 						      	<div class="col-sm-6">
 									<button class="btn btn-primary" type="submit">Envoyer </button>

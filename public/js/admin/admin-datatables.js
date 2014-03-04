@@ -145,7 +145,33 @@ $(document).ready(
             { sWidth: '6%' }
         ] 
     });
-
+            
+    $('.analyse_table').dataTable({
+        "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
+        "sPaginationType": "bootstrap",
+        "bPaginate": true,
+        "bAutoWidth": false, 
+        "iDisplayLength": 10,
+        "oLanguage": {
+            "sLengthMenu": "_MENU_ resultat par page",
+            "sInfo"    : "Total de _TOTAL_ arrêts, affichés _START_ à _END_",
+            "sSearch"  : "",
+            "oPaginate": {
+		        "sNext"     : "Suivant",
+		        "sPrevious" : "Précédent",
+		        "sFirst"    : "Première page",
+		        "sLast"     : "Dernière page"
+		     }
+        },
+        "aoColumns" : [
+            { sWidth: '15%' },
+            { sWidth: '10%' , "sType": "date-uk"},
+            { sWidth: '32%' },
+            { sWidth: '20%' },
+            { sWidth: '6%' }
+        ] 
+    });
+    
     $('.dataTables_filter input').addClass('form-control').attr('placeholder','Rechercher...');
     $('.dataTables_length select').addClass('form-control');
     

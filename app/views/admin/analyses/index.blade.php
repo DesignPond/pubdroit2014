@@ -11,10 +11,10 @@
 			<ol class="breadcrumb">
 				<li class="active"><a href="{{ url('admin') }}">Dashboard</a></li>
 			</ol>
-			<h1>Arrêts</h1>
+			<h1>Analyses</h1>
 			<div class="options">
 	            <div class="btn-toolbar">
-	                <a href="{{ url('admin/arrets/create/'.$pid) }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter arrêt</a>
+	                <a href="{{ url('admin/analyses/create/'.$pid) }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter analyse</a>
 	            </div>
 			</div>
 		</div>
@@ -37,54 +37,41 @@
 								@endif 
 							</h3>
 	                  
-	                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered arrets_table" id="users_table">
+	                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered analyse_table" id="users_table">
 								<thead>
-									<th>Réference</th>
+									<th>Auteur</th>
 									<th>Date de parution</th>
 									<th>Résumé</th>
-									<th>Analyses</th>
-									<th>Catégories</th>
+									<th>Arrêts</th>
 									<th>Options</th>
 								</thead>
 								<tbody>
-									<?php if(!empty($arrets)){ ?>
-	                                <?php foreach($arrets as $arret)
+									<?php if(!empty($analyses)){ ?>
+	                                <?php foreach($analyses as $analyse)
 	                                	  {  
 	                                		
-	                                		$arrets_categories = $arret->arrets_categories;
-	                                		$arrets_analyses   = $arret->arrets_analyses;	
-	                                ?>
+	                                		$arrets_categories = $analyse->analyses_categories;
+	                                		$arrets_analyses   = $analyse->analyses_arrets;	
+	
+		                                ?>
 	                                    <tr class="odd gradeX">
-	                                        <td class="center"><strong><?php echo $arret->reference; ?></strong></td>	
-	                                        <td class="center"><?php echo $arret->pub_date->format('d/m/Y'); ?></td>	                                        
-	                                        <td class="center"><?php echo $custom->limit_words($arret->abstract,20); ?></td>
+	                                        <td class="center"><strong><?php echo $analyse->authors; ?></strong></td>	
+	                                        <td class="center"><?php echo $custom->getCreatedAtAttribute($analyse->pub_date); ?></td>	                                        
+	                                        <td class="center"><?php echo $custom->limit_words($analyse->abstract,20); ?></td>
 	                                        <td class="center">
 		                                        <?php if( !$arrets_analyses->isEmpty() ) {?>
 		                                        <ul class="fa-ul">
 		                                        <?php 
 		                                        	foreach($arrets_analyses as $arrets_analyse)
 													{	
-												  		echo '<li><a href="'.url('admin/analyses/'.$arrets_analyse->id).'" class="">
-												  					<i class="fa-li fa fa-bookmark"></i>
-												  					'.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a></li>';
+												  		echo '<li><a href="'.url('admin/arrets/'.$arrets_analyse->id).'">
+												  					<i class="fa-li fa fa-bookmark"></i>'.$arrets_analyse->reference.'</a></li>';
 												    } 
   												?>
 		                                        </ul>
 		                                        <?php } ?>
 	                                        </td>
-	                                        <td>
-		                                      	<?php if( !$arrets_categories->isEmpty() ) { ?>
-		                                      	<div class="list-group">	  	
-		                                      		<?php 
-		                                      			foreach($arrets_categories as $arrets_categorie)
-		                                      			{
-												  			echo '<p class="list-group-item">'.$arrets_categorie->title.'</p>';	
-												        } 
-												    ?>
-												</div>
-		                                      	<?php } ?>	
-	                                        </td>
-	                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/arrets/'.$arret->id) }}">éditer</a></td>
+	                                        <td><a class="btn btn-primary btn-sm edit_btn" href="{{ url('admin/analyses/'.$analyse->id) }}">éditer</a></td>
 	                                    </tr>
 	                                <?php }} ?>
 								</tbody>

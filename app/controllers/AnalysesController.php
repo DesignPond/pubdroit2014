@@ -1,51 +1,32 @@
 <?php
 
-use Droit\Repo\Arret\ArretInterface;
 use Droit\Repo\Analyse\AnalyseInterface;
-use Droit\Repo\Seminaire\SeminaireInterface;
-use Droit\Repo\Subject\SubjectInterface;
 use Droit\Repo\Categorie\CategorieInterface;
 
-class ArretsController extends BaseController {
+class AnalysesController extends BaseController {
 
-	protected $arret;
-	
 	protected $categorie;
 	
 	protected $analyse;
 	
-	protected $seminaire;
 	
-	protected $subject;	
-	
-	public function __construct(ArretInterface $arret , CategorieInterface $categorie , AnalyseInterface $analyse , SeminaireInterface $seminaire , SubjectInterface $subject){
+	public function __construct( CategorieInterface $categorie , AnalyseInterface $analyse ){
 		
-		$this->arret      = $arret;
-
 		$this->categorie  = $categorie;
 		
-		$this->analyse    = $analyse;
-		
-		$this->seminaire  = $seminaire;
-		
-		$this->subject    = $subject;					
+		$this->analyse    = $analyse;			
 	}
-	
+
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
 	public function index()
-	{	
-		
-		$allarrets    = $this->arret->getAll(195);
-		$categories   = $this->categorie->getAll(195);
-		$allanalyses  = $this->analyse->getAll(195);
-			
-		return View::make('admin.arrets.index');
+	{
+		//
 	}
-	
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -55,7 +36,7 @@ class ArretsController extends BaseController {
 	{
 		$categories = $this->categorie->getAll($pid);
 		
-        return View::make('admin.arrets.create')->with( array( 'pid' => $pid , 'categories' => $categories ) );
+        return View::make('admin.analyses.create')->with( array( 'pid' => $pid , 'categories' => $categories ) );
 	}
 
 	/**
@@ -76,11 +57,11 @@ class ArretsController extends BaseController {
 	 */
 	public function show($id)
 	{
-		$arret      = $this->arret->find($id)->first();
-		$pid        = $arret->pid;
+        $analyse    = $this->analyse->find($id)->first();
+        $pid        = $analyse->pid;
 		$categories = $this->categorie->getAll($pid);
 		
-        return View::make('admin.arrets.show')->with( array( 'arret' => $arret , 'categories' => $categories) );
+        return View::make('admin.analyses.show')->with( array( 'analyse' => $analyse , 'categories' => $categories) );
 	}
 
 	/**
@@ -91,7 +72,7 @@ class ArretsController extends BaseController {
 	 */
 	public function edit($id)
 	{
-        return View::make('admins.edit');
+		//
 	}
 
 	/**
@@ -115,7 +96,5 @@ class ArretsController extends BaseController {
 	{
 		//
 	}
-
-	
 
 }

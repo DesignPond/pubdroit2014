@@ -103,6 +103,20 @@ class MatrimonialController extends BaseController {
    
     	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 207 ) );	
 	}
+	
+	/**
+	 * Show list of analyses for admin
+	 *
+	 * @return Response
+	 */
+	public function analyses()
+	{
+		$arrets     = $this->arret->getAll(207);
+		$categories = $this->categorie->getAll(207);
+		$analyses   = $this->analyse->getAll(207);
+   
+    	return View::make('admin.analyses.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 207 ) );	
+	}
 
 	/**
 	 * Show the form for editing the specified resource.

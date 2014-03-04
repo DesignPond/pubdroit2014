@@ -128,6 +128,20 @@ class BailController extends BaseController {
 	}
 
 	/**
+	 * Show list of analyses for admin
+	 *
+	 * @return Response
+	 */
+	public function analyses()
+	{
+		$arrets     = $this->arret->getAll(195);
+		$categories = $this->categorie->getAll(195);
+		$analyses   = $this->analyse->getAll(195);
+   
+    	return View::make('admin.analyses.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 195 ) );	
+	}
+	
+	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response

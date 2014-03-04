@@ -2050,12 +2050,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129"
+                "reference": "5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
-                "reference": "cdee7c84ba8b2a8aafa1c055f5cb4f640d81c129",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce",
+                "reference": "5f8d64ef66f69586cc1f1ab510110db3cbd2a1ce",
                 "shasum": ""
             },
             "require": {
@@ -2093,7 +2093,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-11 15:39:28"
+            "time": "2014-03-03 17:30:41"
         },
         {
             "name": "symfony/http-kernel",
@@ -2102,12 +2102,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/HttpKernel.git",
-                "reference": "a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f"
+                "reference": "c9830b904493157c951e6126aebd89986bc591d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f",
-                "reference": "a46e71fa4dab095f1e8dd7da044cfc5f1ff24d2f",
+                "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/c9830b904493157c951e6126aebd89986bc591d0",
+                "reference": "c9830b904493157c951e6126aebd89986bc591d0",
                 "shasum": ""
             },
             "require": {
@@ -2166,7 +2166,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "http://symfony.com",
-            "time": "2014-02-28 14:10:50"
+            "time": "2014-03-04 07:36:00"
         },
         {
             "name": "symfony/process",
@@ -2397,12 +2397,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/JeffreyWay/Laravel-4-Generators.git",
-                "reference": "aa0bbde32e76d9090e0ee4f5200266b13f651883"
+                "reference": "03ef16ed4ef3df61687b8ad7718905552aced414"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/aa0bbde32e76d9090e0ee4f5200266b13f651883",
-                "reference": "aa0bbde32e76d9090e0ee4f5200266b13f651883",
+                "url": "https://api.github.com/repos/JeffreyWay/Laravel-4-Generators/zipball/03ef16ed4ef3df61687b8ad7718905552aced414",
+                "reference": "03ef16ed4ef3df61687b8ad7718905552aced414",
                 "shasum": ""
             },
             "require": {
@@ -2433,7 +2433,7 @@
                     "role": "Developer"
                 }
             ],
-            "time": "2014-03-03 11:09:48"
+            "time": "2014-03-03 21:16:46"
         }
     ],
     "packages-dev": [
@@ -2604,12 +2604,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "b4609564fd44e1024de783abcd7b83bd680e4521"
+                "reference": "eeb39d19eb0a53a6b4be95b824fba872ed0856c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/b4609564fd44e1024de783abcd7b83bd680e4521",
-                "reference": "b4609564fd44e1024de783abcd7b83bd680e4521",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/eeb39d19eb0a53a6b4be95b824fba872ed0856c7",
+                "reference": "eeb39d19eb0a53a6b4be95b824fba872ed0856c7",
                 "shasum": ""
             },
             "require": {
@@ -2642,7 +2642,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2014-03-03 11:15:53"
+            "time": "2014-03-03 21:12:07"
         },
         {
             "name": "guzzle/guzzle",
