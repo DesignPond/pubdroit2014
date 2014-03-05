@@ -21,17 +21,19 @@ class SearchController extends BaseController {
 		
 		$search = Request::get('search');
 		
-		$data  = array();
+		$adresses = array();
+		$users   = array();
 		
 		if($search){
-			$data = $this->search->find($search);
+			$adresses  = $this->search->findAdresse($search);
+			$users     = $this->search->findUser($search);
 		}
 		
 		$filters = array();
 		
 		$tri = $this->search->triage($filters);
 		
-		return View::make('admin.search.index')->with( array('data' => $data , 'tri' => $tri , 'search' => $search ) );
+		return View::make('admin.search.index')->with( array('adresses' => $adresses , 'users' => $users , 'tri' => $tri , 'search' => $search ) );
 		        
 	}
 	

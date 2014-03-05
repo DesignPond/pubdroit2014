@@ -44,7 +44,7 @@ class SearchEloquent implements SearchInterface {
 			$s2 = array_filter(array_map('trim',$s2));
 
 			// Query construction
-			$fields = 'id , user_id , deleted , civilite , nom  , prenom , profession , entreprise , telephone , adresse , complement , cp , npa , ville , pays , canton , email';
+			$fields = 'id , deleted , civilite , nom  , prenom , profession , entreprise , telephone , adresse , complement , cp , npa , ville , pays , canton , email';
 				   
 			$select = 'SELECT '.$fields.' '; 		
 			$from   = 'FROM adresses WHERE ';
@@ -93,8 +93,9 @@ class SearchEloquent implements SearchInterface {
 			$union      = ' UNION ';
 			$query2     = '('.$select.$from.$sqlSearch2.')';
 			
-			$endQuery   = ' ) tmp WHERE tmp.deleted = "0"'; 
-			$endQuery  .= ' GROUP BY tmp.id , tmp.user_id ORDER BY tmp.nom, tmp.prenom ASC ';
+			$endQuery   = ' ) tmp '; 
+			$endQuery  .= ' WHERE tmp.deleted = "0" AND tmp.user_id = "0" '; 
+			$endQuery  .= ' GROUP BY tmp.id ORDER BY tmp.nom, tmp.prenom ASC ';
 			
 			$results = \DB::select( $startQuery.$query1.$union.$query2.$endQuery );
 	
@@ -103,6 +104,184 @@ class SearchEloquent implements SearchInterface {
 		}
 		
 		return NULL;
+	}
+	
+	public function findAdresse($data){
+		
+		// background processing, special commands (backspace, etc.), quotes newlines, or some other special characters 
+   		$matchSimple =  trim($data);
+		$pattern     = '/(;|\||`|>|<|&|^|"|'."\n|\r|'".'|{|}|[|]|\)|\()/i'; 
+		
+		$matchSimple = preg_replace($pattern, '', $matchSimple);
+		
+		// We still have something to search for
+		if( ($matchSimple != '') && (strlen($matchSimple) > 1) ){
+			
+			// We have to account for french accents and make two searches
+			$matchAccent   = $matchSimple;
+			$matchEntities = htmlentities($matchSimple, ENT_QUOTES, 'UTF-8');
+			
+			// In case of multiple words
+			$s1 = explode(" ", $matchAccent);
+			$s2 = explode(" ", $matchEntities);
+			
+			// Trim extra blank spaces
+			$s1 = array_filter(array_map('trim',$s1));
+			$s2 = array_filter(array_map('trim',$s2));
+				   	
+			$from   = 'adresses';
+			// Query construction
+			$fields = array(
+				$from.'.id' ,$from.'.user_id',$from.'.deleted',$from.'.civilite',$from.'.nom',$from.'.prenom',
+				$from.'.profession',$from.'.entreprise',$from.'.telephone',$from.'.adresse',$from.'.complement',
+				$from.'.cp',$from.'.npa',$from.'.ville',$from.'.pays',$from.'.canton',$from.'.email'
+			);
+			
+			$sqlSearch1 = '';
+			$sqlSearch2 = '';
+			
+			if(count($s1) == 1)
+			{
+				$sqlSearch1 .= ' ( '.$from.'.nom LIKE "%'.$s1[0].'%" OR '.$from.'.prenom LIKE "%'.$s1[0].'%" ) ';
+				$sqlSearch1 .= ' OR '.$from.'.entreprise LIKE "%'.$s1[0].'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.email      LIKE "%'.$s1[0].'%" ';
+				
+				$sqlSearch2  = '  ( '.$from.'.nom LIKE "%'.$s2[0].'%" OR '.$from.'.prenom LIKE "%'.$s2[0].'%" ) ';
+				$sqlSearch2 .= ' OR '.$from.'.entreprise LIKE "%'.$s2[0].'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.email      LIKE "%'.$s2[0].'%"';
+			}
+						
+			if(count($s1) >= 2)
+			{				
+				$sqlSearch1 .= '    ( '.$from.'.prenom   LIKE "%'.$s1[0].'%" AND '.$from.'.nom    LIKE "%'.$s1[1].'%" ) ';
+				$sqlSearch1 .= ' OR ( '.$from.'.nom      LIKE "%'.$s1[0].'%" AND '.$from.'.prenom LIKE "%'.$s1[1].'%" ) ';
+				$sqlSearch1 .= ' OR '.$from.'.entreprise LIKE "%'.$s1[0].' '.$s1[1].'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.email LIKE "%'.$s1[0].'.'.$s1[1].'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.email LIKE "%'.$s1[1].'.'.$s1[0].'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.prenom     LIKE "%'.$matchAccent.'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.nom        LIKE "%'.$matchAccent.'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.entreprise LIKE "%'.$matchAccent.'%" ';
+				$sqlSearch1 .= ' OR '.$from.'.email      LIKE "%'.$matchAccent.'%" ';
+				
+				$sqlSearch2  = '    ( '.$from.'.nom      LIKE "%'.$s2[0].'%"  AND '.$from.'.prenom LIKE "%'.$s2[1].'%" ) ';
+				$sqlSearch2 .= ' OR ( '.$from.'.prenom   LIKE "%'.$s2[0].'%"  AND '.$from.'.nom    LIKE "%'.$s2[1].'%" ) ';
+				$sqlSearch2 .= ' OR '.$from.'.entreprise LIKE "%'.$s2[0].' '.$s2[1].'%"';
+				$sqlSearch2 .= ' OR '.$from.'.email LIKE "%'.$s2[0].'.'.$s2[1].'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.email LIKE "%'.$s2[1].'.'.$s2[0].'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.prenom     LIKE "%'.$matchEntities.'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.nom        LIKE "%'.$matchEntities.'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.entreprise LIKE "%'.$matchEntities.'%" ';
+				$sqlSearch2 .= ' OR '.$from.'.email      LIKE "%'.$matchEntities.'%" ';
+				
+			}
+
+			$first = \DB::table($from)->whereRaw('( '.$sqlSearch1.' ) AND '.$from.'.user_id = 0' )
+									  ->select($fields)
+									  ->groupBy($from.'.id')
+									  ->orderBy($from.'.nom, '.$from.'.prenom', 'asc');
+
+			$users = \DB::table($from)->whereRaw('( '.$sqlSearch2.' ) AND '.$from.'.user_id = 0' )								  
+									  ->select($fields)
+									  ->groupBy($from.'.id')
+									  ->orderBy($from.'.nom, '.$from.'.prenom', 'asc')
+									  ->union($first)
+									  ->get();
+			
+			return $users;
+		
+		}
+		
+		return NULL;
+	}
+	
+	
+	public function findUser($data){
+		
+		
+		// background processing, special commands (backspace, etc.), quotes newlines, or some other special characters 
+   		$matchSimple =  trim($data);
+		$pattern     = '/(;|\||`|>|<|&|^|"|'."\n|\r|'".'|{|}|[|]|\)|\()/i'; 
+		
+		$matchSimple = preg_replace($pattern, '', $matchSimple);
+		
+		// We still have something to search for
+		if( ($matchSimple != '') && (strlen($matchSimple) > 1) ){
+			
+			// We have to account for french accents and make two searches
+			$matchAccent   = $matchSimple;
+			$matchEntities = htmlentities($matchSimple, ENT_QUOTES, 'UTF-8');
+			
+			// In case of multiple words
+			$s1 = explode(" ", $matchAccent);
+			$s2 = explode(" ", $matchEntities);
+			
+			// Trim extra blank spaces
+			$s1 = array_filter(array_map('trim',$s1));
+			$s2 = array_filter(array_map('trim',$s2));
+				   	
+			$join   = 'adresses';
+			$from   = 'users';
+			
+			// Query construction
+			$fields = array(
+				$join.'.id' ,$join.'.user_id',$join.'.deleted',$join.'.civilite',$join.'.nom',$join.'.prenom',
+				$join.'.profession',$join.'.entreprise',$join.'.telephone',$join.'.adresse', $join.'.npa',$join.'.ville',
+				$join.'.pays',$join.'.canton',$join.'.email', $from.'.nom as user_nom', 
+				$from.'.prenom as user_prenom', $from.'.email as user_email', $from.'.activated as activated', $from.'.id as uid'
+			);
+			
+			$sqlSearch1 = '';
+			$sqlSearch2 = '';
+			
+			if(count($s1) == 1)
+			{
+				$sqlSearch1 .= '  ( '.$from.'.nom   LIKE "%'.$s1[0].'%" OR '.$from.'.prenom LIKE "%'.$s1[0].'%" ) ';
+				$sqlSearch1 .= ' OR '.$from.'.email LIKE "%'.$s1[0].'%" ';
+				
+				$sqlSearch2  = '  ( '.$from.'.nom   LIKE "%'.$s2[0].'%" OR '.$from.'.prenom LIKE "%'.$s2[0].'%" ) ';
+				$sqlSearch2 .= ' OR '.$from.'.email LIKE "%'.$s2[0].'%"';
+			}
+						
+			if(count($s1) >= 2)
+			{				
+				$sqlSearch1 .= '  (  '.$from.'.prenom LIKE "%'.$s1[0].'%" AND '.$from.'.nom    LIKE "%'.$s1[1].'%" ) ';
+				$sqlSearch1 .= ' OR ('.$from.'.nom    LIKE "%'.$s1[0].'%" AND '.$from.'.prenom LIKE "%'.$s1[1].'%" ) ';
+				$sqlSearch1 .= ' OR  '.$from.'.email  LIKE "%'.$s1[0].'.'.$s1[1].'%" ';
+				$sqlSearch1 .= ' OR  '.$from.'.email  LIKE "%'.$s1[1].'.'.$s1[0].'%" ';
+				$sqlSearch1 .= ' OR  '.$from.'.prenom LIKE "%'.$matchAccent.'%" ';
+				$sqlSearch1 .= ' OR  '.$from.'.nom    LIKE "%'.$matchAccent.'%" ';
+				$sqlSearch1 .= ' OR  '.$from.'.email  LIKE "%'.$matchAccent.'%" ';
+				
+				$sqlSearch2  = '  (  '.$from.'.nom    LIKE "%'.$s2[0].'%"  AND '.$from.'.prenom LIKE "%'.$s2[1].'%" ) ';
+				$sqlSearch2 .= ' OR ('.$from.'.prenom LIKE "%'.$s2[0].'%"  AND '.$from.'.nom    LIKE "%'.$s2[1].'%" ) ';
+				$sqlSearch2 .= ' OR  '.$from.'.email  LIKE "%'.$s2[0].'.'.$s2[1].'%" ';
+				$sqlSearch2 .= ' OR  '.$from.'.email  LIKE "%'.$s2[1].'.'.$s2[0].'%" ';
+				$sqlSearch2 .= ' OR  '.$from.'.prenom LIKE "%'.$matchEntities.'%" ';
+				$sqlSearch2 .= ' OR  '.$from.'.nom    LIKE "%'.$matchEntities.'%" ';
+				$sqlSearch2 .= ' OR  '.$from.'.email  LIKE "%'.$matchEntities.'%" ';
+				
+			}
+
+			$first = \DB::table($from)->whereRaw($sqlSearch1)
+									  ->leftJoin($join, $from.'.id', '=', $join.'.user_id')
+									  ->select($fields)
+									  ->groupBy($from.'.id')
+									  ->orderBy($from.'.nom, '.$from.'.prenom', 'asc');
+
+			$users = \DB::table($from)->whereRaw($sqlSearch2)
+									  ->select($fields)
+									  ->leftJoin($join, $from.'.id', '=', $join.'.user_id')
+									  ->groupBy($from.'.id')
+									  ->orderBy($from.'.nom, '.$from.'.prenom', 'asc')
+									  ->union($first)
+									  ->get();
+			
+			return $users;
+		
+		}
+		
+		return NULL;	
+	
 	}
 	
 	public function triage($filters){

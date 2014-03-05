@@ -73,7 +73,7 @@ class UserController extends BaseController {
         
         if($contact_id)
         {
-        	$contact         = $contact_id->id;
+        	$contact         = $contact_id->first()->id;
 	        $membres         = $this->adresse->members($contact);
 			$specialisations = $this->adresse->specialisations($contact); 
         }

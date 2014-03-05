@@ -70,6 +70,7 @@
 							</div><!-- end row -->
 
 						</div><!-- end panel body -->
+
 					</div><!-- end panel -->
 					
 				</div><!-- end col -->
@@ -88,12 +89,13 @@
 			@foreach ($adresses as $adresse)
 
 				<div class="col-md-<?php echo $col; ?>"><!-- col -->
-						
+					
 					<div class="panel panel-sky"><!-- panel -->
+					
+						{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}	
+						
 						<div class="panel-body"><!-- panel body -->
 						
-							{{ Form::open(array( 'url' => 'admin/pubdroit/event/upload' ,'files' => true )) }}
-							
 								<h3>Adresse: <strong><?php echo $custom->whatType($adresse->type); ?></strong></h3>
 								
 								<div class="form-group row">
@@ -184,11 +186,19 @@
 									 <div class="col-sm-3"><p class="help-block"></p></div>
 								</div>	
 								
-						    {{ Form::hidden('id', $adresse->id ) }}		
-							
+							</div><!-- end panel body -->
+						
+							<div class="panel-footer">
+						      	<div class="row">
+					      			<div class="btn-toolbar">
+					      				{{ Form::hidden('id', $adresse->id ) }}		
+						      			<button type="submit" class="btn-primary btn">&Eacute;diter</button>
+					      			</div>
+						      	</div>
+						    </div>
+						    
 							{{ Form::close() }}	
 							
-							</div><!-- end panel body -->
 						</div><!-- end panel -->
 						
 					</div><!-- end col -->

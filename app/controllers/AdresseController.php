@@ -88,6 +88,9 @@ class AdresseController extends BaseController {
         $user_id = $this->adresse->isUser($id); 
         $user    = array();
         
+        $membres         = array();
+        $specialisations = array();
+        
         if($user_id != 0)
         {
 	        $user = $this->user->find($user_id); 

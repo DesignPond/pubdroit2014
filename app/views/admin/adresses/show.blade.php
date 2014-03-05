@@ -205,7 +205,7 @@
 								
 							<h3><strong>Appartenances</strong></h3>
 													
-							<?php if( !$specialisations->isEmpty() ){ ?>
+							<?php if( !empty($specialisations) ){ ?>
 
 							<h4>Spécialisations</h4>
 							<div class="well">
@@ -220,7 +220,7 @@
 							</div>  
 							<?php } ?>										 
 							
-							<?php if( !$membres->isEmpty() ){ ?>
+							<?php if(!empty($membres)){ ?>
 							<h4>Membres</h4>
 							<div class="well">
 								 <div class="list-group">

@@ -9,7 +9,7 @@
 			<ol class="breadcrumb">
 				<li class="active"><a href="{{ url('admin') }}">Dashboard</a></li>
 			</ol>
-			<h1>Dashboard</h1>
+			<h1>Comptes utilisateurs</h1>
 		</div>
 		
 		<div class="container">
