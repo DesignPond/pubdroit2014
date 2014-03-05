@@ -58,7 +58,43 @@ class ArretEloquent implements ArretInterface {
 	
 	public function create(array $data)
 	{
+
+		$categories = $data['categories'];
+				
+		$arret = $this->arret->create(array(
+			'pid'        => $data['pid'],
+			'cruser_id'  => $data['cruser_id'],
+			'reference'  => $data['reference'],
+			'pub_date'   => $data['pub_date'],
+			'abstract'   => $data['abstract'],
+			'pub_text'   => $data['pub_text'],
+			'file'       => $data['file'],
+			'categories' => count($data['categories']),
+			'analysis'   => $data['analysis']
+		));
 		
+		if( ! $arret )
+		{
+			return false;
+		}
+		
+		// Categories insert in ba_arrets_categories table		
+		if(!empty($categories))
+		{
+			foreach($categories as $index => $categorie)
+			{
+				$arret_categorie = new \Arrets_categories;
+				
+				$arret_categorie->arret_id     = $arret->id;
+				$arret_categorie->categorie_id = $categorie;
+				$arret_categorie->sorting      = $index;
+						
+				$arret_categorie->save();
+			}
+		}
+	
+		return true;
+				
 	}
 	
 	public function update(array $data)

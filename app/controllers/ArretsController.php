@@ -5,6 +5,9 @@ use Droit\Repo\Analyse\AnalyseInterface;
 use Droit\Repo\Seminaire\SeminaireInterface;
 use Droit\Repo\Subject\SubjectInterface;
 use Droit\Repo\Categorie\CategorieInterface;
+use Droit\Service\Upload\UploadInterface;
+
+use Droit\Service\Form\Arrets\ArretsValidator as ArretsValidator;
 
 class ArretsController extends BaseController {
 
@@ -17,8 +20,10 @@ class ArretsController extends BaseController {
 	protected $seminaire;
 	
 	protected $subject;	
+
+	protected $upload;
 	
-	public function __construct(ArretInterface $arret , CategorieInterface $categorie , AnalyseInterface $analyse , SeminaireInterface $seminaire , SubjectInterface $subject){
+	public function __construct(ArretInterface $arret,CategorieInterface $categorie,AnalyseInterface $analyse,SeminaireInterface $seminaire,SubjectInterface $subject,UploadInterface $upload){
 		
 		$this->arret      = $arret;
 
@@ -28,7 +33,9 @@ class ArretsController extends BaseController {
 		
 		$this->seminaire  = $seminaire;
 		
-		$this->subject    = $subject;					
+		$this->subject    = $subject;	
+				
+		$this->upload     = $upload;				
 	}
 	
 	/**
@@ -65,7 +72,50 @@ class ArretsController extends BaseController {
 	 */
 	public function store()
 	{
-		//
+		// arrange infos
+		$pid = Input::get('pid');
+
+		// Get pid
+		if( $pid == 195 ){ $link = 'bail'; }
+		if( $pid == 207 ){ $link = 'matrimonial'; }	
+		
+		// Files upload
+		if( Input::file('file') )
+		{
+			$file = $this->upload->upload( Input::file('file') , 'files/arrets' );
+		}
+			
+		if( Input::file('analysis') )
+		{
+			$analysis = $this->upload->upload( Input::file('analysis') , 'files/analyses' );
+		}					
+		
+		// Data array							
+		$data = array(
+			  'pid'        => $pid,
+			  'cruser_id'  => Input::get('cruser_id'),
+			  'reference'  => Input::get('reference'),
+			  'pub_date'   => strtotime(Input::get('pub_date')),
+			  'abstract'   => Input::get('abstract'),
+			  'categories' => Input::get('categories'),
+			  'pub_text'   => Input::get('pub_text')
+		);
+		
+		if($file)    { $data['file']     = $file['name']; }
+		if($analysis){ $data['analysis'] = $analysis['name']; }
+		
+		// Init arrt validator
+		$arretsValidator = ArretsValidator::make( Input::all() );
+		
+		if ($arretsValidator->passes()) 
+		{
+			$this->arret->create( $data );
+			
+			return Redirect::to('admin/'.$link.'/arrets')->with( array('status' => 'success' , 'message' => 'Arrêt crée') ); 
+		}
+		
+		return Redirect::back()->withErrors( $arretsValidator->errors() )->withInput( Input::all() ); 
+
 	}
 
 	/**

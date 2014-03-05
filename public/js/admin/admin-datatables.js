@@ -46,6 +46,7 @@ $(document).ready(
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
+        "bStateSave": true,
         "sProcessing":"Recherche...",
         "bProcessing": true,
         "bServerSide": true,
@@ -70,6 +71,7 @@ $(document).ready(
         "bPaginate": true,
         "sProcessing":"Recherche...",
         "bProcessing": true,
+        "bStateSave": true,
         "bServerSide": true,
         "iDisplayLength": "10",
         "sAjaxSource": base_url + "admin/getAllAdresse",
@@ -90,6 +92,7 @@ $(document).ready(
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
+        "bStateSave": true,
         "iDisplayLength": 10,
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
@@ -123,7 +126,8 @@ $(document).ready(
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
-        "bAutoWidth": false, 
+        "bAutoWidth": false,
+        "bStateSave": true, 
         "iDisplayLength": 10,
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",
@@ -150,7 +154,8 @@ $(document).ready(
         "sDom": "<'row'<'col-xs-6'l><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>",
         "sPaginationType": "bootstrap",
         "bPaginate": true,
-        "bAutoWidth": false, 
+        "bAutoWidth": false,
+        "bStateSave": true, 
         "iDisplayLength": 10,
         "oLanguage": {
             "sLengthMenu": "_MENU_ resultat par page",

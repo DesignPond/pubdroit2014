@@ -98,7 +98,29 @@
 								  	</div>
 								</div>
 								@endif	
-																<div class="form-group">
+								
+								@if(!empty($arret->analysis ))
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Analyse</label>
+								  	<div class="col-sm-7">
+									  	<div class="list-group">
+							      			<div class="list-group-item">
+							      				<a href=""><i class="fa fa-file"></i> &nbsp;&nbsp;{{ $arret->analysis }}</a>
+												<button class="btn btn-xs btn-danger pull-right" type="button">X</button>
+							      			</div>
+									  	</div>								  	  	
+								  	</div>
+								</div>
+								@else
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Analyse</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('analysis') }}
+								  	</div>
+								</div>
+								@endif									
+								
+								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Résumé</label>
 								  	<div class="col-sm-7">
 						      			{{ Form::textarea('abstract', $arret->abstract , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
@@ -129,7 +151,7 @@
                               	<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
-					                    <select multiple="multiple" id="multi-select2">
+					                    <select multiple="multiple" name="categories[]" id="multi-select2">
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{

@@ -32,6 +32,15 @@
 	            <div class="row">			
 					
 					<div class="col-md-12">
+					
+						@if($errors->has())				
+							<ul>
+							    @foreach($errors->all() as $message)						
+							    <li>{{ $message }}</li>						
+							    @endforeach
+							</ul>						
+						@endif
+					
 					    <div class="panel panel-sky">
 					    							    
 							<!-- form start --> 
@@ -39,6 +48,7 @@
 								'method'        => 'POST',
 								'id'            => 'arret',
 								'data-validate' => 'parsley',
+								'files'         => true,
 								'class'         => 'validate-form form-horizontal',
 								'url'           => array('admin/arrets') )) 
 							}}
@@ -52,9 +62,11 @@
 								<h3>
 									@if ( $pid == 195 )	
 										{{HTML::image('/images/bail/logo.png')}}
+										{{ Form::hidden('pid', $pid )}}
 									@endif 
 									@if ( $pid== 207 )	
 										{{HTML::image('/images/admin/matrimonial.jpg')}}
+										{{ Form::hidden('pid', $pid )}}
 									@endif 
 								</h3>
 								@endif 
@@ -62,7 +74,7 @@
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Référence</label>
 								  	<div class="col-sm-3">
-						      			{{ Form::text('reference', null , array('class' => 'form-control datePicker') ) }}
+						      			{{ Form::text('reference', null , array('class' => 'form-control') ) }}
 								  	</div>
 								</div>								
 								
@@ -72,7 +84,21 @@
 						      			{{ Form::text('pub_date', null , array('class' => 'form-control datePicker') ) }}
 								  	</div>
 								</div>
-																								  
+								
+								<div class="form-group">
+								  	<label for="file" class="col-sm-3 control-label">Fichier</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('file') }}
+								  	</div>
+								</div>
+
+								<div class="form-group">
+								  	<label for="analysis" class="col-sm-3 control-label">Analyse</label>
+								  	<div class="col-sm-7">
+									  	{{ Form::file('analysis') }}
+								  	</div>
+								</div>																
+																  
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Résumé</label>
 								  	<div class="col-sm-7">
@@ -90,7 +116,7 @@
 								<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
-					                    <select multiple="multiple" id="multi-select2">
+					                    <select multiple="multiple" name="categories[]" id="multi-select2">
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{
@@ -103,7 +129,7 @@
 							    
 						    </div>
 						    <div class="panel-footer mini-footer ">
-								<div class="col-sm-3"></div>
+								<div class="col-sm-3">{{ Form::hidden('cruser_id', 1 )}}</div>
 						      	<div class="col-sm-6">
 									<button class="btn btn-primary" type="submit">Envoyer </button>
 						      	</div>

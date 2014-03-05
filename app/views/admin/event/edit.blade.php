@@ -18,8 +18,7 @@
 		    <div class="row">
 				<div class="col-sm-12">	
 									
-				   @if($errors->has())
-						We encountered the following errors:						
+				   @if($errors->has())				
 						<ul>
 						    @foreach($errors->all() as $message)						
 						    <li>{{ $message }}</li>						

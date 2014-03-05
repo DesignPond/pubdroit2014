@@ -24,6 +24,15 @@
 		<!-- Arrets bail -->
 			<div class="row">
 	          <div class="col-md-12">
+
+					@if(Session::has('status'))
+					<div class="alert alert-dismissable alert-{{  Session::get('status') }}">
+						@if(Session::has('message'))
+							{{  Session::get('message') }}
+						@endif
+						<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+					</div>
+					@endif
 					
 	              <div class="panel panel-sky">               
 	                  <div class="panel-body collapse in">
