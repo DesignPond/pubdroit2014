@@ -1,6 +1,7 @@
 <?php
 
 use Droit\Repo\Analyse\AnalyseInterface;
+use Droit\Repo\Arret\ArretInterface;
 use Droit\Repo\Categorie\CategorieInterface;
 
 class AnalysesController extends BaseController {
@@ -9,12 +10,16 @@ class AnalysesController extends BaseController {
 	
 	protected $analyse;
 	
+	protected $arret;
 	
-	public function __construct( CategorieInterface $categorie , AnalyseInterface $analyse ){
+	public function __construct( ArretInterface $arret , CategorieInterface $categorie , AnalyseInterface $analyse ){
 		
 		$this->categorie  = $categorie;
 		
-		$this->analyse    = $analyse;			
+		$this->analyse    = $analyse;
+
+		$this->arret      = $arret;
+							
 	}
 
 	/**
@@ -35,8 +40,9 @@ class AnalysesController extends BaseController {
 	public function create($pid)
 	{
 		$categories = $this->categorie->getAll($pid);
+		$arrets     = $this->arret->getAllList( $pid, 'reference' );
 		
-        return View::make('admin.analyses.create')->with( array( 'pid' => $pid , 'categories' => $categories ) );
+        return View::make('admin.analyses.create')->with( array( 'pid' => $pid , 'categories' => $categories , 'arrets' => $arrets  ) );
 	}
 
 	/**

@@ -244,3 +244,7 @@ table td .edit_btn , .list-group .btn{
 	clear: both;
 	visibility: hidden;
 }
+
+.margeBottom{
+	margin-bottom: 30px;
+}

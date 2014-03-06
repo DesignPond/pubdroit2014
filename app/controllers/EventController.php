@@ -154,6 +154,7 @@ class EventController extends BaseController {
 	{
 		$event       = $this->event->find($id);
 		$email       = $this->event->getEmail('inscription',$id);
+		$emailDefaut = $this->event->getEmail('inscription',"0");
 		$attestation = $this->event->getAttestation($id);
 		$comptes     = $this->compte->getAll()->lists('motifCompte', 'id');
 		
@@ -169,7 +170,7 @@ class EventController extends BaseController {
 		$allfiles = $this->event->setFiles($event,$documents);
 		
         return View::make('admin.event.edit')
-        	  ->with( array('event' => $event,'centers' => $centers ,'comptes' => $comptes ,'attestation' => $attestation,'email' => $email,'documents' => $documents,'allfiles' => $allfiles ));
+        	  ->with( array('event' => $event,'centers' => $centers ,'comptes' => $comptes ,'attestation' => $attestation,'email' => $email, 'emailDefaut' => $emailDefaut , 'documents' => $documents,'allfiles' => $allfiles ));
 	}
 
 	/**

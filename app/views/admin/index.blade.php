@@ -20,7 +20,7 @@
 	                	foreach($data as $ana)
 	                	{
 		                	echo '<pre>';
-							print_r($ana->pub_date);
+							print_r($ana);
 							echo '</pre>';	
 	                	}
                 

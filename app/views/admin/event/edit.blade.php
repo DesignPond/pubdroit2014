@@ -155,10 +155,9 @@
 					      			@endif
 							  	  	
 							  	</div>
-							</div>
-							  
-							<div class="col-sm-6 col-sm-offset-3">
-					      		<div class="btn-toolbar">
+							</div>							
+
+							<div class="col-sm-6 col-sm-offset-3 margeBottom">
 					      		
 					      			@if(!empty($email))
 					      				{{ Form::hidden('id', $email->id )}}
@@ -167,9 +166,15 @@
 					      			{{ Form::hidden('typeEmail', 'inscription' )}}
 					      			{{ Form::hidden('event_id', $event->id )}}
 						      		<button type="submit" class="btn-primary btn">Envoyer</button>
-					      		</div>
 					      	</div>
-	
+					      											    					    
+					    	@if( !empty($emailDefaut) )
+						    	<div class="well col-sm-6 col-sm-offset-3">	
+						    		<h3>Texte email par défaut</h3>
+						    		<div>{{ $emailDefaut->message }}</div>
+						    	</div>	
+					    	@endif
+						    						  
 							{{ Form::close() }}
 					    	
 					    </div><!-- end panel content -->

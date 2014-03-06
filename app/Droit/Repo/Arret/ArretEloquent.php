@@ -26,6 +26,11 @@ class ArretEloquent implements ArretInterface {
 		}) )->orderBy('pub_date', 'DESC')->get();	
 	}
 	
+	public function getAllList( $pid, $column ){
+	
+		return $this->arret->where('pid','=',$pid)->where('deleted', '=', 0)->orderBy('pub_date', 'DESC')->lists( $column, 'id' );			
+	}
+	
 	public function find($id){
 		
 		return $this->arret->where('id','=',$id)->with( array('arrets_categories') )->get();	
@@ -62,15 +67,16 @@ class ArretEloquent implements ArretInterface {
 		$categories = $data['categories'];
 				
 		$arret = $this->arret->create(array(
-			'pid'        => $data['pid'],
-			'cruser_id'  => $data['cruser_id'],
-			'reference'  => $data['reference'],
-			'pub_date'   => $data['pub_date'],
-			'abstract'   => $data['abstract'],
-			'pub_text'   => $data['pub_text'],
-			'file'       => $data['file'],
-			'categories' => count($data['categories']),
-			'analysis'   => $data['analysis']
+			'pid'            => $data['pid'],
+			'cruser_id'      => $data['cruser_id'],
+			'reference'      => $data['reference'],
+			'pub_date'       => $data['pub_date'],
+			'pub_date_temp'  => $data['pub_date'], // to change
+			'abstract'       => $data['abstract'],
+			'pub_text'       => $data['pub_text'],
+			'file'           => $data['file'],
+			'categories'     => count($data['categories']),
+			'analysis'       => $data['analysis']
 		));
 		
 		if( ! $arret )

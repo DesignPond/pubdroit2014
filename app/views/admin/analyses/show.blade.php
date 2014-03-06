@@ -70,8 +70,8 @@
 								  	<div class="col-sm-3">								  	
 								  		{{ Form::text('authors', $analyse->authors , array('class' => 'form-control') ) }}								  	  	
 								  	</div>
-								</div>								
-								
+								</div>	
+
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Date de publication</label>
 								  	<div class="col-sm-2">

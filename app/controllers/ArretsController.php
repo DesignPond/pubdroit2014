@@ -95,7 +95,7 @@ class ArretsController extends BaseController {
 			  'pid'        => $pid,
 			  'cruser_id'  => Input::get('cruser_id'),
 			  'reference'  => Input::get('reference'),
-			  'pub_date'   => strtotime(Input::get('pub_date')),
+			  'pub_date'   => Input::get('pub_date'),
 			  'abstract'   => Input::get('abstract'),
 			  'categories' => Input::get('categories'),
 			  'pub_text'   => Input::get('pub_text')

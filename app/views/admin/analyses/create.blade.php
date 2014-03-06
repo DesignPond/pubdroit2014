@@ -95,6 +95,13 @@
 								</div>
 								
 								<div class="form-group">
+							  	   <label for="arret" class="col-sm-3 control-label">Lié à l'arrêt</label>
+							  	   <div class="col-sm-3">
+							  	  	   {{  Form::select('arret' , $arrets , null , array( 'class' => 'form-control' ) )  }}												  	 						  	  
+							  	   </div>
+							    </div>						
+									
+								<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
 					                    <select multiple="multiple" id="multi-select2">
