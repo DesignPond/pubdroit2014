@@ -18,6 +18,8 @@ class CreateBsSeminairesTable extends Migration {
 			$table->integer('pid');
 			$table->integer('created_at');
 			$table->integer('updated_at');	
+			$table->dateTime('created_at_temp');
+			$table->dateTime('updated_at_temp');
 			$table->integer('cruser_id');		
 			$table->integer('deleted');						
 			$table->string('year');

@@ -20,6 +20,7 @@ class CreateBaArretsTable extends Migration {
 			$table->integer('deleted');
 			$table->string('reference');
 			$table->integer('pub_date');
+			$table->dateTime('pub_date_temp');
 			$table->text('abstract');
 			$table->text('pub_text');
 			$table->text('file');
@@ -27,7 +28,9 @@ class CreateBaArretsTable extends Migration {
 			$table->text('analysis');						
 			$table->integer('created_at');
 			$table->integer('updated_at');
-			
+			$table->dateTime('created_at_temp');
+			$table->dateTime('updated_at_temp');
+						
 		});
 	}
 

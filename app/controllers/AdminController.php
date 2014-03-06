@@ -33,7 +33,87 @@ class AdminController extends BaseController {
 	 */
 	public function index()
 	{		
-		return View::make('admin.index');
+		// all analyses	
+		$analyses = Analyses::all();
+
+		foreach($analyses as $analyse)
+		{
+			$ana = Analyses::find( $analyse->id );
+			
+			$ana->pub_date_temp   = $analyse->pub_date;
+			$ana->created_at_temp = $analyse->created_at;
+			$ana->updated_at_temp = $analyse->updated_at;
+			
+			$ana->save();
+		}
+
+		// all arrets
+		$arrets = Arrets::all();
+
+		foreach($arrets as $arret)
+		{
+			$arr = Arrets::find( $arret->id );
+			
+			$arr->pub_date_temp   = $arret->pub_date;
+			$arr->created_at_temp = $arret->created_at;
+			$arr->updated_at_temp = $arret->updated_at;
+			
+			$arr->save();
+		}
+
+		// all ba cat
+		$baCategories = BaCategories::all();
+
+		foreach($baCategories as $baCategorie)
+		{
+			$bcat = BaCategories::find( $baCategorie->id );
+			
+			$bcat->created_at_temp = $baCategorie->created_at;
+			$bcat->updated_at_temp = $baCategorie->updated_at;
+			
+			$bcat->save();
+		}
+
+		// all bs cat
+		$bsCategories = BsCategories::all();
+
+		foreach($bsCategories as $bsCategorie)
+		{
+			$bscat = BsCategories::find( $bsCategorie->id );
+			
+			$bscat->created_at_temp = $bsCategorie->created_at;
+			$bscat->updated_at_temp = $bsCategorie->updated_at;
+			
+			$bscat->save();
+		}
+
+		// all Seminaires
+		$seminaires = Seminaires::all();
+
+		foreach($seminaires as $seminaire)
+		{
+			$sem = Seminaires::find( $seminaire->id );
+			
+			$sem->created_at_temp = $seminaire->created_at;
+			$sem->updated_at_temp = $seminaire->updated_at;
+			
+			$sem->save();
+		}		
+
+		// all Subjects
+		$subjects = Subjects::all();
+
+		foreach($subjects as $subject)
+		{
+			$sub = Subjects::find( $subject->id );
+			
+			$sub->created_at_temp = $subject->created_at;
+			$sub->updated_at_temp = $subject->updated_at;
+			
+			$sub->save();
+		}
+									
+		return View::make('admin.index')->with( array( 'data' => $analyses ) ); 
 	}
 
 	public function pdf(){

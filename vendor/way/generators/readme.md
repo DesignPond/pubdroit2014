@@ -1,3 +1,7 @@
+# Fast Workflow in Laravel With Custom Generators
+
+[![Build Status](https://travis-ci.org/JeffreyWay/Laravel-4-Generators.png?branch=master)](https://travis-ci.org/JeffreyWay/Laravel-4-Generators)
+
 This Laravel 4 package provides a variety of generators to speed up your development process. These generators include:
 
 - `generate:model`
@@ -13,6 +17,8 @@ Begin by installing this package through Composer. Edit your project's `composer
 	"require-dev": {
 		"way/generators": "2.*"
 	}
+
+> Please note that version 2 of this package removed support for a few generators, such as `generate:scaffold` and `generate:form`. If you'd like to continue using those, stick with version `1.1`.
 
 Next, update Composer from the Terminal:
 
@@ -314,3 +320,67 @@ If you say yes to each confirmation, this single command will give you boilerpla
 - app/controllers/PostsController.php
 - app/database/migrations/timestamp-create_posts_table.php (including the schema)
 - app/database/seeds/PostsTableSeeder.php
+
+### Configuration
+
+You may want to modify your templates - how the generated files are formatted. To allow for this, you
+need to publish the templates that, behind the scenes, the generators will reference.
+
+```bash
+php artisan generate:publish-templates
+```
+
+This will copy all templates to your `app/templates` directory. You can modify these however you wish to fit your desired formatting. If you'd prefer a different directory:
+
+```bash
+php artisan generate:publish-templates --path=app/foo/bar/templates
+```
+
+Once finished, you'll need to tell the generators where your new templates are located. When you run the `generate:publish-templates` command, it will also publish
+the configuration to `app/config/packages/way/generators/config/config.php`. This file will look like:
+
+```php
+<?php
+
+return [
+
+    /**
+     * Where is the template for a model?
+     */
+    'model_template_path' => 'vendor/way/generators/src/Way/Generators/templates/model.txt',
+
+    /**
+     * Where do you put your models?
+     */
+    'model_target_path'   => app_path('models'),
+
+    /**
+     * Where is the template for a migration?
+     */
+    'migration_template_path' => 'vendor/way/generators/src/Way/Generators/templates/migration.txt',
+
+    /**
+     * Where do you put your migrations?
+     */
+    'migration_target_path'   => app_path('database/migrations'),
+
+    /**
+     * Where is the template for a database seeder?
+     */
+    'seed_template_path' => 'vendor/way/generators/src/Way/Generators/templates/seed.txt',
+
+    /**
+     * Where do you put your database table seeders?
+     */
+    'seed_target_path'   => app_path('database/seeds')
+
+];
+```
+
+For any template that you modify, update its respective `*_template_path` value. For instance:
+
+```php
+'model_template_path' => app_path('templates/model.txt')
+```
+
+Also, while you're in this file, note that you can also update the default target directory for each generator.

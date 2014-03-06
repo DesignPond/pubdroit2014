@@ -49,11 +49,23 @@ class AddToTable extends Table {
     private function addColumn($property, $details)
     {
         $type = $details['type'];
-        $output = "\$table->$type('$property')";
 
+        $output = sprintf(
+            "\$table->%s(%s)",
+            $type,
+            $property ? "'$property'" : null
+        );
+
+        // If we have args, then it needs
+        // to be formatted a bit differently
         if (isset($details['args']))
         {
-            $output = "\$table->$type('$property', " . $details['args'] . ")";
+            $output = sprintf(
+                "\$table->%s('%s', %s)",
+                $type,
+                $property,
+                $details['args']
+            );
         }
 
         if (isset($details['decorators']))
@@ -73,7 +85,7 @@ class AddToTable extends Table {
         $output = '';
 
         foreach ($decorators as $decorator) {
-            $output .= "->$decorator";
+            $output .= sprintf("->%s", $decorator);
 
             // Do we need to tack on the parens?
             if (strpos($decorator, '(') === false) {

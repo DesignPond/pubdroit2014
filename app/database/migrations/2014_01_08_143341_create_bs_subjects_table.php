@@ -17,7 +17,9 @@ class CreateBsSubjectsTable extends Migration {
 			$table->increments('id');
 			$table->integer('pid');
 			$table->integer('created_at');
-			$table->integer('updated_at');	
+			$table->integer('updated_at');
+			$table->dateTime('created_at_temp');
+			$table->dateTime('updated_at_temp');	
 			$table->integer('cruser_id');		
 			$table->integer('sorting');	
 			$table->integer('deleted');						

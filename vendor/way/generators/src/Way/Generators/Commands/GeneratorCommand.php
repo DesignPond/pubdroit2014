@@ -3,6 +3,7 @@
 use Illuminate\Console\Command;
 use Way\Generators\Filesystem\FileAlreadyExists;
 use Way\Generators\Generator;
+use Config;
 
 abstract class GeneratorCommand extends Command {
 
@@ -36,6 +37,13 @@ abstract class GeneratorCommand extends Command {
     protected abstract function getFileGenerationPath();
 
     /**
+     * Get the path to the generator template
+     *
+     * @return mixed
+     */
+    protected abstract function getTemplatePath();
+
+    /**
      * Compile and generate the file
      */
     public function fire()
@@ -45,7 +53,7 @@ abstract class GeneratorCommand extends Command {
         try
         {
             $this->generator->make(
-                $this->option('templatePath'),
+                $this->getTemplatePath(),
                 $this->getTemplateData(),
                 $filePathToGenerate
             );
@@ -57,6 +65,24 @@ abstract class GeneratorCommand extends Command {
         {
             $this->error("The file, {$filePathToGenerate}, already exists! I don't want to overwrite it.");
         }
+    }
+
+    /**
+     * Get a directory path either through a
+     * command option, or from the configuration
+     *
+     * @param $option
+     * @param $configName
+     * @return string
+     */
+    protected function getPathByOptionOrConfig($option, $configName)
+    {
+        if ($path = $this->option($option))
+        {
+            return $path;
+        }
+
+        return Config::get("generators::config.{$configName}");
     }
 
 } 

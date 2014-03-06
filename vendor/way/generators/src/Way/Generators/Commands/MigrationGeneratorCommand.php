@@ -6,6 +6,7 @@ use Way\Generators\Parsers\MigrationNameParser;
 use Way\Generators\Parsers\MigrationFieldsParser;
 use Way\Generators\Generator;
 use Way\Generators\SchemaCreator;
+use Config;
 
 class MigrationGeneratorCommand extends GeneratorCommand {
 
@@ -81,9 +82,10 @@ class MigrationGeneratorCommand extends GeneratorCommand {
      */
     protected function getFileGenerationPath()
     {
+        $path = $this->getPathByOptionOrConfig('path', 'model_target_path');
         $fileName = $this->getDatePrefix() . '_' . $this->argument('migrationName') . '.php';
 
-        return $this->option('path') . "/$fileName";
+        return "{$path}/{$fileName}";
     }
 
     /**
@@ -119,6 +121,16 @@ class MigrationGeneratorCommand extends GeneratorCommand {
     }
 
     /**
+     * Get path to template for generator
+     *
+     * @return mixed
+     */
+    protected function getTemplatePath()
+    {
+        return $this->getPathByOptionOrConfig('templatePath', 'migration_template_path');
+    }
+
+    /**
      * Get the console command arguments.
      *
      * @return array
@@ -138,10 +150,10 @@ class MigrationGeneratorCommand extends GeneratorCommand {
     protected function getOptions()
     {
         return array(
-            array('fields', null, InputOption::VALUE_OPTIONAL, 'Fields for the migration'),
-            array('path', null, InputOption::VALUE_OPTIONAL, 'Where should the file be created?', app_path('database/migrations')),
-            array('templatePath', null, InputOption::VALUE_OPTIONAL, 'What is the path to the template for this generator?', __DIR__.'/../templates/migration.txt'),
-            array('testing', null, InputOption::VALUE_OPTIONAL, 'For internal use only.')
+            ['fields', null, InputOption::VALUE_OPTIONAL, 'Fields for the migration'],
+            ['path', null, InputOption::VALUE_OPTIONAL, 'Where should the file be created?', app_path('database/migrations')],
+            ['templatePath', null, InputOption::VALUE_OPTIONAL, 'The location of the template for this generator'],
+            ['testing', null, InputOption::VALUE_OPTIONAL, 'For internal use only.']
         );
     }
 

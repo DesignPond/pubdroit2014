@@ -23,7 +23,8 @@ class CreateBaCategoriesTable extends Migration {
 			$table->integer('ismain');				
 			$table->integer('created_at');
 			$table->integer('updated_at');
-			
+			$table->dateTime('created_at_temp');
+			$table->dateTime('updated_at_temp');			
 		});
 	}
 

@@ -2,6 +2,7 @@
 
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Config;
 
 class SeederGeneratorCommand extends GeneratorCommand {
 
@@ -26,9 +27,10 @@ class SeederGeneratorCommand extends GeneratorCommand {
      */
     protected function getFileGenerationPath()
     {
+        $path = $this->getPathByOptionOrConfig('path', 'model_target_path');
         $tableName = ucwords($this->argument('tableName'));
 
-        return $this->option('path') . "/{$tableName}TableSeeder.php";
+        return "{$path}/{$tableName}TableSeeder.php";
     }
 
     /**
@@ -44,6 +46,16 @@ class SeederGeneratorCommand extends GeneratorCommand {
             'CLASS' => "{$tableName}TableSeeder",
             'MODEL' => str_singular($tableName)
         ];
+    }
+
+    /**
+     * Get path to template for generator
+     *
+     * @return mixed
+     */
+    protected function getTemplatePath()
+    {
+        return $this->getPathByOptionOrConfig('templatePath', 'seed_template_path');
     }
 
     /**
@@ -65,10 +77,10 @@ class SeederGeneratorCommand extends GeneratorCommand {
      */
     protected function getOptions()
     {
-        return array(
-            array('path', null, InputOption::VALUE_OPTIONAL, 'Where should the file be created?', app_path('database/seeds')),
-            array('templatePath', null, InputOption::VALUE_OPTIONAL, 'What is the path to the template for this generator?', __DIR__.'/../templates/seed.txt')
-        );
+        return [
+            ['path', null, InputOption::VALUE_OPTIONAL, 'Where should the file be created?', app_path('database/seeds')],
+            ['templatePath', null, InputOption::VALUE_OPTIONAL, 'The location of the template for this generator']
+        ];
     }
 
 }
