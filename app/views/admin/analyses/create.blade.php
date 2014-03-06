@@ -95,16 +95,9 @@
 								</div>
 								
 								<div class="form-group">
-							  	   <label for="arret" class="col-sm-3 control-label">Lié à l'arrêt</label>
-							  	   <div class="col-sm-3">
-							  	  	   {{  Form::select('arret' , $arrets , null , array( 'class' => 'form-control' ) )  }}												  	 						  	  
-							  	   </div>
-							    </div>						
-									
-								<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
-					                    <select multiple="multiple" id="multi-select2">
+					                    <select name="categories" multiple="multiple" id="multi-select2">
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{
@@ -113,7 +106,21 @@
 										    ?>
 					                    </select>
 					                </div>
-					            </div>
+					             </div>
+					             
+					             <div class="form-group">
+					                <label class="col-sm-3 control-label">Arrêts</label>
+					                <div class="col-sm-6">
+					                    <select name="arrets" multiple="multiple" id="multi-select3">
+					                        <?php 
+		                              			foreach($arrets as $id => $arret)
+		                              			{
+										  			echo '<option value="'.$id.'">'.$arret.'</li>';	
+										        } 
+										    ?>
+					                    </select>
+					                </div>
+					             </div>
 							    
 						    </div>
 						    <div class="panel-footer mini-footer ">

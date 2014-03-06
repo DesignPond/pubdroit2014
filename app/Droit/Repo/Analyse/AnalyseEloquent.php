@@ -29,7 +29,45 @@ class AnalyseEloquent implements AnalyseInterface {
 	
 	public function create(array $data)
 	{
+	
+		$categories = $data['categories'];
+		$arrets     = $data['arrets'];
+				
+		$analyse = $this->arret->create(array(
+			'pid'            => $data['pid'],
+			'cruser_id'      => $data['cruser_id'],
+			'authors'        => $data['authors'],
+			'pub_date'       => $data['pub_date'],
+			'pub_date_temp'  => $data['pub_date'], // to change
+			'abstract'       => $data['abstract'],
+			'pub_text'       => $data['pub_text'],
+			'file'           => $data['file'],
+			'categories'     => count($data['categories']),
+			'arrets'         => count($data['arrets'])
+		));
 		
+		if( ! $analyse )
+		{
+			return false;
+		}
+		
+		// Categories insert in ba_analyses_categories table		
+		if(!empty($categories))
+		{
+			foreach($categories as $index => $categorie)
+			{
+				$analyse_categorie = new \Analyses_categories;
+				
+				$analyse_categorie->analyse_id   = $analyse->id;
+				$analyse_categorie->categorie_id = $categorie;
+				$analyse_categorie->sorting      = $index;
+						
+				$analyse_categorie->save();
+			}
+		}
+	
+		return true;
+			
 	}
 	
 	public function update(array $data)

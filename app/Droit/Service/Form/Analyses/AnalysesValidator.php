@@ -2,17 +2,17 @@
 
 use Crhayes\Validation\ContextualValidator;
 
-class ArretsValidator extends ContextualValidator
+class AnalysesValidator extends ContextualValidator
 {
     protected $rules = array(
-        'reference' => 'required',
+        'authors'   => 'required',
         'pub_date'  => 'required',
         'abstract'  => 'required',
         'pub_text'  => 'required'    
     );
 
     protected $messages = array(
-        'reference.required' => 'Le champ référence est requis',
+        'authors.required'   => 'Le champ auteur est requis',
         'pub_date.required'  => 'Le champ date de publication est requis',
         'abstract.required'  => 'Le résumé est requis',
         'pub_text.required'  => 'Le texte est requis'

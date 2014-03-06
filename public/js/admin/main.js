@@ -91,6 +91,12 @@ $(function() {
 	      selectableHeader: "<strong>Disponibles</strong>",
 		  selectionHeader : "<strong>Sélectionnées</strong>"
     });
+   
+        
+    $('#multi-select3').multiSelect({
+	      selectableHeader: "<strong>Disponibles</strong>",
+		  selectionHeader : "<strong>Sélectionnées</strong>"
+    });
     
 });
 
