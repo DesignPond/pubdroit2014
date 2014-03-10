@@ -15,7 +15,11 @@ class SubjectEloquent implements SubjectInterface {
 	
 	public function getAll(){
 	
-		return $this->subject->with( array('subjects_seminaires','subjects_authors','subjects_categories') )->get();	
+		return $this->subject->with( array('subjects_seminaires','subjects_authors','subjects_categories'=> function($query)
+		{
+		    $query->orderBy('bs_categories.sorting', 'ASC');
+		  
+		}) )->get();	
 	}
 	
 	public function find($id){

@@ -53,6 +53,26 @@ class Custom {
 	}
 	
 	/**
+	 * Sort array by key
+	 *
+	 * @return array
+	 */		
+	public function knatsort(&$karr)
+	{
+	    $kkeyarr = array_keys($karr);
+	    
+	    natcasesort($kkeyarr);
+	    $ksortedarr = array();
+	    
+	    foreach($kkeyarr as $kcurrkey){
+	        $ksortedarr[$kcurrkey] = $karr[$kcurrkey];
+	    }
+	    
+	    $karr = $ksortedarr;
+	    return true;
+	}
+	
+	/**
 	 * Return the name of the title (civilité)
 	 *
 	 * @return string

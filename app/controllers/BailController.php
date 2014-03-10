@@ -76,7 +76,7 @@ class BailController extends BaseController {
 		$categories = $this->subject->arrangeCategories($subjects);
 		$seminaires = $this->seminaire->getAll();
    
-    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires ,'subjects' => $categories ));	
+    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires ,'categories' => $categories ));	
 	}
 	
 	public function search(){
