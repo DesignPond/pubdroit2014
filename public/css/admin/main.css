@@ -248,3 +248,7 @@ table td .edit_btn , .list-group .btn{
 .margeBottom{
 	margin-bottom: 30px;
 }
+
+#wrap .ms-container {
+    width: 550px;
+}

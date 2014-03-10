@@ -116,8 +116,9 @@
 
 							    <?php  
 							   		
-							   		$arrets_analyses     = $analyse->analyses_arrets; 
-							    
+							   		$arrets_analyses     = $analyse->arrets_analyses; 
+							   		$hasArrets           = array();
+							   		
 							    	$analyses_categories = $analyse->analyses_categories; 
                           			$hasCategorie        = array();
                           			
@@ -128,13 +129,21 @@
 								  			$hasCategorie[] = $analyses_categorie->id;
 								        } 
 								    }
-								    
+                          			
+                          			if( !$arrets_analyses->isEmpty() ) 
+                          			{ 		
+                              			foreach($arrets_analyses as $analyses_arret)
+                              			{
+								  			$hasArrets[] = $analyses_arret->id;
+								        } 
+								    }
+								    								    
 							    ?>
 
                               	<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
-					                    <select multiple="multiple" id="multi-select2">
+					                    <select name="categories[]" multiple="multiple" id="multi-select2">
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{
@@ -145,12 +154,33 @@
 											  			echo 'selected';
 										  			}
 										  			
-										  			echo ' >'.$categorie->title.'</li>';	
+										  			echo ' >'.$categorie->title.'</option>';	
 										        } 
 										    ?>
 					                    </select>
 					                </div>
 					            </div>
+					            
+					             <div class="form-group">
+					                <label class="col-sm-3 control-label">Arrêts</label>
+					                <div class="col-sm-6">
+					                    <select name="arrets[]" multiple="multiple" id="multi-select3">
+					                        <?php 
+		                              			foreach($arrets as $id => $arret)
+		                              			{
+										  			echo '<option value="'.$id.'" ';
+										  			
+										  			if(in_array($id, $hasArrets))
+										  			{
+											  			echo 'selected';
+										  			}
+										  			
+										  			echo ' >'.$arret.'</option>';
+										        } 
+										    ?>
+					                    </select>
+					                </div>
+					             </div>					            
      
 						    </div>
 						    <div class="panel-footer mini-footer ">

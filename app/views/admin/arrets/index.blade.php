@@ -20,7 +20,7 @@
 		</div>
 				
 		<div class="container">		
-	
+
 		<!-- Arrets bail -->
 			<div class="row">
 	          <div class="col-md-12">
@@ -61,19 +61,18 @@
 	                                	  {  
 	                                		
 	                                		$arrets_categories = $arret->arrets_categories;
-	                                		$arrets_analyses   = $arret->arrets_analyses;	
 	                                ?>
 	                                    <tr class="odd gradeX">
 	                                        <td class="center"><strong><?php echo $arret->reference; ?></strong></td>	
 	                                        <td class="center"><?php echo $arret->pub_date->format('d/m/Y'); ?></td>	                                        
 	                                        <td class="center"><?php echo $custom->limit_words($arret->abstract,20); ?></td>
 	                                        <td class="center">
-		                                        <?php if( !$arrets_analyses->isEmpty() ) {?>
+		                                        <?php if( isset($analyses[$arret->id]) ) {?>
 		                                        <ul class="fa-ul">
 		                                        <?php 
-		                                        	foreach($arrets_analyses as $arrets_analyse)
+		                                        	foreach($analyses[$arret->id] as $arrets_analyse)
 													{	
-												  		echo '<li><a href="'.url('admin/analyses/'.$arrets_analyse->id).'" class="">
+												  		echo '<li><a href="'.url('admin/analyses/'.$arrets_analyse->analyse_id).'" class="">
 												  					<i class="fa-li fa fa-bookmark"></i>
 												  					'.$arrets_analyse->authors.' | '.$custom->getCreatedAtAttribute($arrets_analyse->pub_date).'</a></li>';
 												    } 

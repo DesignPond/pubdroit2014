@@ -99,9 +99,10 @@ class MatrimonialController extends BaseController {
 	{
 		$arrets     = $this->arret->getAll(207);
 		$categories = $this->categorie->getAll(207);
-		$analyses   = $this->analyse->getAll(207);
+		$analyses   = $this->analyse->getAllArrets(207);
+		$arrange    = $this->analyse->analysesArretsById($analyses);
    
-    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 207 ) );	
+    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $arrange , 'pid' => 207 ) );	
 	}
 	
 	/**

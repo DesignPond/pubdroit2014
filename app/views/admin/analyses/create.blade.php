@@ -31,7 +31,16 @@
 				<!-- start row -->
 	            <div class="row">			
 					
-					<div class="col-md-12">
+					<div class="col-md-12">					
+										
+						@if($errors->has())				
+							<ul>
+							    @foreach($errors->all() as $message)						
+							    <li>{{ $message }}</li>						
+							    @endforeach
+							</ul>						
+						@endif
+						
 					    <div class="panel panel-sky">
 					    							    
 							<!-- form start --> 
@@ -39,6 +48,7 @@
 								'method'        => 'POST',
 								'id'            => 'analyse',
 								'data-validate' => 'parsley',
+								'files'         => true,
 								'class'         => 'validate-form form-horizontal',
 								'url'           => array('admin/analyses') )) 
 							}}
@@ -52,9 +62,11 @@
 								<h3>
 									@if ( $pid == 195 )	
 										{{HTML::image('/images/bail/logo.png')}}
+										{{ Form::hidden('pid', $pid )}}
 									@endif 
 									@if ( $pid== 207 )	
 										{{HTML::image('/images/admin/matrimonial.jpg')}}
+										{{ Form::hidden('pid', $pid )}}
 									@endif 
 								</h3>
 								@endif 
@@ -62,7 +74,7 @@
 								<div class="form-group">
 								  	<label for="message" class="col-sm-3 control-label">Auteurs</label>
 								  	<div class="col-sm-3">
-						      			{{ Form::text('authors', null , array('class' => 'form-control datePicker') ) }}
+						      			{{ Form::text('authors', null , array('class' => 'form-control') ) }}
 								  	</div>
 								</div>								
 								
@@ -97,7 +109,7 @@
 								<div class="form-group">
 					                <label class="col-sm-3 control-label">Catégories</label>
 					                <div class="col-sm-6">
-					                    <select name="categories" multiple="multiple" id="multi-select2">
+					                    <select name="categories[]" multiple="multiple" id="multi-select2">
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{
@@ -111,11 +123,11 @@
 					             <div class="form-group">
 					                <label class="col-sm-3 control-label">Arrêts</label>
 					                <div class="col-sm-6">
-					                    <select name="arrets" multiple="multiple" id="multi-select3">
+					                    <select name="arrets[]" multiple="multiple" id="multi-select3">
 					                        <?php 
 		                              			foreach($arrets as $id => $arret)
 		                              			{
-										  			echo '<option value="'.$id.'">'.$arret.'</li>';	
+										  			echo '<option value="'.$id.'">'.$arret.'</option>';	
 										        } 
 										    ?>
 					                    </select>
@@ -124,7 +136,7 @@
 							    
 						    </div>
 						    <div class="panel-footer mini-footer ">
-								<div class="col-sm-3"></div>
+								<div class="col-sm-3">{{ Form::hidden('cruser_id', 1 )}}</div>
 						      	<div class="col-sm-6">
 									<button class="btn btn-primary" type="submit">Envoyer </button>
 						      	</div>

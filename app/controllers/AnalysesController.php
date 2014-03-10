@@ -3,6 +3,7 @@
 use Droit\Repo\Analyse\AnalyseInterface;
 use Droit\Repo\Arret\ArretInterface;
 use Droit\Repo\Categorie\CategorieInterface;
+use Droit\Service\Upload\UploadInterface;
 
 use Droit\Service\Form\Analyses\AnalysesValidator as AnalysesValidator;
 
@@ -14,13 +15,17 @@ class AnalysesController extends BaseController {
 	
 	protected $arret;
 	
-	public function __construct( ArretInterface $arret , CategorieInterface $categorie , AnalyseInterface $analyse ){
+	protected $upload;
+	
+	public function __construct( ArretInterface $arret , CategorieInterface $categorie , AnalyseInterface $analyse , UploadInterface $upload ){
 		
 		$this->categorie  = $categorie;
 		
 		$this->analyse    = $analyse;
 
 		$this->arret      = $arret;
+		
+		$this->upload     = $upload;			
 							
 	}
 
@@ -55,7 +60,8 @@ class AnalysesController extends BaseController {
 	public function store()
 	{
 		// arrange infos
-		$pid = Input::get('pid');
+		$pid  = Input::get('pid');
+		$file = false;
 
 		// Get pid
 		if( $pid == 195 ){ $link = 'bail'; }
@@ -79,8 +85,7 @@ class AnalysesController extends BaseController {
 			  'pub_text'   => Input::get('pub_text')
 		);
 		
-		if($file)    { $data['file']     = $file['name']; }
-		if($analysis){ $data['analysis'] = $analysis['name']; }
+		if($file) { $data['file'] = $file['name']; } else { $data['file'] = ''; }
 		
 		// Init arrt validator
 		$analysesValidator = AnalysesValidator::make( Input::all() );
@@ -106,8 +111,9 @@ class AnalysesController extends BaseController {
         $analyse    = $this->analyse->find($id)->first();
         $pid        = $analyse->pid;
 		$categories = $this->categorie->getAll($pid);
+		$arrets     = $this->arret->getAllList( $pid, 'reference' );
 		
-        return View::make('admin.analyses.show')->with( array( 'analyse' => $analyse , 'categories' => $categories) );
+        return View::make('admin.analyses.show')->with( array( 'analyse' => $analyse , 'categories' => $categories , 'arrets' => $arrets ) );
 	}
 
 	/**

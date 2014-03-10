@@ -51,7 +51,7 @@
 	                                	  {  
 	                                		
 	                                		$arrets_categories = $analyse->analyses_categories;
-	                                		$arrets_analyses   = $analyse->analyses_arrets;	
+	                                		$arrets_analyses   = $analyse->arrets_analyses;	
 	
 		                                ?>
 	                                    <tr class="odd gradeX">

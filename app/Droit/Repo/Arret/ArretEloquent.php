@@ -23,7 +23,32 @@ class ArretEloquent implements ArretInterface {
 		{
 		    $query->where('ba_analyses.deleted', '=', 0);
 		  
-		}) )->orderBy('pub_date', 'DESC')->get();	
+		}) )
+		->orderBy('pub_date', 'DESC')
+		->get();
+		
+		
+		/*
+		
+		return $this->arret->where('ba_arrets.pid','=',$pid)
+						   ->with( array('arrets_categories' => function ($query)
+						   {
+							    $query->orderBy('sorting', 'ASC');
+							    
+						   }))
+						   ->join('ba_analyses_arrets', function($join)
+					       {
+					          $join->on('ba_arrets.id', '=', 'ba_analyses_arrets.arret_id');
+					          
+					       })
+					       ->join('ba_analyses', function($join)
+					       {
+					          $join->on('ba_analyses.id', '=', 'ba_analyses_arrets.analyse_id');
+					          
+					       })
+					       ->orderBy('ba_arrets.pub_date', 'DESC')
+					       ->get();	
+*/	
 	}
 	
 	public function getAllList( $pid, $column ){

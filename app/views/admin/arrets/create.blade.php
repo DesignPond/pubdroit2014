@@ -120,12 +120,13 @@
 					                        <?php 
 		                              			foreach($categories as $categorie)
 		                              			{
-										  			echo '<option value="'.$categorie->id.'">'.$categorie->title.'</li>';	
+										  			echo '<option value="'.$categorie->id.'">'.$categorie->title.'</option>';	
 										        } 
 										    ?>
 					                    </select>
 					                </div>
 					            </div>
+					            
 							    
 						    </div>
 						    <div class="panel-footer mini-footer ">

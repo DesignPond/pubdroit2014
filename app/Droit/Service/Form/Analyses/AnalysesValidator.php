@@ -1,4 +1,4 @@
-<?php namespace Droit\Service\Form\Arrets;
+<?php namespace Droit\Service\Form\Analyses;
 
 use Crhayes\Validation\ContextualValidator;
 

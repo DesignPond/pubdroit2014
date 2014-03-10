@@ -22,7 +22,9 @@ class BailController extends BaseController {
 	protected $subject;
 	
 	
-	public function __construct(ArretInterface $arret , CategorieInterface $categorie,AnalyseInterface $analyse,CalculetteInterface $calculette,SeminaireInterface $seminaire,SubjectInterface $subject)
+	public function __construct(
+		ArretInterface $arret , CategorieInterface $categorie,AnalyseInterface $analyse,CalculetteInterface $calculette,SeminaireInterface $seminaire,SubjectInterface $subject
+	)
 	{
 		
 		$this->arret      = $arret;
@@ -121,9 +123,10 @@ class BailController extends BaseController {
 	{
 		$arrets     = $this->arret->getAll(195);
 		$categories = $this->categorie->getAll(195);
-		$analyses   = $this->analyse->getAll(195);
+		$analyses   = $this->analyse->getAllArrets(195);
+		$arrange    = $this->analyse->analysesArretsById($analyses);
    
-    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $analyses , 'pid' => 195 ) );	
+    	return View::make('admin.arrets.index')->with( array( 'arrets' => $arrets , 'categories' => $categories , 'analyses' => $arrange , 'pid' => 195 ) );	
 	}
 
 	/**

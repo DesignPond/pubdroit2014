@@ -162,7 +162,7 @@
 											  			echo 'selected';
 										  			}
 										  			
-										  			echo ' >'.$categorie->title.'</li>';	
+										  			echo ' >'.$categorie->title.'</option>';	
 										        } 
 										    ?>
 					                    </select>
