@@ -19,7 +19,7 @@ class SubjectEloquent implements SubjectInterface {
 		{
 		    $query->orderBy('bs_categories.sorting', 'ASC');
 		  
-		}) )->get();	
+		}) )->where('deleted', '=' , 0)->get();	
 	}
 	
 	public function find($id){

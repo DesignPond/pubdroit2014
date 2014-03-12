@@ -201,7 +201,7 @@ Route::group(array('prefix' => 'admin'), function()
 	
     Route::group(array('prefix' => 'bail'), function()
 	{
-	    Route::get('arrets', array('uses' => 'BailController@arrets'));	 
+	    Route::get('arrets' , array('uses'  => 'BailController@arrets'));	 
 	    Route::get('analyses', array('uses' => 'BailController@analyses'));	    
 	});
 	

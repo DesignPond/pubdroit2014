@@ -26,40 +26,98 @@
 						<div class="order col">&nbsp;</div>
 					</div>
 					
-					<?php $custom->knatsort($categories); ?>
-					
-					<div class="cat clear ">
-							<div class="liste">
+					<?php   
+							$custom->knatsort($categories);
+							$custom->keysort($bs);
 							
-						@foreach($categories as $title => $subjects)													
-							@foreach($subjects as $subject)
-
-									<div class="sujet clear c2 y15 a51 ">
+							echo '<pre>';
+							print_r($bs);
+							echo '</pre>';							
+					?>
+				
+					<div class="cat clear ">
+						<div class="liste">
+														
+							@foreach($categories as $title => $subjects)													
+								@foreach($subjects as $subject)
+								
+									<?php 
+										
+										/* =================================
+										  Infos for filter
+										  categorie id
+										  Author id
+										  Seminaire id
+										=================================== */
+									 
+										$subjects_seminaires = $subject->subjects_seminaires->toArray();
+										
+										$title_seminaire = '';
+										$year_seminaire  = '';
+										$order_link      = '';
+										
+										if( isset($subjects_seminaires[0]) )
+										{
+											$title_seminaire = $subjects_seminaires[0]['title'];
+											$year_seminaire  = $subjects_seminaires[0]['year'];
+											$order_link      = $subjects_seminaires[0]['orderlink'];
+											$seminaire_id    = $subjects_seminaires[0]['id'];
+										}
+										
+										$author_id    = $subject->subjects_authors->first()->id;	
+										$categorie_id = $subject->subjects_categories->first()->id;									
+										
+									 ?>
+	
+									<div class="sujet clear c<?php echo $categorie_id; ?> y<?php echo $seminaire_id; ?> a<?php echo $author_id; ?> ">
 										<div class="category col">
 											<h4> {{ $title }} </h4>
 										</div>
-										<?php  $subjects_seminaires = $subject->subjects_seminaires->toArray(); ?>
-										
-											<?php 
-												foreach($subjects_seminaires as $subjects_seminaire)
-												{
-													echo '<div class="edition col">'.$subjects_seminaire['title'].'</div>'; 
-													echo '<div class="annee col">'.$subjects_seminaire['year'].'</div>'; 
-												}
-											 ?>
 
-										<div class="desc col"><?php   echo $subject->title; ?></div>
-										<div class="auteur col"><?php echo $subject->subjects_authors->first()->name; ?></div>
+										<div class="edition col"><?php echo $title_seminaire; ?></div>
+										<div class="annee col"><?php   echo $year_seminaire; ?></div>										
+										<div class="desc col"><?php    echo $subject->title; ?></div>
+										<div class="auteur col"><?php  echo $subject->subjects_authors->first()->name; ?></div>
 										<div class="order col">
-											<a class="order" target="_blank" href="http://www.publications-droit.ch/#/cat/publications/filter/bail/item/7">Acquérir</a>
+										
+											@if( $order_link )
+												<a class="order" target="_blank" href="{{ $order_link }}">Acquérir</a>
+											@endif
+											
+											@if( $subject->file )
+												<a class="order" target="_blank" href="{{ $subject->file }}">Télécharger</a>
+											@endif
+											
+											@if( $subject->appendixes )
+											
+												<?php
+												
+													$list_appendixes = explode(',',$subject->appendixes);
+													
+													if($list_appendixes > 1)
+													{
+														$i = 1;
+														foreach($list_appendixes as $appendixe)
+														{
+															echo '<a class="order" target="_blank" href="'.$appendixe.'">Annexe '.$i.'</a>';
+															$i++;
+														}
+													}
+													else
+													{
+														echo '<a class="order" target="_blank" href="'.$subject->appendixes.'">Annexe 1</a>';
+													}
+												?>
+												
+											@endif
+																							
 										</div>
 									</div>
-							
-							@endforeach										
-						@endforeach
+								
+								@endforeach										
+							@endforeach
 						
 						</div>
-						
 					</div>
 	
 				</div><!-- end sujets div -->

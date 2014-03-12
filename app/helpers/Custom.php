@@ -72,6 +72,20 @@ class Custom {
 	    return true;
 	}
 	
+	public function keysort(&$karr){
+	
+	    $kkeyarr = array_keys($karr);
+	    
+	    $ksortedarr = array();
+	    
+	    foreach($kkeyarr as $kcurrkey){
+	        $ksortedarr[$kcurrkey] = $karr[$kcurrkey];
+	    }
+	    
+	    $karr = $ksortedarr;
+	    return true;
+	}
+	
 	/**
 	 * Return the name of the title (civilité)
 	 *

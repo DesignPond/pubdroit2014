@@ -5,13 +5,17 @@ use Droit\Repo\Analyse\AnalyseInterface;
 use Droit\Repo\Seminaire\SeminaireInterface;
 use Droit\Repo\Subject\SubjectInterface;
 use Droit\Repo\Categorie\CategorieInterface;
+use Droit\Repo\BsCategorie\BsCategorieInterface;
 use Droit\Repo\Calculette\CalculetteInterface;
+
 
 class BailController extends BaseController {
 
 	protected $arret;
 	
 	protected $categorie;
+	
+	protected $bscategorie;
 	
 	protected $analyse;
 	
@@ -23,21 +27,34 @@ class BailController extends BaseController {
 	
 	
 	public function __construct(
-		ArretInterface $arret , CategorieInterface $categorie,AnalyseInterface $analyse,CalculetteInterface $calculette,SeminaireInterface $seminaire,SubjectInterface $subject
+		ArretInterface $arret , 
+		CategorieInterface $categorie,
+		BsCategorieInterface $bscategorie,
+		AnalyseInterface $analyse,
+		CalculetteInterface $calculette,
+		SeminaireInterface $seminaire,
+		SubjectInterface $subject
 	)
 	{
 		
-		$this->arret      = $arret;
+		$this->arret       = $arret;
 
-		$this->categorie  = $categorie;
+		$this->categorie   = $categorie;
 		
-		$this->analyse    = $analyse;
+		$this->bscategorie = $bscategorie;
 		
-		$this->calculette = $calculette;
+		$this->analyse     = $analyse;
 		
-		$this->seminaire  = $seminaire;
+		$this->calculette  = $calculette;
 		
-		$this->subject    = $subject;	
+		$this->seminaire   = $seminaire;
+		
+		$this->subject     = $subject;
+		
+	    $bacategories  = \BaCategories::where('pid','=',195)->where('deleted','=',0)->lists('title', 'id');
+	    $bscategories  = \BsCategories::where('pid','=',195)->where('deleted','=',0)->lists('title', 'id');
+		
+		View::share( array( 'bacategories' => $bacategories , 'bscategories' => $bscategories) );	
 
 	}
 	
@@ -75,8 +92,9 @@ class BailController extends BaseController {
 		$subjects   = $this->subject->getAll();
 		$categories = $this->subject->arrangeCategories($subjects);
 		$seminaires = $this->seminaire->getAll();
+		$bs  =  $this->bscategorie->droplist(190);
    
-    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires ,'categories' => $categories ));	
+    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires , 'bs' => $bs , 'subjects' => $subjects  ,'categories' => $categories ));	
 	}
 	
 	public function search(){

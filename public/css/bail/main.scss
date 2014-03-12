@@ -454,11 +454,13 @@ a.newsletterLink:hover{
 #seminaires .sujets{
 	color: #000000;
     font-family: Arial,Verdana,Helvetica,sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+    line-height: 17px;
 }
 
 #seminaires .sujets .col {
     float: left;
+    padding: 2px;
 }
 #seminaires .sujets .sujet {
     border-bottom: 1px solid #B80E1D;
@@ -471,7 +473,7 @@ a.newsletterLink:hover{
 
 #seminaires .sujets .category h4{
 	color: #000000;
-    font-size: 12px;
+    font-size: 13px;
     font-style: italic;
     font-weight: normal;
     padding: 0;
@@ -483,11 +485,11 @@ a.newsletterLink:hover{
 
 #seminaires .sujets .edition {
     margin-right: 4px;
-    width: 110px;
+    width: 130px;
 }
 #seminaires .sujets .annee {
     margin-right: 4px;
-    width: 33px;
+    width: 36px;
 }
 #seminaires .sujets .catTitle .annee strong {
     left: -4px;
@@ -499,10 +501,10 @@ a.newsletterLink:hover{
 }
 #seminaires .sujets .auteur {
     margin-right: 4px;
-    width: 100px;
+    width: 120px;
 }
 #seminaires .sujets .order {
-    width: 72px;
+    width: 65px;
 }
 
 
