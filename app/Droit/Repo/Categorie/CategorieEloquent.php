@@ -42,6 +42,11 @@ class CategorieEloquent implements CategorieInterface {
 	{
 		
 		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->lists('title', 'id');
+	}	
+		
+	public function droplistByCol($pid,$col){
+	
+		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->lists($col, 'id');
 	}
 	
 	public function create(array $data)

@@ -5,9 +5,7 @@ $( document ).ready(function(event) {
 		var domFiltre = $('.seminaire .filtre');
 		
 		// Chosen init
-		var chosenSelect = $("#seminaire-chosen").chosen();
-		
-		console.log(chosenSelect);
+		var chosenSelect = $(".seminaire-chosen").chosen();
 		
 		// Get dom elements
 		var domSeminaires = $('#seminaires');
@@ -62,7 +60,9 @@ $( document ).ready(function(event) {
 			} 
 			else if($(this).hasClass('author')) 
 			{			
-				activeAuthors = [];				
+				activeAuthors = [];	
+				
+				console.log($(this));			
 				
 				var $allauthor = $(this).find(":selected");
 				

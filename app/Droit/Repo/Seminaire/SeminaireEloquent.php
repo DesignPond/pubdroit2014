@@ -18,6 +18,11 @@ class SeminaireEloquent implements SeminaireInterface {
 		return $this->seminaire->with( array('seminaires_subjects') )->orderBy('year', 'DESC')->get();	
 	}
 	
+	public function droplistByCol($col){
+	
+		return $this->seminaire->where('deleted','=',0)->orderBy($col, 'DESC')->lists($col, 'id');
+	}
+	
 	public function find($id){
 		
 		return $this->seminaire->where('id','=',$id)->with( array('seminaires_subjects') )->get();	

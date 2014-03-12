@@ -19,6 +19,7 @@ use Files as F;
 
 use Arrets as A;
 use Analyses as AN;
+use Auteur as AU;
 use Seminaires as SM;
 use Subjects as SU;
 
@@ -48,6 +49,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerAnalyseService();	
     	$this->registerSeminaireService();	
     	$this->registerSubjectService();	
+    	$this->registerAuteurService();	
     	$this->registerCategorieService();
     	$this->registerBSCategorieService();	
 		$this->registerFileService();
@@ -201,7 +203,16 @@ class PubdroitServiceProvider extends ServiceProvider {
             return new \Droit\Repo\Subject\SubjectEloquent( new SU );
         });
         
-	}		
+	}	
+	
+    public function registerAuteurService(){
+		
+		$this->app->bind('Droit\Repo\Auteur\AuteurInterface', function()
+        {
+            return new \Droit\Repo\Auteur\AuteurEloquent( new AU );
+        });
+        
+	}			
 
     public function registerCategorieService(){
 		

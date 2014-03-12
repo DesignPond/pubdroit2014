@@ -4,6 +4,7 @@ use Droit\Repo\Arret\ArretInterface;
 use Droit\Repo\Analyse\AnalyseInterface;
 use Droit\Repo\Seminaire\SeminaireInterface;
 use Droit\Repo\Subject\SubjectInterface;
+use Droit\Repo\Auteur\AuteurInterface;
 use Droit\Repo\Categorie\CategorieInterface;
 use Droit\Repo\BsCategorie\BsCategorieInterface;
 use Droit\Repo\Calculette\CalculetteInterface;
@@ -25,6 +26,8 @@ class BailController extends BaseController {
 	
 	protected $subject;
 	
+	protected $auteur;
+	
 	
 	public function __construct(
 		ArretInterface $arret , 
@@ -33,7 +36,8 @@ class BailController extends BaseController {
 		AnalyseInterface $analyse,
 		CalculetteInterface $calculette,
 		SeminaireInterface $seminaire,
-		SubjectInterface $subject
+		SubjectInterface $subject,
+		AuteurInterface $auteur
 	)
 	{
 		
@@ -50,11 +54,26 @@ class BailController extends BaseController {
 		$this->seminaire   = $seminaire;
 		
 		$this->subject     = $subject;
+
+		$this->auteur      = $auteur;
+	    
+	    $custom = new \Custom;
 		
-	    $bacategories  = \BaCategories::where('pid','=',195)->where('deleted','=',0)->lists('title', 'id');
-	    $bscategories  = \BsCategories::where('pid','=',195)->where('deleted','=',0)->lists('title', 'id');
+		$bscategories = $this->bscategorie->droplist(190);	
+		$bacategories = $this->categorie->droplist(195);
 		
-		View::share( array( 'bacategories' => $bacategories , 'bscategories' => $bscategories) );	
+		$bscategories = $custom->keysort($bscategories); 
+						$custom->knatsort($bscategories);
+						
+		$bacategories = $custom->keysort($bacategories); 
+						$custom->knatsort($bacategories);
+						
+		$bsyears = $this->seminaire->droplistByCol('year');
+		$bayears = $this->arret->getYears(195);
+		
+		$authors = $this->auteur->getAll();
+	
+		View::share( array( 'bacategories' => $bacategories , 'bscategories' => $bscategories , 'bsyears' => $bsyears , 'bayears' => $bayears , 'authors' =>  $authors ) );	
 
 	}
 	
@@ -92,9 +111,8 @@ class BailController extends BaseController {
 		$subjects   = $this->subject->getAll();
 		$categories = $this->subject->arrangeCategories($subjects);
 		$seminaires = $this->seminaire->getAll();
-		$bs  =  $this->bscategorie->droplist(190);
-   
-    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires , 'bs' => $bs , 'subjects' => $subjects  ,'categories' => $categories ));	
+		
+    	return View::make('bail.doctrine')->with( array( 'seminaires' => $seminaires , 'subjects' => $subjects  ,'categories' => $categories ));	
 	}
 	
 	public function search(){

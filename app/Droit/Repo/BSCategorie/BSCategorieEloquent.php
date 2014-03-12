@@ -36,12 +36,15 @@ class BSCategorieEloquent implements BSCategorieInterface{
 		
 		return $arrange;		
 	}
-	
-		
+			
 	public function droplist($pid)
-	{
-		
+	{		
 		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->lists('title', 'id');
+	}
+	
+	public function droplistByCol($pid,$col){
+	
+		return $this->categorie->where('pid','=',$pid)->where('deleted','=',0)->lists($col, 'id');
 	}
 	
 	public function create(array $data)

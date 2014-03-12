@@ -80,7 +80,7 @@
             	</div>
             	
             	<!-- Bloc archives newsletter --> 
-            	
+
              	<div class="upMarge">
              		<div id="rightmenu">	
 	             								
@@ -103,35 +103,31 @@
 									<h6>Par catégorie</h6>
 									<div class="list categories clear">
 										<select id="arret-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
-											<option value="c2">Analyse</option>
-											<option value="c17">Bail à ferme</option>
-											<option value="c45">Bail à ferme agricole</option>
-											<option value="c21">Changement de propriétaire</option>
-											<option value="c16">Conclusion</option>
-											<option value="c4">Défaut</option>
-											<option value="c10">Destiné à la publication</option>
-											<option value="c18">Diligence</option>
-											<option value="c20">Expulsion</option>
-											<option value="c13">Faillite</option>
-											<option value="c15">Frais accessoires</option>
-											<option value="c3">Général</option>
-											<option value="c14">Législation</option>
-											<option value="c9">Logement de famille</option>
-											<option value="c1">Loyer</option>
-											<option value="c7">Procédure</option>
-											<option value="c8">Prolongation</option>
-											<option value="c12">Prostitution</option>
-											<option value="c6">Résiliation</option>
-											<option value="c5">Sous-location</option>
-											<option value="c19">Vente</option>
+											
+											<?php
+
+												if(!empty($bacategories)){
+													foreach($bacategories as $bacategorie)
+													{
+														echo '<option value="c'.$bacategorie['id'].'">'.$bacategorie['title'].'</option>';
+													}
+												}
+												
+											?>
+
 										</select>
 									</div>
 									<h6>Par année</h6>
 									<ul id="arret-annees" class="list annees clear">
-										<li><a rel="y2013" href="#">Paru en 2013</a></li>
-										<li><a rel="y2012" href="#">Paru en 2012</a></li>
-										<li><a rel="y2011" href="#">Paru en 2011</a></li>
-										<li><a rel="y2010" href="#">Paru en 2010</a></li>
+										<?php
+											
+											if(!empty($bayears)){
+												foreach($bayears as $bayear){
+													echo '<li><a rel="y'.$bayear.'" href="#">Paru en '.$bayear.'</a></li>';
+												}
+											}
+										
+										?>
 									</ul>
 								</div>
 							</div>
@@ -141,66 +137,49 @@
 								<div class="filtre">
 									<h6>Par catégorie</h6>
 									<div class="list categories clear">
-										<select id="seminaire-chosen" class="chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
-											<option value="c2">Accessoires</option>
-											<option value="c25">AMSL</option>
-											<option value="c15">Bail commercial</option>
-											<option value="c20">Conclusion du contrat</option>
-											<option value="c17">Décès</option>
-											<option value="c8">Défauts</option>
-											<option value="c22">Délai</option>
-											<option value="c21">Diligence et mesures de sécurité</option>
-											<option value="c11">Divers</option>
-											<option value="c23">Droit public</option>
-											<option value="c13">Expulsion</option>
-											<option value="c18">Faillite</option>
-											<option value="c19">Internet</option>
-											<option value="c3">Logement famille</option>
-											<option value="c6">Loyer</option>
-											<option value="c16">Procédure</option>
-											<option value="c24">Projets de révision</option>
-											<option value="c9">Prolongation</option>
-											<option value="c5">Résiliation</option>
-											<option value="c4">Sous-location</option>
-											<option value="c7">Sûretés</option>
-											<option value="c10">Transfert</option>
-											<option value="c14">Travaux</option>
-											<option value="c12">Vente</option>
+									
+										<select id="seminaire-chosen" class="seminaire-chosen chosen-select category" multiple data-placeholder="Filtrer par catégorie..." name="filter">
+											<?php
+
+												if(!empty($bscategories)){
+													foreach($bscategories as $bscategorie)
+													{
+														echo '<option value="c'.$bscategorie['id'].'">'.$bscategorie['title'].'</option>';
+													}
+												}
+												
+											?>
 										</select>
+									
 									</div>
 									<h6>Par année</h6>
 									<ul id="seminaireannees" class="list annees clear">
-										<li><a rel="y17" href="#">Paru en 2012</a></li>
-										<li><a rel="y16" href="#">Paru en 2010</a></li>
-										<li><a rel="y15" href="#">Paru en 2008</a></li>
-										<li><a rel="y14" href="#">Paru en 2006</a></li>
+										<?php
+											
+											if(!empty($bsyears)){
+												foreach($bsyears as $id => $bsyear){
+													echo '<li><a rel="y'.$id.'" href="#">Paru en '.$bsyear.'</a></li>';
+												}
+											}
+										
+										?>
 									</ul>
 									<h6>Par auteur</h6>
 									<div class="list auteurs clear">
-										<select class="chosen-select author" multiple data-placeholder="Filtrer par auteur..." name="filter">
-											<option value="a57">Andrea Braconi</option>
-											<option value="a51">Ariane Morin</option>
-											<option value="a25">Bénédict Foëx</option>
-											<option value="a4">Bernard Corboz</option>
-											<option value="a48">Bertrand Reeb</option>
-											<option value="a59">Blaise Carron</option>
-											<option value="a37">Blaise Knapp</option>
-											<option value="a49">Carole Aubert</option>
-											<option value="a19">Charles-André Junod</option>
-											<option value="a24">Christine Habermacher-Droz</option>
-											<option value="a41">Cipriano Alvarez</option>
-											<option value="a6">Claude Reymond</option>
-											<option value="a13">Claude Yerly</option>
-											<option value="a47">Daniel Devaud</option>
-											<option value="a22">David Lachat</option>
-											<option value="a38">Denis Piotet</option>
-											<option value="a42">Fabienne Byrde</option>
-											<option value="a34">Francis Michon</option>
-											<option value="a45">François Bohnet</option>
-											<option value="a9">François Knoepfler</option>
-											<option value="a21">Giacomo Roncoroni</option>
-											<option value="a55">Gianmaria Mosca</option>
-											<option value="a11">H.-R. Schüpbach</option>
+										<select class="seminaire-chosen chosen-select author"  multiple data-placeholder="Filtrer par auteur..." name="filter">
+											<?php 
+											
+												$auteurs = $authors->lists('name','id');
+												
+												if(!empty($auteurs))
+												{
+													foreach($auteurs as $id => $auteur)
+													{
+														echo '<option value="a'.$id.'">'.$auteur.'</option>';
+													}
+												}
+												
+											?>
 										</select>
 									</div>
 							</div>						

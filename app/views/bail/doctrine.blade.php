@@ -26,15 +26,8 @@
 						<div class="order col">&nbsp;</div>
 					</div>
 					
-					<?php   
-							$custom->knatsort($categories);
-							$custom->keysort($bs);
-							
-							echo '<pre>';
-							print_r($bs);
-							echo '</pre>';							
-					?>
-				
+					<?php $custom->knatsort($categories);  ?>
+			
 					<div class="cat clear ">
 						<div class="liste">
 														

@@ -162,15 +162,12 @@
   color: #ccc;
   cursor: default;
 }
-.chosen-container .chosen-results li.highlighted {
-  background-color: #3875d7;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #3875d7), color-stop(90%, #2a62bc));
-  background-image: -webkit-linear-gradient(#3875d7 20%, #2a62bc 90%);
-  background-image: -moz-linear-gradient(#3875d7 20%, #2a62bc 90%);
-  background-image: -o-linear-gradient(#3875d7 20%, #2a62bc 90%);
-  background-image: linear-gradient(#3875d7 20%, #2a62bc 90%);
-  
+
+.chosen-container .chosen-results .highlighted {
+    background: none repeat scroll 0 0 #AAAAAA;
+    color: #FFFFFF;
 }
+
 .chosen-container .chosen-results li.no-results {
   display: list-item;
   background: #f4f4f4;
@@ -237,32 +234,26 @@
   color: #999;
 }
 .chosen-container-multi .chosen-choices li.search-choice {
-  position: relative;
-  margin: 3px 0 3px 5px;
-  padding: 3px 20px 3px 5px;
-  border: 1px solid #aaa;
-  border-radius: 3px;
-  background-color: #e4e4e4;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(20%, #f4f4f4), color-stop(50%, #f0f0f0), color-stop(52%, #e8e8e8), color-stop(100%, #eeeeee));
-  background-image: -webkit-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -moz-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: -o-linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-image: linear-gradient(#f4f4f4 20%, #f0f0f0 50%, #e8e8e8 52%, #eeeeee 100%);
-  background-clip: padding-box;
-  box-shadow: 0 0 2px white inset, 0 1px 0 rgba(0, 0, 0, 0.05);
-  color: #333;
-  line-height: 13px;
-  cursor: default;
+	background-clip: padding-box;
+	background-color: #E4E4E4;
+	background-image: -moz-linear-gradient(center bottom , #E4E4E4 0%, #EEEEEE 70%);
+	border: 1px solid #B4B4B4;
+	border-radius: 3px;
+	color: #333333;
+	line-height: 13px;
+	margin: 3px 0 3px 5px;
+	padding: 3px 19px 3px 6px;
+	position: relative;
 }
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close {
-  position: absolute;
-  top: 4px;
-  right: 3px;
-  display: block;
-  width: 12px;
-  height: 12px;
-  background: url('chosen-sprite.png') -42px 1px no-repeat;
-  font-size: 1px;
+	background: url("chosen-sprite.png") no-repeat scroll right top rgba(0, 0, 0, 0);
+	display: block;
+	font-size: 1px;
+	height: 9px;
+	position: absolute;
+	right: 5px;
+	top: 6px;
+	width: 8px;
 }
 .chosen-container-multi .chosen-choices li.search-choice .search-choice-close:hover {
   background-position: -42px -10px;
@@ -375,6 +366,8 @@
 .chosen-rtl .chosen-choices li.search-choice {
   margin: 3px 5px 3px 0;
   padding: 3px 5px 3px 19px;
+    color: #333333;
+    line-height: 13px;
 }
 .chosen-rtl .chosen-choices li.search-choice .search-choice-close {
   right: auto;

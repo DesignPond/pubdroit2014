@@ -60,6 +60,26 @@ class ArretEloquent implements ArretInterface {
 		
 		return $this->arret->where('id','=',$id)->with( array('arrets_categories') )->get();	
 	}
+		
+	public function droplistByCol($col){
+	
+		return $this->arret->where('deleted','=',0)->orderBy($col , 'DESC')->lists($col, 'id');
+	}
+	
+	public function getYears($pid){
+		
+		$bayears = $this->arret->where('pid','=',$pid)->where('deleted','=',0)->orderBy('pub_date' , 'DESC')->groupBy('pub_date')->get( array('pub_date') );	
+		
+		$years   = array();
+		
+		foreach($bayears as $bayear)
+		{
+			$year         = $bayear->pub_date->format('Y');
+			$years[$year] = $year;
+		}
+		
+		return $years;
+	}
 	
 	public function isMain($arrets){
 		
