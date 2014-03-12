@@ -2,9 +2,12 @@
 
 use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
+use Droit\Repo\Inscription\InscriptionInterface;
 
 class UserController extends BaseController {
 
+	protected $inscription;	
+	
 	protected $user;
 	
 	protected $adresse;
@@ -12,11 +15,14 @@ class UserController extends BaseController {
 	/**
 	 * Instantiate a new UserController
 	 */
-	public function __construct( UserInfoInterface $user , AdresseInterface $adresse )
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , InscriptionInterface $inscription )
 	{
-		$this->user      = $user;
+	
+		$this->inscription = $inscription;
+			
+		$this->user        = $user;
 		
-		$this->adresse   = $adresse;
+		$this->adresse     = $adresse;
 		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
@@ -65,6 +71,11 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
+		// Inscriptions
+		
+		$inscriptions = $this->inscription->getForUser($id);
+		
+		// Adresses and apprtenances
 		$membres          = array();
 		$specialisations  = array();
 		
@@ -85,7 +96,8 @@ class UserController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.users.show')->with(  array('user' => $user , 'contact_id' => $contact_id , 'membres' => $membres , 'specialisations' => $specialisations ) );
+        return View::make('admin.users.show')
+        			->with( array('user' => $user , 'contact_id' => $contact_id , 'membres' => $membres , 'specialisations' => $specialisations , 'inscriptions' => $inscriptions ));
 	}
 
 	/**

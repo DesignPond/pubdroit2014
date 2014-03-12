@@ -42,6 +42,11 @@ class InscriptionEloquent implements InscriptionInterface {
 					->where('adresses.type', '=' ,1)
 					->get();
 	}
+	
+	public function getForUser($user){
+					
+		return $this->inscription->where('user_id', '=' ,$user)->with( array('prices','users','event') )->get();		
+	}
 
 	public function create(array $data){
 		

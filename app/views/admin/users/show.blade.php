@@ -15,7 +15,11 @@
 		</div>
 		
 		<div class="container"><!-- container -->		
-		
+			
+			<!-- ====================== 
+			   Info générales compte	
+			=========================== -->
+			
 			<div class="row"><!-- row -->
 				<div class="col-md-12"><!-- col -->
 				
@@ -59,12 +63,13 @@
 										 	<?php  
 										 		foreach ($specialisations as $spec)
 										 		{ 											 
-											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';										 		
+											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';
 										 		} 
 										 	?>
 										 </div>
 									<?php } ?>										 
 									</div>  
+									
 								</div><!-- end col -->
 								
 							</div><!-- end row -->
@@ -75,7 +80,54 @@
 					
 				</div><!-- end col -->
 			</div><!-- end row -->
+
+			<!-- ====================== 
+			   Inscriptions for user	
+			=========================== -->
 			
+			<div class="row"><!-- row -->
+				<div class="col-md-12"><!-- col -->
+				
+					<div class="panel panel-midnightblue"><!-- panel -->
+						<div class="panel-body"><!-- panel body -->
+
+							<div class="table-responsive">
+								<?php
+									echo '<pre>';
+									print_r($inscriptions);
+									echo '</pre>';
+								?>
+								<table class="table table-condensed">
+									<h3><strong>{{ $user->prenom }} {{ $user->nom }}</strong></h3>
+									<tbody>
+										<tr>
+											<td>Email</td><td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
+										</tr>
+										<tr>
+											<td>Compte crée le: </td>
+											<td><em>{{ $user->created_at->format('d-m-Y') }}</em></td>
+										</tr>
+										<tr>
+											<td>Dernière modification: </td>
+											<td><em>{{ $user->updated_at->format('d-m-Y') }}</em></td>
+										</tr>
+									</tbody>
+								</table>
+
+							</div>
+
+						</div><!-- end panel body -->
+
+					</div><!-- end panel -->
+					
+				</div><!-- end col -->
+			</div><!-- end row -->
+
+
+			<!-- ====================== 
+			  Adresses for compte	
+			=========================== -->
+						
 			<?php  
 			
 				$adresses    = $user->adresses; 															
