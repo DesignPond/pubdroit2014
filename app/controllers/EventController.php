@@ -163,14 +163,25 @@ class EventController extends BaseController {
 		
 		// Uploads 
 		$documents = array(
-			'images' => array('carte','vignette','badge'),
+			'images' => array('carte','vignette','badge','illustration'),
 			'docs'   => array('programme','pdf','document')
 		);
 		
 		$allfiles = $this->event->setFiles($event,$documents);
 		
-        return View::make('admin.event.edit')
-        	  ->with( array('event' => $event,'centers' => $centers ,'comptes' => $comptes ,'attestation' => $attestation,'email' => $email, 'emailDefaut' => $emailDefaut , 'documents' => $documents,'allfiles' => $allfiles ));
+        return View::make('admin.event.edit')->with( 
+        	array(
+        		'event'       => $event,
+        		'centers'     => $centers,
+        		'comptes'     => $comptes,
+        		'attestation' => $attestation,
+        		'email'       => $email, 
+        		'emailDefaut' => $emailDefaut, 
+        		'documents'   => $documents,
+        		'allfiles'    => $allfiles 
+        	)
+        );
+        
 	}
 
 	/**

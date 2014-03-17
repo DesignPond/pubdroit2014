@@ -30,8 +30,10 @@
 							
 								<div class="col-md-6"><!-- col -->
 									<div class="table-responsive">
-										<table class="table table-condensed">
-											<h3><strong>{{ $user->prenom }} {{ $user->nom }}</strong></h3>
+									
+										<h3><strong>{{ $user->prenom }} {{ $user->nom }}</strong></h3>
+										
+										<table class="table table-condensed">											
 											<tbody>
 												<tr>
 													<td>Email</td><td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
@@ -80,104 +82,115 @@
 					
 				</div><!-- end col -->
 			</div><!-- end row -->
-
-			<!-- ====================== 
-			   Inscriptions for user	
-			=========================== -->
+			
+			<!-- =================================== 
+			   Inscriptions and books for user	
+			======================================== -->
 			
 			<div class="row"><!-- row -->
 				<div class="col-md-12"><!-- col -->
 				
-					<div class="panel panel-midnightblue"><!-- panel -->
-						<div class="panel-body"><!-- panel body -->
-
-							<h3><strong>Inscriptions</strong></h3>
-							
-							@if(!$inscriptions->isEmpty())
-								@foreach($inscriptions as $inscription)
-								
-								    <div class="panel panel-primary">
-								    	<div class="panel-body">
-								    										    	
-									    	<div class="row"><!-- row -->
-									    		<div class="col-md-5"><!-- col -->
-									    			<h4><strong>{{ $inscription->event->titre }}</strong></h4>
-													<p>{{ $inscription->event->sujet }}</p>
-									    		</div>
-									    		<div class="col-md-4"><!-- col -->
-									    			<dl>
-														<dt>Date d'inscription</dt>
-														<dd>{{ $inscription->inscription_at->format('d-m-Y') }}</dd>
-														<dt>Prix</dt>
-														<dd>{{ $inscription->prices->remarquePrice }} : {{ $inscription->prices->price }}</dd>
-														<dt>Options</dt>
-														
-															@if( !$options->isEmpty() )
-																@foreach($options as $option)
-																	@if( $option->event_id == $inscription->event->id )
-																		<dd>{{ $option->titreOption }}</dd>
-																	@endif
-																@endforeach
-															@endif
-													
-													</dl>
-									    		</div>
-									    		<div class="col-md-3"><!-- col -->
-													
-													@if( $docs )
-														<div class="list-group">
-														@foreach($docs as $name => $view)
+					<div class="tab-container tab-info">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a data-toggle="tab" href="#inscriptions">Inscriptions</a>
+							</li>
+							<li class="">
+								<a data-toggle="tab" href="#achatshop">Achat shop</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div id="inscriptions" class="tab-pane active">
+																							
+								@if(!$inscriptions->isEmpty())
+									@foreach($inscriptions as $inscription)
+									
+									    <div class="panel panel-primary">
+									    	<div class="panel-body">
+									    										    	
+										    	<div class="row"><!-- row -->
+										    		<div class="col-md-1">													
+														<?php
 															
-															<?php 
-																	
-																$link = $custom->fileExistFormatLink( '/files/users/' , $user->id , $inscription->event->id , $view , $name , 'list-group-item');
+															if(isset($vignettes[$inscription->event->id]))
+															{
+																$img      = $vignettes[$inscription->event->id];
+																$url      = '/files/vignette/'.$img;
+																$width    = 70;
+																$vignette = $custom->fileExistFormatImage($url,$width);
 																
+																echo $vignette;
+															}
+
+														?>
+										    		</div>
+										    		<div class="col-md-4"><!-- col -->
+										    			<h4><strong>{{ $inscription->event->titre }}</strong></h4>
+														<dl>
+															<dt>Date d'inscription</dt>
+															<dd>{{ $inscription->inscription_at->format('d-m-Y') }}</dd>
+														</dl>
+										    		</div>
+										    		<div class="col-md-2"><!-- col -->
+										    			<h4><span class="label label-info">{{ $inscription->inscriptionNumber }}</span></h4>	
+										    			<dl>
+															<dt>Prix</dt>
+															<dd>{{ $inscription->prices->remarquePrice }} : {{ $inscription->prices->price }}</dd>
+
+																@if( !$options->isEmpty() )
+																<dt>Options</dt>
+																	@foreach($options as $option)
+																		@if( $option->event_id == $inscription->event->id )
+																			<dd>{{ $option->titreOption }}</dd>
+																		@endif
+																	@endforeach
+																@endif														
+														</dl>
+										    		</div>
+										    		<div class="col-md-5"><!-- col -->
+										    			<h4><strong>Documents</strong></h4>
+														@if( $docs )
+															<div class="text-right btn-group">
+															@foreach($docs as $name => $view)															
+															<?php 																	
+																$link = $custom->fileExistFormatLink( '/files/users/', $user->id, $inscription->event->id ,$view, $name ,'btn btn-inverse');
 																if($link){ echo $link; }
-															?>
-															
-														@endforeach
+															?>														
+															@endforeach
+															</div>
+														@endif
+																	
+										    		</div>	
+										    	</div><!-- end row -->
+										    	
+										    	<div class="row"><!-- row -->	
+										    		<div class="col-md-1"></div>							    	
+										    		<div class="col-md-4">
+											    		<div class="btn-group">
+															<a href="{{ $inscription->id }}" class="btn btn-sm btn-primary">&Eacute;diter</a>
+															<a href="#" class="btn btn-sm btn-green">Envoyer par email</a>
+															<a href="" class="btn btn-sm btn-orange">Regenerer docs</a>
+															<a href="{{ $inscription->id }}" class="btn btn-sm btn-danger">Desinscrire</a>
 														</div>
-													@endif
-																
-									    		</div>
-
-									    	</div><!-- end row -->
-									    	
-									    	<div class="row"><!-- row -->
-									    	
-									    		<div class="col-md-5">
-										    		<div class="btn-group">
-														<a href="{{ $inscription->id }}" class="btn btn-sm btn-primary">Modifier</a>
-														<a href="#" class="btn btn-sm btn-info">Envoyer par email</a>
-														<a href="{{ $inscription->id }}" class="btn btn-sm btn-danger">Desinscription</a>
-													</div>
-									    		</div>
-									    		<div class="col-md-4">
-									    		</div>
-									    		<div class="col-md-3">
-									    			<a href="" class="btn btn-sm btn-orange">Regenerer documents</a>
-									    		</div>
-
-									    	</div><!-- end row -->
-									    	
-								    	</div>
-								    </div>
-								    
-							    @endforeach
-						    @endif
-						    
-								<?php
-									/*
-echo '<pre>';
-									print_r($inscriptions);
-									echo '</pre>';
-*/
-								?>
-						
-
-						</div><!-- end panel body -->
-
-					</div><!-- end panel -->
+										    		</div>
+										    		<div class="col-md-2"></div>
+										    		<div class="col-md-5 text-right"></div>
+										    	</div><!-- end row -->
+										    	
+									    	</div>
+									    </div>
+									    
+								    @endforeach
+							    @endif
+								
+							</div>
+							<div id="achatshop" class="tab-pane">
+								<div>								
+									<p>efgwef</p>
+								</div>
+							</div>
+						</div>
+					</div>
 					
 				</div><!-- end col -->
 			</div><!-- end row -->

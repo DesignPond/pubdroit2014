@@ -45,6 +45,53 @@ class Custom {
 		
 		return '';
 	}
+	
+	public function getMimeType($filename)
+	{
+	    $mimetype = false;
+	    
+	    if(function_exists('finfo_fopen')) 
+	    {
+	       $mimetype = finfo_fopen($filename);
+	    } 
+	    elseif(function_exists('getimagesize')) 
+	    {
+	       $mimetype = getimagesize($filename);
+	    } 
+	    elseif(function_exists('exif_imagetype')) 
+	    {
+	       $mimetype = exif_imagetype($filename);
+	    } 
+	    elseif(function_exists('mime_content_type')) 
+	    {
+	       $mimetype = mime_content_type($filename);
+	    }
+	    
+	    return $mimetype['mime'];
+	}
+
+    
+	public function fileExistFormatImage( $path , $width ){
+		
+		$url  = getcwd().$path;
+		
+		$add  = '';
+		
+		$ext = array('jpg','JPG','jpeg','JPEG','png','PNG','gif','GIF');
+		
+		if ( File::exists($url) ){
+			
+			$extension = File::extension($url);
+			
+			if ( in_array( $extension , $ext )  ){
+			
+				$asset = asset($path);
+				
+				return '<img src="'.$asset.'" alt="" width="'.$width.'px" />';	
+			}	
+		}
+
+	}
     
     public static function ifExist(&$argument, $default="") {
     
