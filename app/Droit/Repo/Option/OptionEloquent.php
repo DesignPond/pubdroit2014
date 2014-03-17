@@ -15,8 +15,14 @@ class OptionEloquent implements OptionInterface {
 	
 	public function getAll(){
 		
-		return $this->option->all();
-		
+		return $this->option->all();		
+	}
+	
+	public function findForUser($user){
+	
+		return $this->option->join('event_option_user','options.id','=','event_option_user.event_option_id')
+							->where('event_option_user.user_id', '=' ,$user)
+							->get();
 	}
 	
 	public function find($id){

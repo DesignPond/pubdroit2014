@@ -11,4 +11,5 @@ return array(
     $vendorDir . '/phpseclib/phpseclib/phpseclib/Crypt/Random.php',
     $vendorDir . '/iron-io/iron_mq/IronMQ.class.php',
     $vendorDir . '/laravel/framework/src/Illuminate/Support/helpers.php',
+    $baseDir . '/app/helpers/Custom.php',
 );

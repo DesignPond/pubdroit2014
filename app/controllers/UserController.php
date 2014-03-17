@@ -3,6 +3,7 @@
 use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
 use Droit\Repo\Inscription\InscriptionInterface;
+use Droit\Repo\Option\OptionInterface;
 
 class UserController extends BaseController {
 
@@ -11,11 +12,13 @@ class UserController extends BaseController {
 	protected $user;
 	
 	protected $adresse;
+	
+	protected $options;
 
 	/**
 	 * Instantiate a new UserController
 	 */
-	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , InscriptionInterface $inscription )
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , InscriptionInterface $inscription, OptionInterface $options )
 	{
 	
 		$this->inscription = $inscription;
@@ -23,6 +26,8 @@ class UserController extends BaseController {
 		$this->user        = $user;
 		
 		$this->adresse     = $adresse;
+		
+		$this->option      = $options;
 		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
@@ -74,10 +79,19 @@ class UserController extends BaseController {
 		// Inscriptions
 		
 		$inscriptions = $this->inscription->getForUser($id);
+		$options      = $this->option->findForUser($id);
 		
 		// Adresses and apprtenances
 		$membres          = array();
 		$specialisations  = array();
+		
+		$docs = array(
+			'Bon'         => 'pdfbon',
+			'Facture'     => 'pdffacture',
+			'BV'          => 'bv',
+			'Rappel'      => 'pdfrappel',
+			'Attestation' => 'attestation',
+		);
 		
         $user             = $this->user->find($id);
         $contact_id       = $this->user->findAdresseContact($id);
@@ -96,8 +110,17 @@ class UserController extends BaseController {
             // @codeCoverageIgnoreEnd
         }
 
-        return View::make('admin.users.show')
-        			->with( array('user' => $user , 'contact_id' => $contact_id , 'membres' => $membres , 'specialisations' => $specialisations , 'inscriptions' => $inscriptions ));
+        return View::make('admin.users.show')->with( 
+       		 array(
+	        	'user'            => $user,
+	        	'contact_id'      => $contact_id,
+	        	'membres'         => $membres ,
+	        	'specialisations' => $specialisations,
+	        	'inscriptions'    => $inscriptions,
+	        	'options'         => $options,
+	        	'docs'            => $docs 
+        	)
+        );
 	}
 
 	/**

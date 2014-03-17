@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\Carbon;
+use File;
 use Civilites as Civilites;
 use Cantons as Cantons;
 use Professions as Professions;
@@ -22,6 +23,28 @@ class Custom {
         return $carbonDate = date("d/m/Y", strtotime($value)); 
         //return $value;
     }
+    
+	public function fileExistFormatLink( $path , $user , $event , $view , $name , $class = NULL){
+		
+		$link = $path.$user.'/'.$view.'_'.$event.'-'.$user.'.pdf';
+		
+		$url  = getcwd().'/'.$link;
+		
+		$add  = '';
+		
+		if ( File::exists($url) ){
+		
+			$asset = asset($link);
+			
+			if($class){
+				$add = ' class="'.$class.'" ';
+			}
+			
+			return '<a target="_blank" href="'.$asset.'"'.$add.'>'.$name.'</a>';	
+		}
+		
+		return '';
+	}
     
     public static function ifExist(&$argument, $default="") {
     
@@ -62,7 +85,7 @@ class Custom {
 	        'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss','à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a',
 	        'å'=>'a', 'æ'=>'a', 'ç'=>'c', 'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i',
 	        'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o', 'ö'=>'o', 'ø'=>'o', 'ù'=>'u',
-	        'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ƒ'=>'f',
+	        'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', 'ƒ'=>'f', 'ü'=>'u'
 	    );
 	
 	    $text = strtr ($text, $alphabet);

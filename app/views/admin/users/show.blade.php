@@ -91,30 +91,89 @@
 					<div class="panel panel-midnightblue"><!-- panel -->
 						<div class="panel-body"><!-- panel body -->
 
-							<div class="table-responsive">
+							<h3><strong>Inscriptions</strong></h3>
+							
+							@if(!$inscriptions->isEmpty())
+								@foreach($inscriptions as $inscription)
+								
+								    <div class="panel panel-primary">
+								    	<div class="panel-body">
+								    										    	
+									    	<div class="row"><!-- row -->
+									    		<div class="col-md-5"><!-- col -->
+									    			<h4><strong>{{ $inscription->event->titre }}</strong></h4>
+													<p>{{ $inscription->event->sujet }}</p>
+									    		</div>
+									    		<div class="col-md-4"><!-- col -->
+									    			<dl>
+														<dt>Date d'inscription</dt>
+														<dd>{{ $inscription->inscription_at->format('d-m-Y') }}</dd>
+														<dt>Prix</dt>
+														<dd>{{ $inscription->prices->remarquePrice }} : {{ $inscription->prices->price }}</dd>
+														<dt>Options</dt>
+														
+															@if( !$options->isEmpty() )
+																@foreach($options as $option)
+																	@if( $option->event_id == $inscription->event->id )
+																		<dd>{{ $option->titreOption }}</dd>
+																	@endif
+																@endforeach
+															@endif
+													
+													</dl>
+									    		</div>
+									    		<div class="col-md-3"><!-- col -->
+													
+													@if( $docs )
+														<div class="list-group">
+														@foreach($docs as $name => $view)
+															
+															<?php 
+																	
+																$link = $custom->fileExistFormatLink( '/files/users/' , $user->id , $inscription->event->id , $view , $name , 'list-group-item');
+																
+																if($link){ echo $link; }
+															?>
+															
+														@endforeach
+														</div>
+													@endif
+																
+									    		</div>
+
+									    	</div><!-- end row -->
+									    	
+									    	<div class="row"><!-- row -->
+									    	
+									    		<div class="col-md-5">
+										    		<div class="btn-group">
+														<a href="{{ $inscription->id }}" class="btn btn-sm btn-primary">Modifier</a>
+														<a href="#" class="btn btn-sm btn-info">Envoyer par email</a>
+														<a href="{{ $inscription->id }}" class="btn btn-sm btn-danger">Desinscription</a>
+													</div>
+									    		</div>
+									    		<div class="col-md-4">
+									    		</div>
+									    		<div class="col-md-3">
+									    			<a href="" class="btn btn-sm btn-orange">Regenerer documents</a>
+									    		</div>
+
+									    	</div><!-- end row -->
+									    	
+								    	</div>
+								    </div>
+								    
+							    @endforeach
+						    @endif
+						    
 								<?php
-									echo '<pre>';
+									/*
+echo '<pre>';
 									print_r($inscriptions);
 									echo '</pre>';
+*/
 								?>
-								<table class="table table-condensed">
-									<h3><strong>{{ $user->prenom }} {{ $user->nom }}</strong></h3>
-									<tbody>
-										<tr>
-											<td>Email</td><td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
-										</tr>
-										<tr>
-											<td>Compte crée le: </td>
-											<td><em>{{ $user->created_at->format('d-m-Y') }}</em></td>
-										</tr>
-										<tr>
-											<td>Dernière modification: </td>
-											<td><em>{{ $user->updated_at->format('d-m-Y') }}</em></td>
-										</tr>
-									</tbody>
-								</table>
-
-							</div>
+						
 
 						</div><!-- end panel body -->
 
