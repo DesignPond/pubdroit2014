@@ -38,13 +38,16 @@ class PubdroitServiceProvider extends ServiceProvider {
        	// Admin
     	$this->registerEventService();
     	$this->registerInscriptionService();
+    	$this->registerInscriptionWorkerService();
     	$this->registerInvoiceService();	
     	$this->registerCompteService();	
     	$this->registerOptionService();	
+    	
     	$this->registerSpecialisationService();	
     	$this->registerMembreService();
     	$this->registerProfessionService();	
     	$this->registerPriceService();	
+    	
     	$this->registerArretService();	
     	$this->registerAnalyseService();	
     	$this->registerSeminaireService();	
@@ -52,6 +55,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     	$this->registerAuteurService();	
     	$this->registerCategorieService();
     	$this->registerBSCategorieService();	
+    	
 		$this->registerFileService();
 		$this->registerUploadService();	
 		$this->registerCalculetteService();
@@ -106,6 +110,19 @@ class PubdroitServiceProvider extends ServiceProvider {
         
     }
     
+    protected function registerInscriptionWorkerService(){
+    
+	    $this->app->bind('Droit\Service\Inscription\InscriptionServiceInterface', function()
+        {
+            return new \Droit\Service\Inscription\InscriptionServiceWorker(
+	           		\App::make('Droit\Repo\File\FileInterface') , 
+	            	\App::make('Droit\Repo\Inscription\InscriptionInterface') , 
+	            	\App::make('Droit\Repo\Option\OptionInterface') 
+            );
+        });
+        
+    }    
+        
     protected function registerInvoiceService(){
     
 	    $this->app->bind('Droit\Repo\Invoice\InvoiceInterface', function()

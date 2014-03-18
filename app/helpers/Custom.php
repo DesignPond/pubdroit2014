@@ -1,7 +1,7 @@
 <?php
 
 use Carbon\Carbon;
-use File;
+use File as File;
 use Civilites as Civilites;
 use Cantons as Cantons;
 use Professions as Professions;
@@ -283,6 +283,13 @@ class Custom {
 	/*
 	 * Array functions
 	*/	
+	
+	// add arrays together
+	public function addArrayToArray($array1 , $array2){
+		
+		return array_merge($array1,$array2);
+		
+	}
 	
 	/* Flatten the array */
 	public function array_flatten($array) {

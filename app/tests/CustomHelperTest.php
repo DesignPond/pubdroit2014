@@ -145,6 +145,21 @@ class CustomHelperTest extends TestCase {
 		
 	}
 
+	public function testAddArrayToArray(){
+		
+		$array1 = array( 'one'  => 'item 1' , 'two' => 'item 2' );
+
+		$array2 = array( 'four' => 'item 4' , 'six' => 'item 6' );
+			
+		$expect = array( 'one'  => 'item 1' , 'two' => 'item 2' , 'four' => 'item 4' , 'six' => 'item 6' );
+		
+		$actual = $this->custom->addArrayToArray( $array1, $array2 );
+		
+		$this->assertEquals($expect, $actual);
+		
+	}
+
+
 	public function testFindAllListOfItemsInArrayIsFalse(){
 		
 		$items  = array( 1 , 2 , 8 );		
@@ -154,8 +169,7 @@ class CustomHelperTest extends TestCase {
 		
 		$this->assertFalse( $actual );
 		
-	}
-				
+	}				
 	/*
 	 * Tests for phone numbers
 	*/		

@@ -2,9 +2,7 @@
 
 use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
-use Droit\Repo\Inscription\InscriptionInterface;
-use Droit\Repo\Option\OptionInterface;
-use Droit\Repo\File\FileInterface;
+use Droit\Service\Inscription\InscriptionServiceInterface;
 
 class UserController extends BaseController {
 
@@ -13,26 +11,19 @@ class UserController extends BaseController {
 	protected $user;
 	
 	protected $adresse;
-	
-	protected $options;
-	
-	protected $file;
+
 
 	/**
 	 * Instantiate a new UserController
 	 */
-	public function __construct( UserInfoInterface $user , FileInterface $file , AdresseInterface $adresse , InscriptionInterface $inscription, OptionInterface $options )
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , InscriptionServiceInterface $inscription )
 	{
-	
-		$this->inscription = $inscription;
 			
 		$this->user        = $user;
 		
 		$this->adresse     = $adresse;
 		
-		$this->option      = $options;
-		
-		$this->file        = $file;
+		$this->inscription = $inscription;
 		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
@@ -81,55 +72,31 @@ class UserController extends BaseController {
 	 */
 	public function show($id)
 	{
-		// Inscriptions
-		
-		$inscriptions = $this->inscription->getForUser($id);
-		$options      = $this->option->findForUser($id);
-		
-		$events       = $inscriptions->lists('event_id','id');
-		$vignettes    = $this->file->getFilesEvent($events,'vignette')->lists('filename','event_id');
 		
 		// Adresses and apprtenances
 		$membres          = array();
 		$specialisations  = array();
-		
-		$docs = array(
-			'Bon'         => 'pdfbon',
-			'Facture'     => 'pdffacture',
-			'BV'          => 'bv',
-			'Rappel'      => 'pdfrappel',
-			'Attestation' => 'attestation',
-		);
-		
+		$data             = array();
+
         $user             = $this->user->find($id);
-        $contact_id       = $this->user->findAdresseContact($id);
+        $contact          = $this->user->findAdresseContact($id , true); // return only id with true
         
-        if($contact_id)
+        if($contact)
         {
-        	$contact         = $contact_id->first()->id;
 	        $membres         = $this->adresse->members($contact);
 			$specialisations = $this->adresse->specialisations($contact); 
         }
+        
+        $data['user']            = $user;
+        $data['membres']         = $membres;
+        $data['specialisations'] = $specialisations;
+        
+        $inscriptions = $this->inscription->inscriptionsForUser($id);
+        
+        $result = array_merge($inscriptions,$data);
 
-        if($user == null || !is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
-        }
-
-        return View::make('admin.users.show')->with( 
-       		 array(
-	        	'user'            => $user,
-	        	'contact_id'      => $contact_id,
-	        	'membres'         => $membres ,
-	        	'specialisations' => $specialisations,
-	        	'inscriptions'    => $inscriptions,
-	        	'options'         => $options,
-	        	'docs'            => $docs,
-	        	'vignettes'       => $vignettes 
-        	)
-        );
+        return View::make('admin.users.show')->with( $result );
+       
 	}
 
 	/**
@@ -163,12 +130,6 @@ class UserController extends BaseController {
 	 */
 	public function destroy($id)
 	{
-        if(!is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
-        }
 
 		if ($this->user->destroy($id))
 		{

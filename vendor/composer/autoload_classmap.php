@@ -463,6 +463,8 @@ return array(
     'Droit\\Service\\Form\\User\\UserFormLaravelValidator' => $baseDir . '/app/Droit/Service/Form/User/UserFormLaravelValidator.php',
     'Droit\\Service\\Generate\\GenerateInterface' => $baseDir . '/app/Droit/Service/Generate/GenerateInterface.php',
     'Droit\\Service\\Generate\\GenerateWorker' => $baseDir . '/app/Droit/Service/Generate/GenerateWorker.php',
+    'Droit\\Service\\Inscription\\InscriptionServiceInterface' => $baseDir . '/app/Droit/Service/Inscription/InscriptionServiceInterface.php',
+    'Droit\\Service\\Inscription\\InscriptionServiceWorker' => $baseDir . '/app/Droit/Service/Inscription/InscriptionServiceWorker.php',
     'Droit\\Service\\Upload\\UploadInterface' => $baseDir . '/app/Droit/Service/Upload/UploadInterface.php',
     'Droit\\Service\\Upload\\UploadWorker' => $baseDir . '/app/Droit/Service/Upload/UploadWorker.php',
     'Droit\\Service\\Validation\\AbstractLaravelValidator' => $baseDir . '/app/Droit/Service/Validation/AbstractLaravelValidator.php',

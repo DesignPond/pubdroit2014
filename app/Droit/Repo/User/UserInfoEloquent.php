@@ -124,14 +124,21 @@ class UserInfoEloquent implements UserInfoInterface{
 	 *
 	 * @return stdObject Collection of users
 	 */
-	public function findAdresseContact($id){
+	public function findAdresseContact($id , $onlyId = null){
 
-		return $this->user->where('users.id','=',$id)
+		$contact = $this->user->where('users.id','=',$id)
 						  ->join('adresses', function($join)
 					      {
 					          $join->on('users.id', '=', 'adresses.user_id')->where('adresses.type', '=', 1);
 					          
-					      })->get();															
+					      })->get();	
+					      
+		if($onlyId && $contact)
+		{
+			return $contact->first()->id;
+		}		
+		
+		return $contact;												
 	}
 				
 	/**
