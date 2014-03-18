@@ -48,12 +48,20 @@
 												</tr>
 											</tbody>
 										</table>
-										<div class="btn-group">
-											<!-- <a class="btn btn-primary" href="'{{ action('UserController@edit', array($user->id)) }}'">Edit Profile</a> -->
-											<a class="btn btn-orange">Changer le mot de passe</a>
-											<a class="btn btn-danger">Supprimer le compte</a>
-										</div>
 									</div>
+									<div class="btn-group">
+			                            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+			                                <i class="fa fa-check-circle"></i>&nbsp; Compte actif &nbsp;
+			                                <span class="caret"></span>
+			                            </button>
+			                            <ul class="dropdown-menu" role="menu">
+			                                <li><a href="">Désactiver le compte</a></li>
+			                                <li><a href="">Changer le mot de passe</a></li>
+			                                <li class="divider"></li>
+			                                <li><a href=""><small>Supprimer le compte</small></a></li>
+			                              </ul>
+		                            </div>
+
 								</div>
 								<div class="col-md-6">
 								
@@ -153,7 +161,7 @@
 															<div class="text-right btn-group">
 															@foreach($docs as $name => $view)															
 															<?php 																	
-																$link = $custom->fileExistFormatLink( '/files/users/', $user->id, $inscription->event->id ,$view, $name ,'btn btn-inverse');
+																$link = $custom->fileExistFormatLink( '/files/users/', $user->id, $inscription->event->id ,$view, $name ,'btn btn-default');
 																if($link){ echo $link; }
 															?>														
 															@endforeach
@@ -163,18 +171,23 @@
 										    		</div>	
 										    	</div><!-- end row -->
 										    	
-										    	<div class="row"><!-- row -->	
-										    		<div class="col-md-1"></div>							    	
-										    		<div class="col-md-4">
-											    		<div class="btn-group">
-															<a href="{{ $inscription->id }}" class="btn btn-sm btn-primary">&Eacute;diter</a>
-															<a href="#" class="btn btn-sm btn-green">Envoyer par email</a>
-															<a href="" class="btn btn-sm btn-orange">Regenerer docs</a>
-															<a href="{{ $inscription->id }}" class="btn btn-sm btn-danger">Desinscrire</a>
-														</div>
+										    	<div class="row"><!-- row -->							    	
+										    		<div class="col-md-12 text-right">
+										    		
+														 <div class="btn-group">
+							                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+							                                Actions &nbsp;<span class="caret"></span>
+							                              </button>
+							                              <ul class="dropdown-menu" role="menu">
+							                                <li><a href="{{ $inscription->id }}">&Eacute;diter</a></li>
+							                                <li><a href="#">Envoyer par email</a></li>
+							                                <li><a href="#">Regenerer docs</a></li>
+							                                <li class="divider"></li>
+							                                <li><a href="#"><small>Désinscrire</small></a></li>
+							                              </ul>
+							                            </div>
+							                            
 										    		</div>
-										    		<div class="col-md-2"></div>
-										    		<div class="col-md-5 text-right"></div>
 										    	</div><!-- end row -->
 										    	
 									    	</div>
