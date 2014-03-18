@@ -181,7 +181,7 @@
 							                              <ul class="dropdown-menu" role="menu">
 							                                <li><a href="{{ $inscription->id }}">&Eacute;diter</a></li>
 							                                <li><a href="#">Envoyer par email</a></li>
-							                                <li><a href="#">Regenerer docs</a></li>
+							                                <li><a href="#">Régénerer docs</a></li>
 							                                <li class="divider"></li>
 							                                <li><a href="#"><small>Désinscrire</small></a></li>
 							                              </ul>

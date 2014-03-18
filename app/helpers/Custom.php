@@ -9,6 +9,11 @@ use Pays as Pays;
 
 class Custom {
 
+	/*
+	 * Dates functions
+	*/
+
+	// localized date format
     public static function formatDate($date) {
     
         $instance   = Carbon::createFromFormat('Y-m-d', $date); 
@@ -18,22 +23,26 @@ class Custom {
         return $formatDate;
     }
     
-	public function getCreatedAtAttribute($value) { //created_at field in DB
+    //created_at field in DB
+	public function getCreatedAtAttribute($value) { 
         //return $carbonDate = Carbon::createFromFormat('Y-m-d H:i:s', $value);	
         return $carbonDate = date("d/m/Y", strtotime($value)); 
         //return $value;
     }
     
+    /*
+	 * Files functions
+	*/
+    
 	public function fileExistFormatLink( $path , $user , $event , $view , $name , $class = NULL){
 		
-		$link = $path.$user.'/'.$view.'_'.$event.'-'.$user.'.pdf';
-		
+		$link = $path.$user.'/'.$view.'_'.$event.'-'.$user.'.pdf';		
 		$url  = getcwd().'/'.$link;
-		
+				
 		$add  = '';
 		
-		if ( File::exists($url) ){
-		
+		if ( File::exists($url) )
+		{		
 			$asset = asset($link);
 			
 			if($class){
@@ -46,6 +55,7 @@ class Custom {
 		return '';
 	}
 	
+	/* Get mime-type of file */
 	public function getMimeType($filename)
 	{
 	    $mimetype = false;
@@ -73,8 +83,7 @@ class Custom {
     
 	public function fileExistFormatImage( $path , $width ){
 		
-		$url  = getcwd().$path;
-		
+		$url  = getcwd().$path;		
 		$add  = '';
 		
 		$ext = array('jpg','JPG','jpeg','JPEG','png','PNG','gif','GIF');
@@ -83,15 +92,18 @@ class Custom {
 			
 			$extension = File::extension($url);
 			
-			if ( in_array( $extension , $ext )  ){
-			
+			if ( in_array( $extension , $ext )  )
+			{
 				$asset = asset($path);
 				
 				return '<img src="'.$asset.'" alt="" width="'.$width.'px" />';	
 			}	
 		}
-
 	}
+	
+	/*
+	 * Misc functions
+	*/
     
     public static function ifExist(&$argument, $default="") {
     
@@ -121,6 +133,84 @@ class Custom {
 		}
 		return $new;
 	}
+
+	/**
+	 * Format name with hyphens or lisaisons 
+	 *
+	 * @return string
+	 */			
+	public function format_name($string){
+	
+			// liaisons word
+			$liaison = array('de','des','du','von','dela','del','le','les','la','sur');
+			$words   = array();
+			$final   = '';
+			// explode the name by space
+			$mots =  explode(' ', $string);
+						
+			if(count($mots) > 0)
+			{	
+				// si mots composé plus de 1 mot				
+				foreach($mots as $i => $mot)
+				{
+			   		// si il existe un hyphen
+		   			if (strpos($mot,'-') !== false) {
+		   				
+		   				// 2eme explode delimiteur hyphens
+		   				$parts =  explode('-', $mot);
+		   				
+		   				// tout en minuscule
+		   				$parts = array_map('strtolower', $parts);			   				
+		   				$nbr   = count($parts);
+		   				$loop  = 1;
+		   				
+		   				foreach($parts as $part){
+			   	  	
+					   	  	  if( !in_array($part, $liaison))
+					   	  	  {						   	  	  	
+						   	  	 $part = ucfirst($part);
+					   	  	  }
+					   	  		
+						   	  $words[] = $part;
+						   	  
+						   	  if($loop < $nbr)
+						   	  {
+							   	 $words[] = '-'; // remet delmiteur hyphen 
+						   	  }
+						   	  
+						   	  $loop++;  
+					   	}
+		   			}
+		   			else
+		   			{ 
+		   				// sans hyphens mais plusieurs mots
+			   			$mot = strtolower($mot);
+			   			
+	   					if( !in_array($mot, $liaison) || $i == 0)
+	   					{
+						   	$mot = ucfirst($mot);
+					   	}
+					   	  		
+						$words[] = $mot;
+						$words[] = ' '; // remet delmiteur espace
+		   			}
+				}
+	
+				$final = implode('',$words);				
+			}
+			else
+			{ 
+				// un seul mot
+	   			$final = $string;
+			}
+			
+		return $final;
+	}
+	
+	/*
+	 * String manipulation functions
+	 *
+	*/
 	
 	/*  Remove accents */
 	
@@ -143,26 +233,95 @@ class Custom {
 	    return $text;
 	}
 	
-	/**
-	 * Sort array by key
-	 *
-	 * @return array
-	 */		
+	/*
+	 * remove html tags and non alphanumerics letters	
+	*/
+	public function _removeNonAlphanumericLetters($sString) {
+	     //Conversion des majuscules en minuscule
+	     $string = strtolower(htmlentities($sString));
+	     //Listez ici tous les balises HTML que vous pourriez rencontrer
+	     $string = preg_replace("/&(.)(acute|cedil|circ|ring|tilde|uml|grave);/", "$1", $string);
+	     //Tout ce qui n'est pas caractère alphanumérique  -> _
+	     $string = preg_replace("/([^a-z0-9]+)/", "_", html_entity_decode($string));
+	     return $string;
+	}
+	
+	/*
+	 * Format phone number 	like +41 78 990 90 09 or 0041 78 990 90 09 or 078 990 90 09 
+	*/
+	
+	public function format_phone($num)
+	{
+		$num = preg_replace('/[^0-9]/', '', $num);
+		 
+			$len = strlen($num);
+			if($len == 11)
+			$num = preg_replace('/([0-9]{2})([0-9]{2})([0-9]{3})([0-9]{2})([0-9]{2})/', '+$1 $2 $3 $4 $5', $num);
+			elseif($len == 10)
+			$num = preg_replace('/([0-9]{3})([0-9]{3})([0-9]{2})([0-9]{2})/', '$1 $2 $3 $4', $num);
+			elseif($len == 1)
+			$num = '';
+			elseif($len == 13)
+			$num = preg_replace('/([0-9]{4})([0-9]{2})([0-9]{3})([0-9]{2})([0-9]{2})/', '$1 $2 $3 $4 $5', $num);
+		 
+		return $num;
+	}
+	
+   	/* Strip the case postale or other cp string */ 
+	public function stripCp($string )
+	{
+		$wordlist = array("CP", "case", "postale","Case","Postale","cp","Cp","Postfach","postfach", "C. P." , "PF" , "PO Box");
+		
+		foreach($wordlist as $word)
+		{  
+			$string = str_replace($word, "", $string); 
+		}
+		
+		return $string;
+	}
+	
+	/*
+	 * Array functions
+	*/	
+	
+	/* Flatten the array */
+	public function array_flatten($array) {
+	
+		$return = array();
+	
+		if( !empty($array) )
+		{
+			foreach($array as $a)
+			{
+				foreach($a as $y)
+				{
+					$return[] = $y;
+				}
+			}
+		}
+		
+		return $return;	
+	}
+	
+	/*  Sort array by key  */		
 	public function knatsort(&$karr)
 	{
-	    $kkeyarr = array_keys($karr);
-	    
-	    natcasesort($kkeyarr);
+	    $kkeyarr    = array_keys($karr);
 	    $ksortedarr = array();
+	    	    
+	    natcasesort($kkeyarr);
 	    
-	    foreach($kkeyarr as $kcurrkey){
+	    foreach($kkeyarr as $kcurrkey)
+	    {
 	        $ksortedarr[$kcurrkey] = $karr[$kcurrkey];
 	    }
 	    
 	    $karr = $ksortedarr;
+	    
 	    return true;
 	}
 	
+	/* Sort by keys */
 	public function keysort($karr){
 	    
 	    $ksortedarr = array();
@@ -179,6 +338,20 @@ class Custom {
 	    
 	    return $ksortedarr;
 
+	}
+	
+	/* Find all items in array */
+	public function findAllItemsInArray( $in , $search ){
+		
+		$need = count($in);
+		$find = count(array_intersect($search, $in));
+		
+		if($need == $find)
+		{
+			return TRUE;
+		}
+		
+		return FALSE;	
 	}
 	
 	/**
