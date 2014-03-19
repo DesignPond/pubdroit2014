@@ -9,10 +9,14 @@ interface AdresseInterface {
 	 * @return stdObject Collection of users
 	 */
 	public function find($data);
+	public function getLast($nbr);	
 	
 	public function isUser($adresse);
 	
 	public function typeAdresse($adresse);
+	
+	public function create(array $data);
+	public function update(array $data);
 	
 	// Ajax call
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );

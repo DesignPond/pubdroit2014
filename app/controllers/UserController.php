@@ -73,10 +73,12 @@ class UserController extends BaseController {
 	public function show($id)
 	{
 		
-		// Adresses and apprtenances
+		/**
+		 * User, adresses and memberships
+		*/
+		
 		$membres          = array();
 		$specialisations  = array();
-		$data             = array();
 
         $user             = $this->user->find($id);
         $contact          = $this->user->findAdresseContact($id , true); // return only id with true
@@ -91,6 +93,11 @@ class UserController extends BaseController {
         $data['membres']         = $membres;
         $data['specialisations'] = $specialisations;
         
+		/**
+		 *  Get essentials infos for inscription list
+		 *  and all inscription for user
+		*/
+		
         $inscriptions = $this->inscription->inscriptionsForUser($id);
         
         $result = array_merge($inscriptions,$data);

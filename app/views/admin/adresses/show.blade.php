@@ -93,7 +93,31 @@
 											 </div>
 											 <div class="col-sm-3"><p class="help-block"></p></div>
 										</div>											
-								
+										
+										<div class="form-group row">
+										 	 <label for="telephone" class="col-sm-3 control-label">Téléphone</label>
+										 	 <div class="col-sm-6">
+												{{ Form::text('telephone', $adresse->telephone , array( 'class' => 'form-control required' ) ) }}	
+											 </div>
+											 <div class="col-sm-3"><p class="help-block"></p></div>
+										</div>	
+																				
+										<div class="form-group row">
+										 	 <label for="mobile" class="col-sm-3 control-label">Mobile</label>
+										 	 <div class="col-sm-6">
+												{{ Form::text('mobile', $adresse->mobile , array( 'class' => 'form-control required' ) ) }}	
+											 </div>
+											 <div class="col-sm-3"><p class="help-block"></p></div>
+										</div>	
+																				
+										<div class="form-group row">
+										 	 <label for="fax" class="col-sm-3 control-label">Fax</label>
+										 	 <div class="col-sm-6">
+												{{ Form::text('fax', $adresse->fax , array( 'class' => 'form-control required' ) ) }}	
+											 </div>
+											 <div class="col-sm-3"><p class="help-block"></p></div>
+										</div>	
+																		
 										<div class="form-group row">
 										 	 <label for="adresse" class="col-sm-3 control-label">Adresse</label>
 										 	 <div class="col-sm-6">
@@ -123,7 +147,7 @@
 										 	 <div class="col-sm-6">
 												{{ Form::text('npa', $adresse->npa , array('class' => 'form-control required' )) }}
 											 </div>
-											 <div class="col-sm-3"><p class="help-block"></p></div>
+											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 										</div>	
 										
 										<div class="form-group row">
@@ -131,7 +155,7 @@
 										 	 <div class="col-sm-6">
 												{{ Form::text('ville', $adresse->ville , array('class' => 'form-control required' )) }}
 											 </div>
-											 <div class="col-sm-3"><p class="help-block"></p></div>
+											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 										</div>																					
 
 										<div class="form-group row">
@@ -147,7 +171,7 @@
 										 	 <div class="col-sm-6">
 												{{ Form::select('pays', $pays , $adresse->pays , array( 'class' => 'form-control required' ) ) }}
 											 </div>
-											 <div class="col-sm-3"><p class="help-block"></p></div>
+											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 										</div>																			
 
 						</div><!-- end panel body -->
@@ -155,7 +179,9 @@
 						<div class="panel-footer">
 					      	<div class="row">
 				      			<div class="btn-toolbar">
-				      				{{ Form::hidden('id', $adresse->id ) }}	
+					      			{{ Form::hidden('user_id', $adresse->user_id ) }}
+					      			{{ Form::hidden('type', $adresse->type ) }}	
+					      			{{ Form::hidden('id', $adresse->id ) }}	
 					      			<button type="submit" class="btn-primary btn">Envoyer</button>
 				      			</div>
 					      	</div>

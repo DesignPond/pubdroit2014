@@ -3,6 +3,8 @@
 use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
 
+use Droit\Service\Form\Adresse\AdresseValidator as AdresseValidator;
+
 class AdresseController extends BaseController {
 
 	protected $user;
@@ -63,16 +65,6 @@ class AdresseController extends BaseController {
 	}
 
 	/**
-	 * Show the form for creating a new user.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-        return View::make('admin.users.create');
-	}
-
-	/**
 	 * Show the specified resource.
 	 *
 	 * @param  int  $id
@@ -80,16 +72,15 @@ class AdresseController extends BaseController {
 	 */
 	public function show($id)
 	{
-        $adresse          = $this->adresse->find($id);
-        $type             = $this->adresse->typeAdresse($id);
+        $adresse = $this->adresse->find($id);
+        $type    = $this->adresse->typeAdresse($id);
     
-        $user_id    = $this->adresse->isUser($id);   
         // test if the adresse is linked to user
         $user_id = $this->adresse->isUser($id); 
-        $user    = array();
-        
+      
         $membres         = array();
         $specialisations = array();
+        $user            = array();
         
         if($user_id != 0)
         {
@@ -103,21 +94,13 @@ class AdresseController extends BaseController {
         }
         else
         {
-			$contact_id = $this->user->findAdresseContact($user_id)->first(); 
-			
-			if($contact_id)
+	        $contact          = $this->user->findAdresseContact($id , true); // return only id with true
+	        
+	        if($contact)
 	        {
-	        	$contact         = $contact_id->id;
 		        $membres         = $this->adresse->members($contact);
 				$specialisations = $this->adresse->specialisations($contact); 
 	        }
-        }
-        
-        if($adresse == null || !is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
         }
 
         return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse , 'user' => $user , 'membres' => $membres , 'specialisations' => $specialisations ));
@@ -129,28 +112,28 @@ class AdresseController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function update()
 	{
-        $user = $this->user->byId($id);
-
-        if($user == null || !is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
-        }
-
-        $currentGroups = $user->getGroups()->toArray();
-        $userGroups    = array();
-        
-        foreach ($currentGroups as $group) {
-        	array_push($userGroups, $group['name']);
-        }
-        
-        $allGroups = $this->group->all();
-
-        return View::make('admin.users.edit')->with('user', $user)->with('userGroups', $userGroups)->with('allGroups', $allGroups);
-	}
+		
+		$id         = Input::get('id');
+		$redirectTo = Input::get('redirectTo');
+		
+		$adresseValidator = AdresseValidator::make( Input::all() );
+		
+		if ($adresseValidator->passes()) 
+		{
+			$this->adresse->update( Input::all() );
+			
+			if($redirectTo)
+			{
+				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
+			}
+			
+			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
+		}
+		
+		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
+	}	
 
 	/**
 	 * Update the specified resource in storage.
@@ -158,30 +141,45 @@ class AdresseController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function create($id = null)
 	{
-        if(!is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
-        }
-
-		// Form Processing
-        $result = $this->userForm->update( Input::all() );
-
-        if( $result['success'] )
-        {
-            // Success!
-            Session::flash('success', $result['message']);
-            return Redirect::action('UserController@show', array($id));
-
-        } else {
-            Session::flash('error', $result['message']);
-            return Redirect::action('UserController@edit', array($id))
-                ->withInput()
-                ->withErrors( $this->userForm->errors() );
-        }
+		// creation is used for new simple adress and new user adress
+		
+		$user_id = ( $id ? $user_id = $id : $user_id = 0);
+		
+		return View::make('admin.adresses.create')->with('user_id', $user_id);
+	}
+	
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function store()
+	{
+	
+		$redirectTo = Input::get('redirectTo');
+		
+		$adresseValidator = AdresseValidator::make( Input::all() );
+		
+		if ($adresseValidator->passes()) 
+		{
+			$this->adresse->update( Input::all() );
+			
+			if($redirectTo)
+			{
+				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
+			}
+			
+			// Get last inserted
+			$adresse  = $this->adresse->getLast(1);
+			$id       = $adresse->first()->id;
+			
+			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
+		}
+		
+		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
 	}
 
 

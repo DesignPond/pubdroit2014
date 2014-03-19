@@ -98,17 +98,13 @@ class CustomHelperTest extends TestCase {
 	/*
 	 * Tests for arrays
 	*/		
-	public function testFlattenAnMultidimensionalArray(){
+	public function testInsertKeyValueInFirstPLace(){
 		
-		$array = array(
-			array( 'item 1' , 'item 2' , 'item 3' ),
-			array( 'item 4' , 'item 5' , 'item 6' ),
-			array( 'item 6' , 'item 6' , 'item 7' )
-		);
+		$array = array( '11' => 'item 1' , '32' => 'item 2' );
 		
-		$actual = $this->custom->array_flatten($array);
+		$actual = $this->custom->insertFirstInArray( '0' , 'Choix' , $array);
 
-		$expect = array( 'item 1' , 'item 2' , 'item 3' , 'item 4' , 'item 5' , 'item 6' , 'item 6' , 'item 6' , 'item 7' );	
+		$expect = array( '0' => 'Choix' , '11' => 'item 1' , '32' => 'item 2' );	
 		
 		$this->assertEquals($expect, $actual);
 		

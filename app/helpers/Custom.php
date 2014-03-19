@@ -291,23 +291,9 @@ class Custom {
 		
 	}
 	
-	/* Flatten the array */
-	public function array_flatten($array) {
-	
-		$return = array();
-	
-		if( !empty($array) )
-		{
-			foreach($array as $a)
-			{
-				foreach($a as $y)
-				{
-					$return[] = $y;
-				}
-			}
-		}
-		
-		return $return;	
+	// Insert new pair key/value in array at first place
+	public function insertFirstInArray( $key , $value , $array ){
+		// $newArray = $insertAtBegining + $originalArray;
 	}
 	
 	/*  Sort array by key  */		
