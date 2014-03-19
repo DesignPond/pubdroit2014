@@ -17,6 +17,8 @@ class AdresseEloquent implements AdresseInterface{
 	public function __construct(M $adresse)
 	{
 		$this->adresse = $adresse;
+		
+		$this->custom  = new \Custom;
 	}
 	
 	public function getAll(){
@@ -111,7 +113,7 @@ class AdresseEloquent implements AdresseInterface{
 	/**
 	 * Return type of adresse
 	 *
-	 * @return utype
+	 * @return  stdObject Collection of adresse
 	 */		
 	public function typeAdresse($adresse){
 	
@@ -119,7 +121,72 @@ class AdresseEloquent implements AdresseInterface{
 		
 		return $infos->type;			
 	}
+
+	/**
+	 * Return all adresse for user
+	 *
+	 * @return stdObject Collection of adresse
+	 */			
+	public function adresseUser($user_id){
 	
+		return $this->adresse->where('user_id','=',$user_id)->get();
+	}
+
+	/**
+	 * Return all adresse for user
+	 *
+	 * @return array with infos from user , type of adresses already or not for select type adresse during creation
+	 */		
+	public function infosIfUser($id = null){
+		
+		$nametypes = \Adresse_types::all()->lists('type','id');
+		$types     = $nametypes;
+		
+		if( $id )
+		{
+			$data['user_id'] = $id;
+			$adresses_user   = $this->adresseUser($id);
+			$adresses        = $adresses_user->lists('type','id');
+			
+			if(!empty($adresses))
+			{
+				foreach($adresses as $adresse)
+				{
+					unset($types[$adresse]);
+				}
+				
+				$data['adresses'] = $adresses;
+				$data['types']    = $types;
+			}
+			else
+			{
+				$data['types'] = $types;
+			}
+		}
+		else
+		{
+			$data['adresses'] = array();
+			$data['user_id']  = 0;	
+			$data['types']    = $types;
+		}		
+		
+		return $data;
+	}
+	
+	/**
+	 *  Active the user
+	*/	
+	public function activeUser($id){
+		
+	}
+	
+	/**
+	 *  Deactive the user
+	*/	
+	public function deactiveUser($id){
+		
+	}
+		
 	/**
 	 * Return all memberships for adresse
 	 *
@@ -168,8 +235,6 @@ class AdresseEloquent implements AdresseInterface{
 			'pays'       => $data['pays'],
 			'type'       => $data['type'],
 			'user_id'    => $data['user_id'],
-			'livraison'  => $data['livraison'],
-			'deleted'    => $data['deleted'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));
@@ -217,6 +282,15 @@ class AdresseEloquent implements AdresseInterface{
 		$adresse->save();	
 		
 		return true;		
+	}
+	
+	
+	public function delete($id){
+	
+		$adresse = $this->adresse->find($id);
+
+		return $adresse->delete();
+		
 	}
 	
 	/**

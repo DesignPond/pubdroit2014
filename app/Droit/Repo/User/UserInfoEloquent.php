@@ -20,6 +20,24 @@ class UserInfoEloquent implements UserInfoInterface{
 		
 		return $this->user->with( array('adresses') )->get();
 	}
+	
+	public function activate($id){
+	
+		$user = $this->user->findOrFail($id);	
+		
+		if( ! $user )
+		{
+			return false;
+		}
+		
+		$activated = ( $user->activated ? 0 : 1);
+
+		$user->activated = $activated;
+		
+		$user->save();	
+		
+		return true;		
+	}
 		
 	/*
 	 * Ajax call for datatable
@@ -127,13 +145,13 @@ class UserInfoEloquent implements UserInfoInterface{
 	public function findAdresseContact($id , $onlyId = null){
 
 		$contact = $this->user->where('users.id','=',$id)
-						  ->join('adresses', function($join)
-					      {
-					          $join->on('users.id', '=', 'adresses.user_id')->where('adresses.type', '=', 1);
-					          
-					      })->get();	
+							  ->join('adresses', function($join)
+						      {
+						          $join->on('users.id', '=', 'adresses.user_id')->where('adresses.type', '=', 1);
+						          
+						      })->get();	
 					      
-		if($onlyId && $contact)
+		if($onlyId && !$contact->isEmpty() )
 		{
 			return $contact->first()->id;
 		}		
@@ -155,18 +173,6 @@ class UserInfoEloquent implements UserInfoInterface{
 								  'adresses'    => function($query){ 
 										$query->where('adresses.livraison','=',1); }) )
 					->first();													
-	}
-
-	/**
-	 * Return the name of the title (civilité)
-	 *
-	 * @return stdObject Collection of users
-	 */	
-	public function whatTitle($title){
-		
-		$civilites = \Civilites::all()->lists('title','id');
-		
-		return $civilites[$title];		
 	}
 
 	/**

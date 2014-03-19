@@ -12,11 +12,13 @@ interface AdresseInterface {
 	public function getLast($nbr);	
 	
 	public function isUser($adresse);
-	
+	public function adresseUser($user_id);
+	public function infosIfUser($user_id);
 	public function typeAdresse($adresse);
 	
 	public function create(array $data);
 	public function update(array $data);
+	public function delete($id);
 	
 	// Ajax call
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );

@@ -45,9 +45,14 @@ class InscriptionServiceWorker implements InscriptionServiceInterface {
 	}
 	
 	public function inscriptionEssentials($inscriptions){
-				
+		
+		$vignettes    = array();	
 		$events       = $inscriptions->lists('event_id','id');
-		$vignettes    = $this->file->getFilesEvent($events,'vignette')->lists('filename','event_id');
+		
+		if(!empty($events))
+		{
+			$vignettes    = $this->file->getFilesEvent($events,'vignette')->lists('filename','event_id');
+		}		
 		
 		$docs = array(
 			'Bon'         => 'pdfbon',

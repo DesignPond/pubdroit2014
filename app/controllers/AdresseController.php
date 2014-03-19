@@ -21,10 +21,16 @@ class AdresseController extends BaseController {
 		
 		$this->adresse   = $adresse;
 		
+		$this->custom    = new \Custom;
+		
 	    $civilites   = \Civilites::all()->lists('title','id');
 	    $professions = \Professions::all()->lists('titreProfession','id');
 		$cantons     = \Cantons::all()->lists('titreCanton','id');
 		$pays        = \Pays::all()->lists('titrePays','id');
+
+		$professions = $this->custom->insertFirstInArray( 0 , 'Choix' , $professions );
+		$cantons     = $this->custom->insertFirstInArray( 0 , 'Choix' , $cantons );
+		$pays        = $this->custom->insertFirstInArray( 0 , 'Choix' , $pays );
 		
 		View::share( array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays ) );
 	}
@@ -62,6 +68,53 @@ class AdresseController extends BaseController {
         
         return $this->adresse->get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch );
         
+	}
+
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function create($id = null)
+	{
+		// creation is used for new simple adress and new user adress
+		
+		$infos = $this->adresse->infosIfUser($id);	
+		
+		return View::make('admin.adresses.create')->with( $infos );
+	}
+	
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function store()
+	{
+				
+		$redirectTo       = Input::get('redirectTo');
+		
+		$adresseValidator = AdresseValidator::make( Input::all() );
+		
+		if ($adresseValidator->passes()) 
+		{
+			$this->adresse->create( Input::all() );
+			
+			if($redirectTo)
+			{
+				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
+			}
+			
+			// Get last inserted
+			$adresse  = $this->adresse->getLast(1);
+			$id       = $adresse->first()->id;
+			
+			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
+		}
+		
+		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
 	}
 
 	/**
@@ -112,11 +165,10 @@ class AdresseController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update()
+	public function update($id)
 	{
-		
-		$id         = Input::get('id');
-		$redirectTo = Input::get('redirectTo');
+
+		$redirectTo       = Input::get('redirectTo');
 		
 		$adresseValidator = AdresseValidator::make( Input::all() );
 		
@@ -129,59 +181,11 @@ class AdresseController extends BaseController {
 				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
 			}
 			
-			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
+			return Redirect::to('admin/adresses/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
 		}
 		
 		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
 	}	
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function create($id = null)
-	{
-		// creation is used for new simple adress and new user adress
-		
-		$user_id = ( $id ? $user_id = $id : $user_id = 0);
-		
-		return View::make('admin.adresses.create')->with('user_id', $user_id);
-	}
-	
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function store()
-	{
-	
-		$redirectTo = Input::get('redirectTo');
-		
-		$adresseValidator = AdresseValidator::make( Input::all() );
-		
-		if ($adresseValidator->passes()) 
-		{
-			$this->adresse->update( Input::all() );
-			
-			if($redirectTo)
-			{
-				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
-			}
-			
-			// Get last inserted
-			$adresse  = $this->adresse->getLast(1);
-			$id       = $adresse->first()->id;
-			
-			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
-		}
-		
-		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
-	}
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -189,25 +193,18 @@ class AdresseController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($id,$user)
 	{
-        if(!is_numeric($id))
-        {
-            // @codeCoverageIgnoreStart
-            return \App::abort(404);
-            // @codeCoverageIgnoreEnd
-        }
-
-		if ($this->user->destroy($id))
-		{
-			Session::flash('success', 'User Deleted');
-            return Redirect::to('/users');
-        }
-        else 
-        {
-        	Session::flash('error', 'Unable to Delete User');
-            return Redirect::to('/users');
-        }
+		
+		$redirectTo = ( $user ? 'admin/users/'.$user : 'admin/adresses' );
+		
+		if ($this->adresse->delete($id))
+		{			
+			return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse supprimé') ); 		
+		}	
+		
+		return Redirect::to($redirectTo)->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') ); 
+        
 	}
 
 }

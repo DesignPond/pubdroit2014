@@ -141,8 +141,11 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('users', 'AdminUserController@index');
 	Route::get('users/{user}', 'UserController@show');
 	Route::get('users/{user}/edit', 'UserController@edit');
+	Route::get('users/{user}/active', 'UserController@active');
 	
 	Route::get('adresses/user/{id}/adresse', 'AdresseController@create');
+	Route::get('adresses/delete/{id}/{user?}', 'AdresseController@destroy');	
+	
 	Route::resource('adresses', 'AdresseController');
 	
 	Route::get('getAllUser',    'AdminUserController@getAllUser');

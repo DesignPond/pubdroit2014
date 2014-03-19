@@ -127,7 +127,24 @@ class UserController extends BaseController {
 	{
 	
 	}
-
+	
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function active($id)
+	{
+		
+		if ( $this->user->activate($id) )
+		{			
+			return Redirect::to('admin/users/'.$id)->with( array('status' => 'success' , 'message' => 'L\'etat du compte à bien été modifié')); 		
+		}	
+		
+		return Redirect::to('admin/users/'.$id)->with( array('status' => 'error' , 'message' => 'Problème avec la modification') ); 
+        		
+	}	
 
 	/**
 	 * Remove the specified resource from storage.

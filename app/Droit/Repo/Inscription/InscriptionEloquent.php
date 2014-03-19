@@ -78,7 +78,7 @@ class InscriptionEloquent implements InscriptionInterface {
 
 		$inscription->user_id         = $data['user_id'];
 		$inscription->event_id        = $data['event_id'];
-		$inscription->price_id         = $data['price_id'];
+		$inscription->price_id        = $data['price_id'];
 		$inscription->noInscription   = $data['noInscription'];
 		$inscription->dateInscription = $data['dateInscription'];
 

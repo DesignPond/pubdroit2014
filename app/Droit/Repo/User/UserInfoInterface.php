@@ -12,6 +12,8 @@ interface UserInfoInterface {
 	
 	public function find($id);
 	
+	public function activate($id);
+	
 	// Ajax call
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );
 	
@@ -20,7 +22,5 @@ interface UserInfoInterface {
 	public function findAdresseContact($id , $onlyId);
 	
 	public function eventOptions($user,$event);
-	
-	public function whatTitle($title);
 
 }

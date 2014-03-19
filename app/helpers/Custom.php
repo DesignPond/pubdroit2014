@@ -293,7 +293,11 @@ class Custom {
 	
 	// Insert new pair key/value in array at first place
 	public function insertFirstInArray( $key , $value , $array ){
-		// $newArray = $insertAtBegining + $originalArray;
+		
+		$insert = array( $key => $value );		
+		$new    = $insert + $array;
+		
+		return $new;
 	}
 	
 	/*  Sort array by key  */		

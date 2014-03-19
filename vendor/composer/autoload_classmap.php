@@ -461,6 +461,7 @@ return array(
     'Droit\\Service\\Form\\SuspendUser\\SuspendUserFormLaravelValidator' => $baseDir . '/app/Droit/Service/Form/SuspendUser/SuspendUserFormLaravelValidator.php',
     'Droit\\Service\\Form\\User\\UserForm' => $baseDir . '/app/Droit/Service/Form/User/UserForm.php',
     'Droit\\Service\\Form\\User\\UserFormLaravelValidator' => $baseDir . '/app/Droit/Service/Form/User/UserFormLaravelValidator.php',
+    'Droit\\Service\\Form\\adresse\\AdresseValidator' => $baseDir . '/app/Droit/Service/Form/Adresse/AdresseValidator.php',
     'Droit\\Service\\Generate\\GenerateInterface' => $baseDir . '/app/Droit/Service/Generate/GenerateInterface.php',
     'Droit\\Service\\Generate\\GenerateWorker' => $baseDir . '/app/Droit/Service/Generate/GenerateWorker.php',
     'Droit\\Service\\Inscription\\InscriptionServiceInterface' => $baseDir . '/app/Droit/Service/Inscription/InscriptionServiceInterface.php',
