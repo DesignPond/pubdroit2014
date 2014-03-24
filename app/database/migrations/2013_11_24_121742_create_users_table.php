@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration {
 			
 			$table->string('prenom');
 			$table->string('nom');
+			$table->string('username');
 			$table->string('email')->nullable();
 			$table->string('password', 64);
 			
@@ -33,6 +34,7 @@ class CreateUsersTable extends Migration {
 			// support the indexes, other engines aren't affected.
 			$table->engine = 'InnoDB';
 			$table->unique('email');
+			$table->unique('username');
 			$table->index('activation_code');
 			$table->index('reset_password_code');
 			

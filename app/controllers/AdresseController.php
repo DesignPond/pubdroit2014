@@ -20,19 +20,13 @@ class AdresseController extends BaseController {
 		$this->user      = $user;
 		
 		$this->adresse   = $adresse;
+			
+		$this->custom      = new \Custom;
 		
-		$this->custom    = new \Custom;
+		// shared variables and list for selects	
+		$shared = $this->custom->sharedVariables();
 		
-	    $civilites   = \Civilites::all()->lists('title','id');
-	    $professions = \Professions::all()->lists('titreProfession','id');
-		$cantons     = \Cantons::all()->lists('titreCanton','id');
-		$pays        = \Pays::all()->lists('titrePays','id');
-
-		$professions = $this->custom->insertFirstInArray( 0 , 'Choix' , $professions );
-		$cantons     = $this->custom->insertFirstInArray( 0 , 'Choix' , $cantons );
-		$pays        = $this->custom->insertFirstInArray( 0 , 'Choix' , $pays );
-		
-		View::share( array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays ) );
+		View::share( $shared );
 	}
 
 	/**

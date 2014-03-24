@@ -12,7 +12,6 @@ class UserController extends BaseController {
 	
 	protected $adresse;
 
-
 	/**
 	 * Instantiate a new UserController
 	 */
@@ -24,13 +23,13 @@ class UserController extends BaseController {
 		$this->adresse     = $adresse;
 		
 		$this->inscription = $inscription;
+			
+		$this->custom      = new \Custom;
 		
-	    $civilites   = \Civilites::all()->lists('title','id');
-	    $professions = \Professions::all()->lists('titreProfession','id');
-		$cantons     = \Cantons::all()->lists('titreCanton','id');
-		$pays        = \Pays::all()->lists('titrePays','id');
+		// shared variables and list for selects		
+		$shared = $this->custom->sharedVariables();
 		
-		View::share( array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays ) );
+		View::share( $shared );
 	}
 
 	/**
@@ -75,10 +74,7 @@ class UserController extends BaseController {
 		
 		/**
 		 * User, adresses and memberships
-		*/
-		
-		$membres          = array();
-		$specialisations  = array();
+		*/		
 
         $user             = $this->user->find($id);
         $contact          = $this->user->findAdresseContact($id , true); // return only id with true
@@ -90,14 +86,13 @@ class UserController extends BaseController {
         }
         
         $data['user']            = $user;
-        $data['membres']         = $membres;
-        $data['specialisations'] = $specialisations;
+        $data['membres']         = ( $membres ? $membres : array() );
+        $data['specialisations'] = ( $specialisations ? $specialisations : array() );
         
 		/**
 		 *  Get essentials infos for inscription list
 		 *  and all inscription for user
-		*/
-		
+		*/		
         $inscriptions = $this->inscription->inscriptionsForUser($id);
         
         $result = array_merge($inscriptions,$data);
@@ -155,16 +150,13 @@ class UserController extends BaseController {
 	public function destroy($id)
 	{
 
-		if ($this->user->destroy($id))
+		if ($this->user->delete($id))
 		{
-			Session::flash('success', 'User Deleted');
-            return Redirect::to('/users');
+            return Redirect::to('users')->with( array('status' => 'success' , 'message' => 'L\'etat du compte à bien été modifié')); 
         }
-        else 
-        {
-        	Session::flash('error', 'Unable to Delete User');
-            return Redirect::to('/users');
-        }
+
+        return Redirect::back()->with( array('status' => 'error' , 'message' => 'Problème avec la modification') );
+      
 	}
 
 }

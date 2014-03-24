@@ -352,6 +352,27 @@ class Custom {
 	}
 	
 	/**
+	 *  Get all shared variables and list for users and adresses controllers
+	 *
+	 *  @return array
+	*/
+	
+	public function sharedVariables(){
+		
+	    $civilites   = \Civilites::all()->lists('title','id');
+	    $professions = \Professions::all()->lists('titreProfession','id');
+		$cantons     = \Cantons::all()->lists('titreCanton','id');
+		$pays        = \Pays::all()->lists('titrePays','id');
+
+		$professions = $this->insertFirstInArray( 0 , 'Choix' , $professions );
+		$cantons     = $this->insertFirstInArray( 0 , 'Choix' , $cantons );
+		$pays        = $this->insertFirstInArray( 0 , 'Choix' , $pays );
+		
+		return array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays );		
+		
+	}
+	
+	/**
 	 * Return the name of the title (civilité)
 	 *
 	 * @return string

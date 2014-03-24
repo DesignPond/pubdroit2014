@@ -36,6 +36,9 @@
 										<table class="table table-condensed">											
 											<tbody>
 												<tr>
+													<td>Nom d'utilisateur</td><td><a href="#">{{ $user->username }}</a></td>
+												</tr>
+												<tr>
 													<td>Email</td><td><a href="mailto:{{ $user->email }}">{{ $user->email }}</a></td>
 												</tr>
 												<tr>
@@ -72,6 +75,7 @@
 			                            <ul class="dropdown-menu" role="menu">
 			                           		<?php if($user->activated){ ?>
 			                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
+			                                <li><a href="{{ url('admin') }}">Changer le nom d'utilisateur</a></li>
 			                                <li><a href="{{ url('admin') }}">Changer le mot de passe</a></li>
 			                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
 			                                <li class="divider"></li>
@@ -84,9 +88,10 @@
 
 								</div>
 								<div class="col-md-6">
-								
-									<h3><strong>Appartenances</strong></h3>
-									
+									<div class="row">
+										<h3 class="col-md-7"><strong>Appartenances</strong></h3>
+										<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
+									</div>
 									<div class="well">
 									<?php if( !$specialisations->isEmpty() ){ ?>
 										 <div class="list-group">
@@ -99,6 +104,8 @@
 										 </div>
 									<?php } ?>										 
 									</div>  
+									
+										
 									
 								</div><!-- end col -->
 								
@@ -146,7 +153,8 @@
 						</ul>
 						<div class="tab-content">
 							<div id="inscriptions" class="tab-pane active">
-																							
+												
+								<p class="text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>															
 								@if(!$inscriptions->isEmpty())
 									@foreach($inscriptions as $inscription)
 									
@@ -212,7 +220,7 @@
 										    		<div class="col-md-12 text-right">
 										    		
 														 <div class="btn-group">
-								                              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+								                              <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
 								                                Actions &nbsp;<span class="caret"></span>
 								                              </button>
 								                              <ul class="dropdown-menu" role="menu">
@@ -238,7 +246,8 @@
 								
 							</div>
 							<div id="achatshop" class="tab-pane">
-								<div>								
+								<p class="text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
+								<div>						
 									<p>Pas d'achats sur le shop</p>
 								</div>
 							</div>

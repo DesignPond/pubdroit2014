@@ -188,4 +188,16 @@ class UserInfoEloquent implements UserInfoInterface{
 									->get();
 	}
 	
+	/**
+	 * Delete a user by id.
+	*/
+	public function delete($id){
+	
+		$user = $this->user->findOrFail($id);
+
+		$user->delete();
+		
+		return true;
+	}
+	
 }

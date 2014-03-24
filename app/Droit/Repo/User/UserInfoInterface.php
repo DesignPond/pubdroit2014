@@ -14,6 +14,8 @@ interface UserInfoInterface {
 	
 	public function activate($id);
 	
+	public function delete($id);
+	
 	// Ajax call
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );
 	
