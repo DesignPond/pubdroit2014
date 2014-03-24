@@ -88,24 +88,37 @@
 
 								</div>
 								<div class="col-md-6">
-									<div class="row">
-										<h3 class="col-md-7"><strong>Appartenances</strong></h3>
-										<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
-									</div>
 									<div class="well">
 									<?php if( !$specialisations->isEmpty() ){ ?>
-										 <div class="list-group">
+										<div class="row">
+											<h4 class="col-md-7">Spécialisations</h4>
+											<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
+										</div>
+										<div class="list-group">
 										 	<?php  
 										 		foreach ($specialisations as $spec)
 										 		{ 											 
 											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';
 										 		} 
 										 	?>
+										</div>
+									<?php } ?>	
+									<br/>
+									<?php if( !$membres->isEmpty() ){ ?>
+										 <div class="row">
+											<h4 class="col-md-7">Membre de</h4>
+											<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
 										 </div>
-									<?php } ?>										 
+										 <div class="list-group">
+										 	<?php  
+										 		foreach ($membres as $membre)
+										 		{ 											 
+											 		echo '<p class="list-group-item">'.$membre->titreMembre.'<a class="btn btn-xs btn-danger" href="">X</a></p>';
+										 		} 
+										 	?>
+										 </div>
+									<?php } ?>																			 
 									</div>  
-									
-										
 									
 								</div><!-- end col -->
 								

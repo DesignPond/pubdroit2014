@@ -29,6 +29,10 @@ use BsCategories as BS;
 use Calculette_ipc as CI;
 use Calculette_taux as CT;
 
+use User_specialisations as US;
+use User_membres as UM;
+
+
 use Droit\Repo\Price\PriceInterface;
 
 class PubdroitServiceProvider extends ServiceProvider {
@@ -65,6 +69,8 @@ class PubdroitServiceProvider extends ServiceProvider {
 		// User
     	$this->registerUserService();
     	$this->registerAdresseService();
+    	$this->registerUserSpecialisationService();
+    	$this->registerUserMembreService();
     			
     }
     
@@ -286,6 +292,24 @@ class PubdroitServiceProvider extends ServiceProvider {
             	\App::make('Droit\Repo\File\FileInterface') ,
             	\App::make('Droit\Repo\User\UserInfoInterface')
             );
+        });
+        
+    }
+    
+    protected function registerUserSpecialisationService(){
+
+	    $this->app->bind('Droit\Repo\UserSpecialisation\UserSpecialisationInterface', function()
+        {
+            return new \Droit\Repo\UserSpecialisation\UserSpecialisationEloquent( new US );
+        });
+        
+    }
+    
+    protected function registerUserMembreService(){
+
+	    $this->app->bind('Droit\Repo\UserMembre\UserMembreInterface', function()
+        {
+            return new \Droit\Repo\UserMembre\UserMembreEloquent( new UM );
         });
         
     }

@@ -425,6 +425,8 @@ return array(
     'Droit\\Repo\\Specialisation\\SpecialisationInterface' => $baseDir . '/app/Droit/Repo/Specialisation/SpecialisationInterface.php',
     'Droit\\Repo\\Subject\\SubjectEloquent' => $baseDir . '/app/Droit/Repo/Subject/SubjectEloquent.php',
     'Droit\\Repo\\Subject\\SubjectInterface' => $baseDir . '/app/Droit/Repo/Subject/SubjectInterface.php',
+    'Droit\\Repo\\UserMembre\\MembreEloquent' => $baseDir . '/app/Droit/Repo/UserSpecialisation/UserMembreEloquent.php',
+    'Droit\\Repo\\UserMembre\\UserMembreInterface' => $baseDir . '/app/Droit/Repo/UserSpecialisation/UserMembreInterface.php',
     'Droit\\Repo\\User\\SentryUser' => $baseDir . '/app/Droit/Repo/User/SentryUser.php',
     'Droit\\Repo\\User\\UserInfoEloquent' => $baseDir . '/app/Droit/Repo/User/UserInfoEloquent.php',
     'Droit\\Repo\\User\\UserInfoInterface' => $baseDir . '/app/Droit/Repo/User/UserInfoInterface.php',
