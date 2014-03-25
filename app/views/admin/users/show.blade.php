@@ -89,8 +89,6 @@
 								</div>
 								<div class="col-md-6">
 									<div class="well">
-									<?php if( !$specialisations->isEmpty() ){ ?>
-
 										<div id="specs">
 											 <h4>Spécialisations &nbsp;	&nbsp;											 
 												 <a data-toggle="collapse" data-parent="#specs" href="#addspecs" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
@@ -107,7 +105,7 @@
 
 											 </div>
 										</div>
-										
+									<?php if( !$specialisations->isEmpty() ){ ?>
 										<div class="list-group">
 										 	<?php  
 										 		foreach ($specialisations as $spec)
@@ -121,8 +119,6 @@
 									<?php } ?>	
 									</div>  
 									<div class="well">
-									<?php if( !$membres->isEmpty() ){ ?>
-		
 										<div id="members">
 											 <h4>Membre de &nbsp; &nbsp;
 												 <a data-toggle="collapse" data-parent="#members" href="#addmembers" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
@@ -139,6 +135,7 @@
 												
 											 </div>
 										</div>
+									<?php if( !$membres->isEmpty() ){ ?>
 										<div class="list-group">
 										 	<?php  
 										 		foreach ($membres as $membre)
