@@ -127,11 +127,11 @@ class AdminController extends BaseController {
 		$attestation = ( !empty($att) ? $att : NULL );
 		
 		$data = $this->generate->arrange($event,$user,$infos,$options,$attestation);
-				
-		$view = 'pdf.bon';
+	
+		$view = 'pdf.attestation';
 		$name = 'bon';
 		
-		return $this->generate->generate($view , array( 'data' => $data ) , $name , 'bon' , FALSE );
+		return $this->generate->generate($view , array( 'data' => $data ) , $name , 'test' , FALSE );
 	}
 	
 	public function files(){

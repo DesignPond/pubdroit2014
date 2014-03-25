@@ -139,6 +139,8 @@ Route::group(array('prefix' => 'admin'), function()
 		
 	// Users and adresses
 	Route::get('users', 'AdminUserController@index');
+	Route::post('users/changeUsername', 'UserController@changeUsername');
+	
 	Route::get('users/{user}', 'UserController@show');
 	Route::get('users/{user}/edit', 'UserController@edit');
 	Route::get('users/{user}/active', 'UserController@active');

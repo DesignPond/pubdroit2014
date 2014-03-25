@@ -21,6 +21,8 @@ class GenerateWorker implements GenerateInterface {
 	{
 		$this->pdf    = \App::make('dompdf');
 		
+		$this->custom = new \Custom;
+		
 		$this->price  = $price;
 		
 		$this->compte = $compte;
@@ -36,84 +38,126 @@ class GenerateWorker implements GenerateInterface {
 	 * @return instance
 	*/		
 	public function arrange($event, $user, $infos, $options , $attestation = NULL){
-		
-		$data = array();
-		
-		$event_id = $event->id;
-		
+
 		// Get infos from event
-		$config  = $event->event_config;
-		$files   = $event->files;
+		$event_id = $event->id;
+		$config   = $event->event_config;
+		$files    = $event->files;
 		
-		if( !$infos->isEmpty() )
+		// Options for bon
+		$data['options']      = ( !$options->isEmpty() ? $options->toArray() : array() );	
+		// attestation
+		$data['attestation']  = ( $attestation ? $attestation->toArray() : array() );
+		
+		// infos for user
+		if( !$user->inscription->isEmpty() )
 		{
-			$infos = $infos->first()->toArray();		
+			
+			$inscription          = $user->inscription->first()->toArray();
+			$user_infos           = $user->adresses->first()->toArray();
+			$organisateur         = (!empty($config) ? $config->toArray() : $infos->first()->toArray());
+			
+			$data['civilite']     = $this->custom->whatCivilite($user_infos['civilite']);
+			
+			$data['compte']       = $this->getCompte($event);		
+			$data['price']        = $this->getPrice($inscription);
+			
+			$data['organisateur'] = $organisateur;	
+			$data['user']         = $user_infos;
+			$data['inscription']  = $inscription;
+			$data['event']        = $event->toArray();
+			
+			$data['logo']         = $this->getLogo($event , $infos , $config); 
+			$data['carte']        = $this->getMap($event_id); 
+			
+			return $data;
 		}
 		
+		return array();	
+			
+	}
+	
+	private function getMap($event_id){
+			
+		$image = '';
+			
 		// Map for bon
 		$map = $this->files->getFilesEvent($event_id,'carte')->first();
 		
 		if( $map )
 		{
-			$carte         = $map->toArray();
-			$data['carte'] = getcwd().'/files/carte/'.$carte['filename'];			
+			$carte  = $map->toArray();
+			$image  = getcwd().'/files/carte/'.$carte['filename'];			
+		}
+		
+		return $image;
+		
+	}
+	
+	private function getLogo($event , $infos , $config){
+		
+		$image = '';	
+		
+		$event_id = $event->id;
+				
+		if( !$infos->isEmpty() )
+		{
+			$infos = $infos->first()->toArray();		
 		}
 		
 		// Logo for organisator
-		$organisateur  = (!empty($config) ? $config->toArray() : $infos);
-		$vignette      = $this->files->getFilesEvent($event_id,'vignette');		
+		$vignette  = $this->files->getFilesEvent($event_id,'badge');		
 		
 		// Logos for the pdfs
 		if( ! $vignette->isEmpty() )
 		{
-			$logo = $vignette->first()->toArray();
-			$data['logo'] = getcwd().'/files/vignette/'.$logo['filename'];  
+			$logo  = $vignette->first()->toArray();
+			$image = getcwd().'/files/badge/'.$logo['filename'];  
 		}
 		else if(!empty($config))
 		{
 			$logo = $config->toArray();
-			$data['logo'] = getcwd().'/images/'.$logo['logo'];  
+			$image = getcwd().'/images/'.$logo['logo'];  
 		}
 		else if(isset($infos['logo']))
 		{
-			$data['logo'] = getcwd().'/images/'.$infos['logo']; 
+			$image = getcwd().'/images/'.$infos['logo']; 
 		}
-		else{
-			$data['logo'] = getcwd().'/images/logos/facdroit.jpg'; 
+		else
+		{
+			$image = getcwd().'/images/logos/facdroit.jpg'; 
 		}
 		
-		// Options for bon
-		if( !$options->isEmpty() ){
-			$data['options']  = $options->toArray();
-		}
-				
+		return $image;
+		
+	}
+	
+	private function getPrice($inscription){
+		
 		// inscription price
-		$inscription = $user->inscription->first()->toArray();
-		$idprice     = $inscription['price_id'];
+		$idprice     = $inscription['price_id'];		
+		$price       = $this->price->find($idprice)->toArray();
 		
+		if($price)
+		{
+			return $this->price->find($idprice)->toArray();
+		}
+		
+		return array();
+		
+	}
+	
+	private function getCompte($event){
+	
 		// Factures info if exist
 		$compte_id   = $event->compte_id;
-		$compte      = $this->compte->find($compte_id);
 		
-		// Attestation
-		if($attestation){
-			$data['attestation']  = $attestation->toArray();	
+		if($compte_id)
+		{
+			return $this->compte->find($compte_id)->toArray();
 		}
 		
-		// Civilites
-		$user_infos = $user->adresses->first()->toArray();
-		$civilite   = $this->user->whatTitle($user_infos['civilite']);
-		
-		$data['civilite']     = $civilite;
-		$data['organisateur'] = $organisateur;	
-		$data['compte']       = $compte->toArray();;
-		$data['price']        = $this->price->find($idprice)->toArray();
-		$data['user']         = $user_infos;
-		$data['event']        = $event->toArray();
-		$data['inscription']  = $inscription;
-		
-		return $data;	
-			
+		return array();
 	}
 		
 	/*
@@ -122,7 +166,7 @@ class GenerateWorker implements GenerateInterface {
 	*/	
 	public function generate($view , $data , $name , $path , $write = NULL){
 		
-		$pdf = $this->pdf->loadView($view , $data);	
+		$pdf = $this->pdf->loadView($view , $data);
 		
 		if($write)
 		{

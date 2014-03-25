@@ -136,6 +136,32 @@ class UserInfoEloquent implements UserInfoInterface{
 		return $this->user->where('id','=',$id)->with( array('adresses' , 'groups') )->first();														
 	}
 	
+	/**
+	 * Get value for column.
+	*/
+	public function getColumnValue($column,$value){
+		
+		return $this->user->where($column,'=',$value)->get();	
+	}
+	
+	/**
+	 *  Update a column
+	*/	
+	public function updateColumn($id , $column , $value){
+
+		$user = $this->user->findOrFail($id);
+		
+		if( ! $user )
+		{
+			return false;
+		}
+
+		$user->$column = $value;
+		$user->save();	
+		
+		return true;		
+	}
+	
 
 	/**
 	 * Return adresse id type contact

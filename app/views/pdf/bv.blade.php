@@ -11,22 +11,22 @@
 <body style="position:relative; height:842px; margin:0;padding:0;">
 
 	<div class="addresse1">
-		<p><?php echo $data['compte']['adressesCompte']; ?></p>
+		<p><?php echo $custom->ifExist($data['compte']['adressesCompte']); ?></p>
 	</div>
 	
 	<div class="addresse2">
-		<p><?php echo $data['compte']['adressesCompte']; ?></p>
+		<p><?php echo $custom->ifExist($data['compte']['adressesCompte']); ?></p>
 	</div>
 	
 	<div class="nofacture">
 		<p>
-			<?php echo $data['compte']['motifCompte']; ?><br/>
-			<?php echo 'No '.$data['inscription']['invoiceNumber']; ?>
+			<?php echo $custom->ifExist($data['compte']['motifCompte']); ?><br/>
+			<?php echo 'No '.$custom->ifExist($data['inscription']['invoiceNumber']); ?>
 		</p>
 	</div>
 
-	<p class="compte1"><?php echo $data['compte']['infoCompte']; ?></p>	
-	<p class="compte2"><?php echo $data['compte']['infoCompte']; ?></p>
+	<p class="compte1"><?php echo $custom->ifExist($data['compte']['infoCompte']); ?></p>	
+	<p class="compte2"><?php echo $custom->ifExist($data['compte']['infoCompte']); ?></p>
 	
 	<p class="prixBvSimple prixBvDroite"><?php echo $price[0]; ?></p>
 	

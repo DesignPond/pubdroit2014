@@ -17,14 +17,14 @@ class UserController extends BaseController {
 	public function __construct( UserInfoInterface $user,AdresseInterface $adresse,InscriptionServiceInterface $inscription )
 	{
 			
-		$this->user               = $user;
+		$this->user         = $user;
 		
-		$this->adresse            = $adresse;
+		$this->adresse      = $adresse;
 		
-		$this->inscription        = $inscription;
+		$this->inscription  = $inscription;
 				
 		// Custom helper	
-		$this->custom      = new \Custom;
+		$this->custom       = new \Custom;
 		
 		// shared variables and list for selects		
 		$shared = $this->custom->sharedVariables();
@@ -72,9 +72,7 @@ class UserController extends BaseController {
 	public function show($id)
 	{
 		
-		/**
-		 * User, adresses and memberships
-		*/		
+		/* User, adresses and memberships*/		
 
         $user             = $this->user->find($id);
         $contact          = $this->user->findAdresseContact($id , true); // return only id with true
@@ -122,6 +120,30 @@ class UserController extends BaseController {
 	public function update($id)
 	{
 	
+	}
+	
+	/**
+	 * change username for user
+	*/
+	
+	public function changeUsername(){
+		
+		$newname = $_POST['newname'];
+		$user_id = $_POST['user_id'];
+		
+		$already = $this->user->getColumnValue('username',$newname);
+		
+		if( $already->isEmpty() )
+		{	
+			$this->user->updateColumn($user_id , 'username' , $newname);
+			
+			echo json_encode( array( 'result' => true ) );
+		}
+		else
+		{
+			echo json_encode( array( 'result' => false ) );
+		}
+		
 	}
 	
 	/**

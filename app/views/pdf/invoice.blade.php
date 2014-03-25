@@ -16,16 +16,16 @@
 					<table border="0" width="100%" cellpadding="0" cellspacing="0" style="border:none;margin:0;padding:0;">
 					<!-- Logo -->
 					<tr>
-						<td><img src="<?php echo $data['logo']; ?>" alt="logo Unine" style="height:100px;" /></td>
+						<td><img src="<?php echo $custom->ifExist($data['logo']); ?>" alt="logo Unine" style="height:100px;" /></td>
 					</tr>
 					<tr>
 						<td>
 							 <ul class="infos">
-			                 	 <li><?php echo $data['organisateur']['nom']; ?></li>
-			                     <li><?php echo $data['organisateur']['adresse']; ?></li>
-			                     <li><?php echo $data['organisateur']['lieu']; ?></li>
+			                 	 <li><?php echo $custom->ifExist($data['organisateur']['nom']); ?></li>
+			                     <li><?php echo $custom->ifExist($data['organisateur']['adresse']); ?></li>
+			                     <li><?php echo $custom->ifExist($data['organisateur']['lieu']); ?></li>
 			                </ul> 
-			        		<p class="tva"><?php echo $data['organisateur']['tva']; ?></p>
+			        		<p class="tva"><?php echo $custom->ifExist($data['organisateur']['tva']); ?></p>
 						</td>
 					</tr>
 					</table>	
@@ -40,13 +40,13 @@
 						<td>
 						 	<p id="userInfos">
 				         
-					            <?php echo $data['civilite'].' '.$data['user']['prenom'].' '.$data['user']['nom']; ?><br/>
+								<?php echo $custom->ifExist($data['civilite']).' '.$custom->ifExist($data['user']['prenom']).' '.$custom->ifExist($data['user']['nom']); ?><br/>
 					            <?php if(!empty($data['user']['entreprise'])){ echo $data['user']['entreprise'].'<br/>'; } ?>
-					            <?php echo $data['user']['adresse']; ?><br/>
+					            <?php echo $custom->ifExist($data['user']['adresse']); ?><br/>
 					            <?php if(!empty($data['user']['complement'])){ echo $data['user']['complement'].'<br/>'; } ?>
 					            <?php if(!empty($data['user']['cp'])){ echo 'CP '.$data['user']['cp'].'<br/>'; } ?>
-					            <?php echo $data['user']['npa'].' '.$data['user']['ville']; ?>
-	
+					            <?php echo $custom->ifExist($data['user']['npa']).' '.$custom->ifExist($data['user']['ville']); ?>
+					            
 							 </p>
 			   			</td>
 					</tr>
@@ -63,20 +63,20 @@
 		<table id="content" width="100%"border="0" cellpadding="0"  cellspacing="0" style="border:none;margin:0;padding:0;">
 	    	<tr>
 	    		<td colspan="2"> 		
-	               <h2 style="font-family:sans-serif;"><strong>FACTURE No <?php echo $data['inscription']['invoiceNumber']; ?></strong></h2>
-	               <h2 style="font-family:sans-serif;"><?php echo $data['event']['titre']; ?><br/><?php echo $data['event']['soustitre']; ?></h2>
+	               <h2 style="font-family:sans-serif;"><strong>FACTURE No <?php echo $custom->ifExist($data['inscription']['inscriptionNumber']); ?></strong></h2>
+	               <h2 style="font-family:sans-serif;"><?php echo $custom->ifExist($data['event']['titre']); ?><br/><?php echo $custom->ifExist($data['event']['soustitre']); ?></h2>
 	               <p class="red"><strong><?php echo $data['event']['endroit']; ?></strong></p>         
 				</td>
 	        </tr>
 	       <tr>
 				<td colspan="2" align="left">
-					<p style="text-align:left;"> Nous vous confirmons votre participation :<strong> <?php echo $data['event']['sujet']; ?>
+					<p style="text-align:left;"> Nous vous confirmons votre participation :<strong> <?php echo $custom->ifExist($data['event']['sujet']); ?>
 					</strong>  du <?php echo $custom->formatDate($data['event']['dateDebut']); ?>.</p>
 				</td>
 			</tr>
 			<tr>
 				<td width="40%"><p style="text-align:left; margin:0;" class="txt">Le montant de l'inscription est de:</p></td>
-				<td width="60%"><p style="text-align:left; margin:0;"><strong><?php echo $data['price']['price']; ?> CHF</strong></p></td>
+				<td width="60%"><p style="text-align:left; margin:0;"><strong><?php echo $custom->ifExist($data['price']['price']); ?> CHF</strong></p></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

@@ -522,17 +522,27 @@
 			
 			<div class="modal fade" id="changeUsername" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content">	
 					    <div class="modal-header">
 					    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title">Modal title</h4>
+							<h4 class="modal-title">Changer le nom d'utilisateur</h4>
 					    </div>
 					    <div class="modal-body">
-					    	<p>One fine body…</p>
+
+					    	<div id="alert-error" class="alert alert-dismissable alert-danger" style="display:none;">
+								<strong>Oh snap!</strong>Le nom d'utilisateur existe déjà
+								<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+							</div>
+							
+					    	<div class="form-group">
+							    <label for="newUsername">Nouveau nom d'utilisateur</label>
+							    <input type="text" class="form-control" id="newUsername" placeholder="nouveau nom d'utilisateur">
+							    <input type="hidden" value="<?php echo $user->id; ?>" id="userid">
+							</div>
 					    </div>
 					    <div class="modal-footer">
-					    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							<button type="button" class="btn btn-primary">Save changes</button>
+					    	<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+							<button type="button" class="btn btn-primary" id="changeUsernameBtn">Envoyer</button>
 					    </div>
 				    </div><!-- /.modal-content -->
 			    </div><!-- /.modal-dialog -->

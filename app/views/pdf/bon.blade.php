@@ -20,8 +20,8 @@
 					</tr>
 					<tr>
 						<td>
-							<p class="titre"><?php echo $data['event']['sujet']; ?><br/>
-							<span><?php echo $data['event']['organisateur']; ?></span></p>
+							<p class="titre"><?php echo $custom->ifExist($data['event']['sujet']); ?><br/>
+							<span><?php echo $custom->ifExist($data['event']['organisateur']); ?></span></p>
 						</td>
 					</tr>
 					</table>	
@@ -35,12 +35,12 @@
 					<tr>
 						<td>
 						 	<p id="userInfos">				             
-							 	<?php echo $data['civilite'].' '.$data['user']['prenom'].' '.$data['user']['nom']; ?><br/>
+							 	<?php echo $custom->ifExist($data['civilite']).' '.$custom->ifExist($data['user']['prenom']).' '.$custom->ifExist($data['user']['nom']); ?><br/>
 					            <?php if(!empty($data['user']['entreprise'])){ echo $data['user']['entreprise'].'<br/>'; } ?>
-					            <?php echo $data['user']['adresse']; ?><br/>
+					            <?php echo $custom->ifExist($data['user']['adresse']); ?><br/>
 					            <?php if(!empty($data['user']['complement'])){ echo $data['user']['complement'].'<br/>'; } ?>
 					            <?php if(!empty($data['user']['cp'])){ echo 'CP '.$data['user']['cp'].'<br/>'; } ?>
-					            <?php echo $data['user']['npa'].' '.$data['user']['ville']; ?>
+					            <?php echo $custom->ifExist($data['user']['npa']).' '.$custom->ifExist($data['user']['ville']); ?>
 							 </p>
 			   			</td>
 					</tr>
@@ -58,9 +58,9 @@
 	    	 <tr>
 	    		<td>
 	    		
-	              <h2 style="text-align:center;"><strong>BON DE PARTICIPATION   No <?php echo $data['inscription']['invoiceNumber']; ?></strong></h2>
-	              <h2 style="font-family:sans-serif;"><?php echo $data['event']['titre']; ?><br/><?php echo $data['event']['soustitre']; ?></h2>
-	              <p  style="font-family:sans-serif;"><?php echo $data['event']['endroit']; ?></p>
+	              <h2 style="text-align:center;"><strong>BON DE PARTICIPATION   No <?php echo $custom->ifExist($data['inscription']['inscriptionNumber']); ?></strong></h2>
+	              <h2 style="font-family:sans-serif;"><?php echo $custom->ifExist($data['event']['titre']); ?><br/><?php echo $data['event']['soustitre']; ?></h2>
+	              <p  style="font-family:sans-serif;"><?php echo $custom->ifExist($data['event']['endroit']); ?></p>
 	              <p  style="font-family:sans-serif;"><strong><?php echo $custom->formatDate($data['event']['dateDebut']); ?></strong></p>
 	              
 	              <?php  

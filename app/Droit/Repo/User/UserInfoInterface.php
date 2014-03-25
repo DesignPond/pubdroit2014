@@ -16,6 +16,10 @@ interface UserInfoInterface {
 	
 	public function delete($id);
 	
+	public function updateColumn($id,$column,$value);
+	
+	public function getColumnValue($column,$value);
+	
 	// Ajax call
 	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL );
 	
