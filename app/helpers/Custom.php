@@ -363,12 +363,15 @@ class Custom {
 	    $professions = \Professions::all()->lists('titreProfession','id');
 		$cantons     = \Cantons::all()->lists('titreCanton','id');
 		$pays        = \Pays::all()->lists('titrePays','id');
+		
+		$allmembres          = \Membres::all()->lists('titreMembre','id');
+		$allSpecialisations  = \Specialisations::all()->lists('titreSpecialisation','id');
 
 		$professions = $this->insertFirstInArray( 0 , 'Choix' , $professions );
 		$cantons     = $this->insertFirstInArray( 0 , 'Choix' , $cantons );
 		$pays        = $this->insertFirstInArray( 0 , 'Choix' , $pays );
 		
-		return array( 'civilites' => $civilites , 'professions' => $professions , 'cantons' => $cantons , 'pays' => $pays );		
+		return array( 'civilites' => $civilites , 'professions' => $professions ,'cantons' => $cantons ,'pays' => $pays ,'allmembres' => $allmembres,'allSpecialisations' => $allSpecialisations );	
 		
 	}
 	

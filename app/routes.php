@@ -142,6 +142,12 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('users/{user}', 'UserController@show');
 	Route::get('users/{user}/edit', 'UserController@edit');
 	Route::get('users/{user}/active', 'UserController@active');
+
+	/* member and specialisation */
+	Route::get('adresses/removeMembre/{id}', 'AdresseController@removeMembre');
+	Route::get('adresses/removeSpecialisation/{id}', 'AdresseController@removeSpecialisation');
+	Route::post('adresses/membre', 'AdresseController@membre');
+	Route::post('adresses/specialisation', 'AdresseController@specialisation');
 	
 	Route::get('adresses/user/{id}/adresse', 'AdresseController@create');
 	Route::get('adresses/delete/{id}/{user?}', 'AdresseController@destroy');	

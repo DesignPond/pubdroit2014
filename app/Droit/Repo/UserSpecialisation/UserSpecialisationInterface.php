@@ -1,8 +1,9 @@
 <?php namespace Droit\Repo\UserSpecialisation;
 
 interface UserSpecialisationInterface {
-
-	public function addToUser($membre,$user);
-	public function removeFromUser($membre,$user);
+	
+	public function find($specialisation,$adresse_id);
+	public function addToUser($specialisation,$adresse_id);
+	public function remove($id);
 	
 }

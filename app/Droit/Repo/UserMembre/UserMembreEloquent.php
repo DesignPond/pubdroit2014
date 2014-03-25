@@ -13,11 +13,16 @@ class UserMembreEloquent implements UserMembreInterface {
 		$this->usermembre = $usermembre;	
 	}
 	
-	public function addToUser($membre,$user){
+	public function find($membre,$adresse_id){
+		
+		return $this->usermembre->where('membre_id' , '=' , $membre)->where('adresse_id' , '=' , $adresse_id)->get();		
+	}
 	
+	public function addToUser($membre,$adresse_id){	
+
 		$usermembre = $this->usermembre->create(array(
 			'membre_id'  => $membre,
-			'adresse_id' =>  $user
+			'adresse_id' => $adresse_id
 		));
 		
 		if( ! $usermembre )
@@ -26,13 +31,19 @@ class UserMembreEloquent implements UserMembreInterface {
 		}
 		
 		return true;	
+
 	}
 	
-	public function removeFromUser($membre,$user){
+	public function remove($id){
 	
-		$usermembre = $this->usermembre->where('membre_id' , '=' , $membre)->where('adresse_id' , '=' , $user);
+		$usermembre = $this->usermembre->findOrFail($id);
 
 		return $usermembre->delete();
+	}
+	
+	public function test(){
+	
+		return true;
 	}
 		
 }

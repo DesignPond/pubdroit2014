@@ -4,6 +4,7 @@ use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
 use Droit\Service\Inscription\InscriptionServiceInterface;
 
+
 class UserController extends BaseController {
 
 	protected $inscription;	
@@ -11,19 +12,18 @@ class UserController extends BaseController {
 	protected $user;
 	
 	protected $adresse;
-
-	/**
-	 * Instantiate a new UserController
-	 */
-	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , InscriptionServiceInterface $inscription )
+	
+	/* Inject dependencies */
+	public function __construct( UserInfoInterface $user,AdresseInterface $adresse,InscriptionServiceInterface $inscription )
 	{
 			
-		$this->user        = $user;
+		$this->user               = $user;
 		
-		$this->adresse     = $adresse;
+		$this->adresse            = $adresse;
 		
-		$this->inscription = $inscription;
-			
+		$this->inscription        = $inscription;
+				
+		// Custom helper	
 		$this->custom      = new \Custom;
 		
 		// shared variables and list for selects		
@@ -86,6 +86,7 @@ class UserController extends BaseController {
         }
         
         $data['user']            = $user;
+        $data['adresse_id']      = $contact;
         $data['membres']         = ( $membres ? $membres : array() );
         $data['specialisations'] = ( $specialisations ? $specialisations : array() );
         

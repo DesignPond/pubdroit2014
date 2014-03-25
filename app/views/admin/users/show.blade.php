@@ -72,10 +72,10 @@
 									?>
 									<div class="btn-group">
 			                            <?php echo $compte; ?>
-			                            <ul class="dropdown-menu" role="menu">
+			                            <ul class="dropdown-menu pull-left" role="menu">
 			                           		<?php if($user->activated){ ?>
 			                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
-			                                <li><a href="{{ url('admin') }}">Changer le nom d'utilisateur</a></li>
+			                                <li><a href="#changeUsername" data-toggle="modal">Changer le nom d'utilisateur</a></li>
 			                                <li><a href="{{ url('admin') }}">Changer le mot de passe</a></li>
 			                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
 			                                <li class="divider"></li>
@@ -90,33 +90,66 @@
 								<div class="col-md-6">
 									<div class="well">
 									<?php if( !$specialisations->isEmpty() ){ ?>
-										<div class="row">
-											<h4 class="col-md-7">Spécialisations</h4>
-											<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
+
+										<div id="specs">
+											 <h4>Spécialisations &nbsp;	&nbsp;											 
+												 <a data-toggle="collapse" data-parent="#specs" href="#addspecs" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
+											 </h4>
+											 <div id="addspecs" class="collapse">
+											 
+												{{ Form::open(array('url' => 'admin/adresses/specialisation' , 'class' => 'form-inline row')) }}
+												  <div class="form-group col-md-10">
+													<?php echo Form::select('specialisation_id', $allSpecialisations , null , array('class' => 'form-control') ); ?>
+													<?php echo Form::hidden('adresse_id', $adresse_id );?>								
+												  </div>
+												  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
+												{{ Form::close() }}
+
+											 </div>
 										</div>
+										
 										<div class="list-group">
 										 	<?php  
 										 		foreach ($specialisations as $spec)
 										 		{ 											 
-											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';
+											 		echo '<p class="list-group-item">'.$spec->titreSpecialisation;
+											 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeSpecialisation/'.$spec->id).'">X</a>';
+											 		echo '</p>';
 										 		} 
 										 	?>
 										</div>
 									<?php } ?>	
-									<br/>
+									</div>  
+									<div class="well">
 									<?php if( !$membres->isEmpty() ){ ?>
-										 <div class="row">
-											<h4 class="col-md-7">Membre de</h4>
-											<p class="col-md-5 text-right"><a href="#" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>&nbsp; Ajouter</a></p>
-										 </div>
-										 <div class="list-group">
+		
+										<div id="members">
+											 <h4>Membre de &nbsp; &nbsp;
+												 <a data-toggle="collapse" data-parent="#members" href="#addmembers" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
+											 </h4>
+											 <div id="addmembers" class="collapse">
+											 
+												{{ Form::open(array('url' => 'admin/adresses/membre' , 'class' => 'form-inline row')) }}
+												  <div class="form-group col-md-10">
+													<?php echo Form::select('membre_id', $allmembres , null , array('class' => 'form-control') ); ?>
+													<?php echo Form::hidden('adresse_id', $adresse_id );?>											
+												  </div>
+												  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
+												{{ Form::close() }}
+												
+											 </div>
+										</div>
+										<div class="list-group">
 										 	<?php  
 										 		foreach ($membres as $membre)
 										 		{ 											 
-											 		echo '<p class="list-group-item">'.$membre->titreMembre.'<a class="btn btn-xs btn-danger" href="">X</a></p>';
+											 		echo '<p class="list-group-item">'.$membre->titreMembre;
+											 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeMembre/'.$membre->id).'">X</a>';
+											 		echo '</p>';
 										 		} 
 										 	?>
-										 </div>
+										</div>
+										
 									<?php } ?>																			 
 									</div>  
 									
@@ -484,6 +517,28 @@
 			@endforeach
 			
 			</div><!-- end row -->	
+			
+			<!-- Modals for password and username change -->
+			
+			<div class="modal fade" id="changeUsername" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    <div class="modal-dialog">
+				    <div class="modal-content">
+					    <div class="modal-header">
+					    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+							<h4 class="modal-title">Modal title</h4>
+					    </div>
+					    <div class="modal-body">
+					    	<p>One fine body…</p>
+					    </div>
+					    <div class="modal-footer">
+					    	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+					    </div>
+				    </div><!-- /.modal-content -->
+			    </div><!-- /.modal-dialog -->
+		    </div><!-- /.modal -->
+			
+			<!-- End modals -->
 
 		</div><!-- end container -->		
 	</div><!-- end wrap -->

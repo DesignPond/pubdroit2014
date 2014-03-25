@@ -1,8 +1,11 @@
 <?php namespace Droit\Repo\UserMembre;
 
 interface UserMembreInterface {
-
-	public function addToUser($membre,$user);
-	public function removeFromUser($membre,$user);
+	
+	public function find($membre,$adresse_id);
+	public function addToUser($membre,$adresse_id);
+	public function remove($id);
+	
+	public function test();
 	
 }

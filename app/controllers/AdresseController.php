@@ -5,22 +5,33 @@ use Droit\Repo\Adresse\AdresseInterface;
 
 use Droit\Service\Form\Adresse\AdresseValidator as AdresseValidator;
 
+use Droit\Repo\UserSpecialisation\UserSpecialisationInterface;
+use Droit\Repo\UserMembre\UserMembreInterface;
+
 class AdresseController extends BaseController {
 
 	protected $user;
 	
 	protected $adresse;
+	
+	/*  Members and specialisations  */	
+	protected $userspecialisation;
+	
+	protected $usermembre;
 
-	/**
-	 * Instantiate a new UserController
-	 */
-	public function __construct( UserInfoInterface $user , AdresseInterface $adresse  )
+	/* Inject dependencies */
+	public function __construct( UserInfoInterface $user , AdresseInterface $adresse , UserSpecialisationInterface $userspecialisation , UserMembreInterface $usermembre )
 	{
 
-		$this->user      = $user;
+		$this->user        = $user;
 		
-		$this->adresse   = $adresse;
-			
+		$this->adresse     = $adresse;
+		
+		$this->usermembre  = $usermembre;		
+		
+		$this->userspecialisation = $userspecialisation;
+				
+		// Custom helper				
 		$this->custom      = new \Custom;
 		
 		// shared variables and list for selects	
@@ -197,8 +208,86 @@ class AdresseController extends BaseController {
 			return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse supprimé') ); 		
 		}	
 		
-		return Redirect::to($redirectTo)->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') ); 
+		return Redirect::to($redirectTo)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') ); 
         
 	}
 
+	/**
+	 * Add specialisation for user
+	 *
+	 * @param  int  $user_id , specialisation_id
+	 * @return Response
+	 */	
+	public function specialisation(){
+	
+		$already = $this->userspecialisation->find( Input::get('specialisation_id') , Input::get('adresse_id')  );
+		
+		if( $already->isEmpty() ){
+			
+			if( $this->userspecialisation->addToUser(Input::get('specialisation_id') , Input::get('adresse_id')) )
+			{
+				return Redirect::back()->with( array('status' => 'success' , 'message' => 'La spécialisation a été ajouté')); 
+			}
+			
+			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec l\'ajout') );	
+		}
+		
+		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà la spécialisation') );			
+	}
+
+	/**
+	 *  Add membre for user
+	 *
+	 * @param  int  $user_id , $membre_id
+	 * @return Response
+	 */	
+	public function membre(){
+		
+		$already = $this->usermembre->find( Input::get('membre_id') , Input::get('adresse_id')  );
+		
+		if( $already->isEmpty() ){
+			
+			if( $this->usermembre->addToUser(Input::get('membre_id') , Input::get('adresse_id')) )
+			{
+				return Redirect::back()->with( array('status' => 'success' , 'message' => 'L\'appartenance comme membre a été ajouté')); 
+			}
+			
+			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec l\'ajout') );	
+		}
+		
+		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà l\'appartenance comme membre') );				
+	}
+	
+	/**
+	 * Remove specialisation for user
+	 *
+	 * @param  int  $user_id , specialisation_id
+	 * @return Response
+	 */	
+	public function removeSpecialisation($id){
+	
+		if ( $this->userspecialisation->remove($id) )
+		{
+            return Redirect::back()->with( array('status' => 'success' , 'message' => 'La spécialisation a été supprimé')); 
+        }
+
+        return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );				
+	}
+
+	/**
+	 * Remove membre for user
+	 *
+	 * @param  int  $user_id , $membre_id
+	 * @return Response
+	 */	
+	public function removeMembre($id){
+
+		if ( $this->usermembre->remove($id) )
+		{
+            return Redirect::back()->with( array('status' => 'success' , 'message' => 'Le membre a été supprimé')); 
+        }
+
+        return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );			
+	}	
+	
 }
