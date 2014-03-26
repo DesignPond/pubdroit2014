@@ -75,8 +75,8 @@
 			                            <ul class="dropdown-menu pull-left" role="menu">
 			                           		<?php if($user->activated){ ?>
 			                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
-			                                <li><a href="#changeUsername" data-toggle="modal">Changer le nom d'utilisateur</a></li>
-			                                <li><a href="{{ url('admin') }}">Changer le mot de passe</a></li>
+			                                <li><a class="open-DialogModal" href="#changeColumn" data-column="Nom d'utilisateur" data-toggle="modal">Changer le nom d'utilisateur</a></li>
+			                                <li><a class="open-DialogModal"  href="#changeColumn" data-column="Mot de passe" >Changer le mot de passe</a></li>
 			                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
 			                                <li class="divider"></li>
 			                                <li><a href="{{ url('admin') }}"><small>Supprimer le compte</small></a></li>
@@ -517,29 +517,30 @@
 			
 			<!-- Modals for password and username change -->
 			
-			<div class="modal fade" id="changeUsername" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal fade" id="changeColumn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			    <div class="modal-dialog">
 				    <div class="modal-content">	
 					    <div class="modal-header">
 					    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-							<h4 class="modal-title">Changer le nom d'utilisateur</h4>
+							<h4 class="modal-title">Changer: <span></span></h4>
 					    </div>
 					    <div class="modal-body">
 
 					    	<div id="alert-error" class="alert alert-dismissable alert-danger" style="display:none;">
-								<strong>Oh snap!</strong>Le nom d'utilisateur existe déjà
+								<strong>Oh snap!</strong> &nbsp;Ce nom d'utilisateur existe déjà
 								<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
 							</div>
 							
 					    	<div class="form-group">
-							    <label for="newUsername">Nouveau nom d'utilisateur</label>
-							    <input type="text" class="form-control" id="newUsername" placeholder="nouveau nom d'utilisateur">
+							    <label for="newValue" id="valuename"></label>
+							    <input type="text" class="form-control" id="newValue">
 							    <input type="hidden" value="<?php echo $user->id; ?>" id="userid">
 							</div>
+							
 					    </div>
 					    <div class="modal-footer">
 					    	<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-							<button type="button" class="btn btn-primary" id="changeUsernameBtn">Envoyer</button>
+							<button type="button" class="btn btn-primary" id="changeColumnBtn">Envoyer</button>
 					    </div>
 				    </div><!-- /.modal-content -->
 			    </div><!-- /.modal-dialog -->

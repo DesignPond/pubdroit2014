@@ -159,6 +159,8 @@ class UserInfoEloquent implements UserInfoInterface{
 		{
 			return false;
 		}
+		
+		// $password = Hash::make('secret');
 
 		$user->$column = $value;
 		$user->save();	

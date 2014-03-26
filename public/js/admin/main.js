@@ -98,6 +98,50 @@ $(function() {
 		  selectionHeader : "<strong>Sélectionnées</strong>"
     });
     
+	$('body').on("click", ".open-DialogModal", function () {
+	     var title = $(this).data('column');
+	     $(".modal-title span").text( title );
+	     $("#valuename").text( title );
+	});
+
+    // change column like username or password for user
+	$('body').on('click','#changeColumnBtn', function(event){		
+		// Prevent form submit
+		event.preventDefault();
+		$('#alert-error').hide(); 		
+		// Serialize form data
+		var newname = $("#newValue").val();
+		var user_id = $("#userid").val();	
+		
+		console.log(newname);
+		console.log(user_id);		   
+		// Post the infos
+		
+		/*
+		$.ajax({
+			 type     : 'post',
+			 dataType : "json",
+			 data     : { user_id : user_id , newname : newname },
+			 success  : function(result) 
+			 {	
+		 	
+				// The inscription is deleted, we refresh the inscription div with new infos
+				if(result.result == true){ 				
+					// When username is changed dismiss modal
+					window.location.href = base_url + 'admin/users/' + user_id;		 	 	               
+	            }
+	            else
+	            {  
+	                // alert('problem');  // Something went wrong alert the debbuging infos
+	                $('#alert-error').show(); 
+	            }				
+			 },
+			 url: base_url + 'admin/users/changeUsername'
+		});	
+		*/
+			
+	});
+    
     // change username for user
 	$('body').on('click','#changeUsernameBtn', function(event){		
 		// Prevent form submit
