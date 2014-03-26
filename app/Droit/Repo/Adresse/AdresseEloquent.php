@@ -158,7 +158,7 @@ class AdresseEloquent implements AdresseInterface{
 			}
 			else
 			{
-				$data['types'] = $types;
+				$data['types'] = array( 1 => 'Contact');
 			}
 		}
 		else

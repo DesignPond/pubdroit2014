@@ -219,19 +219,28 @@ class AdresseController extends BaseController {
 	 */	
 	public function specialisation(){
 	
-		$already = $this->userspecialisation->find( Input::get('specialisation_id') , Input::get('adresse_id')  );
+		$adresse_id = Input::get('adresse_id');
 		
-		if( $already->isEmpty() ){
+		if( !empty( $adresse_id ) && ($adresse_id != 0))
+		{					
+			$already = $this->userspecialisation->find( Input::get('specialisation_id') , Input::get('adresse_id')  );
 			
-			if( $this->userspecialisation->addToUser(Input::get('specialisation_id') , Input::get('adresse_id')) )
-			{
-				return Redirect::back()->with( array('status' => 'success' , 'message' => 'La spécialisation a été ajouté')); 
+			if( $already->isEmpty() )
+			{				
+				if( $this->userspecialisation->addToUser(Input::get('specialisation_id') , Input::get('adresse_id')) )
+				{
+					$status = array('status' => 'success' , 'message' => 'La spécialisation a été ajouté');
+				}
+				
+				$status = array('status' => 'danger' , 'message' => 'Problème avec l\'ajout');	
 			}
 			
-			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec l\'ajout') );	
+			$status = array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà la spécialisation');
 		}
 		
-		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà la spécialisation') );			
+		$status = array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ');
+
+		return Redirect::back()->with( $status );		
 	}
 
 	/**
@@ -242,19 +251,28 @@ class AdresseController extends BaseController {
 	 */	
 	public function membre(){
 		
-		$already = $this->usermembre->find( Input::get('membre_id') , Input::get('adresse_id')  );
+		$adresse_id = Input::get('adresse_id');
 		
-		if( $already->isEmpty() ){
+		if( !empty( $adresse_id ) && ($adresse_id != 0))
+		{		
+			$already = $this->usermembre->find( Input::get('membre_id') , Input::get('adresse_id')  );
 			
-			if( $this->usermembre->addToUser(Input::get('membre_id') , Input::get('adresse_id')) )
-			{
-				return Redirect::back()->with( array('status' => 'success' , 'message' => 'L\'appartenance comme membre a été ajouté')); 
+			if( $already->isEmpty() )
+			{				
+				if( $this->usermembre->addToUser(Input::get('membre_id') , Input::get('adresse_id')) )
+				{
+					$status = array('status' => 'success' , 'message' => 'L\'appartenance comme membre a été ajouté'); 
+				}
+				
+				$status = array('status' => 'danger' , 'message' => 'Problème avec l\'ajout');
 			}
 			
-			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec l\'ajout') );	
-		}
+			$status = array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà l\'appartenance comme membre');
+		}	
 		
-		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà l\'appartenance comme membre') );				
+		$status = array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ');
+		
+		return Redirect::back()->with( $status );				
 	}
 	
 	/**

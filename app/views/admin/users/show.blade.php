@@ -2,7 +2,17 @@
 
 @section('content')
 
-<?php  $custom = new Custom; ?>
+<?php  
+
+	// HELPER
+	$custom      = new Custom;
+	
+	//ADRESSES
+	$adresses    = $user->adresses; 															
+	$nbr_adresse = $adresses->count();
+	$col         = ($nbr_adresse > 2 ? 4 : 6);
+	
+?>
 
 <div id="page-content">
 	<div id="wrap">
@@ -26,13 +36,54 @@
 					<div class="panel panel-midnightblue"><!-- panel -->
 						<div class="panel-body"><!-- panel body -->
 
-							<div class="row"><!-- row -->
-							
+							<div class="row"><!-- row -->							
 								<div class="col-md-6"><!-- col -->
-									<div class="table-responsive">
 									
-										<h3><strong>{{ $custom->format_name($user->prenom) }} {{ $custom->format_name($user->nom) }}</strong></h3>
+									<div class="row"><!-- row -->							
+										<div class="col-md-9"><!-- col -->								
+											<h3><strong>{{ $custom->format_name($user->prenom) }} {{ $custom->format_name($user->nom) }}</strong></h3>
+										</div>
+										<div class="col-md-3 text-right"><!-- col -->	
 										
+											<?php
+												
+											if($user->activated)
+											{ 	
+										        $compte = '<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+								                               <i class="fa fa-check-circle"></i>&nbsp; Compte actif&nbsp;
+								                               <span class="caret"></span>
+								                           </button>';
+											}
+											else
+											{
+												$compte = '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+								                               <i class="fa fa-minus-circle"></i>&nbsp; Compte inactif&nbsp;
+								                               <span class="caret"></span>
+								                           </button>';
+											}
+											
+											?>
+											<div class="btn-group">
+					                            <?php echo $compte; ?>
+					                            <ul class="dropdown-menu pull-left" role="menu">
+					                           		<?php if($user->activated){ ?>
+					                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
+					                                <li><a class="open-DialogModal" href="#changeColumn" data-column="Nom d'utilisateur" data-toggle="modal">
+					                                	Changer le nom d'utilisateur</a>
+					                                </li>
+					                                <li><a class="open-DialogModal"  href="#changeColumn" data-column="Mot de passe" >Changer le mot de passe</a></li>
+					                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
+					                                <li class="divider"></li>
+					                                <li><a href="{{ url('admin') }}"><small>Supprimer le compte</small></a></li>
+					                                <?php } else{ ?>
+					                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Activer le compte</a></li>
+					                                <?php } ?>
+					                              </ul>
+				                            </div>
+										</div>									
+									</div>
+									
+									<div class="">	
 										<table class="table table-condensed">											
 											<tbody>
 												<tr>
@@ -52,43 +103,23 @@
 											</tbody>
 										</table>
 									</div>
-									<?php
-										
-									if($user->activated)
-									{ 	
-								        $compte = '<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-						                               <i class="fa fa-check-circle"></i>&nbsp; Compte actif&nbsp;
-						                               <span class="caret"></span>
-						                           </button>';
-									}
-									else
-									{
-										$compte = '<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
-						                               <i class="fa fa-minus-circle"></i>&nbsp; Compte inactif&nbsp;
-						                               <span class="caret"></span>
-						                           </button>';
-									}
-									
-									?>
-									<div class="btn-group">
-			                            <?php echo $compte; ?>
-			                            <ul class="dropdown-menu pull-left" role="menu">
-			                           		<?php if($user->activated){ ?>
-			                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
-			                                <li><a class="open-DialogModal" href="#changeColumn" data-column="Nom d'utilisateur" data-toggle="modal">Changer le nom d'utilisateur</a></li>
-			                                <li><a class="open-DialogModal"  href="#changeColumn" data-column="Mot de passe" >Changer le mot de passe</a></li>
-			                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
-			                                <li class="divider"></li>
-			                                <li><a href="{{ url('admin') }}"><small>Supprimer le compte</small></a></li>
-			                                <?php } else{ ?>
-			                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Activer le compte</a></li>
-			                                <?php } ?>
-			                              </ul>
-		                            </div>
 
 								</div>
 								<div class="col-md-6">
+								
+								@if($nbr_adresse == 0)
+									<div class="alert alert-dismissable alert-danger">
+										<h4><strong>Aucune adresse</strong></h4>
+										<p>Veuillez ajouter un adresse à l'utilisateur pour:</p><br/>
+										<ul>
+											<li>Assigner des spécialisation ou une appartenance comme membre.</li>
+											<li>L'inscrire aux colloques</li>
+											<li>Permettre les achats sur le shop</li>
+										</ul>
+									</div>
+								@else
 									<div class="well">
+										
 										<div id="specs">
 											 <h4>Spécialisations &nbsp;	&nbsp;											 
 												 <a data-toggle="collapse" data-parent="#specs" href="#addspecs" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
@@ -105,7 +136,7 @@
 
 											 </div>
 										</div>
-									<?php if( !$specialisations->isEmpty() ){ ?>
+										<?php if( !$specialisations->isEmpty() ){ ?>
 										<div class="list-group">
 										 	<?php  
 										 		foreach ($specialisations as $spec)
@@ -116,7 +147,7 @@
 										 		} 
 										 	?>
 										</div>
-									<?php } ?>	
+										<?php } ?>	
 									</div>  
 									<div class="well">
 										<div id="members">
@@ -149,7 +180,8 @@
 										
 									<?php } ?>																			 
 									</div>  
-									
+								@endif
+								
 								</div><!-- end col -->
 								
 							</div><!-- end row -->
@@ -184,7 +216,9 @@
 						<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
 					</div>
 					@endif
-				
+					
+					@if($nbr_adresse != 0)
+					
 					<div class="tab-container tab-info">
 						<ul class="nav nav-tabs">
 							<li class="active">
@@ -297,6 +331,8 @@
 						</div>
 					</div>
 					
+					@endif
+					
 				</div><!-- end col -->
 			</div><!-- end row -->
 
@@ -304,14 +340,6 @@
 			<!-- ====================== 
 			  Adresses for compte	
 			=========================== -->
-						
-			<?php  
-			
-				$adresses    = $user->adresses; 															
-				$nbr_adresse = $adresses->count();
-				$col         = ($nbr_adresse > 2 ? 4 : 6);
-				
-			?>
 
 			<div class="row"><!-- row -->
 				
