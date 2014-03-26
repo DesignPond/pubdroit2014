@@ -4,6 +4,14 @@ class Adresses extends Eloquent {
 
 	protected $guarded   = array('id');
 	public static $rules = array();
+	
+	/**
+	* Activate soft delete
+	*
+	* @var boolean
+	*/	
+	protected $softDelete = true;
+	
 		
 	public function membres(){
     	

@@ -8,7 +8,8 @@ interface UserInfoInterface {
 	 * @return stdObject Collection of users
 	*/
 	 
-	public function getAll();	
+	public function getAll();
+	public function getLast($nbr);		
 	public function find($id);	
 	public function delete($id);	
 	

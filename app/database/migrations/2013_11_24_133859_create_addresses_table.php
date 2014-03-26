@@ -35,6 +35,7 @@ class CreateAddressesTable extends Migration {
 			$table->integer('user_id');
 			$table->boolean('livraison');
 			$table->boolean('deleted');
+			$table->softDeletes();
 			$table->timestamps();
 		});
 	}

@@ -38,6 +38,8 @@ class CreateUsersTable extends Migration {
 			$table->index('activation_code');
 			$table->index('reset_password_code');
 			
+			$table->softDeletes();
+			
 			$table->timestamps();
 		});
 	}

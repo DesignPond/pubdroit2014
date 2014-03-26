@@ -68,13 +68,17 @@
 					                            <ul class="dropdown-menu pull-left" role="menu">
 					                           		<?php if($user->activated){ ?>
 					                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Désactiver le compte</a></li>
-					                                <li><a class="open-DialogModal" href="#changeColumn" data-column="Nom d'utilisateur" data-toggle="modal">
+					                                <li><a class="open-DialogModal" href="#changeColumn" data-column="username" data-title="Nom d'utilisateur" data-toggle="modal">
 					                                	Changer le nom d'utilisateur</a>
 					                                </li>
-					                                <li><a class="open-DialogModal"  href="#changeColumn" data-column="Mot de passe" >Changer le mot de passe</a></li>
+					                                <li><a class="open-DialogModal" href="#changeColumn" data-column="password" data-title="Mot de passe" data-toggle="modal">
+					                                	Changer le mot de passe</a>
+					                                </li>
 					                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
 					                                <li class="divider"></li>
-					                                <li><a href="{{ url('admin') }}"><small>Supprimer le compte</small></a></li>
+					                                <li><a class="deleteAction" data-action="Utilisateur" href="{{ url('admin/users/'.$user->id.'/destroy') }}">
+					                                	<small>Supprimer le compte</small></a>
+					                                </li>
 					                                <?php } else{ ?>
 					                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Activer le compte</a></li>
 					                                <?php } ?>
@@ -562,6 +566,7 @@
 					    	<div class="form-group">
 							    <label for="newValue" id="valuename"></label>
 							    <input type="text" class="form-control" id="newValue">
+							    <input type="hidden" id="whatColumn" value="">
 							    <input type="hidden" value="<?php echo $user->id; ?>" id="userid">
 							</div>
 							

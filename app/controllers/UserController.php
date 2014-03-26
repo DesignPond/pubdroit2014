@@ -4,6 +4,7 @@ use Droit\Repo\User\UserInfoInterface;
 use Droit\Repo\Adresse\AdresseInterface;
 use Droit\Service\Inscription\InscriptionServiceInterface;
 
+use Droit\Service\Form\User\UserValidator as UserValidator;
 
 class UserController extends BaseController {
 
@@ -60,7 +61,20 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
+		$userValidator = UserValidator::make( Input::all() );
 		
+		if ($userValidator->passes()) 
+		{
+			$this->user->create( Input::all() );
+
+			// Get last inserted
+			$user  = $this->user->getLast(1);
+			$id    = $user->first()->id;
+			
+			return Redirect::to('admin/users/'.$id)->with( array('status' => 'success' , 'message' => 'Utilisateur crée') ); 
+		}
+		
+		return Redirect::back()->withErrors( $userValidator->errors() )->withInput( Input::all() ); 
 	}
 
 	/**
@@ -126,16 +140,17 @@ class UserController extends BaseController {
 	 * change username for user
 	*/
 	
-	public function changeUsername(){
+	public function changeColumn(){
 		
 		$newname = $_POST['newname'];
 		$user_id = $_POST['user_id'];
-		
+		$column  = $_POST['column'];
+				
 		$already = $this->user->getColumnValue('username',$newname);
 		
 		if( $already->isEmpty() )
 		{	
-			$this->user->updateColumn($user_id , 'username' , $newname);
+			$this->user->updateColumn($user_id , $column , $newname);
 			
 			echo json_encode( array( 'result' => true ) );
 		}
@@ -175,10 +190,10 @@ class UserController extends BaseController {
 
 		if ($this->user->delete($id))
 		{
-            return Redirect::to('users')->with( array('status' => 'success' , 'message' => 'L\'etat du compte à bien été modifié')); 
+            return Redirect::to('admin/users')->with( array('status' => 'success' , 'message' => 'L\'utilisateur à été supprimé')); 
         }
 
-        return Redirect::back()->with( array('status' => 'error' , 'message' => 'Problème avec la modification') );
+        return Redirect::back()->with( array('status' => 'error' , 'message' => 'Problème avec la suppression') );
       
 	}
 

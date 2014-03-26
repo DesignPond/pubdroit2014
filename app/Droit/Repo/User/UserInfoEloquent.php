@@ -24,6 +24,11 @@ class UserInfoEloquent implements UserInfoInterface{
 		
 		return $this->user->with( array('adresses') )->get();
 	}
+		
+	public function getLast($nbr){
+	
+		return $this->user->orderBy('id', 'DESC')->take($nbr)->skip(0)->get();	
+	}
 	
 	public function activate($id){
 	
@@ -160,7 +165,10 @@ class UserInfoEloquent implements UserInfoInterface{
 			return false;
 		}
 		
-		// $password = Hash::make('secret');
+		if($column == 'password')
+		{
+			$value = \Hash::make($value);
+		}
 
 		$user->$column = $value;
 		$user->save();	
