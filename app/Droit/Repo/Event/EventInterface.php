@@ -5,10 +5,13 @@ interface EventInterface {
 	public function getActifs();
 	public function getArchives();
 	public function find($id);
-	public function setFiles($list,$documents);
 	public function getLast($nbr);	
 	public function create(array $data);
 	public function update(array $data);
+	
+	// Files
+	
+	public function setFiles($list,$documents);
 	
 	// Emails
 	

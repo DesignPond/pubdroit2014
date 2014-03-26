@@ -31,7 +31,7 @@ class AdresseEloquent implements AdresseInterface{
 		return $this->adresse->orderBy('id', 'DESC')->take($nbr)->skip(0)->get();	
 	}
 	
-	public function get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL){
+	public function get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $sSearch = NULL){
 			
 		
 		$iTotal = $this->adresse->where('user_id','=',0)->get()->count();
@@ -68,14 +68,12 @@ class AdresseEloquent implements AdresseInterface{
 		foreach($adresses as $adresse)
 		{
 			$row = array();
-			
-			foreach($adresse as $col => $info)
-			{
-				if( in_array($col, $columns) )
-				{
-					$row[] = $info;
-				}	
-			}
+		
+			$row['prenom']  = $this->custom->format_name($adresse['prenom']);
+			$row['nom']     = $this->custom->format_name($adresse['nom']);
+			$row['email']   = "<a href=".url('admin/adresses/'.$adresse['id']).">".$adresse['email'].'</a>';
+			$row['adresse'] = $this->custom->format_name($adresse['adresse']);
+			$row['ville']   = $this->custom->format_name($adresse['ville']);
 			
 			$row['options'] = '<a class="btn btn-info edit_btn" type="button" href="'.url('admin/adresses/'.$adresse['id']).'">&Eacute;diter</a> ';
 			// Reste keys
@@ -217,8 +215,8 @@ class AdresseEloquent implements AdresseInterface{
 
 		$adresse = $this->adresse->create(array(
 			'civilite'   => $data['civilite'],
-			'prenom'     => $data['prenom'],
-			'nom'        => $data['nom'],
+			'prenom'     => $this->custom->format_name($data['prenom']),
+			'nom'        => $this->custom->format_name($data['nom']),
 			'email'      => $data['email'],
 			'entreprise' => $data['entreprise'],
 			'fonction'   => $data['fonction'],
@@ -259,8 +257,8 @@ class AdresseEloquent implements AdresseInterface{
 		
 		// Général
 		$adresse->civilite    = $data['civilite'];
-		$adresse->prenom      = $data['prenom'];
-		$adresse->nom         = $data['nom'];
+		$adresse->prenom      = $this->custom->format_name($data['prenom']);
+		$adresse->nom         = $this->custom->format_name($data['nom']);
 		$adresse->email       = $data['email'];
 		$adresse->entreprise  = $data['entreprise'];
 		$adresse->fonction    = $data['fonction'];

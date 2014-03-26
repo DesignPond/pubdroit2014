@@ -24,9 +24,9 @@
 	               
 	                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered adresse_table" id="adresse_table">
 								<thead>
-									<th>Email</th>
 									<th>Prénom</th>
 									<th>Nom</th>
+									<th>Email</th>
 									<th>Adresses</th>
 									<th>Ville</th>	
 									<th>Options</th>									

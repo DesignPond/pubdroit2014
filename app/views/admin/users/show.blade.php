@@ -31,7 +31,7 @@
 								<div class="col-md-6"><!-- col -->
 									<div class="table-responsive">
 									
-										<h3><strong>{{ $user->prenom }} {{ $user->nom }}</strong></h3>
+										<h3><strong>{{ $custom->format_name($user->prenom) }} {{ $custom->format_name($user->nom) }}</strong></h3>
 										
 										<table class="table table-condensed">											
 											<tbody>
@@ -365,7 +365,7 @@
 								<div class="form-group row">
 								 	 <label for="prenom" class="col-sm-3 control-label">Prénom</label>
 								 	 <div class="col-sm-6">
-										{{ Form::text('prenom', $adresse->prenom , array('class' => 'form-control required' )) }}
+										{{ Form::text('prenom', $custom->format_name($adresse->prenom) , array('class' => 'form-control required' )) }}
 									 </div>
 									 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 								</div>
@@ -373,7 +373,7 @@
 								<div class="form-group row">
 								 	 <label for="nom" class="col-sm-3 control-label">Nom</label>
 								 	 <div class="col-sm-6">
-										{{ Form::text('nom', $adresse->nom , array('class' => 'form-control required' )) }}
+										{{ Form::text('nom', $custom->format_name($adresse->nom) , array('class' => 'form-control required' )) }}
 									 </div>
 									 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 								</div>

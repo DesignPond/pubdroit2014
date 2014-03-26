@@ -136,10 +136,9 @@ class AdminController extends BaseController {
 	
 	public function files(){
 	
-		$event   = $this->event->find(4);
-		$inscriptions = $this->inscription->getEvent(4);
+		$files   = $this->event->getFiles(4);
 			
-    	return View::make('pdf.test')->with( array( 'data' => $inscriptions ) );    
+    	return View::make('pdf.test')->with( array( 'data' => $files ) );    
 	}	
 	
 	/**

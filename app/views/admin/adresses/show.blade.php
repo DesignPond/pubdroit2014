@@ -26,6 +26,23 @@
 				</div>
 			</div>		
 			
+			@if($errors->has())				
+				<ul>
+				    @foreach($errors->all() as $message)						
+				    <li>{{ $message }}</li>						
+				    @endforeach
+				</ul>						
+			@endif
+			
+			@if(Session::has('status'))
+			<div class="alert alert-dismissable alert-{{  Session::get('status') }}">
+				@if(Session::has('message'))
+					{{  Session::get('message') }}
+				@endif
+				<button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+			</div>
+			@endif
+			
 			<div class="row"><!-- row -->
 				<div class="col-md-6"><!-- col -->		
 
@@ -34,7 +51,7 @@
 
 								@if( !empty($adresse) )
 								
-								{{ Form::open(array( 'url' => 'admin/adresses')) }}
+								{{ Form::open(array( 'url' => 'admin/adresses/'.$adresse->id , 'method' => 'PUT' )) }}
 									
 									<h3><strong><?php echo $custom->whatType($adresse->type); ?></strong></h3>						
 
@@ -49,7 +66,7 @@
 										<div class="form-group row">
 										 	 <label for="prenom" class="col-sm-3 control-label">Prénom</label>
 										 	 <div class="col-sm-6">
-												{{ Form::text('prenom', $adresse->prenom , array('class' => 'form-control required' )) }}
+												{{ Form::text('prenom', $custom->format_name($adresse->prenom) , array('class' => 'form-control required' )) }}
 											 </div>
 											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 										</div>
@@ -57,7 +74,7 @@
 										<div class="form-group row">
 										 	 <label for="nom" class="col-sm-3 control-label">Nom</label>
 										 	 <div class="col-sm-6">
-												{{ Form::text('nom', $adresse->nom , array('class' => 'form-control required' )) }}
+												{{ Form::text('nom', $custom->format_name($adresse->nom) , array('class' => 'form-control required' )) }}
 											 </div>
 											 <div class="col-sm-3"><p class="help-block">Requis</p></div>
 										</div>

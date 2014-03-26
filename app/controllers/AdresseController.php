@@ -59,7 +59,6 @@ class AdresseController extends BaseController {
 	public function getAllAdresse()
 	{
 
-        $columns = array('email','prenom','nom','adresse','ville'); 
         $sSearch = NULL;
         
         if(Input::get('sSearch'))
@@ -71,7 +70,7 @@ class AdresseController extends BaseController {
         $iDisplayStart  = Input::get('iDisplayStart');
         $iDisplayLength = Input::get('iDisplayLength');
         
-        return $this->adresse->get_ajax( $columns , $sEcho , $iDisplayStart , $iDisplayLength , $sSearch );
+        return $this->adresse->get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $sSearch );
         
 	}
 

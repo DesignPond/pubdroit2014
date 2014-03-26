@@ -7,13 +7,17 @@ use Event_options_user;
 class UserInfoEloquent implements UserInfoInterface{
 
 	protected $user;
+	
+	protected $custom;
 
 	/**
 	 * Construct a new SentryUser Object
 	 */
 	public function __construct(M $user)
 	{
-		$this->user = $user;
+		$this->user   = $user;
+		
+		$this->custom = new \Custom;
 	}
 	
 	public function getAll(){
@@ -82,8 +86,8 @@ class UserInfoEloquent implements UserInfoInterface{
 			foreach($adresse as $info)
 			{
 				$row['email']  = "<a href=".url('admin/users/'.$adresse['id']).">".$adresse['email'].'</a>';
-				$row['prenom'] = $adresse['prenom'];
-				$row['nom']    = $adresse['nom'];
+				$row['prenom'] = $this->custom->format_name($adresse['prenom']);
+				$row['nom']    = $this->custom->format_name($adresse['nom']);
 
 				if( $adresse['activated'] == 1 ) { $row['activated'] = 'Active'; } else{ $row['activated'] = 'Inactive'; } 
 				
