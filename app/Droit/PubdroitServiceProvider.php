@@ -12,7 +12,7 @@ use Membres as M;
 use Professions as P;
 use Prices as PR;
 
-use User as U;
+use \User as User;
 use Adresses as AD;
 
 use Files as F;
@@ -79,7 +79,7 @@ class PubdroitServiceProvider extends ServiceProvider {
     
 	    $this->app->bind('Droit\Repo\User\UserInfoInterface', function()
         {
-            return new \Droit\Repo\User\UserInfoEloquent( new U );
+            return new \Droit\Repo\User\UserInfoEloquent( new User );
         });       
     }    
     

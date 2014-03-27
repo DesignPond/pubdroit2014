@@ -75,13 +75,13 @@
 					                                	Changer le mot de passe</a>
 					                                </li>
 					                                <li><a href="{{ url('admin/adresses/user/'.$user->id.'/adresse') }}">Ajouter une adresse</a></li>
-					                                <li class="divider"></li>
-					                                <li><a class="deleteAction" data-action="Utilisateur" href="{{ url('admin/users/'.$user->id.'/destroy') }}">
-					                                	<small>Supprimer le compte</small></a>
-					                                </li>
 					                                <?php } else{ ?>
 					                                <li><a href="{{ url('admin/users/'.$user->id.'/active') }}">Activer le compte</a></li>
 					                                <?php } ?>
+													<li class="divider"></li>
+					                                <li><a class="deleteAction" data-action="Utilisateur" href="{{ url('admin/users/'.$user->id.'/destroy') }}">
+					                                	<small>Supprimer le compte</small></a>
+					                                </li>
 					                              </ul>
 				                            </div>
 										</div>									
@@ -352,9 +352,7 @@
 				<div class="col-md-<?php echo $col; ?>"><!-- col -->
 					
 					<div class="panel panel-sky"><!-- panel -->
-					
-						{{ Form::open(array( 'url' => 'admin/adresses/'.$adresse->id , 'method' => 'put')) }}	
-						
+
 						<div class="panel-body"><!-- panel body -->
 								
 								<div class="row">
@@ -371,12 +369,20 @@
 						      				 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
 				                            	<i class="fa fa-gear"></i> &nbsp;Actions &nbsp;<span class="caret"></span>
 				                            </button>
-				                            <ul class="dropdown-menu" role="menu">								
-												<?php if( $adresse->livraison == 1){  ?>				                           
-				                                <li><a href="{{ $adresse->id }}">Changer en adresse normale</a></li>
-											   <?php } else { ?>
-				                                <li><a href="{{ $adresse->id }}">Changer en adresse de livraison</a></li>
-											    <?php } ?>
+				                            <ul class="dropdown-menu" role="menu">																								                           
+				                                <li>
+				                                	{{ Form::open(array( 'url' => 'admin/adresses/changeLivraison/')) }}
+				                                	
+				                                		{{ Form::hidden('livraison', $adresse->livraison) }}
+				                                		{{ Form::hidden('id', $adresse->id ) }}
+				                                		{{ Form::hidden('user_id', $user->id ) }}
+				                                		
+				                                		<?php $text = ($adresse->livraison == 1 ? 'Changer en adresse normale' : 'Changer en adresse de livraison'); ?>
+	
+				                                		<button type="submit"><?php  echo $text; ?></button>				                                
+				                                		 
+				                                	{{ Form::close() }}	
+				                                </li>
 				                         		<li class="divider"></li>
 								                <li><a href="<?php echo url('admin/adresses/delete/'.$adresse->id.'/'.$adresse->user_id); ?>">
 								                	<small class="text-danger">Supprimer</small></a>
@@ -385,6 +391,8 @@
 			                            </div>
 									</div>
 								</div>
+								
+								{{ Form::open(array( 'url' => 'admin/adresses/'.$adresse->id , 'method' => 'put')) }}
 							
 								<div class="form-group row">
 								 	 <label for="civilite" class="col-sm-3 control-label">Civilite</label>

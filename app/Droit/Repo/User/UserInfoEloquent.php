@@ -227,6 +227,59 @@ class UserInfoEloquent implements UserInfoInterface{
 									->where('user_id','=',$user)
 									->get();
 	}
+
+	/**
+	 * Create a new user
+	 *
+	 * @return boolean
+	*/	
+	public function create(array $data){
+
+		$user = $this->user;
+		
+		$user->prenom      = $this->custom->format_name($data['prenom']);
+		$user->nom         = $this->custom->format_name($data['nom']);
+		$user->email       = $data['email'];
+		$user->username    = $data['email'];
+		$user->password    = \Hash::make($data['password']);
+		$user->updated_at  = date('Y-m-d G:i:s');	
+		
+		$user->save();	
+		
+		if( ! $user )
+		{
+			return false;
+		}
+		
+		return true;
+		
+	}
+
+	/**
+	 * Update a new user
+	 *
+	 * @return boolean
+	*/		
+	public function update(array $data){
+		
+		$user = $this->user->findOrFail($data['id']);	
+		
+		if( ! $user )
+		{
+			return false;
+		}
+		
+		$user->prenom      = $this->custom->format_name($data['prenom']);
+		$user->nom         = $this->custom->format_name($data['nom']);
+		$user->email       = $data['email'];
+		$user->password    = \Hash::make($data['password']);
+		$user->updated_at  = date('Y-m-d G:i:s');	
+		
+		$user->save();	
+		
+		return true;		
+	}
+	
 	
 	/**
 	 * Delete a user by id.

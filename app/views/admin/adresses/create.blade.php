@@ -212,8 +212,8 @@
 					      	<div class="row">
 				      			<div class="btn-toolbar">
 				      				<?php if( $user_id != 0){ echo Form::hidden('redirectTo', 'users/'.$user_id); }?>
-					      			{{ Form::hidden('user_id', $user_id ) }}
-					      			{{ Form::hidden('livraison', 0 ) }}
+					      			{{ Form::hidden('user_id', $user_id ) }}				      			
+					      			{{ Form::hidden('livraison', $livraison ) }}
 					      			<button type="submit" class="btn-primary btn">Envoyer</button>
 				      			</div>
 					      	</div>

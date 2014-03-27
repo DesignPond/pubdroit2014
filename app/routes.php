@@ -11,20 +11,13 @@
 |
 */
 
+
 use Carbon\Carbon;
 
-use Analyses as AN;
 
 Route::get('/', function()
 {
-	
-    	
-	$ans = AN::where('pid','=',195)->with( array('analyses_categories') )->orderBy('pub_date', 'DESC')->get()->toArray();	
-	
-	
-	echo '<pre>';
-	print_r($ans);
-	echo '</pre>';	
+
 		
 /*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');
@@ -153,6 +146,7 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::get('adresses/removeSpecialisation/{id}', 'AdresseController@removeSpecialisation');
 	Route::post('adresses/membre', 'AdresseController@membre');
 	Route::post('adresses/specialisation', 'AdresseController@specialisation');
+	Route::post('adresses/changeLivraison', 'AdresseController@changeLivraison');
 	
 	Route::get('adresses/user/{id}/adresse', 'AdresseController@create');
 	Route::get('adresses/delete/{id}/{user?}', 'AdresseController@destroy');	

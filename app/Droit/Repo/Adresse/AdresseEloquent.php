@@ -153,19 +153,22 @@ class AdresseEloquent implements AdresseInterface{
 					unset($types[$adresse]);
 				}
 				
-				$data['adresses'] = $adresses;
-				$data['types']    = $types;
+				$data['adresses']  = $adresses;
+				$data['types']     = $types;
+				$data['livraison'] = 0;
 			}
 			else
 			{
-				$data['types'] = array( 1 => 'Contact');
+				$data['types']     = array( 1 => 'Contact');
+				$data['livraison'] = 1;
 			}
 		}
 		else
 		{
-			$data['adresses'] = array();
-			$data['user_id']  = 0;	
-			$data['types']    = $types;
+			$data['adresses']  = array();
+			$data['user_id']   = 0;	
+			$data['types']     = $types;
+			$data['livraison'] = 0;
 		}		
 		
 		return $data;
@@ -233,6 +236,7 @@ class AdresseEloquent implements AdresseInterface{
 			'pays'       => $data['pays'],
 			'type'       => $data['type'],
 			'user_id'    => $data['user_id'],
+			'livraison'  => $data['livraison'],
 			'created_at' => date('Y-m-d G:i:s'),
 			'updated_at' => date('Y-m-d G:i:s')
 		));

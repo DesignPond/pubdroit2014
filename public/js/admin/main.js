@@ -144,6 +144,27 @@ $(function() {
 		});	
 			
 	});
+	
+	if($('#UsernameEmail')) {
+		
+		$container = $('#inputUsername');
+		var email  = $('#UsernameEmail').val();	
+			
+		$container.val(email);	
+	}
+	
+	$('#UsernameEmail').blur(function (){
+		
+		$this      = $(this);
+		$container = $('#inputUsername');
+		
+		var email = $this.val();
+		
+		$container.val(email);
+		
+		console.log(email);
+		
+	});
     
     
 });

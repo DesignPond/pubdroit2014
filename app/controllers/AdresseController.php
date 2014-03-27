@@ -73,6 +73,26 @@ class AdresseController extends BaseController {
         return $this->adresse->get_ajax( $sEcho , $iDisplayStart , $iDisplayLength , $sSearch );
         
 	}
+	
+	
+	/**
+	 * change livraison adresse
+	*/		
+	public function changeLivraison(){
+		
+		echo '<pre>';
+		print_r(Input::all());
+		echo '</pre>';
+		exit();
+		
+		if ($this->adresse->changeLivraison($id,$type))
+		{			
+			return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse supprimé') ); 		
+		}	
+		
+		return Redirect::to($redirectTo)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') ); 
+		
+	}
 
 	/**
 	 * Update the specified resource in storage.

@@ -61,6 +61,7 @@ class UserController extends BaseController {
 	 */
 	public function store()
 	{
+
 		$userValidator = UserValidator::make( Input::all() );
 		
 		if ($userValidator->passes()) 
@@ -137,9 +138,8 @@ class UserController extends BaseController {
 	}
 	
 	/**
-	 * change username for user
-	*/
-	
+	 * change column value for user
+	*/	
 	public function changeColumn(){
 		
 		$newname = $_POST['newname'];
