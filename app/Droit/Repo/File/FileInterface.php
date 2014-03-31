@@ -11,5 +11,8 @@ interface FileInterface {
 	
 	/* File manipulation */
 	public function directory_map($directory , array $extension);
+	
+	// Centers
+	public function getAllCenters();
 }
 

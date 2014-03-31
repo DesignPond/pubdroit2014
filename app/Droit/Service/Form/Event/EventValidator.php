@@ -1,8 +1,8 @@
 <?php namespace Droit\Service\Form\Event;
 
-use  Droit\Service\Validation\AbstractLaravelValidator;
+use Crhayes\Validation\ContextualValidator;
 
-class EventFormValidator extends AbstractLaravelValidator {
+class EventValidator extends ContextualValidator {
 	
 	/*
 	 * Validation rules

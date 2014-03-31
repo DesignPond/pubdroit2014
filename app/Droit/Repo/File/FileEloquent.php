@@ -23,6 +23,13 @@ class FileEloquent implements FileInterface {
 		return $this->file->where('event_id','=', $event)->get();		
 	}
 	
+	public function getAllCenters(){
+				
+		$root  = getcwd().'/centers';
+		
+		return $this->directory_map( $root , array('png','jpg') );
+	}
+	
 	public function getFilesEvent($event,$type){
 		
 		if( is_array($event)  )

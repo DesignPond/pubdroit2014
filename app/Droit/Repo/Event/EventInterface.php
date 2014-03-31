@@ -9,17 +9,14 @@ interface EventInterface {
 	public function create(array $data);
 	public function update(array $data);
 	
-	// Files
-	
+	// Files	
 	public function setFiles($list,$documents);
 	
-	// Emails
-	
+	// Emails	
 	public function getEmail($type,$event);
 	public function createEmail($data);
 	
-	// Attestations
-	
+	// Attestations	
 	public function getAttestation($event);
 	public function createAttestation($data);
 	

@@ -23,7 +23,10 @@ class ArretsController extends BaseController {
 
 	protected $upload;
 	
-	public function __construct(ArretInterface $arret,CategorieInterface $categorie,AnalyseInterface $analyse,SeminaireInterface $seminaire,SubjectInterface $subject,UploadInterface $upload){
+	public function __construct(
+		ArretInterface $arret,CategorieInterface $categorie,AnalyseInterface $analyse,SeminaireInterface $seminaire,SubjectInterface $subject,UploadInterface $upload
+	)
+	{
 		
 		$this->arret      = $arret;
 

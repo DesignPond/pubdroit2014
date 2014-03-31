@@ -7,20 +7,18 @@ use Droit\Repo\Price\PriceInterface;
 use Droit\Repo\Specialisation\SpecialisationInterface;
 use Droit\Repo\File\FileInterface;
 
-use Droit\Service\Form\Event\EventForm;
 use Droit\Service\Form\File\FileForm;
 use Droit\Service\Upload\UploadInterface;
 
 use Droit\Service\Form\Attestation\AttestationValidator as AttestationValidator;
 use Droit\Service\Form\Event\EmailEventValidator as EmailEventValidator;
+use Droit\Service\Form\Event\EventValidator as EventValidator;
 
 class EventController extends BaseController {
 
 	protected $event;
 	
 	protected $file;
-	
-	protected $validator;
 	
 	protected $compte;
 	
@@ -32,9 +30,10 @@ class EventController extends BaseController {
 	
 	protected $price;
 	
+	private $documents;
+	
 	public function __construct(
 		EventInterface $event, 
-		EventForm $validator , 
 		CompteInterface $compte, 
 		UploadInterface $upload , 
 		FileForm $filevalidator, 
@@ -49,8 +48,6 @@ class EventController extends BaseController {
 		
 		$this->file           = $file;
 		
-		$this->validator      = $validator;
-		
 		$this->filevalidator  = $filevalidator;
 		
 		$this->compte         = $compte;
@@ -62,6 +59,8 @@ class EventController extends BaseController {
 		$this->specialisation = $specialisation;
 		
 		$this->price          = $price;
+
+		$this->documents      = array( 'images' => array('carte','vignette','badge','illustration'), 'docs' => array('programme','pdf','document') );
 
 	}
 
@@ -116,19 +115,21 @@ class EventController extends BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
-		if( $this->validator->save( Input::all() ) )
-		{	
+	{	
+		$eventValidator = EventValidator::make( Input::all() );
+		
+		if ($eventValidator->passes()) 
+		{
+			$this->event->create( Input::all() );
+			
 			// Get last inserted
 			$event  = $this->event->getLast(1);
 			$id     = $event->first()->id;
 			
 			return Redirect::to('admin/pubdroit/event/'.$id.'/edit');
 		}
-		else
-		{	
-			return Redirect::to('admin/pubdroit/event/create')->withErrors($this->validator->errors())->withInput( Input::all() ); 
-		}
+		
+		return Redirect::to('admin/pubdroit/event/create')->withErrors($eventValidator->errors())->withInput( Input::all() ); 
 	}
 
 	/**
@@ -153,31 +154,19 @@ class EventController extends BaseController {
 	public function edit($id)
 	{
 		$event       = $this->event->find($id);
-		$email       = $this->event->getEmail('inscription',$id);
-		$emailDefaut = $this->event->getEmail('inscription',"0");
-		$attestation = $this->event->getAttestation($id);
-		$comptes     = $this->compte->getAll()->lists('motifCompte', 'id');
+		$emailDefaut = $this->event->getEmail('inscription',"0");		
+		$comptes     = $this->compte->getAll()->lists('motifCompte', 'id');		
+		$centers     = $this->file->getAllCenters(); 
 		
-		$root        = getcwd().'/centers';
-		$centers     = $this->file->directory_map( $root , array('png','jpg') );
-		
-		// Uploads 
-		$documents = array(
-			'images' => array('carte','vignette','badge','illustration'),
-			'docs'   => array('programme','pdf','document')
-		);
-		
-		$allfiles = $this->event->setFiles($event,$documents);
+		$allfiles    = $this->event->setFiles($event,$this->documents);
 		
         return View::make('admin.event.edit')->with( 
         	array(
         		'event'       => $event,
         		'centers'     => $centers,
         		'comptes'     => $comptes,
-        		'attestation' => $attestation,
-        		'email'       => $email, 
         		'emailDefaut' => $emailDefaut, 
-        		'documents'   => $documents,
+        		'documents'   => $this->documents,
         		'allfiles'    => $allfiles 
         	)
         );

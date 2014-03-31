@@ -11,7 +11,7 @@ class CustomHelperTest extends TestCase {
 		$this->custom = new Custom; 
 	}
 
-	public function testFindFileAndMAkeLinkIfExist()
+	public function testFindFileAndMakeLinkIfExist()
 	{		
 		$actual = $this->custom->fileExistFormatLink( 'public/files/users/' , '1' , '4' , 'pdfbon' , 'Bon');
 		
@@ -98,7 +98,7 @@ class CustomHelperTest extends TestCase {
 	/*
 	 * Tests for arrays
 	*/		
-	public function testInsertKeyValueInFirstPLace(){
+	public function testInsertKeyValueInFirstPlace(){
 		
 		$array = array( '11' => 'item 1' , '32' => 'item 2' );
 		

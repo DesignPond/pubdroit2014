@@ -35,5 +35,20 @@ class Events extends Eloquent {
  	
 	 	return $this->hasOne('Event_config', 'event_id');
  	}
+ 	
+	public function emails(){
+	
+		return $this->hasOne('Event_emails', 'event_id');
+	}
+ 	
+	public function emailDefaut(){
+	
+		return $this->hasOne('Event_emails', 'event_id');
+	}
+		
+	public function attestation(){
+		
+		return $this->hasOne('Event_attestations', 'event_id');
+	}
 	
 }

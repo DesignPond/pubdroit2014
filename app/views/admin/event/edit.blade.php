@@ -135,6 +135,7 @@
 				       <div rel="#email_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Textes pour email inscription</h4></div>
 					    <div id="email_event" class="toggle_in panel-body"><!-- start panel content -->
 					    
+					    	<?php  $email = $event->email; ?>
 							<!-- form start --> 
 							{{ Form::model($email,array(
 								'method'        => 'POST',
@@ -142,7 +143,7 @@
 								'data-validate' => 'parsley',
 								'class'         => 'validate-form form-horizontal',
 								'url'           => array('admin/pubdroit/event/email'))) 
-							}}
+							}}				
 							  
 							<div class="form-group">
 							  	<label for="message" class="col-sm-3 control-label">Message</label>
@@ -185,7 +186,9 @@
 					<div class="panel panel-midnightblue">
 				       <div rel="#attestation_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Infos pour attestation</h4></div>
 					    <div id="attestation_event" class="toggle_in panel-body"><!-- start panel content -->
-					    
+							
+							<?php  $attestation = $event->attestation; ?>
+												    
 							<!-- form start --> 
 							{{ Form::open(array(
 								'method'        => 'POST',
@@ -194,7 +197,6 @@
 								'class'         => 'validate-form form-horizontal',
 								'url'           => 'admin/pubdroit/event/attestation' ))
 							}}
-							
 							
 							<div class="form-group">
 								  <label for="lieu" class="col-sm-3 control-label">Lieu</label>
@@ -286,6 +288,11 @@
 					</div><!-- end panel -->
 					
 					<!-- Info générales-->
+<?php
+echo '<pre>';
+print_r($event);
+echo '</pre>';
+?>
 					<!-- form start --> 
 					{{ Form::model($event,array(
 						'method'        => 'PATCH',

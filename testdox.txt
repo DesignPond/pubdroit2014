@@ -1,12 +1,12 @@
 CustomHelper
- [x] Find file and m ake link if exist
+ [x] Find file and make link if exist
  [x] Get mime type of file
  [x] If exist format image
  [x] Format the name if composed
  [x] Remove accents and spaces from string
  [x] Remove non alphanumeric letters and html tags from string
  [x] Remove case postale from string
- [x] Insert key value in first p lace
+ [x] Insert key value in first place
  [x] Arrange array by keys
  [x] Find all list of items in array is true
  [x] Add array to array
@@ -22,10 +22,20 @@ MembreSpecialisationAdd
 UserModel
  [x] test format first name of user
 
+EventController
+ [x] Actif event list
+ [x] Archives event list
+ [x] Create new event
+ [x] Store new event validation pass
+ [x] Store new event validation fails
+ [ ] Edit event
+
 MembresController
  [x] Index
  [x] Edit
  [x] Create
+ [x] Store new membre passe validation
+ [x] Store new membre fail vaidation
 
 OptionsController
  [x] Edit
