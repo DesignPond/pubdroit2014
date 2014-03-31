@@ -1,0 +1,47 @@
+CustomHelper
+ [x] Find file and m ake link if exist
+ [x] Get mime type of file
+ [x] If exist format image
+ [x] Format the name if composed
+ [x] Remove accents and spaces from string
+ [x] Remove non alphanumeric letters and html tags from string
+ [x] Remove case postale from string
+ [x] Insert key value in first p lace
+ [x] Arrange array by keys
+ [x] Find all list of items in array is true
+ [x] Add array to array
+ [x] Find all list of items in array is false
+ [x] Format telephon number 10digit
+ [x] Format telephon number 11digit
+ [x] Format telephon number 13digit
+
+MembreSpecialisationAdd
+ [x] test add membre to user
+ [x] test add specialisation to user
+
+UserModel
+ [x] test format first name of user
+
+MembresController
+ [x] Index
+ [x] Edit
+ [x] Create
+
+OptionsController
+ [x] Edit
+ [x] Create
+ [x] Store new option passe validation
+ [x] Store new option fail vaidation
+
+ProfessionsController
+ [x] Index
+ [x] Edit
+ [x] Create
+
+SpecialisationsController
+ [x] Index
+ [x] Edit
+ [x] Create
+ [x] Store new specialisation passe validation
+ [x] Store new specialisation fail vaidation
+

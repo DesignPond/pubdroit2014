@@ -14,4 +14,7 @@
             <directory>./app/tests/</directory>
         </testsuite>
     </testsuites>
+	<logging>
+        <log type="testdox-text" target="testdox.txt"/>
+    </logging>
 </phpunit>

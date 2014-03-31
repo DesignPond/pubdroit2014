@@ -11,15 +11,6 @@ class OptionController extends BaseController {
 	{		
 		$this->option     = $option;
 	}
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-        return View::make('options.index');
-	}
 
 	/**
 	 * Show the form for creating a new resource.
@@ -49,18 +40,7 @@ class OptionController extends BaseController {
 			return Redirect::to('admin/pubdroit/event/'.$event_id.'/edit')->with( array('status' => 'success' , 'message' => 'L\'option à été crée' ) );
 		}
 		
-		return Redirect::to('admin/pubdroit/option/'.$event_id.'/create')->withErrors( $optionValidator->errors() )->withInput( Input::all() ); 
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{		 
-	
+		return Redirect::to('admin/pubdroit/option/create/'.$event_id)->withErrors( $optionValidator->errors() )->withInput( Input::all() ); 
 	}
 
 	/**

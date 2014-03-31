@@ -32,11 +32,9 @@ class SpecialisationController extends BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create($event)
+	public function create()
 	{
-        $specialisations = $this->specialisation->droplist();
-        
-        return View::make('admin.event.form.specialisation_create')->with( array( 'event' => $event , 'specialisations' => $specialisations) );
+        return View::make('admin.specialisation.create');
 	}
 
 	/**
