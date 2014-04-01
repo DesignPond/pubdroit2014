@@ -223,5 +223,17 @@ class EventEloquent implements EventInterface {
 		}	
 	}
 	
+	public function delete($id){
+	
+		$event = $this->event->findOrFail($id);
+		
+		if( ! $event )
+		{
+			return false;
+		}	
+
+		return $event->delete();		
+	}
+	
 }
 

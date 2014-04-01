@@ -8,7 +8,8 @@ interface EventInterface {
 	public function getLast($nbr);	
 	public function create(array $data);
 	public function update(array $data);
-	
+	public function delete($id);
+		
 	// Files	
 	public function setFiles($list,$documents);
 	

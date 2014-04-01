@@ -28,7 +28,17 @@ EventController
  [x] Create new event
  [x] Store new event validation pass
  [x] Store new event validation fails
- [ ] Edit event
+ [x] Edit event
+ [x] Update event validation pass
+ [x] Update event validation fails
+ [x] Update event email text validation pass
+ [x] Update event email text validation fails
+ [x] Destroy event pass
+ [x] Destroy event fails
+
+FileController
+ [x] Upload file pass
+ [x] Upload file fails
 
 MembresController
  [x] Index

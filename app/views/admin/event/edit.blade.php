@@ -135,13 +135,14 @@
 				       <div rel="#email_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Textes pour email inscription</h4></div>
 					    <div id="email_event" class="toggle_in panel-body"><!-- start panel content -->
 					    
-					    	<?php  $email = $event->email; ?>
+					    	<?php  $email = ( isset($event->email) ? $event->email : array() ); ?>
+					    	
 							<!-- form start --> 
 							{{ Form::model($email,array(
 								'method'        => 'POST',
 								'id'            => 'event_email',
 								'data-validate' => 'parsley',
-								'class'         => 'validate-form form-horizontal',
+								'class'         => 'validate-form-email form-horizontal',
 								'url'           => array('admin/pubdroit/event/email'))) 
 							}}				
 							  
@@ -150,9 +151,9 @@
 							  	<div class="col-sm-6">
 							  	
 							  		@if(!empty($email))
-					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control  redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', $email->message , array('class' => 'form-control  redactor required', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@else
-					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor', 'cols' => '50' , 'rows' => '4' )) }}
+					      				{{ Form::textarea('message', null , array('class' => 'form-control redactor required', 'cols' => '50' , 'rows' => '4' )) }}
 					      			@endif
 							  	  	
 							  	</div>
@@ -187,14 +188,13 @@
 				       <div rel="#attestation_event" class="panel-heading event_section"><h4><i class="fa fa-envelope-o"></i> &nbsp;Infos pour attestation</h4></div>
 					    <div id="attestation_event" class="toggle_in panel-body"><!-- start panel content -->
 							
-							<?php  $attestation = $event->attestation; ?>
-												    
+						    <?php  $attestation = ( isset($event->attestation) ? $event->attestation : array() ); ?>											    
 							<!-- form start --> 
 							{{ Form::open(array(
 								'method'        => 'POST',
 								'id'            => 'event_attestation',
 								'data-validate' => 'parsley',
-								'class'         => 'validate-form form-horizontal',
+								'class'         => 'validate-form-attestation form-horizontal',
 								'url'           => 'admin/pubdroit/event/attestation' ))
 							}}
 							
@@ -203,9 +203,9 @@
 								  <div class="col-sm-6">
 								  	
 									  @if(!empty($attestation))
-									      {{ Form::text('lieu', $attestation->lieu , array('class' => 'form-control' )) }}
+									      {{ Form::text('lieu', $attestation->lieu , array('class' => 'form-control required' )) }}
 									  @else
-						      			  {{ Form::text('lieu', null , array('class' => 'form-control' )) }}
+						      			  {{ Form::text('lieu', null , array('class' => 'form-control required' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -218,9 +218,9 @@
 								  <div class="col-sm-6">
 								  
 								      @if(!empty($attestation))
-									      {{ Form::text('organisateur', $attestation->organisateur , array('class' => 'form-control' )) }}
+									      {{ Form::text('organisateur', $attestation->organisateur , array('class' => 'form-control required' )) }}
 									  @else
-						      			  {{ Form::text('organisateur', null , array('class' => 'form-control' )) }}
+						      			  {{ Form::text('organisateur', null , array('class' => 'form-control required' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -233,9 +233,9 @@
 								  <div class="col-sm-6">
 								  
 								      @if(!empty($attestation))
-									      {{ Form::text('signature', $attestation->signature , array('class' => 'form-control' )) }}
+									      {{ Form::text('signature', $attestation->signature , array('class' => 'form-control required' )) }}
 									  @else
-						      			  {{ Form::text('signature', null , array('class' => 'form-control' )) }}
+						      			  {{ Form::text('signature', null , array('class' => 'form-control required' )) }}
 						      		  @endif
 						      		  
 								  </div>
@@ -288,11 +288,7 @@
 					</div><!-- end panel -->
 					
 					<!-- Info générales-->
-<?php
-echo '<pre>';
-print_r($event);
-echo '</pre>';
-?>
+					
 					<!-- form start --> 
 					{{ Form::model($event,array(
 						'method'        => 'PATCH',
@@ -317,7 +313,8 @@ echo '</pre>';
 								  
 								  		<?php
 								  			
-								  			$centerLogos = explode(',', $event->centreLogos);
+								  			$EventLogos  = ( isset($event->centreLogos) ? $event->centreLogos : '' );
+								  			$centerLogos = explode(',', $EventLogos);
 									  		
 											if(!empty($centers)){
 												foreach($centers as $center){

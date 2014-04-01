@@ -1,8 +1,8 @@
 <?php namespace Droit\Service\Form\File;
 
-use  Droit\Service\Validation\AbstractLaravelValidator;
+use Crhayes\Validation\ContextualValidator;
 
-class FileFormValidator extends AbstractLaravelValidator {
+class FileValidator extends ContextualValidator {
 	
 	/*
 	 * Validation rules
