@@ -22,6 +22,15 @@ MembreSpecialisationAdd
 UserModel
  [x] test format first name of user
 
+AdressesController
+ [x] Index
+ [x] Adresse infos type one
+ [x] Adresse infos type other
+ [x] Create adresse
+ [x] Store new adresse validation pass and without redirect
+ [x] Store new adresse validation pass and with redirect
+ [x] Store new adresse validation fails
+
 EventController
  [x] Actif event list
  [x] Archives event list
@@ -37,8 +46,15 @@ EventController
  [x] Destroy event fails
 
 FileController
- [x] Upload file pass
+ [x] Upload file pass and validation pass
  [x] Upload file fails
+ [x] Upload file pass and validation fail
+
+InscriptionController
+ [x] Inscriptions list
+
+InvoiceController
+ [x] Invoices list
 
 MembresController
  [x] Index

@@ -15,9 +15,15 @@
 use Carbon\Carbon;
 
 
+
 Route::get('/', function()
 {
 
+	$user =  Adresses::where('id','=',1)->with(array('user'))->get();
+	
+	echo '<pre>';
+	print_r($user);
+	echo '</pre>';	
 		
 /*
 	$instance   = Carbon::createFromFormat('Y-m-d h:i:s', '2013-10-01 00:00:00');

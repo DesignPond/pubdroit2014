@@ -116,29 +116,30 @@ class AdresseController extends BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
-				
-		$redirectTo       = Input::get('redirectTo');
-		
+	{			
+		$redirectTo = Input::get('redirectTo');
+		$user_id    = Input::get('user_id');
+
 		$adresseValidator = AdresseValidator::make( Input::all() );
 		
 		if ($adresseValidator->passes()) 
 		{
 			$this->adresse->create( Input::all() );
 			
-			if($redirectTo)
+			if(!empty($redirectTo))
 			{
 				return Redirect::to('admin/'.$redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
 			}
 			
 			// Get last inserted
-			$adresse  = $this->adresse->getLast(1);
-			$id       = $adresse->first()->id;
+			$id  = $this->adresse->getLast(1)->first()->id;
 			
-			return Redirect::to('admin/adresse/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
+			return Redirect::to('admin/adresses/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse crée') ); 
 		}
 		
-		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
+		$where = ( $user_id > 0 ? '/'.$user_id : '');
+		
+		return Redirect::to('admin/adresses/create'.$where)->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
 	}
 
 	/**
@@ -148,39 +149,21 @@ class AdresseController extends BaseController {
 	 * @return Response
 	 */
 	public function show($id)
-	{
-        $adresse = $this->adresse->find($id);
-        $type    = $this->adresse->typeAdresse($id);
-    
-        // test if the adresse is linked to user
-        $user_id = $this->adresse->isUser($id); 
-      
-        $membres         = array();
-        $specialisations = array();
-        $user            = array();
-        
-        if($user_id != 0)
-        {
-	        $user = $this->user->find($user_id); 
-        }
-        
-        if($type == 1)
-        {
-       	 	$membres          = $this->adresse->members($id);
-	   	 	$specialisations  = $this->adresse->specialisations($id);	        
-        }
-        else
-        {
-	        $contact          = $this->user->findAdresseContact($id , true); // return only id with true
+	{		
+		$data = $this->adresse->show($id);
+		
+		if($data['type'] != 1)
+		{
+			$contact  = $this->user->findAdresseContact($id , true); // return only id with true
 	        
 	        if($contact)
 	        {
-		        $membres         = $this->adresse->members($contact);
-				$specialisations = $this->adresse->specialisations($contact); 
+		        $data['membres']         = $this->adresse->members($contact);
+				$data['specialisations'] = $this->adresse->specialisations($contact); 
 	        }
-        }
+		}
 
-        return View::make('admin.adresses.show')->with( array( 'adresse' => $adresse , 'user' => $user , 'membres' => $membres , 'specialisations' => $specialisations ));
+        return View::make('admin.adresses.show')->with( $data );
 	}
 	
 	/**

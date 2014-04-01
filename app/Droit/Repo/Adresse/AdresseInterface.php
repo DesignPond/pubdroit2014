@@ -11,6 +11,9 @@ interface AdresseInterface {
 	public function find($data);
 	public function getLast($nbr);	
 	
+	// function for gather infos on adresse to show
+	public function show($id);
+	
 	public function isUser($adresse);
 	public function adresseUser($user_id);
 	public function infosIfUser($user_id);

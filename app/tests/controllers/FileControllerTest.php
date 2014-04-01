@@ -5,6 +5,10 @@ class FileControllerTest extends TestCase {
 	protected $mock;
 	
 	protected $upload;
+	
+	protected $file;
+	
+	protected $media;
 			
 	public function setUp()
 	{
@@ -13,6 +17,15 @@ class FileControllerTest extends TestCase {
 		$this->mock   = $this->mock('Droit\Repo\File\FileInterface');
 		
 		$this->upload = $this->mock('Droit\Service\Upload\UploadInterface');
+		
+		$this->file = array(
+			'destination' => 'files/temp/',
+			'event_id'    => 1,
+			'typeFile'    => 'carte'
+		);		
+				
+		// stub for the file uploaded
+		$this->media = new \Symfony\Component\HttpFoundation\File\UploadedFile( getcwd().'/public/files/temp/foo.jpg' ,'foo.jpg' );
 	}
 	 
 	public function mock($class)
@@ -30,19 +43,10 @@ class FileControllerTest extends TestCase {
     }
 	
 	/**
-	 * Upload file
+	 * Upload file and validation pass
 	*/	 
-	public function testUploadFilePass()
+	public function testUploadFilePassAndValidationPass()
 	{	
-		$file = array(
-			'destination' => 'files/temp/',
-			'event_id'    => 1,
-			'typeFile'    => 'carte'
-		);
-		
-		// stub for the file uploaded
-		$media = new \Symfony\Component\HttpFoundation\File\UploadedFile( getcwd().'/public/files/temp/foo.jpg' ,'foo.jpg' );
-		
 		// upload the file and it's ok
 		$this->upload->shouldReceive('upload')->once()->andReturn(true);
 		
@@ -50,7 +54,7 @@ class FileControllerTest extends TestCase {
 		$this->mock->shouldReceive('create')->once();
 	    
 	    // post all infos, from form and file as third param
-		$this->call('POST', 'admin/pubdroit/event/upload', $file , array('file' => $media) );
+		$this->call('POST', 'admin/pubdroit/event/upload', $this->file , array('file' => $this->media) );
  
 		$this->assertRedirectedTo('admin/pubdroit/event/1/edit');
 	}
@@ -60,22 +64,28 @@ class FileControllerTest extends TestCase {
 	*/	 
 	public function testUploadFileFails()
 	{	
-		$file = array(
-			'destination' => 'files/temp/',
-			'event_id'    => 1,
-			'typeFile'    => 'carte'
-		);
-		
-		// stub for the file uploaded
-		$media = new \Symfony\Component\HttpFoundation\File\UploadedFile( getcwd().'/public/files/temp/foo.jpg' ,'foo.jpg' );
-		
 		// upload the file and it fails
 		$this->upload->shouldReceive('upload')->once()->andReturn(false);
 	    
 	    // post all infos, from form and file as third param
-		$this->call('POST', 'admin/pubdroit/event/upload', $file , array('file' => $media) );
+		$this->call('POST', 'admin/pubdroit/event/upload', $this->file , array('file' => $this->media) );
  
 		$this->assertRedirectedTo('admin/pubdroit/event/1/edit', array('status' => 'danger'));
+	}
+	
+	
+	/**
+	 * Upload file pass and validation fails
+	*/	 
+	public function testUploadFilePassAndValidationFail()
+	{			
+		// upload the file and it's ok
+		$this->upload->shouldReceive('upload')->once()->andReturn(true);
+	    
+	    // post all infos, from form and file as third param
+		$this->call('POST', 'admin/pubdroit/event/upload', array() , array('file' => $this->media) );
+ 
+		$this->assertRedirectedTo('admin/pubdroit/event//edit', array('status' => 'danger'));
 	}
 	
 }

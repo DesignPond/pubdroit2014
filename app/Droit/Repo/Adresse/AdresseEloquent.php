@@ -93,7 +93,34 @@ class AdresseEloquent implements AdresseInterface{
 	 */
 	public function find($id){
 				
-		return $this->adresse->findOrFail($id);													
+		return $this->adresse->where('id','=',$id)->with(array('user'))->get()->first();													
+	}
+	
+	/**
+	 * Return all infos for adrese to show
+	 * We need:
+	 * Adresse
+	 * if it's an user adresse: user infos
+	 * Specialisation
+	 * Members
+	 * 
+	 * @return array
+	*/
+	public function show($id){
+						
+        $adresse = $this->find($id);
+        $type    = $this->typeAdresse($id);
+      
+        $membres         = array();
+        $specialisations = array();
+        
+        if($type == 1)
+        {
+       	 	$membres          = $this->members($id);
+	   	 	$specialisations  = $this->specialisations($id);	        
+        }
+	
+		return array( 'adresse' => $adresse , 'membres' => $membres , 'specialisations' => $specialisations , 'type' => $type );
 	}
 
 	/**

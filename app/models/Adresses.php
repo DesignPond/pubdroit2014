@@ -23,5 +23,8 @@ class Adresses extends Eloquent {
     	return $this->belongsToMany('Specialisations', 'user_specialisations', 'specialisation_id', 'adresse_id');
  	}
  	
-	
+	public function user()
+    {
+        return $this->belongsTo('User','user_id');
+    }
 }
