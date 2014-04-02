@@ -293,7 +293,6 @@ abstract class TestsForWeb extends \PHPUnit_Framework_TestCase
         $this->module->seeInField('#empty_textarea','');
     }
 
-
     public function testDontSeeInFieldOnInput()
     {
         $this->module->amOnPage('/form/field');
@@ -345,6 +344,12 @@ abstract class TestsForWeb extends \PHPUnit_Framework_TestCase
         $this->module->amOnPage('/form/textarea');
     }
 
+    public function testGrabAttributeFrom()
+    {
+        $this->module->amOnPage('/search');
+        $this->assertEquals('get', $this->module->grabAttributeFrom('form', 'method'));
+    }
+
     public function testLinksWithSimilarNames() {
         $this->module->amOnPage('/');
         $this->module->click('Test Link');
@@ -368,8 +373,11 @@ abstract class TestsForWeb extends \PHPUnit_Framework_TestCase
     {
         $this->module->amOnPage('/form/field');
         $this->module->seeElement('input[name=name]');
+        $this->module->seeElement('input', ['name' => 'name']);
+        $this->module->seeElement('input', ['id' => 'name']);
         $this->module->seeElement('descendant-or-self::input[@id="name"]');
         $this->module->dontSeeElement('#something-beyond');
+        $this->module->dontSeeElement('input', ['id' => 'something-beyond']);
         $this->module->dontSeeElement('descendant-or-self::input[@id="something-beyond"]');
     }
 

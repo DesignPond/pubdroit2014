@@ -39,7 +39,7 @@ class UserSpecialisationEloquent implements UserSpecialisationInterface {
 		return true;	
 	}
 	
-	public function remove($id){
+	public function delete($id){
 	
 		$userspecialisation = $this->userspecialisation->findOrFail($id);
 

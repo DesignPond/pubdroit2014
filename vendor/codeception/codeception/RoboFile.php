@@ -24,6 +24,14 @@ class RoboFile extends \Robo\Tasks {
         $this->taskComposerUpdate()->run();
     }
 
+    public function changed($change)
+    {
+        $this->taskChangelog()
+            ->version(\Codeception\Codecept::VERSION)
+            ->change($change)
+            ->run();
+    }
+
     protected function server()
     {
         $this->taskServer(8000)
@@ -38,6 +46,14 @@ class RoboFile extends \Robo\Tasks {
             ->arg('suite','tests/unit/Codeception/Module/PhpBrowserTest.php')
             ->run();
 
+    }
+
+    public function testCoverage()
+    {
+        $this->server();
+        $this->taskSymfonyCommand(new \Codeception\Command\Run('run'))
+            ->arg('suite','coverage')
+            ->run();
     }
 
     public function testFacebook()
@@ -105,6 +121,7 @@ class RoboFile extends \Robo\Tasks {
             ->name('*.png')
             ->name('*.js')
             ->name('*.css')
+            ->name('*.eot')
             ->name('*.png')
             ->name('*.tpl.dist')
             ->name('*.html.dist')

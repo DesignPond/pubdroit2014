@@ -482,22 +482,47 @@ interface Web
      */
     public function grabValueFrom($field);
 
+
     /**
-     * Checks if element exists on a page, matching it by CSS or XPath
+     * Grabs attribute value from an element.
+     * Fails if element is not found.
+     *
+     * ``` php
+     * <?php
+     * $I->grabAttributeFrom('#tooltip', 'title');
+     * ?>
+     * ```
+     *
+     *
+     * @param $cssOrXpath
+     * @param $attribute
+     * @internal param $element
+     * @return mixed
+     */
+    public function grabAttributeFrom($cssOrXpath, $attribute);
+
+    /**
+     * Checks if element exists on a page, matching it by CSS or XPath.
+     * You can also specify expected attributes of this element.
      *
      * ``` php
      * <?php
      * $I->seeElement('.error');
      * $I->seeElement('//form/input[1]');
+     * $I->seeElement('input', ['name' => 'login']);
+     * $I->seeElement('input', ['value' => '123456']);
      * ?>
      * ```
      *
      * @param $selector
+     * @param array $attributes
+     * @return
      */
-    public function seeElement($selector);
+    public function seeElement($selector, $attributes = array());
 
     /**
      * Checks if element does not exist (or is visible) on a page, matching it by CSS or XPath
+     * You can also specify expected attributes of this element.
      *
      * Example:
      *
@@ -505,6 +530,8 @@ interface Web
      * <?php
      * $I->dontSeeElement('.error');
      * $I->dontSeeElement('//form/input[1]');
+     * $I->dontSeeElement('input', ['name' => 'login']);
+     * $I->dontSeeElement('input', ['value' => '123456']);
      * ?>
      * ```
      *

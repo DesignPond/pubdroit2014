@@ -125,8 +125,7 @@ class Bootstrap extends Command
             'settings' => array(
                 'bootstrap'    => '_bootstrap.php',
                 'colors'       => (strtoupper(substr(PHP_OS, 0, 3)) != 'WIN'),
-                'memory_limit' => '1024M',
-                'log'          => true
+                'memory_limit' => '1024M'
             ),
             'modules'  => array(
                 'config' => array(
@@ -197,7 +196,7 @@ class Bootstrap extends Command
 
         file_put_contents(
             'tests/acceptance/_bootstrap.php',
-            "<?php\n// Here you can initialize variables that will for your tests\n"
+            "<?php\n// Here you can initialize variables that will be used for your tests\n"
         );
         file_put_contents(
             'tests/_helpers/WebHelper.php',
@@ -211,7 +210,7 @@ class Bootstrap extends Command
         // CodeGuy
         $suiteConfig = array(
             'class_name' => 'Code'.$this->actor,
-            'modules'    => array('enabled' => array('CodeHelper')),
+            'modules'    => array('enabled' => array('Asserts', 'CodeHelper')),
         );
 
         $str = "# Codeception Test Suite Configuration\n\n";
@@ -221,7 +220,7 @@ class Bootstrap extends Command
 
         file_put_contents(
             'tests/unit/_bootstrap.php',
-            "<?php\n// Here you can initialize variables that will for your tests\n"
+            "<?php\n// Here you can initialize variables that will be used for your tests\n"
         );
         file_put_contents(
             'tests/_helpers/CodeHelper.php',

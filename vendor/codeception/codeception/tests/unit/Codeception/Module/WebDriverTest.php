@@ -120,6 +120,12 @@ class WebDriverTest extends TestsForBrowsers
     {
         $this->module->amOnPage('/');
         @unlink(\Codeception\Configuration::logDir().'testshot.png');
+        $testName="debugTest";
+
+        $this->module->makeScreenshot($testName);
+        $this->assertFileExists(\Codeception\Configuration::logDir().'debug/ - '.$testName.'.png');
+        @unlink(\Codeception\Configuration::logDir().'debug/ - '.$testName.'.png');
+
         $this->module->_saveScreenshot(\Codeception\Configuration::logDir().'testshot.png');
         $this->assertFileExists(\Codeception\Configuration::logDir().'testshot.png');
         @unlink(\Codeception\Configuration::logDir().'testshot.png');
@@ -341,6 +347,16 @@ class WebDriverTest extends TestsForBrowsers
         $this->shouldFail();
         $this->module->amOnPage('/form/complex');
         $this->module->submitForm('form111', array());
+    }
+
+    // fails in PhpBrowser :(
+    public function testSubmitUnchecked()
+    {
+        $this->module->amOnPage('/form/unchecked');
+        $this->module->seeCheckboxIsChecked('#checkbox');
+        $this->module->uncheckOption('#checkbox');
+        $this->module->click('#submit');;
+        $this->module->see('0','#notice');
     }
 
 }

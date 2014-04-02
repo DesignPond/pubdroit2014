@@ -58,6 +58,7 @@ class Configuration
             'enabled' => array(),
             'config' => array(),
         ),
+        'groups' => [],
         'settings' => array(
             'colors' => false,
             'log' => false,
@@ -94,7 +95,7 @@ class Configuration
             $configFile = $configFile . DIRECTORY_SEPARATOR . 'codeception.yml';
         }
 
-        $dir = dirname($configFile);
+        $dir = realpath(dirname($configFile));
 
         $configDistFile = $dir . DIRECTORY_SEPARATOR . 'codeception.dist.yml';
 
@@ -192,7 +193,7 @@ class Configuration
 
         $globalConf = $config['settings'];
 
-        foreach (array('modules','coverage', 'namespace') as $key) {
+        foreach (array('modules','coverage', 'namespace', 'groups') as $key) {
             if (isset($config[$key])) {
                 $globalConf[$key] = $config[$key];
             }
@@ -408,6 +409,17 @@ class Configuration
     public static function isEmpty()
     {
         return !(bool)self::$testsDir;
+    }
+
+    /**
+     * Adds parameters to config
+     *
+     * @param array $config
+     * @return array
+     */
+    public static function append(array $config = array())
+    {
+        return self::$config = self::mergeConfigs(self::$config, $config);
     }
 
     public static function mergeConfigs($a1, $a2)

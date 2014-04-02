@@ -39,16 +39,11 @@ class UserMembreEloquent implements UserMembreInterface {
 
 	}
 	
-	public function remove($id){
+	public function delete($id){
 	
 		$usermembre = $this->usermembre->findOrFail($id);
 
 		return $usermembre->delete();
-	}
-	
-	public function test(){
-	
-		return true;
 	}
 		
 }

@@ -18,6 +18,10 @@ modules:
             password: 'guest'
             vhost: '/'
             queues: [queue1, queue2]
+
+extensions:
+    enabled: [Codeception\Platform\RunFailed, Codeception\Platform\Logger]
+
 coverage:
     enabled: true
     include:

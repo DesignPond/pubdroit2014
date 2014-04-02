@@ -139,25 +139,25 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
 
 ### `Faker\Provider\DateTime`
 
-    unixTime                // 58781813
-    dateTime                // DateTime('2008-04-25 08:37:17')
-    dateTimeAD              // DateTime('1800-04-29 20:38:49')
-    iso8601                 // '1978-12-09T10:10:29+0000'
-    date($format = 'Y-m-d') // '1979-06-09'
-    time($format = 'H:i:s') // '20:49:42'
+    unixTime($max = 'now')                // 58781813
+    dateTime($max = 'now')                // DateTime('2008-04-25 08:37:17')
+    dateTimeAD($max = 'now')              // DateTime('1800-04-29 20:38:49')
+    iso8601($max = 'now')                 // '1978-12-09T10:10:29+0000'
+    date($format = 'Y-m-d', $max = 'now') // '1979-06-09'
+    time($format = 'H:i:s', $max = 'now') // '20:49:42'
     dateTimeBetween($startDate = '-30 years', $endDate = 'now') // DateTime('2003-03-15 02:00:49')
-    dateTimeThisCentury     // DateTime('1915-05-30 19:28:21')
-    dateTimeThisDecade      // DateTime('2007-05-29 22:30:48')
-    dateTimeThisYear        // DateTime('2011-02-27 20:52:14')
-    dateTimeThisMonth       // DateTime('2011-10-23 13:46:23')
-    amPm                    // 'pm'
-    dayOfMonth              // '04'
-    dayOfWeek               // 'Friday'
-    month                   // '06'
-    monthName               // 'January'
-    year                    // '1993'
-    century                 // 'VI'
-    timezone                // 'Europe/Paris'
+    dateTimeThisCentury($max = 'now')     // DateTime('1915-05-30 19:28:21')
+    dateTimeThisDecade($max = 'now')      // DateTime('2007-05-29 22:30:48')
+    dateTimeThisYear($max = 'now')        // DateTime('2011-02-27 20:52:14')
+    dateTimeThisMonth($max = 'now')       // DateTime('2011-10-23 13:46:23')
+    amPm($max = 'now')                    // 'pm'
+    dayOfMonth($max = 'now')              // '04'
+    dayOfWeek($max = 'now')               // 'Friday'
+    month($max = 'now')                   // '06'
+    monthName($max = 'now')               // 'January'
+    year($max = 'now')                    // '1993'
+    century                               // 'VI'
+    timezone                              // 'Europe/Paris'
 
 ### `Faker\Provider\Miscellaneous`
 
@@ -177,6 +177,7 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
     randomNumber($from, $to) // 39049
     randomFloat($nbMaxDecimals = NULL, $min = 0, $max = NULL) // 48.8932
     randomLetter            // 'b'
+    randomElements($array = array ('a','b','c'), $count = 1) // array('c')
     randomElement($array = array ('a','b','c')) // 'b'
     numerify($string = '###') // '609'
     lexify($string = '????') // 'wgts'
@@ -217,13 +218,20 @@ Each of the generator properties (like `name`, `address`, and `lorem`) are calle
      * @param $dir An absolute path to a local directory
      * @param $width/$height Size (in pixel) of the generated image (defaults to 640x480)
      * @param $category One of 'abstract','animals','business','cats','city','food','nightlife','fashion','people','nature','sports','technics', and 'transport'
+     * @param $fullPath Whether to have the full path to the image or just the filename (default true)
      */
     image($dir)                  // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
     image($dir, $width, $height) // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
     image($dir, $width, $height, $category) // '/path/to/dir/13b73edae8443990be1aa8f1a483bc27.jpg'
+    image($dir, $width, $height, $category, $fullPath = false) // '13b73edae8443990be1aa8f1a483bc27.jpg'
     imageUrl                    // 'http://lorempixel.com/640/480/'
     imageUrl($width, $height)   // 'http://lorempixel.com/800/600/'
     imageUrl($width, $height, $category) // 'http://lorempixel.com/800/600/person/'
+
+### `Faker\Provider\Barcode`
+
+    ean13          // '4006381333931'
+    ean8           // '73513537'
 
 ## Unique and Optional modifiers
 
@@ -361,6 +369,15 @@ $faker->seed(1234);
 
 echo $faker->name; // 'Jess Mraz I';
 ```
+
+> **Tip**: DateTime formatters won't reproduce the same fake data if you don't fix the `$max` value:
+>
+> ```php
+> <?php
+> // even when seeded, this line will return different results because $max varies
+> $faker->dateTime(); // equivalent to $faker->dateTime($max = 'now')
+> // make sure you fix the $max parameter
+> $faker->dateTime('2014-02-25 08:37:17'); // will return always the same date when seeded
 
 ## Faker Internals: Understanding Providers
 

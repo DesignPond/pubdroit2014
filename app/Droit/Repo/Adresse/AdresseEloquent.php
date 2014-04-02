@@ -225,7 +225,7 @@ class AdresseEloquent implements AdresseInterface{
 		return UM::where( 'adresse_id', '=' , $id)->join('membres', function($join)
         {
             $join->on('user_membres.membre_id', '=', 'membres.id');
-        })->get();													
+        })->select('user_membres.*' , 'membres.*','user_membres.id as idmem')->get();													
 	}
 	
 	/**
@@ -238,7 +238,7 @@ class AdresseEloquent implements AdresseInterface{
 		return US::where( 'adresse_id', '=' , $id)->join('specialisations', function($join)
         {
             $join->on('user_specialisations.specialisation_id', '=', 'specialisations.id');
-        })->get();														
+        })->select('user_specialisations.*','specialisations.*','user_specialisations.id as idspec')->get();														
 	}
 	
 	public function create(array $data){

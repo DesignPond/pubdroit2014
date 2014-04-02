@@ -521,6 +521,9 @@ class InnerBrowser extends Module implements Web
         return "N/A";
     }
 
+    /**
+     * @return Crawler
+     */
     protected function match($selector)
     {
         try {
@@ -534,6 +537,17 @@ class InnerBrowser extends Module implements Web
         return @$this->crawler->filterXPath($selector);
     }
 
+    protected function filterByAttributes(Crawler $nodes, array $attributes)
+    {
+        foreach ($attributes as $attr => $val) {
+            $nodes = $nodes->reduce(function(Crawler $node) use ($attr, $val) {
+                return $node->attr($attr) == $val;
+            });
+        }
+        return $nodes;
+
+    }
+
     public function grabTextFrom($cssOrXPathOrRegex)
     {
         $nodes = $this->match($cssOrXPathOrRegex);
@@ -544,6 +558,15 @@ class InnerBrowser extends Module implements Web
             return $matches[1];
         }
         throw new ElementNotFound($cssOrXPathOrRegex, 'Element that matches CSS or XPath or Regex');
+    }
+
+    public function grabAttributeFrom($cssOrXpath, $attribute)
+    {
+        $nodes = $this->match($cssOrXpath);
+        if (!$nodes->count()) {
+            throw new ElementNotFound($cssOrXpath, 'Element that matches CSS or XPath');
+        }
+        return $nodes->first()->attr($attribute);
     }
 
     public function grabValueFrom($field)
@@ -616,15 +639,23 @@ class InnerBrowser extends Module implements Web
         $this->debugSection('Cookies', $this->client->getCookieJar()->all());
     }
 
-    public function seeElement($selector)
+    public function seeElement($selector, $attributes = array())
     {
         $nodes = $this->match($selector);
+        if (!empty($attributes)) {
+            $nodes = $this->filterByAttributes($nodes, $attributes);
+            $selector .= "' with attribute(s) '" . trim(json_encode($attributes),'{}');
+        }
         $this->assertDomContains($nodes, $selector);
     }
 
-    public function dontSeeElement($selector)
+    public function dontSeeElement($selector, $attributes = array())
     {
         $nodes = $this->match($selector);
+        if (!empty($attributes)) {
+            $nodes = $this->filterByAttributes($nodes, $attributes);
+            $selector .= "' with attribute(s) '" . trim(json_encode($attributes),'{}');
+        }
         $this->assertDomNotContains($nodes, $selector);
     }
 

@@ -15,12 +15,6 @@ CustomHelper
  [x] Format telephon number 11digit
  [x] Format telephon number 13digit
 
-MembreSpecialisationAdd
- [x] test add membre to user
-
-UserModel
- [x] test format first name of user
-
 AdressesController
  [x] Index
  [x] Adresse infos type one
@@ -29,6 +23,9 @@ AdressesController
  [x] Store new adresse validation pass and without redirect
  [x] Store new adresse validation pass and with redirect
  [x] Store new adresse validation fails
+ [x] Update adresse validation pass and without redirect
+ [x] Update adresse validation pass and with redirect
+ [x] Update adresse validation fails
  [x] Destroy adresse pass with user
  [x] Destroy adresse pass
  [x] Destroy adresse fails
@@ -82,4 +79,10 @@ SpecialisationsController
  [x] Create
  [x] Store new specialisation passe validation
  [x] Store new specialisation fail vaidation
+
+UserSpecialisationsController
+ [x] Add specialisation to user
+ [x] Add specialisation to user already
+ [ ] Remove specialisation pass
+ [ ] Remove specialisation fails
 

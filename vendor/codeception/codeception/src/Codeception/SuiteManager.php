@@ -4,7 +4,8 @@ namespace Codeception;
 
 use Codeception\Event\Suite;
 use Codeception\Event\SuiteEvent;
-use Codeception\Lib\Generator\Actor;
+use Codeception\Lib\GroupManager;
+use Codeception\Lib\Parser;
 use Codeception\Util\Annotation;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\Finder\Finder;
@@ -16,6 +17,8 @@ class SuiteManager
 
     public static $modules = array();
     public static $actions = array();
+    public static $environment;
+    public static $name;
 
     /**
      * @var \PHPUnit_Framework_TestSuite
@@ -27,12 +30,17 @@ class SuiteManager
      */
     protected $dispatcher = null;
 
+    /**
+     * @var GroupManager
+     */
+    protected $groupManager;
+
     protected $tests = array();
     protected $debug = false;
     protected $path = '';
-    protected $testcaseClass = 'Codeception\TestCase';
     protected $printer = null;
     protected $env = null;
+
 
     protected $settings = array();
 
@@ -42,15 +50,10 @@ class SuiteManager
         $this->dispatcher = $dispatcher;
         $this->suite = $this->createSuite($name);
         $this->path = $settings['path'];
+        $this->groupManager = new GroupManager($settings['groups']);
 
-        if ($settings['bootstrap']) {
-            $this->settings['bootstrap'] = $this->path . $settings['bootstrap'];
-        }
         if (isset($settings['current_environment'])) {
             $this->env = $settings['current_environment'];
-        }
-        if ($settings['bootstrap']) {
-            $this->settings['bootstrap'] = $this->path . $settings['bootstrap'];
         }
         $this->suite = $this->createSuite($name);
 
@@ -79,11 +82,7 @@ class SuiteManager
     
     protected function createSuite($name)
     {
-        $suiteClass = $this->settings['suite_class'];
-        if (!class_exists($suiteClass)) {
-            throw new Exception\Configuration("Suite class $suiteClass not found");
-        }
-        $suite = new $suiteClass;
+        $suite = new \PHPUnit_Framework_TestSuite();
         $suite->baseName = $this->env ? substr($name, 0, strpos($name, '-' . $this->env)) : $name;
         if ($this->settings['namespace']) {
             $name = $this->settings['namespace'] . ".$name";
@@ -97,7 +96,7 @@ class SuiteManager
 
     public function addTest($path)
     {
-        $testClasses = $this->getClassesFromFile($path);
+        $testClasses = Parser::getClassesFromFile($path);
 
         foreach ($testClasses as $testClass) {
             $reflected = new \ReflectionClass($testClass);
@@ -113,8 +112,7 @@ class SuiteManager
                 if (!$this->isCurrentEnvironment(Annotation::forMethod($testClass, $method->name)->fetchAll('env'))) {
                     continue;
                 }
-                $groups = \PHPUnit_Util_Test::getGroups($testClass, $method->name);
-                $this->suite->addTest($test, $groups);
+                $this->addToSuite($test);
             }
         }
     }
@@ -124,56 +122,52 @@ class SuiteManager
         $name = $this->relativeName($file);
         $this->tests[$name] = $file;
 
-        $cept = new TestCase\Cept($this->dispatcher, array(
-            'name' => $name,
-            'file' => $file,
-            'bootstrap' => $this->settings['bootstrap']
-        ));
+        $cept = new TestCase\Cept();
+        $cept->configDispatcher($this->dispatcher)
+            ->configName($name)
+            ->configFile($file)
+            ->configEnv($this->env)
+            ->initConfig();
 
         $cept->preload();
 
         if (!$this->isCurrentEnvironment($cept->getScenario()->getEnv())) {
             return;
         }
-        $this->suite->addTest($cept, $cept->getScenario()->getGroups());
+        $this->addToSuite($cept);
     }
 
     public function addCest($file)
     {
         $name = $this->relativeName($file);
         $this->tests[$name] = $file;
-
-        $testClasses = $this->getClassesFromFile($file);
+        $testClasses = Parser::getClassesFromFile($file);
 
         foreach ($testClasses as $testClass) {
             $reflected = new \ReflectionClass($testClass);
-
             if ($reflected->isAbstract()) {
                 continue;
             }
 
-            $guy = $this->settings['namespace']
-                ? $this->settings['namespace'] . '\\' . $this->settings['class_name']
-                : $this->settings['class_name'];
-
             $unit = new $testClass;
             $methods = get_class_methods($testClass);
             foreach ($methods as $method) {
-                if ($method == '__construct') {
-                    continue;
-                }
-
-                $test = $this->createTestFromCestMethod($unit, $method, $file, $guy);
-
+                $test = $this->createTestFromCestMethod($unit, $method, $file);
                 if (!$test) {
                     continue;
                 }
                 if (!$this->isCurrentEnvironment($test->getScenario()->getEnv())) {
                     continue;
                 }
-                $this->suite->addTest($test, \PHPUnit_Util_Test::getGroups($testClass, $method));
+                $this->addToSuite($test);
             }
         }
+    }
+
+    protected function addToSuite($test)
+    {
+        $groups = $this->groupManager->groupsForTest($test);
+        $this->suite->addTest($test, $groups);
     }
 
     protected function relativeName($file)
@@ -183,10 +177,9 @@ class SuiteManager
 
     public function run(PHPUnit\Runner $runner, \PHPUnit_Framework_TestResult $result, $options)
     {
-
-        $this->dispatcher->dispatch('suite.before', new Event\SuiteEvent($this->suite, $result, $this->settings));
+        $this->dispatcher->dispatch(Events::SUITE_BEFORE, new Event\SuiteEvent($this->suite, $result, $this->settings));
         $runner->doEnhancedRun($this->suite, $result, $options);
-        $this->dispatcher->dispatch('suite.after', new Event\SuiteEvent($this->suite, $result, $this->settings));
+        $this->dispatcher->dispatch(Events::SUITE_AFTER, new Event\SuiteEvent($this->suite, $result, $this->settings));
     }
 
     public function loadTest($path)
@@ -223,43 +216,6 @@ class SuiteManager
         }
     }
 
-    protected function getClassesFromFile($file)
-    {
-        $loaded_classes = get_declared_classes();
-        require_once $file;
-
-        $sourceCode = file_get_contents($file);
-        $classes = array();
-        $tokens = token_get_all($sourceCode);
-        $namespace = '';
-
-        for ($i = 0; $i < count($tokens); $i++) {
-            if ($tokens[$i][0] === T_NAMESPACE) {
-                $namespace = '';
-                for ($j = $i + 1; $j < count($tokens); $j++) {
-                    if ($tokens[$j][0] === T_STRING) {
-                        $namespace .= $tokens[$j][1] . '\\';
-                    } else {
-                        if ($tokens[$j] === '{' || $tokens[$j] === ';') {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if ($tokens[$i][0] === T_CLASS) {
-                for ($j = $i + 1; $j < count($tokens); $j++) {
-                    if ($tokens[$j] === '{') {
-                        $classes[] = $namespace . $tokens[$i + 2][1];
-                        break;
-                    }
-                }
-            }
-        }
-
-        return $classes;
-    }
-
     protected function createTestFromPhpUnitMethod(\ReflectionClass $class, \ReflectionMethod $method)
     {
         if (!\PHPUnit_Framework_TestSuite::isTestMethod($method)) {
@@ -275,7 +231,6 @@ class SuiteManager
         }
 
         $this->enhancePhpunitTest($test);
-
         return $test;
     }
 
@@ -286,50 +241,33 @@ class SuiteManager
         $test->setDependencies(\PHPUnit_Util_Test::getDependencies($className, $methodName));
 
         if (!$test instanceof TestCase\Test) {
-            if ($this->settings['bootstrap']) {
-                require_once $this->settings['bootstrap'];
-            }
             return;
         }
 
-        $guy = $this->settings['namespace']
-            ? $this->settings['namespace'] . '\\' . $this->settings['class_name']
-            : $this->settings['class_name'];
+        $test->configDispatcher($this->dispatcher)
+            ->configActor($this->getActor())
+            ->initConfig();
 
-        $test->setBootstrap($this->settings['bootstrap']);
-        $test->setDispatcher($this->dispatcher);
-        $test->setGuyClass($guy);
-
-        $test->getScenario()->groups(\PHPUnit_Util_Test::getGroups($className, $methodName));
         $test->getScenario()->env(Annotation::forMethod($className, $methodName)->fetchAll('env'));
     }
 
-    protected function createTestFromCestMethod($cestInstance, $methodName, $file, $guy)
+    protected function createTestFromCestMethod($cestInstance, $methodName, $file)
     {
+        if ((strpos($methodName, '_') === 0) or ($methodName == '__construct')) {
+            return null;
+        }
         $testClass = get_class($cestInstance);
-        if (strpos($methodName, '_') === 0) {
-            return;
-        }
 
-        $overriddenGuy = Annotation::forMethod($testClass, $methodName)->fetch('guy');
-        if (!$overriddenGuy) {
-            $overriddenGuy = Annotation::forClass($testClass)->fetch('guy');
-        }
-        if ($overriddenGuy) {
-            $guy = $overriddenGuy;
-        }
-
-        $cest = new TestCase\Cest($this->dispatcher, array(
-            'name' => $methodName,
-            'instance' => $cestInstance,
-            'method' => $methodName,
-            'file' => $file,
-            'bootstrap' => $this->settings['bootstrap'],
-            'guy' => $guy
-        ));
+        $cest = new TestCase\Cest();
+        $cest->configDispatcher($this->dispatcher)
+            ->configName($methodName)
+            ->configFile($file)
+            ->config('testClassInstance', $cestInstance)
+            ->config('testMethod', $methodName)
+            ->configActor($this->getActor())
+            ->initConfig();
 
         $cest->getScenario()->env(Annotation::forMethod($testClass, $methodName)->fetchAll('env'));
-        $cest->getScenario()->groups(\PHPUnit_Util_Test::getGroups($testClass, $methodName));
         $cest->setDependencies(\PHPUnit_Util_Test::getDependencies($testClass, $methodName));
         $cest->preload();
         return $cest;
@@ -351,4 +289,10 @@ class SuiteManager
         return $this->env and in_array($this->env, $envs);
     }
 
+    protected function getActor()
+    {
+        return $this->settings['namespace']
+            ? $this->settings['namespace'] . '\\' . $this->settings['class_name']
+            : $this->settings['class_name'];
+    }
 }

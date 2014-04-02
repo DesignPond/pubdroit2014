@@ -8,7 +8,7 @@ use Codeception\Event\SuiteEvent;
 use Codeception\Event\TestEvent;
 use Codeception\Exception\ConditionalAssertionFailed;
 use Codeception\SuiteManager;
-use Codeception\TestCase\ScenarioDriven;
+use Codeception\TestCase\Interfaces\ScenarioDriven;
 use Codeception\TestCase;
 use Codeception\Lib\Console\Message;
 use Codeception\Lib\Console\Output;
@@ -73,6 +73,7 @@ class Console implements EventSubscriberInterface
         $message = $this->message(implode(', ',array_map(function ($module) {
             return $module->_getName();
         }, SuiteManager::$modules)));
+
         $message->style('info')
             ->prepend('Modules: ')
             ->writeln(OutputInterface::VERBOSITY_VERBOSE);
@@ -88,7 +89,7 @@ class Console implements EventSubscriberInterface
         $this->printedTest = $test;
 
         if ($test instanceof TestCase) {
-            if ($test->getFeature()) return;
+            return;
         }
 
         $this->message($test->toString())
@@ -101,7 +102,7 @@ class Console implements EventSubscriberInterface
     public function before(TestEvent $e)
     {
         $test = $e->getTest();
-        $filename = $test->getFileName();
+        $filename = $test->getSignature();
 
         if ($test->getFeature()) {
             $this->message("Trying to <focus>%s</focus> (%s) ")
@@ -233,9 +234,13 @@ class Console implements EventSubscriberInterface
 
     protected function printScenarioFail(ScenarioDriven $failedTest, $fail)
     {
-        $feature = $failedTest->getScenario()->getFeature();
+        $feature = $failedTest->getFeature();
         $failToString = \PHPUnit_Framework_TestFailure::exceptionToString($fail);
-        $failMessage = $this->message($failedTest->getFilename())->style('bold');
+        $failMessage = $this->message($failedTest->getSignature())
+            ->style('bold')
+            ->append(' (')
+            ->append($failedTest->getFileName())
+            ->append(')');
 
         if ($fail instanceof \PHPUnit_Framework_SkippedTest
             or $fail instanceof \PHPUnit_Framework_IncompleteTest

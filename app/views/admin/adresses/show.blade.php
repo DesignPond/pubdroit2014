@@ -242,7 +242,8 @@
 						</div><!-- end panel body -->
 					</div><!-- end panel -->
 					<?php } ?>	
-
+					
+					@if( !empty($adresse) )
 					<!-- Membres et specialisations -->
 					<div class="panel panel-warning"><!-- panel -->
 						<div class="panel-body"><!-- panel body -->
@@ -258,7 +259,12 @@
 										{{ Form::open(array('url' => 'admin/adresses/specialisation' , 'class' => 'form-inline row')) }}
 										  <div class="form-group col-md-10">
 											<?php echo Form::select('specialisation_id', $allSpecialisations , null , array('class' => 'form-control') ); ?>
-											<?php echo Form::hidden('adresse_id', $adresse->id );?>								
+											<?php echo Form::hidden('adresse_id', $adresse->id ); ?>	
+											<?php 
+												if( isset($adresse->user_id) && ($adresse->user_id > 0) ){ 
+													echo Form::hidden('user_id', $adresse->user_id );
+												}
+											?>							
 										  </div>
 										  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
 										{{ Form::close() }}
@@ -271,7 +277,7 @@
 								 		foreach ($specialisations as $spec)
 								 		{ 											 
 									 		echo '<p class="list-group-item">'.$spec->titreSpecialisation;
-									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeSpecialisation/'.$spec->id).'">X</a>';
+									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeSpecialisation/'.$spec->idspec).'">X</a>';
 									 		echo '</p>';
 								 		} 
 								 	?>
@@ -288,20 +294,27 @@
 										{{ Form::open(array('url' => 'admin/adresses/membre' , 'class' => 'form-inline row')) }}
 										  <div class="form-group col-md-10">
 											<?php echo Form::select('membre_id', $allmembres , null , array('class' => 'form-control') ); ?>
-											<?php echo Form::hidden('adresse_id', $adresse->id );?>											
+											<?php echo Form::hidden('adresse_id', $adresse->id );?>		
+											<?php 
+												if( isset($adresse->user_id) && ($adresse->user_id > 0) ){ 
+													echo Form::hidden('user_id', $adresse->user_id );
+												}
+											?>																					
 										  </div>
 										  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
 										{{ Form::close() }}
 										
 									 </div>
 								</div>
-							<?php if( !$membres->isEmpty() ){ ?>
+							<?php 
+
+							if( !$membres->isEmpty() ){ ?>
 								<div class="list-group">
 								 	<?php  
 								 		foreach ($membres as $membre)
 								 		{ 											 
 									 		echo '<p class="list-group-item">'.$membre->titreMembre;
-									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeMembre/'.$membre->id).'">X</a>';
+									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeMembre/'.$membre->idmem).'">X</a>';
 									 		echo '</p>';
 								 		} 
 								 	?>
@@ -312,7 +325,7 @@
 
 						</div><!-- end panel body -->
 					</div><!-- end panel -->
-					
+					@endif
 				</div><!-- end col -->
 
 			</div><!-- end row -->

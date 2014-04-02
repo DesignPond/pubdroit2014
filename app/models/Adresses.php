@@ -15,12 +15,12 @@ class Adresses extends Eloquent {
 		
 	public function membres(){
     	
-    	return $this->belongsToMany('Membres', 'user_membres', 'membre_id', 'adresse_id');
+    	return $this->belongsToMany('Membres', 'user_membres', 'membre_id', 'adresse_id')->withPivot('id');
  	}
  	
 	public function specialisations(){
 
-    	return $this->belongsToMany('Specialisations', 'user_specialisations', 'specialisation_id', 'adresse_id');
+    	return $this->belongsToMany('Specialisations', 'user_specialisations', 'specialisation_id', 'adresse_id')->withPivot('id');
  	}
  	
 	public function user()

@@ -8,6 +8,7 @@ use Codeception\Util\Locator;
 use Codeception\Lib\Interfaces\MultiSession;
 use Codeception\Lib\Interfaces\Web;
 use Codeception\Lib\Interfaces\Remote;
+use Monolog\TestCase;
 use Symfony\Component\DomCrawler\Crawler;
 use Codeception\PHPUnit\Constraint\WebDriver as WebDriverConstraint;
 use Codeception\PHPUnit\Constraint\WebDriverNot as WebDriverConstraintNot;
@@ -61,7 +62,8 @@ use Codeception\PHPUnit\Constraint\Page as PageConstraint;
  * Class WebDriver
  * @package Codeception\Module
  */
-class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession {
+class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
+{
 
     protected $requiredFields = array('browser', 'url');
     protected $config = array(
@@ -74,7 +76,6 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
 
     protected $wd_host;
     protected $capabilities;
-    protected $test;
 
     /**
      * @var \RemoteWebDriver
@@ -112,7 +113,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
 
     public function _failed(\Codeception\TestCase $test, $fail)
     {
-        $this->_saveScreenshot(\Codeception\Configuration::logDir() . basename($test->getFileName()) . '.fail.png');
+        $this->_saveScreenshot(codecept_log_dir(basename(\Codeception\TestCase::getTestFileName($test) . '.fail.png')));
         $this->debug("Screenshot was saved into 'log' dir");
     }
 
@@ -125,10 +126,13 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
         }
     }
 
-    public function _getResponseCode() {}
+    public function _getResponseCode()
+    {
+    }
 
-    public function _sendRequest($url) {
-        $this->webDriver->get($this->_getUrl().'');
+    public function _sendRequest($url)
+    {
+        $this->webDriver->get($this->_getUrl() . '');
     }
 
     public function amOnSubdomain($subdomain)
@@ -178,8 +182,8 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      * ``` php
      * <?php
      * $I->amOnPage('/user/edit');
-     * $I->makeScreenshot('edit page');
-     * // saved to: tests/_log/debug/UserEdit - edit page.png
+     * $I->makeScreenshot('edit_page');
+     * // saved to: tests/_log/debug/edit_page.png
      * ?>
      * ```
      *
@@ -187,22 +191,11 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      */
     public function makeScreenshot($name)
     {
-        $debugDir = \Codeception\Configuration::logDir() . 'debug';
+        $debugDir = codecept_log_dir().'debug';
         if (!is_dir($debugDir)) {
             mkdir($debugDir, 0777);
         }
-        $caseName = str_replace('Cept.php', '', $this->test->getFileName());
-        $caseName = str_replace('Cept.php', '', $caseName);
-        /**
-         * This is used for Cept only
-         *
-         * To be consistent with Cest, no sub-dir would be created, '\' and '/' in $caseName would be replaced with '.'
-         */
-        $search = array('/', '\\');
-        $replace = array('.', '.');
-        $caseName = str_replace($search, $replace, $caseName);
-
-        $screenName = $debugDir . DIRECTORY_SEPARATOR . $caseName . ' - ' . $name . '.png';
+        $screenName = $debugDir . DIRECTORY_SEPARATOR . $name . '.png';
         $this->_saveScreenshot($screenName);
         $this->debug("Screenshot saved to $screenName");
     }
@@ -533,7 +526,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
             try {
                 $wdSelect->selectByVisibleText($opt);
                 $matched = true;
-            } catch (\NoSuchElementWebDriverError $e) {
+            } catch (\NoSuchElementException $e) {
             }
         }
         if ($matched) {
@@ -543,7 +536,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
             try {
                 $wdSelect->selectByValue($opt);
                 $matched = true;
-            } catch (\NoSuchElementWebDriverError $e) {
+            } catch (\NoSuchElementException $e) {
             }
         }
         if ($matched) {
@@ -594,13 +587,13 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
             try {
                 $wdSelect->deselectByVisibleText($opt);
                 $matched = true;
-            } catch (\NoSuchElementWebDriverError $e) {
+            } catch (\NoSuchElementException $e) {
             }
 
             try {
                 $wdSelect->deselectByValue($opt);
                 $matched = true;
-            } catch (\NoSuchElementWebDriverError $e) {
+            } catch (\NoSuchElementException $e) {
             }
 
         }
@@ -709,6 +702,15 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
         throw new ElementNotFound($cssOrXPathOrRegex, 'CSS or XPath or Regex');
     }
 
+    public function grabAttributeFrom($cssOrXpath, $attribute)
+    {
+        $els = $this->match($this->webDriver, $cssOrXpath);
+        if (count($els)) {
+            return $els[0]->getAttribute($attribute);
+        }
+        throw new ElementNotFound($cssOrXPath, 'CSS or XPath');
+    }
+
     public function grabValueFrom($field)
     {
         $el = $this->findField($field);
@@ -719,6 +721,18 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
         }
         return $el->getAttribute('value');
     }
+
+
+    protected function filterByAttributes($els, array $attributes)
+    {
+        foreach ($attributes as $attr => $value) {
+            $els = array_filter($els, function (\WebDriverElement $el) use ($attr, $value) {
+                return $el->getAttribute($attr) == $value;
+            });
+        }
+        return $els;
+    }
+
 
     /**
      * Checks for a visible element on a page, matching it by CSS or XPath
@@ -731,14 +745,14 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      * ```
      * @param $selector
      */
-    public function seeElement($selector)
+    public function seeElement($selector, $attributes = array())
     {
-        $els = array_filter(
-            $this->match($this->webDriver, $selector),
-            function (\WebDriverElement $el) {
+        $els = array_filter($this->match($this->webDriver, $selector),
+            function (\WebDriverElement $el) use ($attributes) {
                 return $el->isDisplayed();
             }
         );
+        $els = $this->filterByAttributes($els, $attributes);
         $this->assertNotEmpty($els);
     }
 
@@ -754,7 +768,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      *
      * @param $selector
      */
-    public function dontSeeElement($selector)
+    public function dontSeeElement($selector, $attributes = array())
     {
         $els = array_filter(
             $this->match($this->webDriver, $selector),
@@ -762,6 +776,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
                 return $el->isDisplayed();
             }
         );
+        $els = $this->filterByAttributes($els, $attributes);
         $this->assertEmpty($els);
     }
 
@@ -776,9 +791,11 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      *
      * @param $selector
      */
-    public function seeElementInDOM($selector)
+    public function seeElementInDOM($selector, $attributes = array())
     {
-        $this->assertNotEmpty($this->match($this->webDriver, $selector));
+        $els = $this->match($this->webDriver, $selector);
+        $els = $this->filterByAttributes($els, $attributes);
+        $this->assertNotEmpty($els);
     }
 
 
@@ -787,9 +804,11 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      *
      * @param $selector
      */
-    public function dontSeeElementInDOM($selector)
+    public function dontSeeElementInDOM($selector, $attributes = array())
     {
-        $this->assertEmpty($this->match($this->webDriver, $selector));
+        $els = $this->match($this->webDriver, $selector);
+        $els = $this->filterByAttributes($els, $attributes);
+        $this->assertEmpty($els);
     }
 
     public function seeOptionIsSelected($selector, $optionText)
@@ -823,14 +842,9 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
             foreach ($els as $k => $el) {
                 $els[$k] = $this->findCheckable($el, $optionText, true);
             }
-            $this->assertEmpty(
-                array_filter(
-                    $els,
-                    function ($e) {
-                        return $e->isSelected();
-                    }
-                )
-            );
+            $this->assertEmpty(array_filter($els, function ($e) {
+                return $e->isSelected();
+            }));
             return;
         }
         $select = new \WebDriverSelect($el);
@@ -959,6 +973,9 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
         /** @var $form \WebDriverElement  * */
         foreach ($params as $param => $value) {
             $els = $form->findElements(\WebDriverBy::name($param));
+            if (empty($els)) {
+                throw new ElementNotFound($param);
+            }
             $el = reset($els);
             if ($el->getTagName() == 'textarea') {
                 $this->fillField($el, $value);
@@ -1173,10 +1190,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
                     $text
                 );
             }
-            if (!$condition and Locator::isCSS(
-                    $selector
-                )
-            ) {
+            if (!$condition and Locator::isCSS($selector)) {
                 $condition = \WebDriverExpectedCondition::textToBePresentInElement(
                     \WebDriverBy::cssSelector($selector),
                     $text
@@ -1292,7 +1306,11 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      */
     public function switchToIFrame($name = null)
     {
-        $this->webDriver->switchTo()->frame($name);
+        if (is_null($name)) {
+            $this->webDriver->switchTo()->defaultContent();
+        } else {
+            $this->webDriver->switchTo()->frame($name);
+        }
     }
 
     /**
@@ -1551,6 +1569,7 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
      *
      * @param string $field
      * @param string $value
+     * @throws \Codeception\Exception\ElementNotFound
      */
     public function appendField($field, $value)
     {
@@ -1565,13 +1584,13 @@ class WebDriver extends \Codeception\Module implements Web, Remote, MultiSession
                 try {
                     $wdSelect->selectByVisibleText($value);
                     $matched = true;
-                } catch (\NoSuchElementWebDriverError $e) {
+                } catch (\NoSuchElementException $e) {
                 }
 
                 try {
                     $wdSelect->selectByValue($value);
                     $matched = true;
-                } catch (\NoSuchElementWebDriverError $e) {
+                } catch (\NoSuchElementException $e) {
                 }
                 if ($matched) {
                     return;

@@ -75,8 +75,7 @@ class AdressesControllerTest extends TestCase {
 	    $this->get('admin/adresses/1');
 	    
 	    $this->assertViewHas('adresse');
-	}
-	
+	}	
 	
 	/**
 	 * Adresses create
@@ -130,7 +129,6 @@ class AdressesControllerTest extends TestCase {
  
 		$this->assertRedirectedTo('admin/adresses');
 	}
-
 	
 	/**
 	 * Store new adresse fails validation
@@ -144,6 +142,45 @@ class AdressesControllerTest extends TestCase {
 		$this->assertRedirectedTo('admin/adresses/create');
 		
 	}	
+		
+	/**
+	 * Update adresse pass validation but with redirect
+	*/
+	public function testUpdateAdresseValidationPassAndWithoutRedirect(){
+		
+		// the validation should pass and call create on the option repo
+		$this->mock->shouldReceive('update')->once();
+	    
+		$this->call('PUT', 'admin/adresses/1', $this->adresse);
+ 
+		$this->assertRedirectedTo('admin/adresses/1');
+	}
+		
+	/**
+	 * Update adresse pass validation but with redirect
+	*/
+	public function testUpdateAdresseValidationPassAndWithRedirect(){
+		
+		// add a redirect
+		$this->adresse['redirectTo'] = 'adresses';
+		
+		// the validation should pass and call create on the option repo
+		$this->mock->shouldReceive('update')->once();
+	    
+		$this->call('PUT', 'admin/adresses/1', $this->adresse);
+ 
+		$this->assertRedirectedTo('admin/adresses');
+	}
+			
+	/**
+	 * Update adresse pass validation but with redirect
+	*/
+	public function testUpdateAdresseValidationFails(){
+	    
+		$this->call('PUT', 'admin/adresses/1', array() );
+ 
+		$this->assertRedirectedTo('admin/adresses/1', array('status' => 'danger' ));
+	}
 	
 	/**
 	 * Destroy adresse ok with redirect to user
