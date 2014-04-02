@@ -19,13 +19,19 @@ class UserSpecialisationEloquent implements UserSpecialisationInterface {
 	}
 	
 	public function addToUser($specialisation,$adresse_id){
-	
-		$userspecialisation = $this->userspecialisation->create(array(
-			'specialisation_id' => $specialisation,
-			'adresse_id'        => $adresse_id
-		));
 		
-		if( ! $userspecialisation )
+		// Test if already assigned to user
+		$already = $this->find( $specialisation , $adresse_id );
+			
+		if( $already->isEmpty() )
+		{				
+			$userspecialisation = $this->userspecialisation->create(array(
+				'specialisation_id' => $specialisation,
+				'adresse_id'        => $adresse_id
+			));
+		}
+
+		if( !isset($userspecialisation) )
 		{
 			return false;
 		}

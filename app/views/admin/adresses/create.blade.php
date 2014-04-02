@@ -212,6 +212,7 @@
 					      	<div class="row">
 				      			<div class="btn-toolbar">
 				      				<?php 
+				      				
 				      					if( $user_id != 0)
 				      					{ 
 				      						echo Form::hidden('redirectTo', 'users/'.$user_id); 

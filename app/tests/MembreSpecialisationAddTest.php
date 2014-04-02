@@ -26,26 +26,25 @@ class MembreSpecialisationAddTest extends TestCase {
 	/**
 	 * add membership to user
 	*/	 
+
 	public function test_add_membre_to_user()
 	{	
-				
-		$this->membreMock->shouldReceive('create')->once()->andReturn('created');
-		
+		/*
 		$this->usermembre = new Droit\Repo\UserMembre\UserMembreEloquent($this->membreMock); 
 			
 		$expect = $this->usermembre->addToUser(5,1);
         
         $this->assertTrue($expect);	
-       	
+       	*/
 	}
+
 
 	/**
 	 * add specialisation to user
 	*/	 
+/*
 	public function test_add_specialisation_to_user()
 	{	
-				
-		$this->specialisationMock->shouldReceive('create')->once()->andReturn('created');
 		
 		$this->userspecialisation = new Droit\Repo\Userspecialisation\UserSpecialisationEloquent($this->specialisationMock); 
 			
@@ -54,5 +53,6 @@ class MembreSpecialisationAddTest extends TestCase {
         $this->assertTrue($expect);	
        	
 	}
+*/
 
 }

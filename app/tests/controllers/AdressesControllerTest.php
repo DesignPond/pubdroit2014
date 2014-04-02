@@ -144,5 +144,43 @@ class AdressesControllerTest extends TestCase {
 		$this->assertRedirectedTo('admin/adresses/create');
 		
 	}	
+	
+	/**
+	 * Destroy adresse ok with redirect to user
+	*/
+	public function testDestroyAdressePassWithUser(){
 		
+		$this->mock->shouldReceive('delete')->once()->andReturn(true);
+		  
+		$this->call('GET', 'admin/adresses/delete/1/1');
+		
+		$this->assertRedirectedTo('admin/users/1', array('status' => 'success' ));
+	
+	}
+	
+	/**
+	 * Destroy adresse ok with redirect adresses
+	*/
+	public function testDestroyAdressePass(){
+		
+		$this->mock->shouldReceive('delete')->once()->andReturn(true);
+		  
+		$this->call('GET', 'admin/adresses/delete/1');
+		
+		$this->assertRedirectedTo('admin/adresses', array('status' => 'success' ));
+	
+	}
+		
+	/**
+	 * Destroy adresse ok with redirect adresses
+	*/
+	public function testDestroyAdresseFails(){
+		
+		$this->mock->shouldReceive('delete')->once()->andReturn(false);
+		  
+		$this->call('GET', 'admin/adresses/delete/1');
+		
+		$this->assertRedirectedTo('admin/adresses/1', array('status' => 'danger' ));
+	
+	}		
 }

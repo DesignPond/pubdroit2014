@@ -242,41 +242,73 @@
 						</div><!-- end panel body -->
 					</div><!-- end panel -->
 					<?php } ?>	
-					
+
 					<!-- Membres et specialisations -->
 					<div class="panel panel-warning"><!-- panel -->
 						<div class="panel-body"><!-- panel body -->
 								
-							<h3><strong>Appartenances</strong></h3>
-													
-							<?php if( !empty($specialisations) ){ ?>
-
-							<h4>Spécialisations</h4>
 							<div class="well">
-								 <div class="list-group">
+								
+								<div id="specs">
+									 <h4>Spécialisations &nbsp;	&nbsp;											 
+										 <a data-toggle="collapse" data-parent="#specs" href="#addspecs" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
+									 </h4>
+									 <div id="addspecs" class="collapse">
+									 
+										{{ Form::open(array('url' => 'admin/adresses/specialisation' , 'class' => 'form-inline row')) }}
+										  <div class="form-group col-md-10">
+											<?php echo Form::select('specialisation_id', $allSpecialisations , null , array('class' => 'form-control') ); ?>
+											<?php echo Form::hidden('adresse_id', $adresse->id );?>								
+										  </div>
+										  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
+										{{ Form::close() }}
+
+									 </div>
+								</div>
+								<?php if( !$specialisations->isEmpty() ){ ?>
+								<div class="list-group">
 								 	<?php  
 								 		foreach ($specialisations as $spec)
 								 		{ 											 
-									 		echo '<p class="list-group-item">'.$spec->titreSpecialisation.'<a class="btn btn-xs btn-danger" href="">X</a></p>';										 		
+									 		echo '<p class="list-group-item">'.$spec->titreSpecialisation;
+									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeSpecialisation/'.$spec->id).'">X</a>';
+									 		echo '</p>';
 								 		} 
 								 	?>
-								 </div>
+								</div>
+								<?php } ?>	
 							</div>  
-							<?php } ?>										 
-							
-							<?php if(!empty($membres)){ ?>
-							<h4>Membres</h4>
 							<div class="well">
-								 <div class="list-group">
+								<div id="members">
+									 <h4>Membre de &nbsp; &nbsp;
+										 <a data-toggle="collapse" data-parent="#members" href="#addmembers" class="btn btn-xs btn-primary"><i class="fa fa-plus"></i></a>
+									 </h4>
+									 <div id="addmembers" class="collapse">
+									 
+										{{ Form::open(array('url' => 'admin/adresses/membre' , 'class' => 'form-inline row')) }}
+										  <div class="form-group col-md-10">
+											<?php echo Form::select('membre_id', $allmembres , null , array('class' => 'form-control') ); ?>
+											<?php echo Form::hidden('adresse_id', $adresse->id );?>											
+										  </div>
+										  <div class="col-md-2 text-right"><button type="submit" class="btn btn-info">Ajouter</button></div>
+										{{ Form::close() }}
+										
+									 </div>
+								</div>
+							<?php if( !$membres->isEmpty() ){ ?>
+								<div class="list-group">
 								 	<?php  
 								 		foreach ($membres as $membre)
 								 		{ 											 
-									 		echo '<p class="list-group-item">'.$membre->titreMembre.'<a class="btn btn-xs btn-danger" href="">X</a></p>';										 		
+									 		echo '<p class="list-group-item">'.$membre->titreMembre;
+									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeMembre/'.$membre->id).'">X</a>';
+									 		echo '</p>';
 								 		} 
 								 	?>
-								 </div>
-							</div>  
-							<?php } ?>										 
+								</div>
+								
+							<?php } ?>																			 
+							</div>  									 
 
 						</div><!-- end panel body -->
 					</div><!-- end panel -->

@@ -191,7 +191,9 @@ class AdresseController extends BaseController {
 			return Redirect::to('admin/adresses/'.$id)->with( array('status' => 'success' , 'message' => 'Adresse mise à jour') ); 
 		}
 		
-		return Redirect::back()->withErrors( $adresseValidator->errors() )->withInput( Input::all() ); 
+		return Redirect::to('admin/adresses/'.$id)->withErrors( $adresseValidator->errors() )
+												  ->with( array('status' => 'danger' , 'message' => 'Problème avec la mise à jour') )
+												  ->withInput( Input::all() ); 
 	}	
 
 	/**
@@ -200,7 +202,7 @@ class AdresseController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id,$user)
+	public function destroy($id,$user = NULL)
 	{
 		
 		$redirectTo = ( $user ? 'admin/users/'.$user : 'admin/adresses' );
@@ -210,7 +212,7 @@ class AdresseController extends BaseController {
 			return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'Adresse supprimé') ); 		
 		}	
 		
-		return Redirect::to($redirectTo)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') ); 
+		return Redirect::to('admin/adresses/'.$id)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') ); 
         
 	}
 
@@ -226,24 +228,15 @@ class AdresseController extends BaseController {
 		
 		if( !empty( $adresse_id ) && ($adresse_id != 0))
 		{					
-			$already = $this->userspecialisation->find( Input::get('specialisation_id') , Input::get('adresse_id')  );
-			
-			if( $already->isEmpty() )
+			if( $this->userspecialisation->addToUser(Input::get('specialisation_id') , Input::get('adresse_id')) )
 			{				
-				if( $this->userspecialisation->addToUser(Input::get('specialisation_id') , Input::get('adresse_id')) )
-				{
-					$status = array('status' => 'success' , 'message' => 'La spécialisation a été ajouté');
-				}
-				
-				$status = array('status' => 'danger' , 'message' => 'Problème avec l\'ajout');	
+				return Redirect::back()->with( array('status' => 'success' , 'message' => 'La spécialisation a été ajouté') );
 			}
-			
-			$status = array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà la spécialisation');
-		}
-		
-		$status = array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ');
 
-		return Redirect::back()->with( $status );		
+			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà la spécialisation') );
+		}
+
+		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ') );		
 	}
 
 	/**
@@ -257,25 +250,16 @@ class AdresseController extends BaseController {
 		$adresse_id = Input::get('adresse_id');
 		
 		if( !empty( $adresse_id ) && ($adresse_id != 0))
-		{		
-			$already = $this->usermembre->find( Input::get('membre_id') , Input::get('adresse_id')  );
-			
-			if( $already->isEmpty() )
-			{				
-				if( $this->usermembre->addToUser(Input::get('membre_id') , Input::get('adresse_id')) )
-				{
-					$status = array('status' => 'success' , 'message' => 'L\'appartenance comme membre a été ajouté'); 
-				}
-				
-				$status = array('status' => 'danger' , 'message' => 'Problème avec l\'ajout');
+		{					
+			if( $this->usermembre->addToUser(Input::get('membre_id') , Input::get('adresse_id')) )
+			{	
+				return Redirect::back()->with( array('status' => 'success' , 'message' => 'L\'appartenance comme membre a été ajouté') ); 
 			}
-			
-			$status = array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà l\'appartenance comme membre');
+		
+			return Redirect::back()->with( array('status' => 'danger' , 'message' => 'L\'utilisateur à déjà l\'appartenance comme membre') ); 
 		}	
-		
-		$status = array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ');
-		
-		return Redirect::back()->with( $status );				
+
+		return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Veuillez créer un adresse pour l\'utilisateur d\'abord ') );				
 	}
 	
 	/**

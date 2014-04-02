@@ -19,13 +19,18 @@ class UserMembreEloquent implements UserMembreInterface {
 	}
 	
 	public function addToUser($membre,$adresse_id){	
-
-		$usermembre = $this->usermembre->create(array(
-			'membre_id'  => $membre,
-			'adresse_id' => $adresse_id
-		));
+	
+		$already = $this->find( $membre , $adresse_id );
+			
+		if( $already->isEmpty() )
+		{						
+			$usermembre = $this->usermembre->create(array(
+				'membre_id'  => $membre,
+				'adresse_id' => $adresse_id
+			));
+		}
 		
-		if( ! $usermembre )
+		if( !isset($usermembre) )
 		{
 			return false;
 		}

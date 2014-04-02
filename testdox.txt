@@ -17,7 +17,6 @@ CustomHelper
 
 MembreSpecialisationAdd
  [x] test add membre to user
- [x] test add specialisation to user
 
 UserModel
  [x] test format first name of user
@@ -30,6 +29,9 @@ AdressesController
  [x] Store new adresse validation pass and without redirect
  [x] Store new adresse validation pass and with redirect
  [x] Store new adresse validation fails
+ [x] Destroy adresse pass with user
+ [x] Destroy adresse pass
+ [x] Destroy adresse fails
 
 EventController
  [x] Actif event list

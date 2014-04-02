@@ -10,6 +10,11 @@
 				<li class="active"><a href="{{ url('admin') }}">Dashboard</a></li>
 			</ol>
 			<h1>Adresses</h1>
+			<div class="options">
+	            <div class="btn-toolbar">
+	                <a href="{{ url('admin/adresses/create') }}" class="btn btn-default"><i class="fa fa-plus"></i> &nbsp;Ajouter une adresse</a>
+	            </div>
+			</div>
 		</div>
 		
 		<div class="container">
