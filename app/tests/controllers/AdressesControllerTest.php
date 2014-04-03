@@ -41,6 +41,12 @@ class AdressesControllerTest extends TestCase {
 	    return $mock;
 	}
 	
+ 	
+	public function tearDown()
+    {
+    	\Mockery::close();
+    }
+	
 	/**
 	 * Adresses index
 	*/	 

@@ -148,8 +148,8 @@ Route::group(array('prefix' => 'admin'), function()
 	Route::post('users', 'UserController@store');	
 
 	/* member and specialisation */
-	Route::get('adresses/removeMembre/{id}', 'AdresseController@removeMembre');
-	Route::get('adresses/removeSpecialisation/{id}', 'AdresseController@removeSpecialisation');
+	Route::post('adresses/removeMembre', 'AdresseController@removeMembre');
+	Route::post('adresses/removeSpecialisation', 'AdresseController@removeSpecialisation');
 	Route::post('adresses/membre', 'AdresseController@membre');
 	Route::post('adresses/specialisation', 'AdresseController@specialisation');
 	Route::post('adresses/changeLivraison', 'AdresseController@changeLivraison');

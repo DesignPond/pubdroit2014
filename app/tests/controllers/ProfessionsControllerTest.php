@@ -6,9 +6,10 @@ class ProfessionsControllerTest extends TestCase {
 	{
 		parent::setUp();
 	}
-	
+ 	
 	public function tearDown()
     {
+    	\Mockery::close();
     }
 	
 	/**

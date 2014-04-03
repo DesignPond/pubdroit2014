@@ -62,7 +62,7 @@ class UserSpecialisationsControllerTest extends TestCase {
 	{	
 		$this->mock->shouldReceive('delete')->once()->andReturn(true);
 	    
-		$this->call('get', 'admin/adresses/removeSpecialisation/1');
+		$this->call('POST', 'admin/adresses/removeSpecialisation', array( 'id' => 1 , 'adresse_id' => 2 , 'user_id' => 0) );
  
 		$this->assertRedirectedTo('admin/adresses/2', array('status' => 'success' ));	
 	}
@@ -74,8 +74,8 @@ class UserSpecialisationsControllerTest extends TestCase {
 	{	
 		$this->mock->shouldReceive('delete')->once()->andReturn(false);
 	    
-		$this->call('get', 'admin/adresses/removeSpecialisation/1' );
+		$this->call('POST', 'admin/adresses/removeSpecialisation' , array( 'id' => 1 , 'adresse_id' => 2 , 'user_id' => 0));
  
-		$this->assertRedirectedTo('admin/adresses/2', array('status' => 'success' ));	
+		$this->assertRedirectedTo('admin/adresses/2', array('status' => 'danger' ));	
 	}	
 }

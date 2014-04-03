@@ -194,7 +194,7 @@ class AdresseEloquent implements AdresseInterface{
 		{
 			$data['adresses']  = array();
 			$data['user_id']   = 0;	
-			$data['types']     = $types;
+			$data['types']     = array( 1 => 'Contact');
 			$data['livraison'] = 0;
 		}		
 		

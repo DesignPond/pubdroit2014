@@ -276,9 +276,15 @@
 								 	<?php  
 								 		foreach ($specialisations as $spec)
 								 		{ 											 
-									 		echo '<p class="list-group-item">'.$spec->titreSpecialisation;
-									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeSpecialisation/'.$spec->idspec).'">X</a>';
-									 		echo '</p>';
+									 		echo '<div class="list-group-item">';
+									 			echo Form::open(array('url' => 'admin/adresses/removeSpecialisation'));
+									 			echo $spec->titreSpecialisation;
+									 			echo Form::hidden('id', $spec->idspec );
+									 			echo Form::hidden('user_id', $adresse->user_id );
+									 			echo Form::hidden('adresse_id', $adresse->id );
+									 			echo '<button type="submit" class="btn btn-xs btn-danger">X</button>';
+									 			echo Form::close();
+									 		echo '</div>';
 								 		} 
 								 	?>
 								</div>
@@ -294,7 +300,7 @@
 										{{ Form::open(array('url' => 'admin/adresses/membre' , 'class' => 'form-inline row')) }}
 										  <div class="form-group col-md-10">
 											<?php echo Form::select('membre_id', $allmembres , null , array('class' => 'form-control') ); ?>
-											<?php echo Form::hidden('adresse_id', $adresse->id );?>		
+											<?php echo Form::hidden('adresse_id', $adresse->id ); ?>		
 											<?php 
 												if( isset($adresse->user_id) && ($adresse->user_id > 0) ){ 
 													echo Form::hidden('user_id', $adresse->user_id );
@@ -313,9 +319,15 @@
 								 	<?php  
 								 		foreach ($membres as $membre)
 								 		{ 											 
-									 		echo '<p class="list-group-item">'.$membre->titreMembre;
-									 		echo '<a class="btn btn-xs btn-danger" href="'.url('admin/adresses/removeMembre/'.$membre->idmem).'">X</a>';
-									 		echo '</p>';
+									 		echo '<div class="list-group-item">';
+									 			echo Form::open(array('url' => 'admin/adresses/removeMembre'));
+									 			echo $membre->titreMembre;
+									 			echo Form::hidden('id', $membre->idmem );
+									 			echo Form::hidden('user_id', $adresse->user_id );
+									 			echo Form::hidden('adresse_id', $adresse->id );
+									 			echo '<button type="submit" class="btn btn-xs btn-danger">X</button>';
+									 			echo Form::close();
+									 		echo '</div>';
 								 		} 
 								 	?>
 								</div>

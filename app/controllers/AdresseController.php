@@ -274,14 +274,20 @@ class AdresseController extends BaseController {
 	 * @param  int  $user_id , specialisation_id
 	 * @return Response
 	 */	
-	public function removeSpecialisation($id){
+	public function removeSpecialisation(){
+	
+		$adresse_id = Input::get('adresse_id');
+		$user_id    = Input::get('user_id');
+		$id         = Input::get('id');	
+		
+		$redirectTo = ( $user_id != 0 ? 'admin/users/'.$user_id : 'admin/adresses/'.$adresse_id );	
 		
 		if ( $this->userspecialisation->delete($id) )
 		{
-            return Redirect::back()->with( array('status' => 'success' , 'message' => 'La spécialisation a été supprimé')); 
+            return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'La spécialisation a été supprimé')); 
         }
 
-        return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );				
+        return Redirect::to($redirectTo)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );				
 	}
 
 	/**
@@ -290,14 +296,20 @@ class AdresseController extends BaseController {
 	 * @param  int  $user_id , $membre_id
 	 * @return Response
 	 */	
-	public function removeMembre($id){
+	public function removeMembre(){
+	
+		$adresse_id = Input::get('adresse_id');
+		$user_id    = Input::get('user_id');
+		$id         = Input::get('id');	
+		
+		$redirectTo = ( $user_id != 0 ? 'admin/users/'.$user_id : 'admin/adresses/'.$adresse_id );	
 
 		if ( $this->usermembre->delete($id) )
 		{
-            return Redirect::back()->with( array('status' => 'success' , 'message' => 'Le membre a été supprimé')); 
+            return Redirect::to($redirectTo)->with( array('status' => 'success' , 'message' => 'Le membre a été supprimé')); 
         }
 
-        return Redirect::back()->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );			
+        return Redirect::to($redirectTo)->with( array('status' => 'danger' , 'message' => 'Problème avec la suppression') );			
 	}	
 	
 }
